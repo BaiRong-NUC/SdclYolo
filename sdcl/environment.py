@@ -33,7 +33,7 @@ def environment_info():
         "gpu": torch.cuda.get_device_name(0) if torch.cuda.is_available() else None,
         "sdcl_source_hashes": {
             file.name: hashlib.sha256(file.read_bytes()).hexdigest()
-            for file in sorted((PROJECT_ROOT / "src" / "sdcl").glob("*.py"))
+            for file in sorted((PROJECT_ROOT / "sdcl").glob("*.py"))
         },
     }
 

@@ -42,10 +42,14 @@ def convert_annotation(lines, width, height):
         if len(values) != 8 or not np.isfinite(values).all():
             raise ValueError(f"Expected 8 finite annotation fields at line {number}")
         x, y, bw, bh, score, category, truncation, occlusion = values
-        if category != int(category) or score < 0 or bw <= 0 or bh <= 0:
+        if category != int(category) or score < 0 or bw < 0 or bh < 0:
             raise ValueError(f"Invalid annotation at line {number}")
         if not 0 <= int(category) <= 11:
             raise ValueError(f"Unknown VisDrone category at line {number}: {category}")
+        # The official archive contains a few zero-height boxes.
+        if bw == 0 or bh == 0:
+            stats["outside_or_zero_area"] += 1
+            continue
         x1, y1 = max(0.0, min(width, x)), max(0.0, min(height, y))
         x2, y2 = max(0.0, min(width, x + bw)), max(0.0, min(height, y + bh))
         if x2 <= x1 or y2 <= y1:
@@ -80,6 +84,8 @@ def prepare_visdrone(raw_root, output):
             if split in {"train", "val"}:
                 raise FileNotFoundError(f"Missing required raw split: {source}")
             continue
+        if not (source / "images").is_dir() and (source / folder).is_dir():
+            source = source / folder
         images = sorted((source / "images").glob("*.jpg"))
         if not images:
             raise ValueError(f"No JPG images found: {source}")
@@ -97,7 +103,10 @@ def prepare_visdrone(raw_root, output):
                 width, height = decoded.size
                 decoded.verify()
             text = annotation.read_text(encoding="utf-8")
-            labels, ignores, objects, stats = convert_annotation(text.splitlines(), width, height)
+            try:
+                labels, ignores, objects, stats = convert_annotation(text.splitlines(), width, height)
+            except ValueError as exc:
+                raise ValueError(f"{annotation}: {exc}") from exc
             shutil.copy2(image, output / "images" / split / image.name)
             shutil.copy2(annotation, output / "original_annotations" / split / annotation.name)
             (output / "labels" / split / f"{image.stem}.txt").write_text(

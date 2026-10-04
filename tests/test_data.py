@@ -24,6 +24,32 @@ def test_conversion_clip_ignore_and_invalid():
         convert_annotation(["0,0,10,10,1,12,0,0"], 100, 100)
 
 
+def test_zero_area_annotations_are_counted_and_skipped():
+    labels, ignores, objects, stats = convert_annotation(
+        ["10,10,4,0,1,4,0,0", "10,10,0,4,0,0,0,0", "10,10,4,4,1,4,0,0"], 100, 100
+    )
+    assert len(labels) == len(objects) == 1
+    assert ignores == []
+    assert stats == {"outside_or_zero_area": 2, "valid": 1}
+    assert objects[0]["object_id"] == 3
+    with pytest.raises(ValueError, match="Invalid annotation"):
+        convert_annotation(["10,10,4,-1,1,4,0,0"], 100, 100)
+
+
+def test_prepare_nested_archive_directories(tmp_path):
+    raw = make_toy_visdrone(tmp_path / "raw")
+    for source in raw.iterdir():
+        nested = source / source.name
+        nested.mkdir()
+        (source / "images").rename(nested / "images")
+        (source / "annotations").rename(nested / "annotations")
+    yaml = prepare_visdrone(raw, tmp_path / "converted")
+    report = audit_dataset(yaml.parent)
+    assert report["ok"]
+    assert report["splits"]["train"]["images"] == 4
+    assert report["splits"]["val"]["images"] == 2
+
+
 @pytest.fixture
 def converted(tmp_path):
     raw = make_toy_visdrone(tmp_path / "raw")

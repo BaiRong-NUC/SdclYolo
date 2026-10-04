@@ -16,11 +16,11 @@ sdcl = "sdcl.cli:main"
 dependencies = {file = ["requirements.txt"]}
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["."]
 include = ["sdcl*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+pythonpath = ["."]
 addopts = "-q"
 

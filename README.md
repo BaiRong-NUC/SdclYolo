@@ -28,7 +28,7 @@ python -m sdcl env
 python -m pytest
 ```
 
-框架固定适配 `ultralytics==8.4.172`。本地项目以 editable 模式安装后可直接修改 `src/sdcl`。
+框架固定适配 `ultralytics==8.4.172`。本地项目以 editable 模式安装后可直接修改 `sdcl`。
 
 脚本包装入口也可以直接运行，不依赖 editable 安装。加载本项目保存的自定义模型检查点时，需要本项目可导入。
 
@@ -83,6 +83,10 @@ python scripts/audit_dataset.py --dataset data/visdrone
 
 输出包含 `data/visdrone/dataset.yaml`，两个实验配置直接使用它。转换器拒绝覆盖已有输出目录；先核查失败原因，不自动清空目录。
 
+2026-10-04 本机已转换并审计真实数据：train 6471 张、val 548 张、test-dev 1610 张，
+审计无错误。转换器支持解压后的同名嵌套目录，跳过并统计 3 条零高框，同时保留原始标注。
+当前数据已可直接用于训练，无需重复转换。详细数量见 `data/README.md`。
+
 ## 5. 第三步：先跑短程基线
 
 先做 5 epoch 的真实数据试跑，检查读取、损失和显存，不直接租卡跑完整实验：
@@ -100,7 +104,7 @@ python scripts/train.py --config configs/experiments/sdcl.yaml
 
 默认 YOLO11s、640 输入、200 epoch、batch 16、单 GPU、Windows workers 0。这是起点配置，不保证 12 GB 显存下所有密集图像都能装入；OOM 时对所有对照统一减小 batch。
 
-模型首次使用 `yolo11s.pt` 时可能自动下载权重。真实数据尚未准备时，命令会报告数据缺失，不能当作训练故障。
+模型首次使用 `yolo11s.pt` 时可能自动下载权重。训练前应先完成数据转换和检查，生成 `data/visdrone/dataset.yaml`。
 
 ## 6. 恢复训练与验证
 
@@ -150,7 +154,7 @@ sdcl:
 
 ```text
 configs/experiments/  # baseline 与 SDCL 配方
-src/sdcl/            # 方法、数据、训练器与 CLI
+sdcl/                # 方法、数据、训练器与 CLI
 scripts/             # 可直接运行的入口
 tests/               # 张量公式、损失等价、数据增强、CUDA AMP
 data/                # 本地真实数据，不提交
@@ -163,7 +167,9 @@ output/              # 检查点、日志、烟测，不提交
 
 初次验证环境：Python 3.12.4、Torch 2.10.0+cu128、TorchVision 0.25.0+cu128、Ultralytics 8.4.172，RTX 4070 Ti。
 
-已验证内容见 `docs/代码框架与开始步骤.md`。尚未运行真实 VisDrone 实验、第二数据集、官方指标评价或多卡训练。
+已验证内容见 `docs/代码框架与开始步骤.md`。当前测试为 24 项通过；已完成真实数据全量审计、
+三个分集的画框抽样，以及 YOLO11s 基线／SDCL 在真实密集 batch 上的单步 AMP 更新检查。
+尚未完成真实 VisDrone 的 epoch 训练实验、第二数据集、官方指标评价或多卡训练。
 
 当前限制：
 

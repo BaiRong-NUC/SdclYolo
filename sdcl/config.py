@@ -6,7 +6,7 @@ from typing import Literal
 
 import yaml
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SUPPORTED_ULTRALYTICS = "8.4.172"
 
 
