@@ -1,0 +1,28 @@
+# Same data handling and training recipe as SDCL; only weighting is disabled.
+train:
+  model: yolo11s.pt
+  data: data/visdrone/dataset.yaml
+  project: output/runs
+  name: baseline_yolo11s_seed0
+  device: "0"
+  epochs: 200
+  batch: 16
+  imgsz: 640
+  workers: 0
+  seed: 0
+  deterministic: true
+  optimizer: SGD
+  lr0: 0.01
+  lrf: 0.01
+  momentum: 0.937
+  weight_decay: 0.0005
+  amp: true
+  plots: false
+  max_det: 500
+  close_mosaic: 10
+  patience: 0
+sdcl:
+  enabled: false
+ignore_regions:
+  enabled: true
+
