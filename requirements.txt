@@ -1,0 +1,44 @@
+# YOLO paper experiments: Python 3.12.4, Windows/Linux x86_64.
+# Install the CUDA build first, then install this file:
+# python -m pip install torch==2.10.0 torchvision==0.25.0 --index-url https://download.pytorch.org/whl/cu128
+# python -m pip install -r requirements.txt
+# The torch pins also accept the matching +cu128 local versions.
+# This pins direct dependencies; freeze the full environment after validation.
+
+# Detector and tensor computation
+torch==2.10.0
+torchvision==0.25.0
+ultralytics==8.4.172
+ultralytics-thop==2.2.2
+
+# Arrays, images and scientific computation
+# OpenCV 4.12 requires NumPy >=2,<2.3 on Python >=3.9.
+numpy==2.2.6
+opencv-python==4.12.0.88
+Pillow==12.3.0
+scipy==1.16.3
+
+# Experiment tables, statistics and paper figures
+pandas==2.3.3
+matplotlib==3.10.8
+seaborn==0.13.2
+scikit-learn==1.7.2
+
+# Detection annotations and training logs
+pycocotools==2.0.11
+tensorboard==2.21.0
+
+# Configuration, progress and diagnostics
+PyYAML==6.0.3
+tqdm==4.70.1
+requests==2.34.2
+psutil==7.2.2
+rich==15.0.0
+
+# Notebooks and interactive analysis
+jupyterlab==4.6.4
+ipykernel==7.4.0
+ipywidgets==8.1.9
+
+# Implementation checks
+pytest==9.1.1

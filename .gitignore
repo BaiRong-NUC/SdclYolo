@@ -1,0 +1,80 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pytype/
+.hypothesis/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Virtual environments and local configuration
+.venv/
+venv/
+env/
+ENV/
+.conda/
+.python-version
+.env
+.env.*
+!.env.example
+!.env.template
+
+# Python build and packaging artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+pip-wheel-metadata/
+
+# Jupyter and editor files
+.ipynb_checkpoints/
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Local datasets; keep documentation and dataset configuration
+/data/*
+!/data/README*
+!/data/.gitkeep
+!/data/*.yaml
+!/data/*.yml
+/datasets/
+*.cache
+
+# Training, inference and experiment outputs
+/output/
+/runs/
+/work_dirs/
+/wandb/
+/mlruns/
+/lightning_logs/
+/logs/
+events.out.tfevents.*
+*.log
+
+# Model weights, checkpoints and exported models
+*.pt
+*.pth
+*.ckpt
+*.weights
+*.safetensors
+*.onnx
+*.engine
+*.tflite
+*.torchscript
+
+# Temporary files and operating system metadata
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
