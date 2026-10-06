@@ -124,6 +124,16 @@ python scripts/validate.py --model output/runs/<run>/weights/best.pt
 
 **这里的指标是带简化 IoF 忽略过滤的 Ultralytics 指标，不是官方 VisDrone AP。** IoF 过滤不完整实现官方的有效目标优先匹配、忽略区域合并等逻辑，只用于统一监控与调试。
 
+比较两个最佳检查点的尺寸收益与漏检：
+
+```powershell
+python scripts/analyze_sizes.py --output output/analysis/size_comparison_new
+```
+
+默认比较 30 轮 baseline 与 SDCL，生成 COCO 风格分尺寸 AP、固定阈值 Recall、
+逐目标新增检出／丢失记录和可视化。尺寸、匹配规则与限制见
+[按尺寸评估与漏检分析](docs/按尺寸评估与漏检分析.md)。
+
 导出真实原图坐标预测：
 
 ```powershell
@@ -167,9 +177,9 @@ output/              # 检查点、日志、烟测，不提交
 
 初次验证环境：Python 3.12.4、Torch 2.10.0+cu128、TorchVision 0.25.0+cu128、Ultralytics 8.4.172，RTX 4070 Ti。
 
-已验证内容见 `docs/代码框架与开始步骤.md`。当前测试为 24 项通过；已完成真实数据全量审计、
-三个分集的画框抽样，以及 YOLO11s 基线／SDCL 在真实密集 batch 上的单步 AMP 更新检查。
-尚未完成真实 VisDrone 的 epoch 训练实验、第二数据集、官方指标评价或多卡训练。
+已验证内容见 `docs/代码框架与开始步骤.md`。当前测试为 33 项通过；已完成真实数据全量审计、
+三个分集的画框抽样、YOLO11s 基线／SDCL 的真实训练与 30 轮对照检查，
+并增加分尺寸评价与漏检分析入口。尚未完成第二数据集、官方指标评价或多卡训练。
 
 当前限制：
 
