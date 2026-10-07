@@ -4,7 +4,7 @@
 
 Scale and Difficulty Collaborative Learning for UAV Small Object Detection.
 
-当前为研究实现框架，尚无真实数据上的论文结果。不要把候选方法称为已验证创新，也不要引用烟测的合成数据指标。
+当前为研究实现框架，已完成真实数据 30 轮对照与分尺寸诊断，尚未证实稳定收益。不要把候选方法称为已验证创新，也不要引用烟测的合成数据指标。
 
 ## 1. 已实现
 
@@ -12,7 +12,7 @@ Scale and Difficulty Collaborative Learning for UAV Small Object Detection.
 - YOLO11 检测模型／训练器扩展：不修改全局 `site-packages`。
 - 目标级尺度—难度权重：支持 joint、scale、difficulty、additive 四种信号。
 - 有界且保持正质量总量的权重调节、渐进启用。
-- 正分类监督和逐正样本回归／DFL 加权；不改变原始分配与软目标。
+- 正分类监督和逐正样本回归／DFL 加权；支持分类、回归、联合三个分支，不改变原始分配与软目标。
 - 忽略区域同步进入增强流程，再从有效真值中拆分。
 - 基线／SDCL 配置、诊断验证、VisDrone 格式预测导出、合成烟测与测试。
 
@@ -148,6 +148,22 @@ https://github.com/VisDrone/VisDrone2018-DET-toolkit
 
 ## 7. 消融如何开始
 
+当前优先补分类／回归分支消融。两组新配置默认 30 epoch、batch 8、640 输入、seed 0，
+与已完成的 30 轮对照使用相同训练配方。逐条执行，第一组成功结束后再运行第二组：
+
+```powershell
+python scripts/train.py --config configs/experiments/sdcl_cls.yaml --epochs 30 --batch 8
+python scripts/train.py --config configs/experiments/sdcl_reg.yaml --epochs 30 --batch 8
+```
+
+两组输出名分别为 `sdcl_cls_yolo11s_seed0` 与 `sdcl_reg_yolo11s_seed0`。
+`sdcl.apply_to` 支持 `classification`（仅正分类监督）、`regression`（框回归与 DFL）
+和 `both`（联合加权，旧配置默认值）。权重信号与渐进调度保持一致。
+完整指令、评估入口和判断标准见
+[分类与回归加权消融](docs/分类与回归加权消融.md)。
+
+后续再拆尺度／难度信号：
+
 复制 `configs/experiments/sdcl.yaml`，给每个 run 设置不同 `name`：
 
 ```yaml
@@ -156,7 +172,8 @@ sdcl:
   signal: scale  # joint / scale / difficulty / additive
 ```
 
-设置 `difficulty_alpha: 1.0` 或 `0.0` 比较分类／定位难度；设置 `lambda_max: 0.0` 检查零强度等价性。参数、种子和训练预算保持一致。
+设置 `difficulty_alpha: 1.0` 或 `0.0` 比较分类／定位难度；这不控制权重作用的损失分支。
+设置 `lambda_max: 0.0` 检查零强度等价性。参数、种子和训练预算保持一致。
 
 当前框架只实现首版核心方法。位置级、非守恒、随机权重、非单调难度和背景扩展仍待实现，不要把它们写成已完成消融。
 
@@ -177,7 +194,8 @@ output/              # 检查点、日志、烟测，不提交
 
 初次验证环境：Python 3.12.4、Torch 2.10.0+cu128、TorchVision 0.25.0+cu128、Ultralytics 8.4.172，RTX 4070 Ti。
 
-已验证内容见 `docs/代码框架与开始步骤.md`。当前测试为 33 项通过；已完成真实数据全量审计、
+已验证内容见 `docs/代码框架与开始步骤.md`。当前测试为 49 项通过，包含三个加权分支的
+损失／梯度对照、零强度等价性、CUDA AMP 与旧配置兼容检查；已完成真实数据全量审计、
 三个分集的画框抽样、YOLO11s 基线／SDCL 的真实训练与 30 轮对照检查，
 并增加分尺寸评价与漏检分析入口。尚未完成第二数据集、官方指标评价或多卡训练。
 

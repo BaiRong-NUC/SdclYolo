@@ -74,9 +74,18 @@ class SDCLLoss(v8DetectionLoss):
                 anchors * stride, batch["ignore_bboxes"], batch["ignore_batch_idx"],
                 logits.shape[0], image_size,
             )
-        loss[1] = weighted_classification(logits, scores, result.weights, ignored, foreground).sum() / denominator
+        classification_weights = (
+            result.weights if self.settings.apply_to in {"both", "classification"}
+            else torch.ones_like(result.weights)
+        )
+        loss[1] = weighted_classification(
+            logits, scores, classification_weights, ignored, foreground,
+        ).sum() / denominator
         # BboxLoss consumes these scores only as regression weights, not soft labels.
-        regression_weights = scores * result.weights[..., None]
+        regression_weights = (
+            scores * result.weights[..., None]
+            if self.settings.apply_to in {"both", "regression"} else scores
+        )
         loss[0], loss[2] = self.bbox_loss(
             distances, decoded, anchors, boxes / stride, regression_weights,
             denominator, foreground, size_tensor, stride,

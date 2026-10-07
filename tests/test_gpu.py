@@ -10,11 +10,14 @@ from sdcl.criterion import SDCLLoss
 
 
 @pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA unavailable")
-def test_amp_forward_backward_nonzero_weights():
+@pytest.mark.parametrize("apply_to", ["both", "classification", "regression"])
+def test_amp_forward_backward_nonzero_weights(apply_to):
     torch.manual_seed(0)
     model = DetectionModel("yolo11n.yaml", nc=2, verbose=False).cuda().train()
     model.args = SimpleNamespace(**DEFAULT_CFG_DICT)
-    model.sdcl_settings = SDCLConfig(warmup_epochs=0, ramp_epochs=0, log_interval=1).to_dict()
+    model.sdcl_settings = SDCLConfig(
+        warmup_epochs=0, ramp_epochs=0, log_interval=1, apply_to=apply_to,
+    ).to_dict()
     model.sdcl_ignore_regions = True
     criterion = SDCLLoss(model)
     batch = {

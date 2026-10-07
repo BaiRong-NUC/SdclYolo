@@ -1,4 +1,6 @@
 from pathlib import Path
+from dataclasses import replace
+import json
 
 import pytest
 import yaml
@@ -23,6 +25,66 @@ def test_main_recipes_have_same_training_arguments():
     assert base_ignore and method_ignore
     assert not base_settings.enabled
     assert method_settings.enabled
+
+
+@pytest.mark.parametrize(
+    ("file", "scope"),
+    [("sdcl_cls.yaml", "classification"), ("sdcl_reg.yaml", "regression")],
+)
+def test_branch_recipes_preserve_30_epoch_comparison(file, scope):
+    method, method_settings, method_ignore = load_experiment("configs/experiments/sdcl.yaml")
+    branch, branch_settings, branch_ignore = load_experiment(f"configs/experiments/{file}")
+    assert branch.pop("name") != method.pop("name")
+    assert branch == {**method, "epochs": 30, "batch": 8}
+    assert branch_settings == replace(method_settings, apply_to=scope)
+    assert branch_ignore == method_ignore
+
+
+def test_scope_default_validation_and_round_trip():
+    assert SDCLConfig.from_dict({"enabled": True}).apply_to == "both"
+    for scope in ("both", "classification", "regression"):
+        settings = SDCLConfig(apply_to=scope)
+        assert SDCLConfig.from_dict(settings.to_dict()) == settings
+    with pytest.raises(ValueError, match="Unknown apply_to"):
+        SDCLConfig(apply_to="classfication")
+
+
+@pytest.mark.parametrize("apply_to", ["both", "classification", "regression"])
+def test_legacy_resume_manifest_defaults_to_both(tmp_path, monkeypatch, apply_to):
+    from sdcl.cli import train_experiment
+
+    settings = SDCLConfig(apply_to=apply_to)
+    config = tmp_path / "experiment.yaml"
+    config.write_text(yaml.safe_dump({
+        "train": {"data": "data/visdrone/dataset.yaml"},
+        "sdcl": settings.to_dict(),
+    }), encoding="utf-8")
+    weights = tmp_path / "run" / "weights"
+    weights.mkdir(parents=True)
+    saved_settings = SDCLConfig().to_dict()
+    saved_settings.pop("apply_to")
+    (weights.parent / "experiment.json").write_text(json.dumps({
+        "sdcl": saved_settings, "ignore_regions": True,
+    }), encoding="utf-8")
+    started = []
+
+    class FakeTrainer:
+        save_dir = weights.parent
+
+        def __init__(self, **kwargs):
+            started.append(kwargs)
+
+        def train(self):
+            pass
+
+    monkeypatch.setattr("sdcl.trainer.SDCLTrainer", FakeTrainer)
+    if apply_to == "both":
+        train_experiment(config, resume=str(weights / "last.pt"))
+        assert started[0]["sdcl"].apply_to == "both"
+    else:
+        with pytest.raises(ValueError, match="same SDCL settings"):
+            train_experiment(config, resume=str(weights / "last.pt"))
+        assert not started
 
 
 def test_config_unknown_section(tmp_path):

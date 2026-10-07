@@ -22,7 +22,12 @@ def train_experiment(config_file, **overrides):
         if not manifest_path.is_file():
             raise FileNotFoundError(f"Missing resume manifest: {manifest_path}")
         saved = json.loads(manifest_path.read_text(encoding="utf-8"))
-        if saved.get("sdcl") != settings.to_dict() or saved.get("ignore_regions") != ignore:
+        saved_settings = saved.get("sdcl")
+        if (
+            not isinstance(saved_settings, dict)
+            or SDCLConfig.from_dict(saved_settings) != settings
+            or saved.get("ignore_regions") != ignore
+        ):
             raise ValueError("Resume requires the same SDCL settings and ignore protocol as the saved run.")
     trainer = SDCLTrainer(overrides=arguments, sdcl=settings, ignore_regions=ignore)
     trainer.train()
