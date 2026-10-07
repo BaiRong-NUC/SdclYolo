@@ -148,7 +148,7 @@ https://github.com/VisDrone/VisDrone2018-DET-toolkit
 
 ## 7. 消融如何开始
 
-当前优先补分类／回归分支消融。两组新配置默认 30 epoch、batch 8、640 输入、seed 0，
+分类／回归分支消融已完成 30 轮。复现实验时，两组配置默认 30 epoch、batch 8、640 输入、seed 0，
 与已完成的 30 轮对照使用相同训练配方。逐条执行，第一组成功结束后再运行第二组：
 
 ```powershell
@@ -161,6 +161,17 @@ python scripts/train.py --config configs/experiments/sdcl_reg.yaml --epochs 30 -
 和 `both`（联合加权，旧配置默认值）。权重信号与渐进调度保持一致。
 完整指令、评估入口和判断标准见
 [分类与回归加权消融](docs/分类与回归加权消融.md)。
+
+2026-10-07 下一组只修改分类加权形式，运行：
+
+```powershell
+python scripts/train.py --config configs/experiments/sdcl_cls_full_bce.yaml --epochs 30 --batch 8
+```
+
+`classification_weighting: full_bce` 对已匹配真实类别的完整软标签 BCE 加权，
+其他类别与背景监督保持原处理；旧配置默认 `positive_term`，仅对 BCE 正项加权。
+本组 `apply_to: classification`，与已完成的分类消融仅在分类加权形式上不同。
+这是一组机制验证实验，尚未证明效果提升。
 
 后续再拆尺度／难度信号：
 
@@ -194,8 +205,9 @@ output/              # 检查点、日志、烟测，不提交
 
 初次验证环境：Python 3.12.4、Torch 2.10.0+cu128、TorchVision 0.25.0+cu128、Ultralytics 8.4.172，RTX 4070 Ti。
 
-已验证内容见 `docs/代码框架与开始步骤.md`。当前测试为 49 项通过，包含三个加权分支的
-损失／梯度对照、零强度等价性、CUDA AMP 与旧配置兼容检查；已完成真实数据全量审计、
+已验证内容见 `docs/代码框架与开始步骤.md`。当前测试为 71 项通过，包含两种分类加权形式、
+三个加权分支的损失／梯度对照、固定软目标处的梯度检查、零强度等价性、CUDA AMP
+与旧配置兼容检查；已完成真实数据全量审计、
 三个分集的画框抽样、YOLO11s 基线／SDCL 的真实训练与 30 轮对照检查，
 并增加分尺寸评价与漏检分析入口。尚未完成第二数据集、官方指标评价或多卡训练。
 

@@ -11,9 +11,18 @@ from .geometry import anchor_ignore_mask
 from .weights import object_weights
 
 
-def weighted_classification(logits, targets, weights, ignored=None, foreground=None):
+def weighted_classification(
+    logits, targets, weights, ignored=None, foreground=None, *, mode="positive_term",
+):
     bce = F.binary_cross_entropy_with_logits(logits, targets.to(logits.dtype), reduction="none")
-    bce = bce + (weights[..., None] - 1) * targets * F.softplus(-logits)
+    if mode == "positive_term":
+        bce = bce + (weights[..., None] - 1) * targets * F.softplus(-logits)
+    elif mode == "full_bce":
+        # Positive soft targets identify the matched object's true-class entries.
+        # Scale both BCE terms there; other classes and background keep unit weight.
+        bce = bce * torch.where(targets > 0, weights[..., None], 1.0)
+    else:
+        raise ValueError(f"Unknown classification weighting mode: {mode}")
     if ignored is not None:
         if foreground is None:
             raise ValueError("Foreground is required when ignoring negative locations.")
@@ -80,6 +89,7 @@ class SDCLLoss(v8DetectionLoss):
         )
         loss[1] = weighted_classification(
             logits, scores, classification_weights, ignored, foreground,
+            mode=self.settings.classification_weighting,
         ).sum() / denominator
         # BboxLoss consumes these scores only as regression weights, not soft labels.
         regression_weights = (

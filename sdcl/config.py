@@ -22,12 +22,15 @@ class SDCLConfig:
     ramp_epochs: int = 10
     log_interval: int = 50
     apply_to: Literal["both", "classification", "regression"] = "both"
+    classification_weighting: Literal["positive_term", "full_bce"] = "positive_term"
 
     def __post_init__(self):
         if self.signal not in {"joint", "scale", "difficulty", "additive"}:
             raise ValueError(f"Unknown signal: {self.signal}")
         if self.apply_to not in {"both", "classification", "regression"}:
             raise ValueError(f"Unknown apply_to: {self.apply_to}")
+        if self.classification_weighting not in {"positive_term", "full_bce"}:
+            raise ValueError(f"Unknown classification_weighting: {self.classification_weighting}")
         if self.scale_reference <= 0 or self.scale_s0 <= 0:
             raise ValueError("Scale values must be positive.")
         if not 0 <= self.difficulty_alpha <= 1:

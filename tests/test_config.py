@@ -49,11 +49,32 @@ def test_scope_default_validation_and_round_trip():
         SDCLConfig(apply_to="classfication")
 
 
+def test_full_bce_recipe_changes_only_classification_weighting():
+    original, original_settings, original_ignore = load_experiment("configs/experiments/sdcl_cls.yaml")
+    modified, modified_settings, modified_ignore = load_experiment(
+        "configs/experiments/sdcl_cls_full_bce.yaml"
+    )
+    assert original.pop("name") != modified.pop("name")
+    assert original == modified
+    assert modified_settings == replace(original_settings, classification_weighting="full_bce")
+    assert original_ignore == modified_ignore
+
+
+def test_classification_weighting_default_validation_and_round_trip():
+    assert SDCLConfig.from_dict({"apply_to": "classification"}).classification_weighting == "positive_term"
+    for mode in ("positive_term", "full_bce"):
+        settings = SDCLConfig(classification_weighting=mode)
+        assert SDCLConfig.from_dict(settings.to_dict()) == settings
+    with pytest.raises(ValueError, match="Unknown classification_weighting"):
+        SDCLConfig(classification_weighting="typo")
+
+
 @pytest.mark.parametrize("apply_to", ["both", "classification", "regression"])
-def test_legacy_resume_manifest_defaults_to_both(tmp_path, monkeypatch, apply_to):
+@pytest.mark.parametrize("mode", ["positive_term", "full_bce"])
+def test_legacy_resume_manifest_defaults_to_both(tmp_path, monkeypatch, apply_to, mode):
     from sdcl.cli import train_experiment
 
-    settings = SDCLConfig(apply_to=apply_to)
+    settings = SDCLConfig(apply_to=apply_to, classification_weighting=mode)
     config = tmp_path / "experiment.yaml"
     config.write_text(yaml.safe_dump({
         "train": {"data": "data/visdrone/dataset.yaml"},
@@ -63,6 +84,7 @@ def test_legacy_resume_manifest_defaults_to_both(tmp_path, monkeypatch, apply_to
     weights.mkdir(parents=True)
     saved_settings = SDCLConfig().to_dict()
     saved_settings.pop("apply_to")
+    saved_settings.pop("classification_weighting")
     (weights.parent / "experiment.json").write_text(json.dumps({
         "sdcl": saved_settings, "ignore_regions": True,
     }), encoding="utf-8")
@@ -78,9 +100,10 @@ def test_legacy_resume_manifest_defaults_to_both(tmp_path, monkeypatch, apply_to
             pass
 
     monkeypatch.setattr("sdcl.trainer.SDCLTrainer", FakeTrainer)
-    if apply_to == "both":
+    if apply_to == "both" and mode == "positive_term":
         train_experiment(config, resume=str(weights / "last.pt"))
         assert started[0]["sdcl"].apply_to == "both"
+        assert started[0]["sdcl"].classification_weighting == "positive_term"
     else:
         with pytest.raises(ValueError, match="same SDCL settings"):
             train_experiment(config, resume=str(weights / "last.pt"))
