@@ -162,7 +162,7 @@ python scripts/train.py --config configs/experiments/sdcl_reg.yaml --epochs 30 -
 完整指令、评估入口和判断标准见
 [分类与回归加权消融](docs/分类与回归加权消融.md)。
 
-2026-10-07 下一组只修改分类加权形式，运行：
+完整 BCE 分类消融也已完成 30 轮。复现实验时运行：
 
 ```powershell
 python scripts/train.py --config configs/experiments/sdcl_cls_full_bce.yaml --epochs 30 --batch 8
@@ -171,7 +171,31 @@ python scripts/train.py --config configs/experiments/sdcl_cls_full_bce.yaml --ep
 `classification_weighting: full_bce` 对已匹配真实类别的完整软标签 BCE 加权，
 其他类别与背景监督保持原处理；旧配置默认 `positive_term`，仅对 BCE 正项加权。
 本组 `apply_to: classification`，与已完成的分类消融仅在分类加权形式上不同。
-这是一组机制验证实验，尚未证明效果提升。
+这组机制验证实验尚未证明稳定效果提升。
+
+下一步进行基线与原版联合 SDCL 的 100 轮对照。两份独立配置均为 100 epoch、
+batch 8、640 输入、seed 0；分别从原始 `yolo11s.pt` 重新开始，逐条执行：
+
+```powershell
+python scripts/train.py --config configs/experiments/baseline_100.yaml
+python scripts/train.py --config configs/experiments/sdcl_100.yaml
+```
+
+本组 SDCL 明确使用 `apply_to: both`、`classification_weighting: positive_term`、
+`signal: joint`，与原版联合方法一致。首次输出名为
+`baseline_yolo11s_100ep_seed0` 与 `sdcl_yolo11s_100ep_seed0`。
+两组成功完成后使用这两个 100 轮检查点比较：
+
+```powershell
+python scripts/analyze_sizes.py `
+  --baseline output/runs/baseline_yolo11s_100ep_seed0/weights/best.pt `
+  --sdcl output/runs/sdcl_yolo11s_100ep_seed0/weights/best.pt `
+  --output output/analysis/size_100epoch_seed0_20261007
+```
+
+本次用于检验更充分训练下的收益，不保证 100 轮已经收敛。
+训练中断恢复和同名重跑的目录说明见
+[分类与回归加权消融](docs/分类与回归加权消融.md) 的 100 轮对照章节。
 
 后续再拆尺度／难度信号：
 

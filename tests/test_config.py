@@ -27,6 +27,35 @@ def test_main_recipes_have_same_training_arguments():
     assert method_settings.enabled
 
 
+def test_100_epoch_pair_differs_only_in_weighting_enablement():
+    baseline, base_settings, base_ignore = load_experiment("configs/experiments/baseline_100.yaml")
+    method, method_settings, method_ignore = load_experiment("configs/experiments/sdcl_100.yaml")
+    assert baseline.pop("name") != method.pop("name")
+    assert baseline == method
+    assert method_settings == replace(base_settings, enabled=True)
+    assert not base_settings.enabled
+    assert base_ignore and method_ignore
+    assert method_settings.apply_to == "both"
+    assert method_settings.classification_weighting == "positive_term"
+    assert not baseline.get("resume")
+    assert not baseline.get("exist_ok")
+
+
+@pytest.mark.parametrize("recipe", ["baseline", "sdcl"])
+def test_100_epoch_recipes_preserve_original_method_and_training_recipe(recipe):
+    original, original_settings, original_ignore = load_experiment(
+        f"configs/experiments/{recipe}.yaml"
+    )
+    longer, longer_settings, longer_ignore = load_experiment(
+        f"configs/experiments/{recipe}_100.yaml"
+    )
+    assert original.pop("name") != longer.pop("name")
+    assert longer == {**original, "epochs": 100, "batch": 8}
+    assert longer["model"] == "yolo11s.pt"
+    assert longer_settings == original_settings
+    assert longer_ignore == original_ignore
+
+
 @pytest.mark.parametrize(
     ("file", "scope"),
     [("sdcl_cls.yaml", "classification"), ("sdcl_reg.yaml", "regression")],
