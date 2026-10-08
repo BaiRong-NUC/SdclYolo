@@ -4,7 +4,9 @@
 
 Scale and Difficulty Collaborative Learning for UAV Small Object Detection.
 
-当前为研究实现框架，已完成真实数据 30 轮对照与分尺寸诊断，尚未证实稳定收益。不要把候选方法称为已验证创新，也不要引用烟测的合成数据指标。
+当前为研究实现框架，已完成真实数据 30 轮消融、100 轮 seed 0 对照与分尺寸诊断。
+100 轮结果显示有限的小目标收益，尚未完成多种子复验。不要把候选方法称为已验证创新，
+也不要引用烟测的合成数据指标。
 
 ## 1. 已实现
 
@@ -173,7 +175,7 @@ python scripts/train.py --config configs/experiments/sdcl_cls_full_bce.yaml --ep
 本组 `apply_to: classification`，与已完成的分类消融仅在分类加权形式上不同。
 这组机制验证实验尚未证明稳定效果提升。
 
-下一步进行基线与原版联合 SDCL 的 100 轮对照。两份独立配置均为 100 epoch、
+基线与原版联合 SDCL 的 100 轮 seed 0 对照已完成。复现时，两份独立配置均为 100 epoch、
 batch 8、640 输入、seed 0；分别从原始 `yolo11s.pt` 重新开始，逐条执行：
 
 ```powershell
@@ -190,12 +192,41 @@ python scripts/train.py --config configs/experiments/sdcl_100.yaml
 python scripts/analyze_sizes.py `
   --baseline output/runs/baseline_yolo11s_100ep_seed0/weights/best.pt `
   --sdcl output/runs/sdcl_yolo11s_100ep_seed0/weights/best.pt `
-  --output output/analysis/size_100epoch_seed0_20261007
+  --output output/analysis/size_100epoch_seed0_replication
 ```
 
-本次用于检验更充分训练下的收益，不保证 100 轮已经收敛。
-训练中断恢复和同名重跑的目录说明见
-[分类与回归加权消融](docs/分类与回归加权消融.md) 的 100 轮对照章节。
+现有 seed 0 的诊断报告为 `output/analysis/size_100epoch_seed0_20261008/report.json`，
+无需重新训练或评估这一组。small_all AP50–95 为 20.287% → 20.478%，提升约
+0.191 个百分点；FPPI 5、10 下小目标 Recall 分别提升约 0.382、0.544 个百分点。
+基线工作点附近的相同误检预算 Recall 区间仍包含零，中目标 AP 有下降。
+这些指标支持继续复验，不代表稳定收益或官方 VisDrone AP。
+
+**当前下一步：固定原版联合方法，补齐 seed 1、2 的 100 轮成对实验。**
+只改变种子与 run 名，每个 seed 内基线和 SDCL 使用相同训练配方与原始预训练权重。
+在一张 GPU 上逐条执行，上一组成功结束再执行下一组：
+
+```powershell
+python scripts/train.py --config configs/experiments/baseline_100_seed1.yaml
+python scripts/train.py --config configs/experiments/sdcl_100_seed1.yaml
+python scripts/train.py --config configs/experiments/baseline_100_seed2.yaml
+python scripts/train.py --config configs/experiments/sdcl_100_seed2.yaml
+```
+
+夜间可以用一条指令按上述顺序自动运行四组，任一组失败立即停止：
+
+```powershell
+python scripts/train_multiseed.py
+```
+
+运行前可加 `--dry-run` 检查而不启动训练。队列直接使用终端显示进度，
+不额外保存控制台日志或中断备份。第一轮中断后仅留下启动配置的目录会清理后重新开始；
+已有权重、指标或其他文件时停止，保留已有结果。不要与单组训练命令同时执行。
+
+每对完成后，用同一 seed 的 `best.pt` 进行分尺寸评估。完整评估指令、
+中断恢复和同名重跑说明见
+[多种子复验](docs/分类与回归加权消融.md#2026-10-08多种子复验)。
+随后汇总 seed 0、1、2 各自的指标及成对差值，报告均值与样本标准差。
+图像 bootstrap 区间不能代替训练种子间的波动。
 
 后续再拆尺度／难度信号：
 
@@ -229,11 +260,13 @@ output/              # 检查点、日志、烟测，不提交
 
 初次验证环境：Python 3.12.4、Torch 2.10.0+cu128、TorchVision 0.25.0+cu128、Ultralytics 8.4.172，RTX 4070 Ti。
 
-已验证内容见 `docs/代码框架与开始步骤.md`。当前测试为 71 项通过，包含两种分类加权形式、
+已验证内容见 `docs/代码框架与开始步骤.md`。2026-10-08 完整测试为 92 项通过，
+包含训练队列的顺序执行、失败停止、直接使用终端、清理范围与结果保护，以及两种分类加权形式、
 三个加权分支的损失／梯度对照、固定软目标处的梯度检查、零强度等价性、CUDA AMP
 与旧配置兼容检查；已完成真实数据全量审计、
-三个分集的画框抽样、YOLO11s 基线／SDCL 的真实训练与 30 轮对照检查，
-并增加分尺寸评价与漏检分析入口。尚未完成第二数据集、官方指标评价或多卡训练。
+三个分集的画框抽样、YOLO11s 基线／SDCL 的真实训练、30 轮消融与 100 轮 seed 0 对照，
+并增加分尺寸评价与漏检分析入口。seed 1、2 的配置检查覆盖训练参数一致性、
+初始化权重、预算及方法设置。尚未完成多种子真实训练、第二数据集、官方指标评价或多卡训练。
 
 当前限制：
 

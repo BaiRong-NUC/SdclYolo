@@ -56,6 +56,48 @@ def test_100_epoch_recipes_preserve_original_method_and_training_recipe(recipe):
     assert longer_ignore == original_ignore
 
 
+@pytest.mark.parametrize("recipe", ["baseline", "sdcl"])
+@pytest.mark.parametrize("seed", [1, 2])
+def test_seed_replications_change_only_seed_and_run_name(recipe, seed):
+    original, original_settings, original_ignore = load_experiment(
+        f"configs/experiments/{recipe}_100.yaml"
+    )
+    replication, replication_settings, replication_ignore = load_experiment(
+        f"configs/experiments/{recipe}_100_seed{seed}.yaml"
+    )
+    assert original.pop("name") == f"{recipe}_yolo11s_100ep_seed0"
+    assert replication.pop("name") == f"{recipe}_yolo11s_100ep_seed{seed}"
+    assert original["seed"] == 0
+    assert replication == {**original, "seed": seed}
+    assert replication_settings == original_settings
+    assert replication_ignore == original_ignore
+
+
+@pytest.mark.parametrize("seed", [1, 2])
+def test_seed_pairs_preserve_initialization_budget_and_method(seed):
+    baseline, base_settings, base_ignore = load_experiment(
+        f"configs/experiments/baseline_100_seed{seed}.yaml"
+    )
+    method, method_settings, method_ignore = load_experiment(
+        f"configs/experiments/sdcl_100_seed{seed}.yaml"
+    )
+    assert baseline.pop("name") != method.pop("name")
+    assert baseline == method
+    assert baseline["seed"] == seed
+    assert baseline["model"] == "yolo11s.pt"
+    assert baseline["epochs"] == 100
+    assert baseline["batch"] == 8
+    assert baseline["imgsz"] == 640
+    assert not baseline.get("resume")
+    assert not baseline.get("exist_ok")
+    assert not base_settings.enabled
+    assert method_settings == replace(base_settings, enabled=True)
+    assert method_settings.apply_to == "both"
+    assert method_settings.classification_weighting == "positive_term"
+    assert method_settings.signal == "joint"
+    assert base_ignore and method_ignore
+
+
 @pytest.mark.parametrize(
     ("file", "scope"),
     [("sdcl_cls.yaml", "classification"), ("sdcl_reg.yaml", "regression")],

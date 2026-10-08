@@ -1,0 +1,37 @@
+# Seed-1 replication of baseline_100.yaml; paired with sdcl_100_seed1.yaml.
+train:
+  model: yolo11s.pt
+  data: data/visdrone/dataset.yaml
+  project: output/runs
+  name: baseline_yolo11s_100ep_seed1
+  device: "0"
+  epochs: 100
+  batch: 8
+  imgsz: 640
+  workers: 0
+  seed: 1
+  deterministic: true
+  optimizer: SGD
+  lr0: 0.01
+  lrf: 0.01
+  momentum: 0.937
+  weight_decay: 0.0005
+  amp: true
+  plots: false
+  max_det: 500
+  close_mosaic: 10
+  patience: 0
+sdcl:
+  enabled: false
+  apply_to: both
+  classification_weighting: positive_term
+  signal: joint
+  scale_reference: 640
+  scale_s0: 32
+  difficulty_alpha: 0.5
+  lambda_max: 0.5
+  warmup_epochs: 3
+  ramp_epochs: 10
+  log_interval: 50
+ignore_regions:
+  enabled: true
