@@ -57,3 +57,25 @@ def test_schedule_and_validation():
     with pytest.raises(ValueError):
         SDCLConfig.from_dict({"typo": 1})
 
+
+def test_scale_signal_does_not_depend_on_difficulty_inputs():
+    settings = SDCLConfig(signal="scale", warmup_epochs=0, ramp_epochs=0)
+    original = object_weights(settings, 0, *inputs())
+    changed = list(inputs())
+    changed[4] = torch.ones_like(changed[4]) * 0.95
+    changed[5] = torch.ones_like(changed[5]) * 0.95
+    modified = object_weights(settings, 0, *changed)
+    torch.testing.assert_close(original.weights, modified.weights)
+    assert original.weights[0, 0] > original.weights[0, 2]
+
+
+def test_difficulty_signal_does_not_depend_on_object_scale():
+    settings = SDCLConfig(signal="difficulty", warmup_epochs=0, ramp_epochs=0)
+    original = object_weights(settings, 0, *inputs())
+    changed = list(inputs())
+    changed[0] = changed[0].clone()
+    changed[0][0, :2, 2:] = 160
+    changed[0][0, 2, 2:] = 4
+    modified = object_weights(settings, 0, *changed)
+    torch.testing.assert_close(original.weights, modified.weights)
+

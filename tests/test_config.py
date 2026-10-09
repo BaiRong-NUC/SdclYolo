@@ -98,6 +98,22 @@ def test_seed_pairs_preserve_initialization_budget_and_method(seed):
     assert base_ignore and method_ignore
 
 
+@pytest.mark.parametrize("signal", ["scale", "difficulty"])
+def test_signal_recipes_change_only_signal_and_run_name(signal):
+    joint, joint_settings, joint_ignore = load_experiment("configs/experiments/sdcl_100.yaml")
+    branch, branch_settings, branch_ignore = load_experiment(
+        f"configs/experiments/sdcl_{signal}_100.yaml"
+    )
+    assert joint.pop("name") == "sdcl_yolo11s_100ep_seed0"
+    assert branch.pop("name") == f"sdcl_{signal}_yolo11s_100ep_seed0"
+    assert branch == joint
+    assert branch["epochs"] == 100 and branch["batch"] == 8 and branch["seed"] == 0
+    assert branch["model"] == "yolo11s.pt"
+    assert branch_settings == replace(joint_settings, signal=signal)
+    assert branch_ignore == joint_ignore
+    assert not branch.get("resume") and not branch.get("exist_ok")
+
+
 @pytest.mark.parametrize(
     ("file", "scope"),
     [("sdcl_cls.yaml", "classification"), ("sdcl_reg.yaml", "regression")],
