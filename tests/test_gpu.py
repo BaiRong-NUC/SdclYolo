@@ -12,18 +12,21 @@ from sdcl.criterion import SDCLLoss
 @pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA unavailable")
 @pytest.mark.parametrize("apply_to", ["both", "classification", "regression"])
 @pytest.mark.parametrize("mode", ["positive_term", "full_bce"])
-def test_amp_forward_backward_nonzero_weights(apply_to, mode):
+@pytest.mark.parametrize("object_scope", ["all", "small"])
+def test_amp_forward_backward_nonzero_weights(apply_to, mode, object_scope):
     torch.manual_seed(0)
     model = DetectionModel("yolo11n.yaml", nc=2, verbose=False).cuda().train()
     model.args = SimpleNamespace(**DEFAULT_CFG_DICT)
     model.sdcl_settings = SDCLConfig(
         warmup_epochs=0, ramp_epochs=0, log_interval=1, apply_to=apply_to,
         classification_weighting=mode,
+        object_scope=object_scope,
     ).to_dict()
     model.sdcl_ignore_regions = True
     criterion = SDCLLoss(model)
+    input_size = 640 if object_scope == "small" else 128
     batch = {
-        "img": torch.rand(2, 3, 128, 128, device="cuda"),
+        "img": torch.rand(2, 3, input_size, input_size, device="cuda"),
         "batch_idx": torch.tensor([0.0, 0.0, 1.0], device="cuda"),
         "cls": torch.tensor([[0.0], [1.0], [0.0]], device="cuda"),
         "bboxes": torch.tensor([[0.3, 0.3, 0.1, 0.1], [0.7, 0.7, 0.3, 0.3],
@@ -31,6 +34,10 @@ def test_amp_forward_backward_nonzero_weights(apply_to, mode):
         "ignore_bboxes": torch.tensor([[0.9, 0.9, 0.1, 0.1]], device="cuda"),
         "ignore_batch_idx": torch.tensor([0], device="cuda"),
     }
+    if object_scope == "small":
+        batch["bboxes"][:2] = torch.tensor(
+            [[0.28125, 0.28125, 0.035, 0.035], [0.71875, 0.71875, 0.045, 0.045]], device="cuda"
+        )
     with torch.autocast("cuda", dtype=torch.float16):
         prediction = model(batch["img"])
         loss = criterion(prediction, batch)[0].sum()
@@ -42,3 +49,7 @@ def test_amp_forward_backward_nonzero_weights(apply_to, mode):
     assert criterion.diagnostics["strength"] == 0.5
     assert criterion.diagnostics["matched_objects"] > 0
     assert criterion.diagnostics["mass_relative_error"] < 1e-5
+    if object_scope == "small":
+        assert criterion.diagnostics["eligible_objects"] == 2
+        assert criterion.diagnostics["ineligible_weight_max_deviation"] == 0
+        assert criterion.diagnostics["weight_min"] < 1 < criterion.diagnostics["weight_max"]

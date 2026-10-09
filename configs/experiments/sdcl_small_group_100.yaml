@@ -1,0 +1,39 @@
+# Joint weighting centered within small objects; all other objects keep unit weight.
+train:
+  model: yolo11s.pt
+  data: data/visdrone/dataset.yaml
+  project: output/runs
+  name: sdcl_small_group_yolo11s_100ep_seed0
+  device: "0"
+  epochs: 100
+  batch: 8
+  imgsz: 640
+  workers: 0
+  seed: 0
+  deterministic: true
+  optimizer: SGD
+  lr0: 0.01
+  lrf: 0.01
+  momentum: 0.937
+  weight_decay: 0.0005
+  amp: true
+  plots: false
+  max_det: 500
+  close_mosaic: 10
+  patience: 0
+sdcl:
+  enabled: true
+  apply_to: both
+  classification_weighting: positive_term
+  signal: joint
+  object_scope: small
+  small_side_threshold: 32
+  scale_reference: 640
+  scale_s0: 32
+  difficulty_alpha: 0.5
+  lambda_max: 0.5
+  warmup_epochs: 3
+  ramp_epochs: 10
+  log_interval: 50
+ignore_regions:
+  enabled: true

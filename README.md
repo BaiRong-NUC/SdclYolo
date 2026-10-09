@@ -4,9 +4,10 @@
 
 Scale and Difficulty Collaborative Learning for UAV Small Object Detection.
 
-当前为研究实现框架，已完成真实数据 30 轮消融、100 轮 seed 0 对照与分尺寸诊断。
-100 轮结果显示有限的小目标收益，尚未完成多种子复验。不要把候选方法称为已验证创新，
-也不要引用烟测的合成数据指标。
+当前为研究实现框架，已完成真实数据 30 轮消融、100 轮三个种子对照、
+seed 0 尺度／难度信号消融与分尺寸诊断。原版联合方法显示有限的小目标收益，
+整体指标尚无稳定提升；下一步验证小目标组内联合重加权。
+不要把候选方法称为已验证创新，也不要引用烟测的合成数据指标。
 
 ## 1. 已实现
 
@@ -14,6 +15,7 @@ Scale and Difficulty Collaborative Learning for UAV Small Object Detection.
 - YOLO11 检测模型／训练器扩展：不修改全局 `site-packages`。
 - 目标级尺度—难度权重：支持 joint、scale、difficulty、additive 四种信号。
 - 有界且保持正质量总量的权重调节、渐进启用。
+- 可选小目标组内中心化：仅小目标参与重分配，其他目标保持单位权重；旧配置默认全目标。
 - 正分类监督和逐正样本回归／DFL 加权；支持分类、回归、联合三个分支，不改变原始分配与软目标。
 - 忽略区域同步进入增强流程，再从有效真值中拆分。
 - 基线／SDCL 配置、诊断验证、VisDrone 格式预测导出、合成烟测与测试。
@@ -228,7 +230,7 @@ python scripts/train_multiseed.py
 随后汇总 seed 0、1、2 各自的指标及成对差值，报告均值与样本标准差。
 图像 bootstrap 区间不能代替训练种子间的波动。
 
-**当前下一步：尺度／难度信号消融。** 先用 seed 0 做两组 100 轮对照，
+**尺度／难度信号消融已完成；以下指令用于复现。** 用 seed 0 做两组 100 轮对照，
 只改变信号，保持 batch 8、640 输入、原始初始化和已有权重调度。
 新入口会先跑仅尺度，再跑仅难度，直接显示终端进度，不生成额外队列日志或备份：
 
@@ -240,6 +242,17 @@ python scripts/train_signal_ablation.py
 `sdcl_difficulty_100.yaml`。已有 seed 0 基线和联合 SDCL 无需重跑。
 训练后的完整评估指令与判断边界见
 [尺度与难度信号消融](docs/尺度与难度信号消融.md)。
+
+**当前下一步：小目标组内联合重加权。** 保留联合信号，仅在小目标之间重新分配权重，
+中大目标直接权重保持为 1。先做一组 seed 0 的 100 轮试验：
+
+```powershell
+python scripts/train.py --config configs/experiments/sdcl_small_group_100.yaml
+```
+
+首次输出为 `sdcl_small_group_yolo11s_100ep_seed0`。已有基线、联合与单信号实验无需重跑。
+方法公式、尺寸定义、评估与恢复指令，以及代码验证边界见
+[小目标组内联合重加权](docs/小目标组内联合重加权.md)。
 
 其他信号实验仍可通过配置选择：
 

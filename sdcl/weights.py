@@ -37,6 +37,10 @@ def object_weights(
         "weight_max": quality.new_ones(()),
         "mass_relative_error": zero,
         "matched_objects": zero,
+        "eligible_objects": zero,
+        "eligible_quality_mass": zero,
+        "eligible_mass_relative_error": zero,
+        "ineligible_weight_max_deviation": zero,
         "mean_scale": zero,
         "mean_difficulty": zero,
         "strength": quality.new_tensor(config.strength(epoch)),
@@ -73,14 +77,33 @@ def object_weights(
     signal = signals[config.signal]
     mass = quality.new_zeros(count)
     mass.index_add_(0, inverse, quality[valid])
-    center = (mass * signal).sum() / mass.sum()
-    per_object = 1.0 + config.strength(epoch) * (signal - center)
+    if config.object_scope == "all":
+        eligible = torch.ones(count, dtype=torch.bool, device=quality.device)
+        center = (mass * signal).sum() / mass.sum()
+        per_object = 1.0 + config.strength(epoch) * (signal - center)
+    else:
+        eligible = average(side) < config.small_side_threshold
+        per_object = torch.ones_like(mass)
+        if eligible.any():
+            # Center within the small-object group; all other objects keep unit weight.
+            center = (mass[eligible] * signal[eligible]).sum() / mass[eligible].sum()
+            per_object[eligible] = 1.0 + config.strength(epoch) * (signal[eligible] - center)
     weights[valid] = per_object[inverse]
+    eligible_mass = mass[eligible].sum()
     stats.update(
         weight_min=per_object.min(),
         weight_max=per_object.max(),
         mass_relative_error=((quality * weights).sum() - quality.sum()).abs() / quality.sum().clamp_min(1e-12),
         matched_objects=quality.new_tensor(count),
+        eligible_objects=eligible.sum().float(),
+        eligible_quality_mass=eligible_mass,
+        eligible_mass_relative_error=(
+            ((mass[eligible] * per_object[eligible]).sum() - eligible_mass).abs()
+            / eligible_mass.clamp_min(1e-12)
+        ),
+        ineligible_weight_max_deviation=(
+            (per_object[~eligible] - 1).abs().max() if (~eligible).any() else zero
+        ),
         mean_scale=scales.mean(),
         mean_difficulty=difficulty.mean(),
     )

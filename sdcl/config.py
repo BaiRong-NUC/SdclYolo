@@ -1,6 +1,7 @@
 """Validated experiment configuration and project-relative paths."""
 
 from dataclasses import asdict, dataclass, fields
+import math
 from pathlib import Path
 from typing import Literal
 
@@ -23,6 +24,8 @@ class SDCLConfig:
     log_interval: int = 50
     apply_to: Literal["both", "classification", "regression"] = "both"
     classification_weighting: Literal["positive_term", "full_bce"] = "positive_term"
+    object_scope: Literal["all", "small"] = "all"
+    small_side_threshold: float = 32.0
 
     def __post_init__(self):
         if self.signal not in {"joint", "scale", "difficulty", "additive"}:
@@ -31,6 +34,10 @@ class SDCLConfig:
             raise ValueError(f"Unknown apply_to: {self.apply_to}")
         if self.classification_weighting not in {"positive_term", "full_bce"}:
             raise ValueError(f"Unknown classification_weighting: {self.classification_weighting}")
+        if self.object_scope not in {"all", "small"}:
+            raise ValueError(f"Unknown object_scope: {self.object_scope}")
+        if not math.isfinite(self.small_side_threshold) or self.small_side_threshold <= 0:
+            raise ValueError("small_side_threshold must be finite and positive.")
         if self.scale_reference <= 0 or self.scale_s0 <= 0:
             raise ValueError("Scale values must be positive.")
         if not 0 <= self.difficulty_alpha <= 1:

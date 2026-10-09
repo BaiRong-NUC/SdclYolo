@@ -105,9 +105,11 @@ def model():
 @pytest.mark.parametrize("empty", [False, True])
 @pytest.mark.parametrize("apply_to", ["both", "classification", "regression"])
 @pytest.mark.parametrize("mode", ["positive_term", "full_bce"])
-def test_full_loss_zero_strength_matches_upstream(model, empty, apply_to, mode, monkeypatch):
+@pytest.mark.parametrize("object_scope", ["all", "small"])
+def test_full_loss_zero_strength_matches_upstream(model, empty, apply_to, mode, object_scope, monkeypatch):
     monkeypatch.setattr(model, "sdcl_settings", SDCLConfig(
         lambda_max=0, apply_to=apply_to, classification_weighting=mode,
+        object_scope=object_scope,
     ).to_dict())
     model.train()
     images = torch.rand(2, 3, 64, 64)

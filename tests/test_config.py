@@ -114,6 +114,34 @@ def test_signal_recipes_change_only_signal_and_run_name(signal):
     assert not branch.get("resume") and not branch.get("exist_ok")
 
 
+def test_small_group_recipe_changes_only_scope_and_run_name():
+    original, original_settings, original_ignore = load_experiment(
+        "configs/experiments/sdcl_100.yaml"
+    )
+    grouped, grouped_settings, grouped_ignore = load_experiment(
+        "configs/experiments/sdcl_small_group_100.yaml"
+    )
+    assert original.pop("name") == "sdcl_yolo11s_100ep_seed0"
+    assert grouped.pop("name") == "sdcl_small_group_yolo11s_100ep_seed0"
+    assert grouped == original
+    assert grouped_settings == replace(original_settings, object_scope="small")
+    assert grouped_settings.small_side_threshold == 32
+    assert grouped_ignore == original_ignore
+    assert not grouped.get("resume") and not grouped.get("exist_ok")
+
+
+def test_object_scope_defaults_validation_and_round_trip():
+    assert SDCLConfig.from_dict({"enabled": True}).object_scope == "all"
+    for scope in ("all", "small"):
+        settings = SDCLConfig(object_scope=scope)
+        assert SDCLConfig.from_dict(settings.to_dict()) == settings
+    with pytest.raises(ValueError, match="Unknown object_scope"):
+        SDCLConfig(object_scope="typo")
+    for threshold in (0, -1, float("nan"), float("inf"), float("-inf")):
+        with pytest.raises(ValueError, match="small_side_threshold"):
+            SDCLConfig(small_side_threshold=threshold)
+
+
 @pytest.mark.parametrize(
     ("file", "scope"),
     [("sdcl_cls.yaml", "classification"), ("sdcl_reg.yaml", "regression")],
@@ -158,10 +186,11 @@ def test_classification_weighting_default_validation_and_round_trip():
 
 @pytest.mark.parametrize("apply_to", ["both", "classification", "regression"])
 @pytest.mark.parametrize("mode", ["positive_term", "full_bce"])
-def test_legacy_resume_manifest_defaults_to_both(tmp_path, monkeypatch, apply_to, mode):
+@pytest.mark.parametrize("object_scope", ["all", "small"])
+def test_legacy_resume_manifest_defaults_to_both(tmp_path, monkeypatch, apply_to, mode, object_scope):
     from sdcl.cli import train_experiment
 
-    settings = SDCLConfig(apply_to=apply_to, classification_weighting=mode)
+    settings = SDCLConfig(apply_to=apply_to, classification_weighting=mode, object_scope=object_scope)
     config = tmp_path / "experiment.yaml"
     config.write_text(yaml.safe_dump({
         "train": {"data": "data/visdrone/dataset.yaml"},
@@ -172,6 +201,8 @@ def test_legacy_resume_manifest_defaults_to_both(tmp_path, monkeypatch, apply_to
     saved_settings = SDCLConfig().to_dict()
     saved_settings.pop("apply_to")
     saved_settings.pop("classification_weighting")
+    saved_settings.pop("object_scope")
+    saved_settings.pop("small_side_threshold")
     (weights.parent / "experiment.json").write_text(json.dumps({
         "sdcl": saved_settings, "ignore_regions": True,
     }), encoding="utf-8")
@@ -187,7 +218,7 @@ def test_legacy_resume_manifest_defaults_to_both(tmp_path, monkeypatch, apply_to
             pass
 
     monkeypatch.setattr("sdcl.trainer.SDCLTrainer", FakeTrainer)
-    if apply_to == "both" and mode == "positive_term":
+    if apply_to == "both" and mode == "positive_term" and object_scope == "all":
         train_experiment(config, resume=str(weights / "last.pt"))
         assert started[0]["sdcl"].apply_to == "both"
         assert started[0]["sdcl"].classification_weighting == "positive_term"
