@@ -8,6 +8,7 @@ import hashlib
 import io
 import json
 from pathlib import Path
+from time import perf_counter
 
 import numpy as np
 import yaml
@@ -153,6 +154,7 @@ def capture_predictions(checkpoint, data_yaml, records, output, device, imgsz, b
                 predictions[item["image"]] = np.asarray(item["boxes"], dtype=float).reshape(-1, 6)
         metrics = saved["ultralytics_metrics"]
         ignored_count = saved["ignore_filtered_predictions"]
+        performance = saved.get("performance")
     else:
         expected = {record["stem"]: record for record in records}
         predictions = {}
@@ -184,6 +186,7 @@ def capture_predictions(checkpoint, data_yaml, records, output, device, imgsz, b
                 # Ignore filtering runs once; the same filtered tensors feed both metrics.
                 DetectionValidator.update_metrics(self, filtered, batch_data)
 
+        started = perf_counter()
         result = YOLO(str(checkpoint)).val(
             data=str(data_yaml), validator=partial(CaptureValidator, ignore_regions=True),
             device=device, imgsz=imgsz, batch=batch, workers=0, half=True, plots=False,
@@ -191,6 +194,12 @@ def capture_predictions(checkpoint, data_yaml, records, output, device, imgsz, b
             project=str(output / "validation"), name="capture", exist_ok=False,
         )
         metrics = {key: float(value) for key, value in result.results_dict.items()}
+        performance = {
+            "speed_ms_per_image": {key: float(value) for key, value in result.speed.items()},
+            "validation_wall_seconds": perf_counter() - started,
+            "note": "Validator stage timings; wall time includes loading and validation setup. "
+                    "Not an end-to-end deployment benchmark.",
+        }
     if set(predictions) != {record["stem"] for record in records}:
         raise ValueError("Prediction images do not match the complete validation split.")
     class_count = len(yaml.safe_load(Path(data_yaml).read_text(encoding="utf-8"))["names"])
@@ -205,6 +214,7 @@ def capture_predictions(checkpoint, data_yaml, records, output, device, imgsz, b
             stream.write(json.dumps({"image": record["stem"], "boxes": boxes.tolist()}) + "\n")
     manifest = {"settings": settings, "ultralytics_metrics": metrics,
                 "ignore_filtered_predictions": ignored_count,
+                "performance": performance,
                 "predictions_sha256": file_hash(output / "predictions.jsonl")}
     (output / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     return predictions, manifest
@@ -472,14 +482,14 @@ def make_figures(report, output):
             values = [(report["coco_reference"][name][group][metric] if metric == "ap50_95"
                        else report["misses"][group][f"{name}_recall"]) for group in groups]
             axis.bar(x + offset, [100 * value if value is not None else np.nan for value in values],
-                     width=0.36, color=color, label=name)
+                     width=0.36, color=color, label=report.get("model_labels", {}).get(name, name))
         axis.set(title=title, ylabel="Percent", xticks=x, xticklabels=groups)
         axis.legend(frameon=False)
         axis.grid(axis="y", alpha=0.2)
     recovered = [report["misses"][group]["recovered"] for group in groups]
     lost = [report["misses"][group]["lost"] for group in groups]
-    axes[2].bar(x - 0.18, recovered, width=0.36, color="#2a8766", label="Recovered by SDCL")
-    axes[2].bar(x + 0.18, lost, width=0.36, color="#b55a48", label="Lost by SDCL")
+    axes[2].bar(x - 0.18, recovered, width=0.36, color="#2a8766", label="Recovered by candidate")
+    axes[2].bar(x + 0.18, lost, width=0.36, color="#b55a48", label="Lost by candidate")
     axes[2].set(title="Paired GT transitions", ylabel="Objects", xticks=x, xticklabels=groups)
     axes[2].legend(frameon=False)
     fig.suptitle(f"Checkpoint comparison | size after resize to {report['reference_size']} | diagnostics")
@@ -496,7 +506,8 @@ def plot_fp_curves(curves, report, output):
             selected = [row for row in curves[name] if row["fppi"] <= 30
                         and row[f"{group}_recall"] is not None]
             axis.plot([row["fppi"] for row in selected],
-                      [100 * row[f"{group}_recall"] for row in selected], label=name, color=color)
+                      [100 * row[f"{group}_recall"] for row in selected],
+                      label=report.get("model_labels", {}).get(name, name), color=color)
             recall = report["misses"][group][f"{name}_recall"]
             if recall is not None:
                 axis.scatter(report["false_positives"][name] / report["images"],
@@ -570,13 +581,26 @@ def render_examples(records, rows, predictions, names, output, reference_size=64
 
 
 def run_size_analysis(baseline, sdcl, dataset="data/visdrone", output=None, device="0",
-                      imgsz=640, batch=16, confidence=0.25, prediction_cache=None):
+                      imgsz=640, batch=16, confidence=0.25, prediction_cache=None,
+                      baseline_imgsz=None, sdcl_imgsz=None, reference_size=None,
+                      baseline_prediction_cache=None, candidate_prediction_cache=None):
     dataset = project_path(dataset)
     output = project_path(output or f"output/analysis/size-{datetime.now():%Y%m%d-%H%M%S}")
     if output.exists():
         raise FileExistsError(f"Refusing to overwrite analysis: {output}")
     if not 0.001 <= confidence <= 1 or imgsz < 32 or batch < 1:
         raise ValueError("Invalid confidence/imgsz/batch.")
+    inference_sizes = {
+        "baseline": imgsz if baseline_imgsz is None else baseline_imgsz,
+        "sdcl": imgsz if sdcl_imgsz is None else sdcl_imgsz,
+    }
+    reference_size = imgsz if reference_size is None else reference_size
+    if any(size < 32 or size % 32 for size in inference_sizes.values()):
+        raise ValueError("Inference sizes must be positive multiples of 32.")
+    if not np.isfinite(reference_size) or reference_size <= 0:
+        raise ValueError("reference_size must be finite and positive.")
+    if prediction_cache and (baseline_prediction_cache or candidate_prediction_cache):
+        raise ValueError("Use either a paired prediction cache or individual prediction caches.")
     output.mkdir(parents=True)
     records = load_records(dataset, "val")
     data = yaml.safe_load((dataset / "dataset.yaml").read_text(encoding="utf-8"))
@@ -585,21 +609,29 @@ def run_size_analysis(baseline, sdcl, dataset="data/visdrone", output=None, devi
              (source_names.items() if isinstance(source_names, dict) else enumerate(source_names))}
     names = dict(sorted(names.items()))
     predictions, captures = {}, {}
+    individual_caches = {"baseline": baseline_prediction_cache,
+                         "sdcl": candidate_prediction_cache}
     for name, checkpoint in (("baseline", baseline), ("sdcl", sdcl)):
-        print(f"Capturing {name} predictions on {len(records)} validation images.", flush=True)
-        cache = project_path(prediction_cache) / "predictions" / name if prediction_cache else None
+        print(f"Capturing {name} at {inference_sizes[name]} on "
+              f"{len(records)} validation images.", flush=True)
+        cache = (project_path(prediction_cache) / "predictions" / name if prediction_cache
+                 else project_path(individual_caches[name]) if individual_caches[name] else None)
         predictions[name], captures[name] = capture_predictions(
             project_path(checkpoint), dataset / "dataset.yaml", records,
-            output / "predictions" / name, device, imgsz, batch, cache)
+            output / "predictions" / name, device, inference_sizes[name], batch, cache)
     report = {
         "protocol": "COCO-style size diagnostics with existing IoF ignore filtering; NOT official VisDrone",
-        "images": len(records), "reference_size": imgsz, "confidence": confidence,
+        "images": len(records), "reference_size": reference_size, "confidence": confidence,
+        "inference_sizes": inference_sizes,
+        "model_labels": {"baseline": f"baseline ({inference_sizes['baseline']} px)",
+                         "sdcl": f"candidate ({inference_sizes['sdcl']} px)"},
         "matching_iou": 0.5, "captures": captures, "coco_reference": {}, "coco_original": {},
         "analysis_source_sha256": file_hash(__file__),
         "size_groups_area_half_open": {key: [lo, hi if np.isfinite(hi) else None]
                                        for key, (lo, hi) in GROUPS.items()},
         "definitions": {
-            "reference_area": "original_bbox_area * (imgsz / max(original_width, original_height))**2",
+            "reference_area": "original_bbox_area * "
+                              "(reference_size / max(original_width, original_height))**2",
             "ap": "pycocotools 101-point class-macro AP; IoU 0.50:0.05:0.95; confidence >=0.001",
             "area_matching": "Keep all GT; out-of-range GT/matches are ignored by COCO area evaluation.",
             "recall": "Class-aware score-greedy 1:1 matching against all GT; micro TP/GT at fixed confidence.",
@@ -609,12 +641,13 @@ def run_size_analysis(baseline, sdcl, dataset="data/visdrone", output=None, devi
             "inference": "Same validation/NMS path as previous analysis; at most 500 predictions per image.",
         },
     }
-    for view, reference in (("coco_reference", imgsz), ("coco_original", None)):
+    for view, reference in (("coco_reference", reference_size), ("coco_original", None)):
         for name in predictions:
             print(f"Evaluating {view}/{name} area AP.", flush=True)
             report[view][name] = coco_size_metrics(records, predictions[name], names, reference)
     print("Matching individual GT and bootstrapping image-level recall differences.", flush=True)
-    rows, image_counts, sensitivity = paired_misses(records, predictions, names, imgsz, confidence)
+    rows, image_counts, sensitivity = paired_misses(
+        records, predictions, names, reference_size, confidence)
     report["misses"] = summarize_misses(rows, image_counts)
     for group in GROUPS:
         if report["misses"][group]["gt"] != report["coco_reference"]["baseline"][group]["gt"]:
@@ -624,7 +657,7 @@ def run_size_analysis(baseline, sdcl, dataset="data/visdrone", output=None, devi
         name: sum(item[f"{name}_fp"] for item in image_counts) for name in predictions}
     print("Comparing recalls at shared false-positive budgets.", flush=True)
     report["matched_fp_budgets"], curves = recall_at_fp_budgets(
-        records, predictions, imgsz, report["false_positives"]["baseline"])
+        records, predictions, reference_size, report["false_positives"]["baseline"])
     report["definitions"]["matched_fp"] = (
         "Same maximum global FP count; threshold includes whole confidence ties. "
         "Bootstrap holds selected thresholds fixed; it does not include threshold-selection uncertainty.")
@@ -646,5 +679,5 @@ def run_size_analysis(baseline, sdcl, dataset="data/visdrone", output=None, devi
     for name, curve in curves.items():
         write_csv(output / f"{name}_recall_fp_curve.csv", curve)
     plot_fp_curves(curves, report, output)
-    render_examples(records, rows, predictions, names, output, imgsz, confidence)
+    render_examples(records, rows, predictions, names, output, reference_size, confidence)
     return {"output": str(output), "size_metrics": comparison}
