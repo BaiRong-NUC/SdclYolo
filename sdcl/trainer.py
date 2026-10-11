@@ -15,6 +15,7 @@ from .config import SDCLConfig, SUPPORTED_ULTRALYTICS
 from .criterion import SDCLLoss
 from .dataset import IgnoreDataset
 from .geometry import prediction_ignore_mask
+from .phase import PhaseConfig, phase_model_loss
 
 
 def check_version():
@@ -47,6 +48,9 @@ def make_dataset(args, img_path, data, mode, batch, stride, ignore):
 
 
 class SDCLDetectionModel(DetectionModel):
+    def loss(self, batch, preds=None):
+        return phase_model_loss(self, batch, preds)
+
     def init_criterion(self):
         if getattr(self.model[-1], "one2one_cv2", None) is not None:
             raise ValueError("End-to-end heads are not supported yet. Use YOLO11 n/s.")
@@ -77,7 +81,7 @@ class SDCLValidator(DetectionValidator):
 
 
 class SDCLTrainer(DetectionTrainer):
-    def __init__(self, *args, sdcl=None, ignore_regions=True, **kwargs):
+    def __init__(self, *args, sdcl=None, ignore_regions=True, phase=None, **kwargs):
         check_version()
         overrides = kwargs.get("overrides") or {}
         if isinstance(overrides.get("device"), (list, tuple)) or "," in str(overrides.get("device", "0")):
@@ -87,6 +91,11 @@ class SDCLTrainer(DetectionTrainer):
         if overrides.get("task", "detect") != "detect":
             raise ValueError("Only horizontal-box detection is supported.")
         self.sdcl = sdcl or SDCLConfig()
+        self.phase = phase or PhaseConfig()
+        if self.phase.enabled and self.sdcl.enabled:
+            raise ValueError("Phase screen must disable SDCL to isolate the new mechanism.")
+        if self.phase.enabled and overrides.get("resume"):
+            raise ValueError("Phase screen does not support resume.")
         self.ignore_regions = ignore_regions
         self._last_logged_epoch = -1
         super().__init__(*args, **kwargs)
@@ -101,6 +110,8 @@ class SDCLTrainer(DetectionTrainer):
         model.sdcl_settings = self.sdcl.to_dict()
         model.sdcl_ignore_regions = self.ignore_regions
         model.sdcl_epoch = 0
+        model.phase_settings = self.phase.to_dict()
+        model.phase_step = 0
         if weights:
             model.load(weights)
         return model
@@ -110,6 +121,8 @@ class SDCLTrainer(DetectionTrainer):
         return make_dataset(self.args, img_path, self.data, mode, batch, stride, self.ignore_regions)
 
     def get_validator(self):
+        if self.phase.enabled:
+            self.loss_names = ("box_loss", "cls_loss", "dfl_loss", "phase_loss")
         return SDCLValidator(
             self.test_loader, save_dir=self.save_dir, args=copy(self.args),
             _callbacks=self.callbacks, ignore_regions=self.ignore_regions,
@@ -118,6 +131,9 @@ class SDCLTrainer(DetectionTrainer):
     def _sync_epoch(self, trainer):
         model = unwrap_model(trainer.model)
         model.sdcl_epoch = trainer.epoch
+        if self.phase.enabled:
+            model.phase_statistics = {}
+            model.phase_diagnostics = {}
         if getattr(model, "criterion", None) is not None:
             model.criterion.epoch = trainer.epoch
         if getattr(trainer, "ema", None) is not None:
@@ -130,6 +146,15 @@ class SDCLTrainer(DetectionTrainer):
             return
         criterion = getattr(unwrap_model(trainer.model), "criterion", None)
         stats = getattr(criterion, "diagnostics", {})
+        phase_stats = getattr(unwrap_model(trainer.model), "phase_statistics", {})
+        if phase_stats:
+            phase_stats = dict(phase_stats)
+            phase_stats["mean_distance_active"] = phase_stats.get("distance_sum", 0) / max(
+                1, phase_stats.get("active_steps", 0))
+            phase_stats["mean_weighted_loss_all_batches"] = phase_stats.get("weighted_loss_sum", 0) / max(
+                1, phase_stats.get("batches", 0))
+            with (trainer.save_dir / "phase_statistics.jsonl").open("a", encoding="utf-8") as stream:
+                stream.write(json.dumps({"epoch": trainer.epoch, **phase_stats}, allow_nan=False) + "\n")
         if stats:
             with (trainer.save_dir / "sdcl_statistics.jsonl").open("a", encoding="utf-8") as stream:
                 stream.write(json.dumps({"epoch": trainer.epoch, **stats}, allow_nan=False) + "\n")
@@ -144,6 +169,7 @@ class SDCLTrainer(DetectionTrainer):
         manifest_files = list((data_yaml.parent / "manifests").glob("*.json"))
         manifest.update(
             sdcl=self.sdcl.to_dict(),
+            phase=self.phase.to_dict(),
             ignore_regions=self.ignore_regions,
             train=vars(trainer.args),
             metric_protocol="ignore-aware Ultralytics (diagnostic), NOT official VisDrone",

@@ -5,17 +5,32 @@ from datetime import datetime
 from functools import partial
 import json
 
-from .config import SDCLConfig, load_experiment, project_path
+from .config import SDCLConfig, load_experiment, load_phase_config, project_path
 
 
 def train_experiment(config_file, **overrides):
     from .trainer import SDCLTrainer
 
     arguments, settings, ignore = load_experiment(config_file)
+    phase = load_phase_config(config_file)
     for key, value in overrides.items():
         if value is not None:
             arguments[key] = str(project_path(value)) if key in {"data", "resume"} else value
+    if phase.enabled:
+        from .phase_screen import BASELINE, SCREEN_CONFIG
+        baseline_run = project_path(BASELINE).parent.parent
+        if not (baseline_run / "experiment.json").is_file():
+            raise FileNotFoundError("The phase screen requires the completed 960 baseline.")
+        original, _, _ = load_experiment("configs/experiments/baseline_960_100.yaml")
+        if ({k: v for k, v in arguments.items() if k != "name"} !=
+                {k: v for k, v in original.items() if k != "name"} or phase != SCREEN_CONFIG):
+            raise ValueError("Phase one-run training must preserve the frozen baseline recipe and phase settings.")
+        run = project_path(arguments["project"]) / arguments["name"]
+        if run.exists():
+            raise FileExistsError(f"Refusing to silently increment or overwrite phase run: {run}")
     if arguments.get("resume"):
+        if phase.enabled:
+            raise ValueError("The one-run phase screen requires uninterrupted training; resume is unsupported.")
         from pathlib import Path
         checkpoint = Path(arguments["resume"])
         manifest_path = checkpoint.parent.parent / "experiment.json"
@@ -29,7 +44,7 @@ def train_experiment(config_file, **overrides):
             or saved.get("ignore_regions") != ignore
         ):
             raise ValueError("Resume requires the same SDCL settings and ignore protocol as the saved run.")
-    trainer = SDCLTrainer(overrides=arguments, sdcl=settings, ignore_regions=ignore)
+    trainer = SDCLTrainer(overrides=arguments, sdcl=settings, ignore_regions=ignore, phase=phase)
     trainer.train()
     return {"run": str(trainer.save_dir), "metric_protocol": "ignore-aware Ultralytics, not official VisDrone"}
 

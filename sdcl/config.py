@@ -78,7 +78,7 @@ def load_experiment(path: str | Path):
         config = yaml.safe_load(stream)
     if not isinstance(config, dict):
         raise ValueError(f"Expected a YAML mapping: {file}")
-    unknown = set(config) - {"train", "sdcl", "ignore_regions"}
+    unknown = set(config) - {"train", "sdcl", "ignore_regions", "phase"}
     if unknown:
         raise ValueError(f"Unknown experiment sections: {sorted(unknown)}")
     train = dict(config.get("train") or {})
@@ -102,5 +102,14 @@ def load_experiment(path: str | Path):
     if not isinstance(ignore, dict) or set(ignore) - {"enabled"}:
         raise ValueError("ignore_regions supports only 'enabled'.")
     settings = SDCLConfig.from_dict(config.get("sdcl"))
+    from .phase import PhaseConfig
+    PhaseConfig.from_dict(config.get("phase"))
     return train, settings, bool(ignore.get("enabled", True))
+
+
+def load_phase_config(path):
+    from .phase import PhaseConfig
+    with project_path(path).open(encoding="utf-8") as stream:
+        config = yaml.safe_load(stream)
+    return PhaseConfig.from_dict(config.get("phase"))
 
