@@ -1,4 +1,4 @@
-"""Ultralytics 8.4.172 adapter; assignment and soft targets remain unchanged."""
+"""Ultralytics 8.4.172 loss adapter with optional coverage-preserving assignment."""
 
 import torch
 import torch.nn.functional as F
@@ -7,6 +7,7 @@ from ultralytics.utils.metrics import bbox_iou
 from ultralytics.utils.tal import make_anchors
 
 from .config import SDCLConfig
+from .coverage import CoverageAssigner, CoverageConfig
 from .geometry import anchor_ignore_mask
 from .weights import object_weights
 
@@ -40,6 +41,13 @@ class SDCLLoss(v8DetectionLoss):
         self.use_ignore = getattr(model, "sdcl_ignore_regions", True)
         self.diagnostics = {}
         self.steps = 0
+        coverage = CoverageConfig.from_dict(getattr(model, "coverage_settings", {}))
+        if coverage.enabled:
+            original = self.assigner
+            self.assigner = CoverageAssigner(
+                topk=original.topk, num_classes=original.num_classes,
+                alpha=original.alpha, beta=original.beta, stride=original.stride,
+                eps=original.eps, topk2=original.topk2, coverage=coverage)
 
     def get_assigned_targets_and_loss(self, preds, batch):
         loss = torch.zeros(3, device=self.device)
@@ -54,6 +62,9 @@ class SDCLLoss(v8DetectionLoss):
         )
         gt_classes, gt_boxes = targets.split((1, 4), 2)
         valid_gt = gt_boxes.sum(2, keepdim=True) > 0
+        if isinstance(self.assigner, CoverageAssigner):
+            self.assigner.epoch = self.epoch
+            self.assigner.image_hw = image_size
         decoded = self.bbox_decode(anchors, distances)
         _, boxes, scores, foreground, gt_indices = self.assigner(
             logits.detach().sigmoid(),

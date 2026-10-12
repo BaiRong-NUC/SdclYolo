@@ -13,6 +13,7 @@ from ultralytics.utils.torch_utils import unwrap_model
 
 from .config import SDCLConfig, SUPPORTED_ULTRALYTICS
 from .criterion import SDCLLoss
+from .coverage import CoverageConfig
 from .dataset import IgnoreDataset
 from .geometry import prediction_ignore_mask
 from .phase import PhaseConfig, phase_model_loss
@@ -81,7 +82,7 @@ class SDCLValidator(DetectionValidator):
 
 
 class SDCLTrainer(DetectionTrainer):
-    def __init__(self, *args, sdcl=None, ignore_regions=True, phase=None, **kwargs):
+    def __init__(self, *args, sdcl=None, ignore_regions=True, phase=None, coverage=None, **kwargs):
         check_version()
         overrides = kwargs.get("overrides") or {}
         if isinstance(overrides.get("device"), (list, tuple)) or "," in str(overrides.get("device", "0")):
@@ -92,6 +93,11 @@ class SDCLTrainer(DetectionTrainer):
             raise ValueError("Only horizontal-box detection is supported.")
         self.sdcl = sdcl or SDCLConfig()
         self.phase = phase or PhaseConfig()
+        self.coverage = coverage or CoverageConfig()
+        if self.coverage.enabled and (self.phase.enabled or self.sdcl.enabled or not ignore_regions):
+            raise ValueError("Coverage screen requires phase/SDCL off and ignore regions on.")
+        if self.coverage.enabled and overrides.get("resume"):
+            raise ValueError("The frozen coverage screen requires an uninterrupted run.")
         if self.phase.enabled and self.sdcl.enabled:
             raise ValueError("Phase screen must disable SDCL to isolate the new mechanism.")
         if self.phase.enabled and overrides.get("resume"):
@@ -111,6 +117,7 @@ class SDCLTrainer(DetectionTrainer):
         model.sdcl_ignore_regions = self.ignore_regions
         model.sdcl_epoch = 0
         model.phase_settings = self.phase.to_dict()
+        model.coverage_settings = self.coverage.to_dict()
         model.phase_step = 0
         if weights:
             model.load(weights)
@@ -136,6 +143,8 @@ class SDCLTrainer(DetectionTrainer):
             model.phase_diagnostics = {}
         if getattr(model, "criterion", None) is not None:
             model.criterion.epoch = trainer.epoch
+            if self.coverage.enabled:
+                model.criterion.assigner.statistics = {}
         if getattr(trainer, "ema", None) is not None:
             trainer.ema.ema.sdcl_epoch = trainer.epoch
             if getattr(trainer.ema.ema, "criterion", None) is not None:
@@ -147,6 +156,11 @@ class SDCLTrainer(DetectionTrainer):
         criterion = getattr(unwrap_model(trainer.model), "criterion", None)
         stats = getattr(criterion, "diagnostics", {})
         phase_stats = getattr(unwrap_model(trainer.model), "phase_statistics", {})
+        if self.coverage.enabled:
+            coverage_stats = getattr(getattr(criterion, "assigner", None), "statistics", {})
+            with (trainer.save_dir / "coverage_statistics.jsonl").open("a", encoding="utf-8") as stream:
+                stream.write(json.dumps({"epoch": trainer.epoch, **coverage_stats}, allow_nan=False) + "\n")
+            self._last_logged_epoch = trainer.epoch
         if phase_stats:
             phase_stats = dict(phase_stats)
             phase_stats["mean_distance_active"] = phase_stats.get("distance_sum", 0) / max(
@@ -170,6 +184,7 @@ class SDCLTrainer(DetectionTrainer):
         manifest.update(
             sdcl=self.sdcl.to_dict(),
             phase=self.phase.to_dict(),
+            coverage=self.coverage.to_dict(),
             ignore_regions=self.ignore_regions,
             train=vars(trainer.args),
             metric_protocol="ignore-aware Ultralytics (diagnostic), NOT official VisDrone",
