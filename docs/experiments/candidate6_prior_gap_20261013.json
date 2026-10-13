@@ -1,0 +1,203 @@
+{
+  "experiment": "candidate6_adapted_prior_gap_control",
+  "date": "2026-10-13",
+  "images": 1610,
+  "evidence_directory": "D:\\Python\\YOLO\\output\\analysis\\prior-gap-fixed-20261013",
+  "official_metrics_percent": {
+    "0": {
+      "AP": 30.903275911673656,
+      "AP50": 52.2954133316577,
+      "AP75": 31.54530064553248,
+      "AR1": 2.1268928900458928,
+      "AR10": 13.205908987193663,
+      "AR100": 39.78204042909327,
+      "AR500": 46.010336256655314
+    },
+    "1": {
+      "AP": 30.977233363288928,
+      "AP50": 52.313990625864704,
+      "AP75": 31.68477942737341,
+      "AR1": 2.13515367086745,
+      "AR10": 13.234497814996953,
+      "AR100": 39.78764655391013,
+      "AR500": 46.01163112414835
+    },
+    "2": {
+      "AP": 31.003507539600246,
+      "AP50": 52.3100404308204,
+      "AP75": 31.75160556080364,
+      "AR1": 2.141116543375014,
+      "AR10": 13.250539768094892,
+      "AR100": 39.79434732430136,
+      "AR500": 46.008050596637574
+    }
+  },
+  "decision": {
+    "decision": "NO_REPEATABLE_ADVANTAGE_OVER_UNIFORM",
+    "registered_policy": {
+      "mean_AP_vs_uniform_min_exclusive_pp": 0.0,
+      "positive_vs_uniform_seeds_min": 2,
+      "mean_AP_vs_calibration_min_pp": 0.1,
+      "mean_AR500_vs_calibration_min_pp": -0.5
+    },
+    "comparisons": {
+      "calibration": {
+        "AP_per_seed_pp": [
+          0.00900714777343481,
+          0.08296459938870626,
+          0.1092387757000246
+        ],
+        "AP_mean_pp": 0.06707017428738855,
+        "AP_std_paired_head_seed_ddof1_pp": 0.05197181323736581,
+        "AP_positive_seeds": 3,
+        "AR500_per_seed_pp": [
+          -0.00784421887260578,
+          -0.006549351379568691,
+          -0.010129878890346333
+        ],
+        "AR500_mean_pp": -0.008174483047506934
+      },
+      "absolute": {
+        "AP_per_seed_pp": [
+          0.024894155352122027,
+          0.11733807290713827,
+          0.15072026491510115
+        ],
+        "AP_mean_pp": 0.09765083105812049,
+        "AP_std_paired_head_seed_ddof1_pp": 0.06518238320784991,
+        "AP_positive_seeds": 3,
+        "AR500_per_seed_pp": [
+          0.36755450183186156,
+          0.33690589247843405,
+          0.4877516732407656
+        ],
+        "AR500_mean_pp": 0.3974040225170204
+      },
+      "uniform": {
+        "AP_per_seed_pp": [
+          -0.20771375483086985,
+          -0.10612500815068415,
+          -0.07275328580717755
+        ],
+        "AP_mean_pp": -0.12886401626291052,
+        "AP_std_paired_head_seed_ddof1_pp": 0.07029494233029623,
+        "AP_positive_seeds": 0,
+        "AR500_per_seed_pp": [
+          0.22541944486467713,
+          0.2279217646739511,
+          0.21571732031622304
+        ],
+        "AR500_mean_pp": 0.2230195099516171
+      },
+      "regret": {
+        "AP_per_seed_pp": [
+          -0.22470581796748235,
+          -0.14439346284874333,
+          -0.1346439424516852
+        ],
+        "AP_mean_pp": -0.1679144077559703,
+        "AP_std_paired_head_seed_ddof1_pp": 0.04942379479918898,
+        "AP_positive_seeds": 0,
+        "AR500_per_seed_pp": [
+          0.359139591096195,
+          0.3449656592615469,
+          0.33069426902946475
+        ],
+        "AR500_mean_pp": 0.34493317312906885
+      }
+    },
+    "summary": {
+      "AP": {
+        "mean": 30.96133893818761,
+        "std_head_seed_ddof1": 0.05197181323736581
+      },
+      "AP50": {
+        "mean": 52.30648146278094,
+        "std_head_seed_ddof1": 0.009786656995259898
+      },
+      "AP75": {
+        "mean": 31.660561877903177,
+        "std_head_seed_ddof1": 0.10526298871406653
+      },
+      "AR1": {
+        "mean": 2.134387701429452,
+        "std_head_seed_ddof1": 0.0071426962970376935
+      },
+      "AR10": {
+        "mean": 13.230315523428501,
+        "std_head_seed_ddof1": 0.022607417434020134
+      },
+      "AR100": {
+        "mean": 39.788011435768254,
+        "std_head_seed_ddof1": 0.006161555931217969
+      },
+      "AR500": {
+        "mean": 46.01000599248041,
+        "std_head_seed_ddof1": 0.0018129672177886287
+      }
+    },
+    "scope": "Existing positive ranking-loss shape adapted to our fixed action task. Not RankDetNet reproduction, novel loss, independent data or AP significance proof."
+  },
+  "verification": {
+    "all1610testdev_all_three_seeds": true,
+    "matched_controls_MAT_verified": true,
+    "same_scores_classes_order_count": true,
+    "no_test_labels_in_predictions": true,
+    "train_cache_checkpoint_source_match": true,
+    "official_inputs_runtime_verified": true,
+    "no_seed_or_checkpoint_selection": true,
+    "no_detector_training_or_inference": true
+  },
+  "training_provenance": {
+    "recipe": {
+      "version": "2026-10-13-prior-gap-confirmation-v1",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "epochs": 20,
+      "batch": 2048,
+      "learning_rate": 0.002,
+      "weight_decay": 0.0001,
+      "alpha": 1.0,
+      "fp_temperature": 0.05,
+      "selection_margin": 0.01
+    },
+    "cache_path": "D:\\Python\\YOLO\\output\\localization\\train_actions_seed0",
+    "cache_sha256": "cc4e0906e279c244452500e9d0a663cca36220f7a19d382f277bf76b663bcecd",
+    "source_archive_sha256": "d81605f3e2c83e9ddfe197ffab439a189a28793998afa4c5892ca83da0402426",
+    "registration_sha256": "bf655afc7f0ac9b0a0f97864aa82e6fba051baecb8e4886943a4587946f217a0",
+    "repeat_inputs_sha256": {
+      "plan.json": "b6410c38b29bbad704f64498561fd4b7c49af5f5acebf9fc47af518a032cf470",
+      "official_metrics.json": "63698013e88607841cca4a09e40ac115512902092533d03b551273ac0a362e56",
+      "decision.json": "66492a058df5f19b0bd20cf0054a00694e10a5235f96644bd9b411f12229ea67",
+      "verification.json": "8000e29a3e1aa4dc2dfff2693693d1edb3e6fd1abc911053ccc36c6261d07c39",
+      "input_manifest.json": "a567accb1d72f973fae92ece40b6425eedbbf7b07fde3f96524e7dc43992d395"
+    },
+    "full_training_data": true,
+    "rows": {
+      "train": 630619,
+      "holdout": 36247
+    },
+    "selection": "Only epoch20; train-scene holdout monitors only.",
+    "scope": "Adapted positive loss shape only; not a RankDetNet reproduction or novel loss."
+  },
+  "checkpoints_sha256": {
+    "D:\\Python\\YOLO\\output\\runs\\prior_gap_confirmation_960_20261013\\seed0\\last.pt": "c8c895a98a2fa0134d18fde670aeb40acbd8b31f4aeb28b659a57c5eb65ed921",
+    "D:\\Python\\YOLO\\output\\runs\\prior_gap_confirmation_960_20261013\\seed1\\last.pt": "42e058c7fa5b22f9ecbd730f97e5bf619c82cec7327d2add1a22666bed8e9467",
+    "D:\\Python\\YOLO\\output\\runs\\prior_gap_confirmation_960_20261013\\seed2\\last.pt": "0bee84e3e6e3043ab23150c2b3150dcd909de2fc431c166a1980f3bf627ada34"
+  },
+  "evidence_sha256": {
+    "plan.json": "e7efac765991792e8ba2ef0a0efc407875977c21be974b5b53b79a3978a60bc9",
+    "input_manifest.json": "7634f9b471b8f806b5917475169272aa587d91781b4c19f439b5897b5e97882e",
+    "official_metrics.json": "841c4a6a677440d6235cbda41a1004e16896aa6cc11f3e4e5afea9bf36cb7c35",
+    "decision.json": "25448eb94a46689e8ac9bee140ba03e1c7effb3c153f10b8de4fe9427295ea8a",
+    "verification.json": "3822b735cc96fa323700ccb24e6c98831a5ed84e29521b1400fbb63e50784166",
+    "evaluation_source.py": "a0cb1f55f80d89412c25336b8660e0d14fd0e6048b2a0655ea190c9ac0b3b5bb",
+    "timings.csv": "448138edbe3535dc0a638ca180d7b94fc9ab63f9e8416e43afe35d9db356a9bc"
+  },
+  "coordinate_diagnostic_sha256": "8ee970a5a36db65446f7afed203d875433bf7fe711d94506e8d0b8be1b6996f0",
+  "interpretation": "Positive but small calibration AP gain(+0.067070pp), AR500 nearly unchanged(-0.008174pp). All3seeds below uniform; not a new strong control under the registered policy. Retain these results and end this fixed exponential recipe without changing alpha/margin/epochs. Coordinate movement is only0.07-0.12percent; different output/gradient scales and current FP-keep penalty may explain inactivity. Cannot claim superiority to full RankDetNet or novelty from a weak adapted control.",
+  "next_registered_experiment": "Existing-three-head coordinate unanimity fallback; no new training or detector inference. This is an ordinary consensus/retention control, not a novel uncertainty mechanism."
+}

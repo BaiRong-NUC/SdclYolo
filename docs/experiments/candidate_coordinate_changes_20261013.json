@@ -1,0 +1,91 @@
+{
+  "images": 1610,
+  "calibration_boxes": 572056,
+  "inputs_source_sha256": {
+    "D:\\Python\\YOLO\\output\\candidate_series\\testdev_actions_20261013\\predictions.jsonl": "a5bb30c543e28646c9ca9b93eefa056d7a10d4360eeeb7d08bab0b8dd0ccaede",
+    "D:\\Python\\YOLO\\output\\analysis\\ranking-seeds-fixed-20261013\\predictions.jsonl": "b9631b3e762f6c04e77be70732295c7be4b95e0d0b4ac1240c684019dbd2b5d6",
+    "D:\\Python\\YOLO\\output\\analysis\\prior-gap-fixed-20261013\\predictions.jsonl": "d344de9e7a63581cbd04b8d00b78348e1e5939f505a17abc43bc604a898f7de5",
+    "D:\\Python\\YOLO\\scripts\\evaluation\\summarize_coordinate_changes.py": "6748ad108462890049fe2c5ce95c92fedbb46f7a0d4ea7a4e92354b44d4887b1"
+  },
+  "summary": {
+    "absolute_seed0": {
+      "coordinate_changed_count": 19013,
+      "coordinate_changed_percent": 3.3236256590263893,
+      "mean_normalized_l1_all_boxes": 0.001141262205854898,
+      "mean_normalized_l1_changed_boxes": 0.03433786842857674
+    },
+    "uniform_seed0": {
+      "coordinate_changed_count": 19311,
+      "coordinate_changed_percent": 3.3757184611296793,
+      "mean_normalized_l1_all_boxes": 0.0004833280137693797,
+      "mean_normalized_l1_changed_boxes": 0.014317782105787184
+    },
+    "regret_seed0": {
+      "coordinate_changed_count": 29027,
+      "coordinate_changed_percent": 5.0741535793698525,
+      "mean_normalized_l1_all_boxes": 0.0007797824211472344,
+      "mean_normalized_l1_changed_boxes": 0.01536773392744005
+    },
+    "absolute_seed1": {
+      "coordinate_changed_count": 18126,
+      "coordinate_changed_percent": 3.168570909141762,
+      "mean_normalized_l1_all_boxes": 0.001005227772964131,
+      "mean_normalized_l1_changed_boxes": 0.03172495745838955
+    },
+    "uniform_seed1": {
+      "coordinate_changed_count": 17718,
+      "coordinate_changed_percent": 3.097249220356049,
+      "mean_normalized_l1_all_boxes": 0.0004637306326670152,
+      "mean_normalized_l1_changed_boxes": 0.014972338345239988
+    },
+    "regret_seed1": {
+      "coordinate_changed_count": 27335,
+      "coordinate_changed_percent": 4.778378340582041,
+      "mean_normalized_l1_all_boxes": 0.0007242980682400081,
+      "mean_normalized_l1_changed_boxes": 0.015157821683742679
+    },
+    "absolute_seed2": {
+      "coordinate_changed_count": 28614,
+      "coordinate_changed_percent": 5.001957850280392,
+      "mean_normalized_l1_all_boxes": 0.0016213642180305519,
+      "mean_normalized_l1_changed_boxes": 0.03241459177709112
+    },
+    "uniform_seed2": {
+      "coordinate_changed_count": 16466,
+      "coordinate_changed_percent": 2.878389528297929,
+      "mean_normalized_l1_all_boxes": 0.0004358355825182104,
+      "mean_normalized_l1_changed_boxes": 0.01514164702982129
+    },
+    "regret_seed2": {
+      "coordinate_changed_count": 27212,
+      "coordinate_changed_percent": 4.756876949109878,
+      "mean_normalized_l1_all_boxes": 0.0007034832226980925,
+      "mean_normalized_l1_changed_boxes": 0.014788762253556518
+    },
+    "prior_gap_seed0": {
+      "coordinate_changed_count": 666,
+      "coordinate_changed_percent": 0.11642216845903197,
+      "mean_normalized_l1_all_boxes": 1.1131215823899321e-05,
+      "mean_normalized_l1_changed_boxes": 0.009561079278313138
+    },
+    "prior_gap_seed1": {
+      "coordinate_changed_count": 401,
+      "coordinate_changed_percent": 0.0700980323604682,
+      "mean_normalized_l1_all_boxes": 2.5111455942050114e-05,
+      "mean_normalized_l1_changed_boxes": 0.035823339252831474
+    },
+    "prior_gap_seed2": {
+      "coordinate_changed_count": 438,
+      "coordinate_changed_percent": 0.07656593060819221,
+      "mean_normalized_l1_all_boxes": 3.5399031488459244e-05,
+      "mean_normalized_l1_changed_boxes": 0.04623339807571242
+    }
+  },
+  "verification": {
+    "same_images_order_rows_scores_classes": true,
+    "all1610images": true,
+    "captures_source_unchanged": true,
+    "no_annotation_read": true
+  },
+  "scope": "Post-hoc prediction-only coordinate-change frequency and displacement. Equal coordinates count unchanged even if a different action was selected. No AP, IoU, efficacy, GT identity or new registered decision claim."
+}

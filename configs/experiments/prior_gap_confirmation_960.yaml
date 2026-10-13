@@ -1,0 +1,9 @@
+version: 2026-10-13-prior-gap-confirmation-v1
+seeds: [0, 1, 2]
+epochs: 20
+batch: 2048
+learning_rate: 0.002
+weight_decay: 0.0001
+alpha: 1.0
+fp_temperature: 0.05
+selection_margin: 0.01
