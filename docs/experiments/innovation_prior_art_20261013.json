@@ -1,0 +1,73 @@
+{
+  "accessed_at_local": "2026-10-13T19:28:33.238762",
+  "scope": "Targeted original-source overlap audit; not exhaustive novelty verification.",
+  "sources": {
+    "iou_net": {
+      "url": "https://arxiv.org/abs/1807.11590",
+      "title": "[1807.11590] Acquisition of Localization Confidence for Accurate Object Detection",
+      "sha256": "898b42898a3d569d26bdf151fdf125a2041ce5f218270f5cbcf15ada2a2f5dd7",
+      "overlap_note": "Localization-IoU prediction, preserving good localization and IoU-based refinement.",
+      "evidence_directory": "D:\\Python\\YOLO\\output\\verification\\innovation_audit_20261013\\primary_sources"
+    },
+    "weighted_boxes_fusion": {
+      "url": "https://arxiv.org/abs/1910.13302",
+      "title": "[1910.13302] Weighted boxes fusion: Ensembling boxes from different object detection models",
+      "sha256": "8e3ac8796335ce11fee4cd769e17d94bb82e8d32262453fd0d036e2cd9c87cb2",
+      "overlap_note": "Confidence-weighted coordinate averaging already exists.",
+      "evidence_directory": "D:\\Python\\YOLO\\output\\verification\\innovation_audit_20261013\\primary_sources"
+    },
+    "learned_nms": {
+      "url": "https://openaccess.thecvf.com/content_cvpr_2017/html/Hosang_Learning_Non-Maximum_Suppression_CVPR_2017_paper.html",
+      "title": "CVPR 2017 Open Access Repository",
+      "sha256": "60b4ce6209bd2fd5c77ea30a57190912c3863412d154faa31ee3798f2189fa70",
+      "overlap_note": "Learning postprocessing from boxes and scores already exists.",
+      "evidence_directory": "D:\\Python\\YOLO\\output\\verification\\innovation_audit_20261013\\primary_sources"
+    },
+    "relation_network": {
+      "url": "https://openaccess.thecvf.com/content_cvpr_2018/html/Hu_Relation_Networks_for_CVPR_2018_paper.html",
+      "title": "CVPR 2018 Open Access Repository",
+      "sha256": "8fa1a0fb1c866b8d6088c581d4f678f1db569167af22847b1c26f70acaec10f7",
+      "overlap_note": "Appearance/geometry relations and learned duplicate removal already exist.",
+      "evidence_directory": "D:\\Python\\YOLO\\output\\verification\\innovation_audit_20261013\\primary_sources"
+    },
+    "gfl": {
+      "url": "https://arxiv.org/abs/2006.04388",
+      "title": "[2006.04388] Generalized Focal Loss: Learning Qualified and Distributed Bounding Boxes for Dense Object Detection",
+      "sha256": "43d9b999d1446349d82d0da1890c8b298ceb4e47ed7a1ec89d45c28467a0b59a",
+      "overlap_note": "Joint classification/localization quality and distributed box representations already exist.",
+      "evidence_directory": "D:\\Python\\YOLO\\output\\verification\\innovation_audit_20261013\\primary_sources"
+    },
+    "esod": {
+      "url": "https://raw.githubusercontent.com/alibaba/esod/main/README.md",
+      "sha256": "785b2a4cd8cb2511737263d3b69d56993d6732891f7b3e12681a677ee3d38c53",
+      "overlap_note": "Efficient small-object seeking and slicing with feature reuse.",
+      "evidence_directory": "D:\\Python\\YOLO\\output\\verification\\research_closeout_20261013\\primary_sources"
+    },
+    "ugs": {
+      "url": "https://openaccess.thecvf.com/content/ICCV2025/html/Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.html",
+      "sha256": "cc3b4b88542cf8a5f3bf141038e380f78909a6d36b69e434e39ab821b8900a74",
+      "overlap_note": "Classification-based small-object localization, uncertainty minimization and refinement.",
+      "evidence_directory": "D:\\Python\\YOLO\\output\\verification\\research_closeout_20261013\\primary_sources"
+    },
+    "set": {
+      "url": "https://openaccess.thecvf.com/content/CVPR2025/html/Sun_SET_Spectral_Enhancement_for_Tiny_Object_Detection_CVPR_2025_paper.html",
+      "sha256": "86ea8c79a75802ce9c4b1f116ae24fbd518837e70d1b0787a9cbd523eb6fcb04",
+      "overlap_note": "Spectral feature enhancement for tiny objects.",
+      "evidence_directory": "D:\\Python\\YOLO\\output\\verification\\research_closeout_20261013\\primary_sources"
+    },
+    "rank_sort": {
+      "url": "https://arxiv.org/abs/2107.11669",
+      "title": "[2107.11669] Rank & Sort Loss for Object Detection and Instance Segmentation",
+      "sha256": "864730401128b64dcf29b1e084a24c74003cf296b3a38d04e6d46bdd1bff3eb5",
+      "overlap_note": "Ranking positives by localization quality is prior art; current within-anchor actions differ in task, not generic ranking principle.",
+      "evidence_directory": "D:\\Python\\YOLO\\output\\verification\\innovation_audit_20261013\\primary_sources"
+    },
+    "ap_loss": {
+      "url": "https://arxiv.org/abs/1904.06373",
+      "title": "[1904.06373] Towards Accurate One-Stage Object Detection with AP-Loss",
+      "sha256": "665880f654ce502941b3b5072b70a69b938596de0ce5ae3e3860c880644b4ccb",
+      "overlap_note": "Direct metric alignment via AP-oriented ranking losses is prior art; a new threshold objective alone does not prove novelty.",
+      "evidence_directory": "D:\\Python\\YOLO\\output\\verification\\innovation_audit_20261013\\primary_sources"
+    }
+  }
+}

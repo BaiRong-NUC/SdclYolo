@@ -1,0 +1,1035 @@
+{
+  "date": "2026-10-13",
+  "evidence_directory": "D:\\Python\\YOLO\\output\\analysis\\localization-official-audit-fixed-20261013",
+  "protocol": "Pinned original VisDrone toolkit aggregation and preprocessing with cross-validated native helpers, 548 reused val images. Not leaderboard submission.",
+  "no_training": true,
+  "metrics_percent": {
+    "calibration": {
+      "AP": 34.12335262742041,
+      "AP50": 58.220575613103726,
+      "AP75": 33.9125497198918,
+      "AR1": 0.9568828385565316,
+      "AR10": 7.95879515695509,
+      "AR100": 39.64010477237733,
+      "AR500": 49.59930790613332
+    },
+    "vote": {
+      "AP": 33.94089806222702,
+      "AP50": 58.32013712921807,
+      "AP75": 34.03380294805792,
+      "AR1": 0.9380924740414539,
+      "AR10": 7.889532464458617,
+      "AR100": 39.47324954963905,
+      "AR500": 47.39024563028834
+    },
+    "absolute": {
+      "AP": 34.10062603404666,
+      "AP50": 58.15461398592173,
+      "AP75": 33.92382583168736,
+      "AR1": 0.9628325882486607,
+      "AR10": 7.979533472444355,
+      "AR100": 39.57127358216542,
+      "AR500": 49.1414901189891
+    },
+    "gain_always": {
+      "AP": 34.29160723643934,
+      "AP50": 58.31823823141616,
+      "AP75": 34.227240805026206,
+      "AR1": 0.9543370561960696,
+      "AR10": 8.003694409200593,
+      "AR100": 39.71349811206714,
+      "AR500": 48.04764423408182
+    },
+    "gain": {
+      "AP": 34.37738402455103,
+      "AP50": 58.32691269169644,
+      "AP75": 34.348210506076214,
+      "AR1": 0.9597404513941131,
+      "AR10": 8.013710355944308,
+      "AR100": 39.74927808180178,
+      "AR500": 49.3505159852145
+    },
+    "uniform": {
+      "AP": 34.42349175337189,
+      "AP50": 58.280784755843165,
+      "AP75": 34.47338184511446,
+      "AR1": 0.9601430628476865,
+      "AR10": 8.039713629549139,
+      "AR100": 39.76124594546072,
+      "AR500": 49.40337343592031
+    },
+    "regret": {
+      "AP": 34.53977743500878,
+      "AP50": 58.335764166916256,
+      "AP75": 34.699753084722474,
+      "AR1": 0.9617461375827504,
+      "AR10": 8.05097265007182,
+      "AR100": 39.84545732068133,
+      "AR500": 49.29159816885297
+    }
+  },
+  "audit": {
+    "status": "NO_TRAINING_AUDIT_ONLY",
+    "primary_comparison": "regret_vs_uniform official AP",
+    "secondary_comparison": "gain_vs_absolute official AP",
+    "ranking_positive_point_estimates": true,
+    "comparisons": {
+      "regret_vs_uniform": {
+        "AP_pp": 0.11628568163688868,
+        "AP50_pp": 0.054979411073091455,
+        "AP75_pp": 0.22637123960801375,
+        "AR1_pp": 0.0016030747350639363,
+        "AR10_pp": 0.01125902052268124,
+        "AR100_pp": 0.08421137522060462,
+        "AR500_pp": -0.11177526706733687
+      },
+      "gain_vs_absolute": {
+        "AP_pp": 0.27675799050436467,
+        "AP50_pp": 0.17229870577471473,
+        "AP75_pp": 0.42438467438885397,
+        "AR1_pp": -0.003092136854547567,
+        "AR10_pp": 0.034176883499953625,
+        "AR100_pp": 0.17800449963636567,
+        "AR500_pp": 0.20902586622540298
+      },
+      "gain_vs_gain_always": {
+        "AP_pp": 0.0857767881116871,
+        "AP50_pp": 0.008674460280282403,
+        "AP75_pp": 0.12096970105000793,
+        "AR1_pp": 0.005403395198043559,
+        "AR10_pp": 0.010015946743715531,
+        "AR100_pp": 0.035779969734640815,
+        "AR500_pp": 1.3028717511326775
+      },
+      "regret_vs_calibration": {
+        "AP_pp": 0.4164248075883705,
+        "AP50_pp": 0.1151885538125299,
+        "AP75_pp": 0.787203364830674,
+        "AR1_pp": 0.004863299026218848,
+        "AR10_pp": 0.09217749311673007,
+        "AR100_pp": 0.20535254830399907,
+        "AR500_pp": -0.3077097372803479
+      },
+      "gain_vs_calibration": {
+        "AP_pp": 0.2540313971306176,
+        "AP50_pp": 0.10633707859271624,
+        "AP75_pp": 0.43566078618441395,
+        "AR1_pp": 0.002857612837581569,
+        "AR10_pp": 0.05491519898921826,
+        "AR100_pp": 0.10917330942445602,
+        "AR500_pp": -0.2487919209188192
+      },
+      "vote_vs_calibration": {
+        "AP_pp": -0.18245456519338887,
+        "AP50_pp": 0.09956151611434194,
+        "AP75_pp": 0.12125322816611828,
+        "AR1_pp": -0.01879036451507765,
+        "AR10_pp": -0.06926269249647277,
+        "AR100_pp": -0.16685522273827758,
+        "AR500_pp": -2.2090622758449783
+      },
+      "uniform_vs_calibration": {
+        "AP_pp": 0.30013912595148184,
+        "AP50_pp": 0.06020914273943845,
+        "AP75_pp": 0.5608321252226602,
+        "AR1_pp": 0.0032602242911549117,
+        "AR10_pp": 0.08091847259404883,
+        "AR100_pp": 0.12114117308339445,
+        "AR500_pp": -0.19593447021301102
+      },
+      "regret_vs_vote": {
+        "AP_pp": 0.5988793727817594,
+        "AP50_pp": 0.015627037698187962,
+        "AP75_pp": 0.6659501366645557,
+        "AR1_pp": 0.0236536635412965,
+        "AR10_pp": 0.16144018561320284,
+        "AR100_pp": 0.37220777104227665,
+        "AR500_pp": 1.9013525385646304
+      },
+      "gain_vs_vote": {
+        "AP_pp": 0.4364859623240065,
+        "AP50_pp": 0.006775562478374297,
+        "AP75_pp": 0.3144075580182957,
+        "AR1_pp": 0.02164797735265922,
+        "AR10_pp": 0.12417789148569103,
+        "AR100_pp": 0.2760285321627336,
+        "AR500_pp": 1.960270354926159
+      }
+    },
+    "interpretation": "Positive point estimates are a candidate signal only. No AP confidence interval, independent confirmation, seed robustness or novelty proof is supplied. Report AR tradeoffs explicitly; do not invent an application tolerance.",
+    "historical_gates": "Unchanged. This audit does not convert a prior STOP to CONTINUE."
+  },
+  "verification": {
+    "all_548_images": true,
+    "corrected_control_replay_exact": true,
+    "corrected_official_metrics_reproduced": true,
+    "all_inputs_unchanged": true,
+    "same_scores_classes_order_count": true,
+    "annotations_only_in_diagnostics_evaluation": true,
+    "no_training_no_retuning": true,
+    "source_and_checkpoints_unchanged": true
+  },
+  "interference": {
+    "all_sizes": {
+      "gain": {
+        "owned": 32937,
+        "changed_owned": 4679,
+        "worsened_owned": 1991,
+        "other_gt_better_after_harm": 16,
+        "peer_reused_distinct_owners": 0
+      },
+      "uniform": {
+        "owned": 32937,
+        "changed_owned": 10308,
+        "worsened_owned": 4380,
+        "other_gt_better_after_harm": 6,
+        "peer_reused_distinct_owners": 0
+      },
+      "regret": {
+        "owned": 32937,
+        "changed_owned": 15031,
+        "worsened_owned": 6473,
+        "other_gt_better_after_harm": 21,
+        "peer_reused_distinct_owners": 0
+      }
+    },
+    "scope": "Annotation-assisted conditional diagnostic, all owned GT sizes; not deployable efficacy.",
+    "other_gt_better_after_harm": "Same-class alternative GT has higher IoU after harming original owned GT; not proof of a switch.",
+    "peer_reused_distinct_owners": "Selected non-vote peer geometry shared by distinct owned GT within image/view/class."
+  },
+  "conditional_threshold_crossings": {
+    "scope": "Post-hoc same-owned-GT counts, not AP; excludes unmatched GT and rematching.",
+    "reference_size": 640,
+    "thresholds": [
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.8500000000000001,
+      0.9,
+      0.95
+    ],
+    "prediction_capture_sha256": "3c8fec238d0c46c5c947debb95726b453b07948982632c163df4801ef3e9fc3c",
+    "records_sha256": "551e5afc2d589fc0b8086b391e69e137913a13781794257e3e5089ada80acf09",
+    "analysis_source_sha256": "10bfa348216044f12278879a79c3294a0d15dc8c0c3b35cba8ef5a0efa3625f5",
+    "arms": {
+      "vote": {
+        "all": {
+          "owned": 32937,
+          "changed": 28946,
+          "improved_iou": 15233,
+          "worsened_iou": 13707,
+          "gained_thresholds": [
+            0,
+            444,
+            699,
+            988,
+            1215,
+            1426,
+            1543,
+            1383,
+            1130,
+            553
+          ],
+          "lost_thresholds": [
+            404,
+            540,
+            647,
+            716,
+            881,
+            1138,
+            1353,
+            1491,
+            1311,
+            621
+          ],
+          "net_thresholds": [
+            -404,
+            -96,
+            52,
+            272,
+            334,
+            288,
+            190,
+            -108,
+            -181,
+            -68
+          ]
+        },
+        "tiny": {
+          "owned": 22176,
+          "changed": 18984,
+          "improved_iou": 9993,
+          "worsened_iou": 8985,
+          "gained_thresholds": [
+            0,
+            387,
+            602,
+            853,
+            1023,
+            1145,
+            1181,
+            942,
+            605,
+            129
+          ],
+          "lost_thresholds": [
+            373,
+            493,
+            574,
+            634,
+            773,
+            971,
+            1054,
+            904,
+            534,
+            126
+          ],
+          "net_thresholds": [
+            -373,
+            -106,
+            28,
+            219,
+            250,
+            174,
+            127,
+            38,
+            71,
+            3
+          ]
+        },
+        "small_all": {
+          "owned": 30195,
+          "changed": 26376,
+          "improved_iou": 13888,
+          "worsened_iou": 12482,
+          "gained_thresholds": [
+            0,
+            437,
+            686,
+            968,
+            1182,
+            1380,
+            1483,
+            1321,
+            1017,
+            386
+          ],
+          "lost_thresholds": [
+            398,
+            529,
+            636,
+            703,
+            871,
+            1126,
+            1305,
+            1347,
+            1070,
+            397
+          ],
+          "net_thresholds": [
+            -398,
+            -92,
+            50,
+            265,
+            311,
+            254,
+            178,
+            -26,
+            -53,
+            -11
+          ]
+        }
+      },
+      "absolute": {
+        "all": {
+          "owned": 32937,
+          "changed": 7953,
+          "improved_iou": 4034,
+          "worsened_iou": 3909,
+          "gained_thresholds": [
+            0,
+            115,
+            208,
+            309,
+            390,
+            514,
+            539,
+            463,
+            342,
+            197
+          ],
+          "lost_thresholds": [
+            90,
+            140,
+            238,
+            281,
+            391,
+            426,
+            482,
+            426,
+            323,
+            200
+          ],
+          "net_thresholds": [
+            -90,
+            -25,
+            -30,
+            28,
+            -1,
+            88,
+            57,
+            37,
+            19,
+            -3
+          ]
+        },
+        "tiny": {
+          "owned": 22176,
+          "changed": 5183,
+          "improved_iou": 2587,
+          "worsened_iou": 2586,
+          "gained_thresholds": [
+            0,
+            95,
+            168,
+            256,
+            315,
+            401,
+            385,
+            289,
+            158,
+            26
+          ],
+          "lost_thresholds": [
+            81,
+            126,
+            213,
+            249,
+            342,
+            363,
+            382,
+            294,
+            168,
+            36
+          ],
+          "net_thresholds": [
+            -81,
+            -31,
+            -45,
+            7,
+            -27,
+            38,
+            3,
+            -5,
+            -10,
+            -10
+          ]
+        },
+        "small_all": {
+          "owned": 30195,
+          "changed": 7247,
+          "improved_iou": 3648,
+          "worsened_iou": 3589,
+          "gained_thresholds": [
+            0,
+            113,
+            200,
+            300,
+            376,
+            494,
+            510,
+            425,
+            284,
+            120
+          ],
+          "lost_thresholds": [
+            86,
+            138,
+            236,
+            279,
+            387,
+            420,
+            472,
+            411,
+            298,
+            141
+          ],
+          "net_thresholds": [
+            -86,
+            -25,
+            -36,
+            21,
+            -11,
+            74,
+            38,
+            14,
+            -14,
+            -21
+          ]
+        }
+      },
+      "gain_always": {
+        "all": {
+          "owned": 32937,
+          "changed": 28946,
+          "improved_iou": 15250,
+          "worsened_iou": 13688,
+          "gained_thresholds": [
+            0,
+            460,
+            733,
+            1041,
+            1292,
+            1560,
+            1699,
+            1513,
+            1243,
+            660
+          ],
+          "lost_thresholds": [
+            483,
+            603,
+            720,
+            795,
+            977,
+            1236,
+            1430,
+            1382,
+            1126,
+            559
+          ],
+          "net_thresholds": [
+            -483,
+            -143,
+            13,
+            246,
+            315,
+            324,
+            269,
+            131,
+            117,
+            101
+          ]
+        },
+        "tiny": {
+          "owned": 22176,
+          "changed": 18984,
+          "improved_iou": 9892,
+          "worsened_iou": 9084,
+          "gained_thresholds": [
+            0,
+            400,
+            628,
+            895,
+            1087,
+            1246,
+            1291,
+            1012,
+            634,
+            134
+          ],
+          "lost_thresholds": [
+            443,
+            543,
+            640,
+            696,
+            855,
+            1051,
+            1136,
+            949,
+            573,
+            129
+          ],
+          "net_thresholds": [
+            -443,
+            -143,
+            -12,
+            199,
+            232,
+            195,
+            155,
+            63,
+            61,
+            5
+          ]
+        },
+        "small_all": {
+          "owned": 30195,
+          "changed": 26376,
+          "improved_iou": 13851,
+          "worsened_iou": 12517,
+          "gained_thresholds": [
+            0,
+            452,
+            717,
+            1019,
+            1254,
+            1505,
+            1627,
+            1433,
+            1094,
+            441
+          ],
+          "lost_thresholds": [
+            473,
+            589,
+            706,
+            779,
+            966,
+            1219,
+            1397,
+            1322,
+            1016,
+            395
+          ],
+          "net_thresholds": [
+            -473,
+            -137,
+            11,
+            240,
+            288,
+            286,
+            230,
+            111,
+            78,
+            46
+          ]
+        }
+      },
+      "gain": {
+        "all": {
+          "owned": 32937,
+          "changed": 4679,
+          "improved_iou": 2688,
+          "worsened_iou": 1991,
+          "gained_thresholds": [
+            0,
+            120,
+            209,
+            351,
+            446,
+            573,
+            608,
+            522,
+            357,
+            132
+          ],
+          "lost_thresholds": [
+            21,
+            63,
+            112,
+            144,
+            221,
+            299,
+            385,
+            356,
+            290,
+            112
+          ],
+          "net_thresholds": [
+            -21,
+            57,
+            97,
+            207,
+            225,
+            274,
+            223,
+            166,
+            67,
+            20
+          ]
+        },
+        "tiny": {
+          "owned": 22176,
+          "changed": 2964,
+          "improved_iou": 1712,
+          "worsened_iou": 1252,
+          "gained_thresholds": [
+            0,
+            91,
+            153,
+            267,
+            330,
+            397,
+            404,
+            277,
+            129,
+            21
+          ],
+          "lost_thresholds": [
+            19,
+            54,
+            102,
+            124,
+            181,
+            226,
+            262,
+            209,
+            128,
+            20
+          ],
+          "net_thresholds": [
+            -19,
+            37,
+            51,
+            143,
+            149,
+            171,
+            142,
+            68,
+            1,
+            1
+          ]
+        },
+        "small_all": {
+          "owned": 30195,
+          "changed": 4240,
+          "improved_iou": 2423,
+          "worsened_iou": 1817,
+          "gained_thresholds": [
+            0,
+            114,
+            198,
+            332,
+            414,
+            528,
+            556,
+            469,
+            285,
+            75
+          ],
+          "lost_thresholds": [
+            20,
+            61,
+            110,
+            142,
+            217,
+            290,
+            371,
+            337,
+            265,
+            75
+          ],
+          "net_thresholds": [
+            -20,
+            53,
+            88,
+            190,
+            197,
+            238,
+            185,
+            132,
+            20,
+            0
+          ]
+        }
+      },
+      "uniform": {
+        "all": {
+          "owned": 32937,
+          "changed": 10308,
+          "improved_iou": 5928,
+          "worsened_iou": 4380,
+          "gained_thresholds": [
+            0,
+            38,
+            89,
+            167,
+            229,
+            384,
+            524,
+            616,
+            700,
+            471
+          ],
+          "lost_thresholds": [
+            6,
+            7,
+            20,
+            33,
+            61,
+            134,
+            269,
+            373,
+            447,
+            311
+          ],
+          "net_thresholds": [
+            -6,
+            31,
+            69,
+            134,
+            168,
+            250,
+            255,
+            243,
+            253,
+            160
+          ]
+        },
+        "tiny": {
+          "owned": 22176,
+          "changed": 4192,
+          "improved_iou": 2444,
+          "worsened_iou": 1748,
+          "gained_thresholds": [
+            0,
+            26,
+            54,
+            106,
+            137,
+            230,
+            311,
+            311,
+            279,
+            86
+          ],
+          "lost_thresholds": [
+            5,
+            6,
+            16,
+            28,
+            42,
+            91,
+            174,
+            231,
+            196,
+            62
+          ],
+          "net_thresholds": [
+            -5,
+            20,
+            38,
+            78,
+            95,
+            139,
+            137,
+            80,
+            83,
+            24
+          ]
+        },
+        "small_all": {
+          "owned": 30195,
+          "changed": 8603,
+          "improved_iou": 4923,
+          "worsened_iou": 3680,
+          "gained_thresholds": [
+            0,
+            35,
+            80,
+            151,
+            201,
+            341,
+            477,
+            559,
+            596,
+            322
+          ],
+          "lost_thresholds": [
+            6,
+            7,
+            19,
+            31,
+            59,
+            129,
+            260,
+            354,
+            411,
+            235
+          ],
+          "net_thresholds": [
+            -6,
+            28,
+            61,
+            120,
+            142,
+            212,
+            217,
+            205,
+            185,
+            87
+          ]
+        }
+      },
+      "regret": {
+        "all": {
+          "owned": 32937,
+          "changed": 15031,
+          "improved_iou": 8558,
+          "worsened_iou": 6473,
+          "gained_thresholds": [
+            0,
+            80,
+            172,
+            301,
+            413,
+            647,
+            828,
+            897,
+            902,
+            530
+          ],
+          "lost_thresholds": [
+            10,
+            33,
+            68,
+            101,
+            152,
+            290,
+            523,
+            608,
+            624,
+            376
+          ],
+          "net_thresholds": [
+            -10,
+            47,
+            104,
+            200,
+            261,
+            357,
+            305,
+            289,
+            278,
+            154
+          ]
+        },
+        "tiny": {
+          "owned": 22176,
+          "changed": 7587,
+          "improved_iou": 4350,
+          "worsened_iou": 3237,
+          "gained_thresholds": [
+            0,
+            63,
+            125,
+            228,
+            305,
+            461,
+            563,
+            546,
+            421,
+            104
+          ],
+          "lost_thresholds": [
+            10,
+            28,
+            62,
+            90,
+            130,
+            230,
+            392,
+            404,
+            301,
+            89
+          ],
+          "net_thresholds": [
+            -10,
+            35,
+            63,
+            138,
+            175,
+            231,
+            171,
+            142,
+            120,
+            15
+          ]
+        },
+        "small_all": {
+          "owned": 30195,
+          "changed": 12939,
+          "improved_iou": 7340,
+          "worsened_iou": 5599,
+          "gained_thresholds": [
+            0,
+            76,
+            162,
+            284,
+            387,
+            602,
+            777,
+            840,
+            778,
+            360
+          ],
+          "lost_thresholds": [
+            10,
+            32,
+            67,
+            96,
+            151,
+            286,
+            510,
+            588,
+            569,
+            284
+          ],
+          "net_thresholds": [
+            -10,
+            44,
+            95,
+            188,
+            236,
+            316,
+            267,
+            252,
+            209,
+            76
+          ]
+        }
+      }
+    }
+  },
+  "checks": {
+    "all_registered_source_files_and_source_zip_match": true,
+    "all_input_manifest_files_match": true,
+    "threshold_counts_exactly_reproduced": true
+  },
+  "evidence_sha256": {
+    "plan.json": "a3c3bb4f831085c42b2c0a31c44f62dc7e5adfc3ba8365dfffca5ab3d50f1b8e",
+    "source.zip": "890f62aea4ed54c6385a551cbfce0eeba2701216a0a8cfd590513c842291c200",
+    "input_manifest.json": "4973071d65464b2b1418fe4d5c0e189dafd901235805103183e612d294046965",
+    "official_metrics.json": "ea2bbd64150a45a9865b75dee3fe2320a070a21fd3b35a729cf07e56a0d1ecf3",
+    "audit_summary.json": "4795cf65f62383e01b305c5e2618bbf7089d9c7d14138bad06635f7d832b8ac7",
+    "verification.json": "f637fca5630f303110f8f5d275b232e2431470ef0f70cd4e0bbcde463b2c09d9",
+    "interference_diagnostic.json": "0e197a08a62ce59c29d09f0db433f06672484b6cf4fb2a4b2eb840a53f6663d7",
+    "predictions.jsonl": "3c8fec238d0c46c5c947debb95726b453b07948982632c163df4801ef3e9fc3c"
+  },
+  "result_mat_sha256": {
+    "calibration": "1a8a5d45765104008d18bb85b4d3a0eeb30bf6c7bd452632613005185c65dba8",
+    "vote": "ee48a9e5c82a62ac86a85300f0795698eca61958aad9a340fb71f5986561fcc1",
+    "absolute": "894e3f1c44444bc40cb6fa5664d62c4e8cc00d6d3fbe2433fd7b68277e395fe7",
+    "gain_always": "8c04a71337bd611cc851033c5d1ebe08d2c230cca4fc868690a34de5f4ed6252",
+    "gain": "2fe94372d669f64abbdd85125d1ee21523166d77ec7d70d92f6ca5a0ca03122d",
+    "uniform": "c1eda2574e805afb51045fcdf475c28560b3eeea3b0f23a6b01e8c63b7521407",
+    "regret": "c2fe876c8d4bf21c21565c8e676e43f6a92b44c950565474c32e4d0fcbcca59c"
+  },
+  "heads": {
+    "localization": {
+      "checkpoint": "D:\\Python\\YOLO\\output\\runs\\localization_gain_960_seed0\\last.pt",
+      "sha256": "3f4ee47117b9e6e3c374d422339c03e496d221231c052f831986d7def1f37c82",
+      "archive_sha256": "20c6a36ea0cd5258cf0baae04b22d199bce931aa1d371b7a48f71e8c290eb455",
+      "cache_sha256": "cc4e0906e279c244452500e9d0a663cca36220f7a19d382f277bf76b663bcecd"
+    },
+    "ranking": {
+      "checkpoint": "D:\\Python\\YOLO\\output\\runs\\regret_objective_probe_960_seed0\\last.pt",
+      "sha256": "8f8eafa2f0b8925741ba19c74bba1437af1df9132e40efa02a6ab52a5e24fc43",
+      "archive_sha256": "e9c78229b114e35c45830ed2b26ff9e60ccceb28c23d8cbfb5584998d702cf93",
+      "cache_sha256": "cc4e0906e279c244452500e9d0a663cca36220f7a19d382f277bf76b663bcecd"
+    }
+  },
+  "supplemental_analysis": {
+    "path": "D:\\Python\\YOLO\\scripts\\evaluation\\analyze_action_thresholds.py",
+    "sha256": "10bfa348216044f12278879a79c3294a0d15dc8c0c3b35cba8ef5a0efa3625f5",
+    "output_sha256": "ca7e587a0b7cefcf8ef4d975a56b6d94539c7ce0d54eef0b4f3272ae46139772"
+  },
+  "validation": "42 related tests passed; supplemental diagnostic reproduced on all548 images.",
+  "recommendation": "Prioritize frozen independent confirmation of relative localization decision (A); regret is an extension with small extra gain over uniform (B). Do not train identity-competition module (C) on present evidence. Threshold-aware supervision (D) remains unimplemented hypothesis.",
+  "historical_STOP": "Unchanged; no thresholds relabeled."
+}
