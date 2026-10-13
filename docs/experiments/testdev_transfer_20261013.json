@@ -1,0 +1,167 @@
+{
+  "version": "2026-10-13-frozen-testdev-transfer-v1",
+  "split": "VisDrone2019-DET-test-dev",
+  "images": 1610,
+  "official_metrics_percent": {
+    "baseline": {
+      "AP": 26.626773509468872,
+      "AP50": 45.209657697233716,
+      "AP75": 27.23711452125875,
+      "AR1": 2.235568585830043,
+      "AR10": 12.841508234108115,
+      "AR100": 34.37934561863829,
+      "AR500": 37.67490984530051
+    },
+    "soft_nms": {
+      "AP": 30.35957875065685,
+      "AP50": 51.1918370536646,
+      "AP75": 31.08439652271459,
+      "AR1": 2.206661877217953,
+      "AR10": 13.498690056709833,
+      "AR100": 39.739340836430024,
+      "AR500": 46.25054283893533
+    },
+    "calibration": {
+      "AP": 30.89426876390022,
+      "AP50": 52.2954133316577,
+      "AP75": 31.54034849263872,
+      "AR1": 2.125917182367915,
+      "AR10": 13.20206629604485,
+      "AR100": 39.7854161210027,
+      "AR500": 46.01818047552792
+    }
+  },
+  "decision": {
+    "decision": "TRANSFER_STOP",
+    "checks": [
+      {
+        "metric": "official_ap_vs_soft_nms_pp",
+        "value": 0.5346900132433703,
+        "threshold": 0.3,
+        "comparison": ">=",
+        "passed": true
+      },
+      {
+        "metric": "official_ap_vs_baseline_pp",
+        "value": 4.267495254431349,
+        "threshold": 1.0,
+        "comparison": ">=",
+        "passed": true
+      },
+      {
+        "metric": "official_ar500_vs_soft_nms_pp",
+        "value": -0.232362363407411,
+        "threshold": -0.1,
+        "comparison": ">=",
+        "passed": false
+      }
+    ],
+    "full_testdev": true,
+    "scope": "Frozen engineering-control transfer only; no novelty or permission to resume stopped recipes."
+  },
+  "program_recommendation": "STOP_CURRENT_BROAD_SMALL_OBJECT_THESIS",
+  "recommendation_scope": "Resource-allocation judgment under the current low-cost research program, not rejection of the entire scientific field.",
+  "preregistered_program_stop_before_test_results": true,
+  "overlap_audit": {
+    "train": {
+      "identical_image_bytes": 0,
+      "image_names": 0,
+      "filename_prefix": 0
+    },
+    "val": {
+      "identical_image_bytes": 0,
+      "image_names": 0,
+      "filename_prefix": 0
+    }
+  },
+  "inference_no_gt_no_training_no_retuning": true,
+  "prior_STOP_records": [
+    {
+      "experiment": "phase-20261012-095815-128852",
+      "decision": "STOP",
+      "passed": 2,
+      "total": 7,
+      "decision_sha256": "95cb4796ec89a83d0bdb2829f101a39450af217835eec500e5f0afa42d31fc0f",
+      "protocol": "COCO-style size diagnostics with existing IoF ignore filtering; NOT official VisDrone"
+    },
+    {
+      "experiment": "coverage-20261012-203440-259213",
+      "decision": "STOP",
+      "passed": 1,
+      "total": 5,
+      "decision_sha256": "f1c788737f29b3ec825447ae834433bd7a4733f8bebb4cecfbd607827bde4528",
+      "protocol": "COCO-style size diagnostics with existing IoF ignore filtering; NOT official VisDrone"
+    },
+    {
+      "experiment": "rescue-softnms-fixed-20261013",
+      "decision": "STOP",
+      "passed": 4,
+      "total": 9,
+      "decision_sha256": "05401ed98133b199f8f1a584e57ab4eaec6516be828a3c0c8b0d647f4760a87c",
+      "protocol": "Official headline plus separately labelled project diagnostics."
+    },
+    {
+      "experiment": "localization-20261013-133544-535366",
+      "decision": "STOP",
+      "passed": 7,
+      "total": 11,
+      "decision_sha256": "643c5e43e1d9da3342d852d67e16c7d0cf0c31a8d986df2edf63605fb4974841",
+      "protocol": "Project COCO-style / IoF-ignore diagnostics; not official VisDrone AP."
+    },
+    {
+      "experiment": "regret-probe-20261013-152155-341554",
+      "decision": "STOP",
+      "passed": 6,
+      "total": 10,
+      "decision_sha256": "0652126d970d0b25529d65fa87cb0a97eb7ed012c41c820c31ccb1291b950986",
+      "protocol": "COCO-style / IoF-ignore diagnostics, reference640; not official VisDrone AP."
+    },
+    {
+      "experiment": "class-margin-probe-20261013-182356",
+      "decision": "STOP",
+      "passed": 0,
+      "total": 10,
+      "decision_sha256": "189f2f3d798c3e413b4f0d69ee177cc4b9cc4bbf238d5f9d689c7cc9e7415e19",
+      "protocol": "Official headline plus separately labelled project diagnostics."
+    }
+  ],
+  "verification": {
+    "images": 1610,
+    "all_input_hashes_unchanged": true,
+    "registered_source_unchanged": true,
+    "detector_calibrator_unchanged": true,
+    "official_toolkit_body_unchanged": true,
+    "native_runtime_validated": true,
+    "no_annotations_in_prediction": true,
+    "no_training_or_parameter_selection": true,
+    "octave_script_sha256": "356b2a33fa48407952132f1135a07b304be6a78125b4594bbb2135b309989290"
+  },
+  "files": {
+    "plan.json": "1d5a1951d31a1f088963bae585bb70a11304c79403222eea6c134afd11c6a8cc",
+    "source.zip": "970cf4c93df6e087600490d809363c26aad02e3350832e7390ddd3cac41b34e1",
+    "input_manifest.json": "11db16e9473e7913dbf1dc22bf87362cc2a2a104be1197109a0b30a58be19c0f",
+    "official_metrics.json": "ff795d68bc36f07388639f760d660a23331727cba07d61ff432eecf40aa29ba6",
+    "decision.json": "676ba37cd78563b24ba359e834883442b29e0cb3a954de6b8704503619f5f4b8",
+    "verification.json": "c81a6282180a7bb44565dc084417a2e2a922977c9fcccd09c542368d6b71c679",
+    "predictions.jsonl": "98a9d2e868f81559bfc18995d07bb7251eb55f6c8bfdcde2f3fa3fd2c05eb83d",
+    "baseline.mat": "57acfeb8e4001ddf218341f810467379e868fa40bdae4045ef0701810a32e858",
+    "soft_nms.mat": "a1c31a8cffb4573c11fc8471fae015f7f12cca875297a4116839b2a314130251",
+    "calibration.mat": "b15606727e4255e0997ec89d81177904841235955cc911a15299d8e9dd03037c",
+    "run_official.m": "356b2a33fa48407952132f1135a07b304be6a78125b4594bbb2135b309989290"
+  },
+  "new_source_files": {
+    "sdcl/evaluation/testdev_transfer.py": "790298c7ac10de32966e02d626668cdadb61c82f235108363f035cb193476337",
+    "scripts/evaluation/diagnose_testdev_transfer.py": "9e4c92c18662d49b9856faf77bf7110dfcde33e85ef62320c4e652eab9843474"
+  },
+  "detector_sha256": "eac88f7e348134d3bdaf8b8d3c93845002b634b66a4fa28bd6246abbbeba1a25",
+  "calibrator_sha256": "f128af02e49b68101324360429c05942557aa2c2849c7ef04b966d15912f0ed3",
+  "validation": "254 related tests passed; two pre-existing incompatible queue files excluded.",
+  "local_evidence_directory": "output/analysis/testdev-transfer-fixed-20261013",
+  "limitations": [
+    "Test-dev labels are public; this is local evaluation, not a leaderboard submission.",
+    "No matching prior test predictions were found in output/analysis before registration.",
+    "First-prefix nonoverlap is a naming audit, not proof of geographical independence.",
+    "Three frozen engineering controls only; no training or hyperparameter selection.",
+    "Processing times are measurements of this shared-view pipeline, not deployment FPS."
+  ]
+}

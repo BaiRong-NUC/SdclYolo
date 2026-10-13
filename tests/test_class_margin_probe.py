@@ -103,7 +103,11 @@ def test_evaluation_repair_preserves_training_sources_and_rejects_other_changes(
     with zipfile.ZipFile(original_run/'source.zip') as archive:
         hashes={n:hashlib.sha256(archive.read(n)).hexdigest() for n in archive.namelist()}
     digest=hashlib.sha256((original_run/'source.zip').read_bytes()).hexdigest()
-    current=postprocess.sources()
+    # Model the repair's exact snapshot scope; later independent modules are
+    # outside this fixture, and must not weaken the production source checker.
+    all_current=postprocess.sources()
+    current={n:all_current[n] for n in hashes}
+    monkeypatch.setattr(evaluation,'sources',lambda:current)
     check,patch=evaluation_source_check(original_run,hashes,digest)
     assert patch['version']=='2026-10-13-empty-view-replay-v1'
     assert len(patch['changed_files'])==2
