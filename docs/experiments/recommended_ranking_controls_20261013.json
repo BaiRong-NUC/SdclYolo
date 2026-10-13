@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-13",
+  "scope": "Recommendations from completed screens, without changing historical controls, gates, weights or STOP decisions.",
+  "base_control": {
+    "path": "D:\\Python\\YOLO\\output\\analysis\\calibration-control-supplement-20261013\\control_manifest.json",
+    "sha256": "43cb0fe9b451a22fc3bb49171b532560cc2b2d9f9b52b836e39e2159799cf5f8",
+    "role": "Ordinary calibrated five-view detections; highest AR500 among these discussed controls."
+  },
+  "ordinary_coordinate_control": {
+    "checkpoint": "D:\\Python\\YOLO\\output\\runs\\regret_objective_probe_960_seed0\\last.pt",
+    "checkpoint_sha256": "8f8eafa2f0b8925741ba19c74bba1437af1df9132e40efa02a6ab52a5e24fc43",
+    "source_archive_sha256": "e9c78229b114e35c45830ed2b26ff9e60ccceb28c23d8cbfb5584998d702cf93",
+    "branch": "uniform",
+    "epoch": 20,
+    "head_seed": 0,
+    "selection": "Original fixed seed0, not best-seed selection after the repeat.",
+    "normalization_checkpoint": {
+      "checkpoint": "D:\\Python\\YOLO\\output\\runs\\localization_gain_960_seed0\\last.pt",
+      "sha256": "3f4ee47117b9e6e3c374d422339c03e496d221231c052f831986d7def1f37c82",
+      "archive_sha256": "20c6a36ea0cd5258cf0baae04b22d199bce931aa1d371b7a48f71e8c290eb455",
+      "cache_sha256": "cc4e0906e279c244452500e9d0a663cca36220f7a19d382f277bf76b663bcecd"
+    },
+    "action_recipe": "configs/experiments/localization_gain_960.yaml",
+    "inference": "Frozen calibration -> six prediction-only actions -> ActionScorer uniform -> select_actions(..., absolute), margin0.01 -> coordinates only. No GT input.",
+    "official_metrics_percent": {
+      "AP": 31.110989666504526,
+      "AP50": 52.32775666688018,
+      "AP75": 31.877481712322382,
+      "AR1": 2.1460198213008965,
+      "AR10": 13.314863908973356,
+      "AR100": 39.70682584272157,
+      "AR500": 45.78491681179064
+    },
+    "full_capture": "D:\\Python\\YOLO\\output\\candidate_series\\testdev_actions_20261013\\predictions.jsonl",
+    "capture_sha256": "a5bb30c543e28646c9ca9b93eefa056d7a10d4360eeeb7d08bab0b8dd0ccaede",
+    "official_MAT": "D:\\Python\\YOLO\\output\\analysis\\candidate-ranking-fixed-20261013\\uniform.mat",
+    "official_MAT_sha256": "2fa65cc1c5963fdc498999c567c9e3a19f2499a58bf4804f60d792b7f086de37"
+  },
+  "regret_candidate": {
+    "checkpoint": "D:\\Python\\YOLO\\output\\runs\\regret_objective_probe_960_seed0\\last.pt",
+    "checkpoint_sha256": "8f8eafa2f0b8925741ba19c74bba1437af1df9132e40efa02a6ab52a5e24fc43",
+    "branch": "regret",
+    "role": "Small extra AP signal, with AR500 loss versus ordinary uniform. Same seed0 convention.",
+    "official_metrics_percent": {
+      "AP": 31.12798172964114,
+      "AP50": 52.349472715831666,
+      "AP75": 31.85718277395101,
+      "AR1": 2.143363646996536,
+      "AR10": 13.32453415425903,
+      "AR100": 39.666517147311446,
+      "AR500": 45.65119666555912
+    }
+  },
+  "research_judgment": "Do not abandon small-object detection based on these screens. Keep the fixed coordinate-ranking task as an engineering/research baseline, stop treating current loss shapes or standard consensus as established originality. Further training needs a specific new observable signal and matched closer controls; same viewed test-dev and three head seeds are not independent-data or detector-seed proof."
+}

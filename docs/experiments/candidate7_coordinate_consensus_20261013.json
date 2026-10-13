@@ -1,0 +1,126 @@
+{
+  "experiment": "candidate7_existing_coordinate_consensus",
+  "date": "2026-10-13",
+  "images": 1610,
+  "evidence_directory": "D:\\Python\\YOLO\\output\\analysis\\coordinate-consensus-fixed-20261013",
+  "official_metrics_percent": {
+    "controls": {
+      "calibration": {
+        "AP": 30.89426876390022,
+        "AP50": 52.2954133316577,
+        "AP75": 31.54034849263872,
+        "AR1": 2.125917182367915,
+        "AR10": 13.20206629604485,
+        "AR100": 39.7854161210027,
+        "AR500": 46.01818047552792
+      },
+      "regret": {
+        "AP": 31.12798172964114,
+        "AP50": 52.349472715831666,
+        "AP75": 31.85718277395101,
+        "AR1": 2.143363646996536,
+        "AR10": 13.32453415425903,
+        "AR100": 39.666517147311446,
+        "AR500": 45.65119666555912
+      }
+    },
+    "methods": {
+      "uniform_consensus": {
+        "AP": 31.02467785055775,
+        "AP50": 52.29732408799063,
+        "AP75": 31.77190442890319,
+        "AR1": 2.1370983426748107,
+        "AR10": 13.27441685477614,
+        "AR100": 39.73185234912896,
+        "AR500": 45.88000137971791
+      },
+      "regret_consensus": {
+        "AP": 31.037583196582162,
+        "AP50": 52.32047354108016,
+        "AP75": 31.715581554444412,
+        "AR1": 2.1385046706672,
+        "AR10": 13.286122291840709,
+        "AR100": 39.67701676313673,
+        "AR500": 45.723981785630635
+      }
+    }
+  },
+  "decision": {
+    "decision": "PROMISING_CONSENSUS_TRADEOFF",
+    "registered_policy": {
+      "AP_vs_calibration_min_pp": 0.1,
+      "AP_vs_seed0_regret_min_pp": -0.1,
+      "AR500_vs_seed0_regret_min_exclusive_pp": 0.0,
+      "AP_vs_uniform_consensus_min_exclusive_pp": 0.0
+    },
+    "AP_vs_calibration_pp": 0.14331443268194022,
+    "AP_vs_seed0_regret_pp": -0.09039853305897694,
+    "AR500_vs_seed0_regret_pp": 0.07278512007151505,
+    "AP_vs_uniform_consensus_pp": 0.012905346024410846,
+    "AR500_vs_calibration_pp": -0.2941986898972857,
+    "scope": "Standard agreement/retention ensemble, no new training or novelty claim. Already-viewed same test-dev, not independent-data or significance evidence."
+  },
+  "verification": {
+    "all1610testdev": true,
+    "all_three_fixed_heads": true,
+    "same_scores_classes_order_count": true,
+    "no_annotations_in_prediction": true,
+    "input_source_control_hashes_match": true,
+    "official_inputs_runtime_verified": true,
+    "no_training_detector_inference_or_retuning": true
+  },
+  "coordinate_changes": {
+    "changed_boxes": {
+      "uniform_consensus": 12280,
+      "regret_consensus": 24313
+    },
+    "scope": "Prediction-only frequency, not correct localization."
+  },
+  "exploratory_regret_consensus_vs_each_fixed_uniform_seed": {
+    "0": {
+      "AP_pp": -0.07340646992236444,
+      "AP50_pp": -0.007283125800015,
+      "AP75_pp": -0.16190015787796952,
+      "AR1_pp": -0.007515150633696344,
+      "AR10_pp": -0.028741617132647335,
+      "AR100_pp": -0.0298090795848438,
+      "AR500_pp": -0.06093502616000279
+    },
+    "1": {
+      "AP_pp": -0.045775174857450196,
+      "AP50_pp": 0.00607986803429128,
+      "AP75_pp": -0.15182467967045454,
+      "AR1_pp": -0.0051791383255177514,
+      "AR10_pp": -0.021405486361674164,
+      "AR100_pp": -0.011249325581168534,
+      "AR500_pp": -0.059727573843765924
+    },
+    "2": {
+      "AP_pp": -0.038677628825261934,
+      "AP50_pp": 0.0066243156484091514,
+      "AP75_pp": -0.13358788684573497,
+      "AR1_pp": -0.006508746540276444,
+      "AR10_pp": -0.015230261589517013,
+      "AR100_pp": -0.017046065653694598,
+      "AR500_pp": -0.06835149069071633
+    }
+  },
+  "exploratory_scope": "Already-frozen ordinary controls; this is practical post-hoc comparison, not a replacement of the registered primary or an additional veto threshold. Preserve PROMISING_CONSENSUS_TRADEOFF.",
+  "practical_recommendation": "Do not promote regret_consensus: every existing single uniform head has higher AP and AR500. Uniform consensus is a separate small AP/recall tradeoff, not a new innovation. End this fixed consensus screen without tuning agreement/tolerance or selecting seeds. Retain ordinary uniform as a strong coordinate control.",
+  "evidence_sha256": {
+    "plan.json": "23b767cad163202b70b53489c58c6b22158b40088689fdcfd22a1fc02675359e",
+    "input_manifest.json": "0d974031bdf66a5c1ad44b43c764b68590663e0f9af646b9a9e62c9810b38a67",
+    "official_metrics.json": "86494361d2d2adc54420f9b571699e53fa67db02eb72e8398c63d274931ada35",
+    "decision.json": "7e0d940719f76c0900789ab91af18296a739a5a6641fcf8250b03ebb1648ab9e",
+    "verification.json": "338ff79935696d9a7190c7afcf0f9e73218c048768ee657d908aac700fd2305b",
+    "coordinate_changes.json": "20dfe725efc8d149c1c704751a3b846f24c931ec4e428075ba18ba27fb87e2e7",
+    "source.zip": "63083a6979486e094f6b7df31063c368292534e421483beab32c88a022589546"
+  },
+  "plot_sha256": {
+    "data.json": "5b741b81c171e3a580206f6222476aa41626fceaaec4ef0aa464ae16f30ac592",
+    "official_ap_ar_tradeoffs.png": "7b6eb9da32db7869ccb07a98db5d2b609caa7da8a322ed3a9eaf26b86311316b",
+    "official_ap_ar_tradeoffs.svg": "d6443432427364d890c4e1676ed7d416bd01dd7c8fb1afcd16617b2060d58727",
+    "plot_source.py": "0dea83e2f01a39cea626aba61fabf0aee84638b779a0d9ce619652d4bcadfb9b"
+  },
+  "runtime_limits": "Cached captures avoid new inference here. A deployed consensus requires three small heads, versus one for ordinary uniform; end-to-end latency of this new pipeline was not measured."
+}
