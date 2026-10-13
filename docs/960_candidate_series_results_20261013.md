@@ -64,3 +64,42 @@ gain 相对校准仍为 AP +0.080623 pp、AR500 -0.259603 pp。
 
 版本管理记录：`docs/experiments/candidate2_retention_20261013.json`。
 完整产物：`output/analysis/candidate-retention-fixed-20261013/`。
+
+## 实验 3：按错误代价加权的动作排序
+
+同一完整 test-dev、同一缓存、既有 matched uniform/regret epoch20 权重。
+普通校准复用全量精确重放后的旧官方结果，两个排序分支完成新官方评价和核验。
+
+| 分支 | 官方 AP (%) | 官方 AR500 (%) |
+|---|---:|---:|
+| calibration | 30.894269 | 46.018180 |
+| uniform | 31.110990 | 45.784917 |
+| regret | 31.127982 | 45.651197 |
+
+regret 对 calibration：AP +0.233713 pp，AR500 -0.366984 pp。
+regret 对 uniform：AP +0.016992 pp，AR500 -0.133720 pp。
+固定判断：PROMISING_POINT_ESTIMATE，通过本轮温和的预算筛选。
+
+不能把 +0.233713 pp 全部归给加权机制：普通排序已经获得 +0.216721 pp。
+“匹配普通方法的点估计 >0”只是筛选要求，不是显著性证明；
+这个 +0.016992 pp 尚未被种子重复或 AP 区间确认。
+保留排序任务与回退策略作为目前最值得复核的完整方法候选，
+额外 regret 权重暂时作为消融/扩展，不能写成已证明的核心创新。
+
+分尺寸解释性统计（valid GT、未过滤预测，非官方尺寸 AP）：
+regret 对 calibration，tiny +0.138411 pp、small_all +0.174554 pp；
+regret 对 uniform，tiny +0.055404 pp、small_all +0.041657 pp。
+有小目标倾向的正向点估计，不能因整体增量很小就断言权重完全无效，
+也不能将这些辅助指标升级为正式独立确认。
+
+新增缓存后处理 CPU1 平均 4.761 ms、P95 7.765 ms，排除共享检测器和校准。
+另从两个冻结配方作事后解释性比较：uniform 对 absolute 的官方
+AP +0.232608 pp、AR500 +0.142135 pp。这不是原登记的主比较，
+不能事后把它替换成实验 3 的成功标准。
+
+当前研究叙述应重点讨论“将固定框身份下的跨视图坐标选择作为排序任务”，
+而不是声称成对排序、代价加权或回退本身原创。
+IoU-Net、Rank & Sort、学习型 NMS 等的任务、输入和输出仍需要更近的全文对照。
+
+版本管理记录：`docs/experiments/candidate3_ranking_20261013.json`。
+完整产物：`output/analysis/candidate-ranking-fixed-20261013/`。
