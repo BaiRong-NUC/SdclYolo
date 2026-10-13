@@ -1,0 +1,14 @@
+version: 2026-10-13-frozen-visual-class-margin-v1
+seed: 0
+fit_images: 512
+monitor_images: 128
+epochs: 10
+batch: 4096
+learning_rate: 0.0002
+weight_decay: 0.0001
+positive_per_level: 24
+negative_per_level: 16
+margin: 0.2
+margin_weight: 0.25
+retention_weight: 0.01
+tiny_reference_side: 16.0
