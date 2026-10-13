@@ -1,4 +1,4 @@
-from .cli import main
+from sdcl.cli import main
 
 raise SystemExit(main())
 

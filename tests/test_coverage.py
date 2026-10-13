@@ -7,7 +7,7 @@ from ultralytics.utils.tal import TaskAlignedAssigner
 from ultralytics.utils.torch_utils import ModelEMA
 
 from sdcl.config import load_coverage_config, load_experiment
-from sdcl.coverage import CoverageAssigner, CoverageConfig, repair_ownership
+from sdcl.training.coverage import CoverageAssigner, CoverageConfig, repair_ownership
 from test_phase import batch_example, make_model
 
 

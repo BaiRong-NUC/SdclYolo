@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from sdcl.size_analysis import (
+from sdcl.evaluation.size_analysis import (
     area_group, box_iou_matrix, coco_size_metrics, match_at_threshold,
     miss_reasons, paired_misses, recall_at_fp_budgets, summarize_misses,
 )

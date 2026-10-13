@@ -9,11 +9,11 @@ from ultralytics.cfg import get_cfg
 from ultralytics.nn.tasks import DetectionModel
 
 from sdcl.config import SDCLConfig, load_experiment, load_phase_config
-from sdcl.phase import (
+from sdcl.training.phase import (
     PhaseConfig, auxiliary_batch_stats, object_samples, phase_distance,
     sample_features, translate_images,
 )
-from sdcl.trainer import SDCLDetectionModel
+from sdcl.training.trainer import SDCLDetectionModel
 
 
 def batch_example():

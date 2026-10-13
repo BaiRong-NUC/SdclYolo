@@ -6,7 +6,7 @@ import pytest
 import yaml
 
 from sdcl.config import PROJECT_ROOT, SDCLConfig, load_experiment, project_path
-from sdcl.trainer import SDCLTrainer
+from sdcl.training.trainer import SDCLTrainer
 
 
 def test_project_paths_use_repository_root(monkeypatch, tmp_path):
@@ -217,7 +217,7 @@ def test_legacy_resume_manifest_defaults_to_both(tmp_path, monkeypatch, apply_to
         def train(self):
             pass
 
-    monkeypatch.setattr("sdcl.trainer.SDCLTrainer", FakeTrainer)
+    monkeypatch.setattr("sdcl.training.trainer.SDCLTrainer", FakeTrainer)
     if apply_to == "both" and mode == "positive_term" and object_scope == "all":
         train_experiment(config, resume=str(weights / "last.pt"))
         assert started[0]["sdcl"].apply_to == "both"

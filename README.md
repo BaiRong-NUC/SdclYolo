@@ -45,7 +45,7 @@ python -m pytest
 ## 3. 第一步：烟测，不需要下载数据
 
 ```powershell
-python scripts/smoke_test.py --device 0
+python scripts/verification/smoke_test.py --device 0
 ```
 
 这会在新的 `output/smoke/` 子目录生成 4 张训练图与 2 张验证图，分别运行基线与 SDCL 的 YOLO11n 一个 epoch，然后保存、重新加载与验证。
@@ -87,8 +87,8 @@ data/raw/
 转换和检查：
 
 ```powershell
-python scripts/prepare_visdrone.py --raw-root data/raw --output data/visdrone
-python scripts/audit_dataset.py --dataset data/visdrone
+python scripts/data/prepare_visdrone.py --raw-root data/raw --output data/visdrone
+python scripts/data/audit_dataset.py --dataset data/visdrone
 ```
 
 输出包含 `data/visdrone/dataset.yaml`，两个实验配置直接使用它。转换器拒绝覆盖已有输出目录；先核查失败原因，不自动清空目录。
@@ -102,14 +102,14 @@ python scripts/audit_dataset.py --dataset data/visdrone
 先做 5 epoch 的真实数据试跑，检查读取、损失和显存，不直接租卡跑完整实验：
 
 ```powershell
-python scripts/train.py --config configs/experiments/baseline.yaml --epochs 5 --batch 8
+python scripts/training/train.py --config configs/experiments/baseline.yaml --epochs 5 --batch 8
 ```
 
 确认后分别跑完整基线与 SDCL：
 
 ```powershell
-python scripts/train.py --config configs/experiments/baseline.yaml
-python scripts/train.py --config configs/experiments/sdcl.yaml
+python scripts/training/train.py --config configs/experiments/baseline.yaml
+python scripts/training/train.py --config configs/experiments/sdcl.yaml
 ```
 
 默认 YOLO11s、640 输入、200 epoch、batch 16、单 GPU、Windows workers 0。这是起点配置，不保证 12 GB 显存下所有密集图像都能装入；OOM 时对所有对照统一减小 batch。
@@ -121,7 +121,7 @@ python scripts/train.py --config configs/experiments/sdcl.yaml
 恢复尚未完成、包含优化器状态的检查点：
 
 ```powershell
-python scripts/train.py --config configs/experiments/sdcl.yaml --resume output/runs/<run>/weights/last.pt
+python scripts/training/train.py --config configs/experiments/sdcl.yaml --resume output/runs/<run>/weights/last.pt
 ```
 
 恢复时 SDCL 设置与忽略协议必须和 `experiment.json` 相同。按保存的训练进度恢复调度；已完成且被上游剥离优化器的检查点，不用于继续恢复。
@@ -129,7 +129,7 @@ python scripts/train.py --config configs/experiments/sdcl.yaml --resume output/r
 诊断验证：
 
 ```powershell
-python scripts/validate.py --model output/runs/<run>/weights/best.pt
+python scripts/evaluation/validate.py --model output/runs/<run>/weights/best.pt
 ```
 
 **这里的指标是带简化 IoF 忽略过滤的 Ultralytics 指标，不是官方 VisDrone AP。** IoF 过滤不完整实现官方的有效目标优先匹配、忽略区域合并等逻辑，只用于统一监控与调试。
@@ -137,7 +137,7 @@ python scripts/validate.py --model output/runs/<run>/weights/best.pt
 比较两个最佳检查点的尺寸收益与漏检：
 
 ```powershell
-python scripts/analyze_sizes.py --output output/analysis/size_comparison_new
+python scripts/evaluation/analyze_sizes.py --output output/analysis/size_comparison_new
 ```
 
 默认比较 30 轮 baseline 与 SDCL，生成 COCO 风格分尺寸 AP、固定阈值 Recall、
@@ -147,7 +147,7 @@ python scripts/analyze_sizes.py --output output/analysis/size_comparison_new
 导出真实原图坐标预测：
 
 ```powershell
-python scripts/export_visdrone.py --model output/runs/<run>/weights/best.pt --images data/visdrone/images/val --output output/predictions/<run>
+python scripts/evaluation/export_visdrone.py --model output/runs/<run>/weights/best.pt --images data/visdrone/images/val --output output/predictions/<run>
 ```
 
 导出每图最多 500 个检测框、VisDrone 八字段文本。最终论文使用官方评价工具：
@@ -162,8 +162,8 @@ https://github.com/VisDrone/VisDrone2018-DET-toolkit
 与已完成的 30 轮对照使用相同训练配方。逐条执行，第一组成功结束后再运行第二组：
 
 ```powershell
-python scripts/train.py --config configs/experiments/sdcl_cls.yaml --epochs 30 --batch 8
-python scripts/train.py --config configs/experiments/sdcl_reg.yaml --epochs 30 --batch 8
+python scripts/training/train.py --config configs/experiments/sdcl_cls.yaml --epochs 30 --batch 8
+python scripts/training/train.py --config configs/experiments/sdcl_reg.yaml --epochs 30 --batch 8
 ```
 
 两组输出名分别为 `sdcl_cls_yolo11s_seed0` 与 `sdcl_reg_yolo11s_seed0`。
@@ -175,7 +175,7 @@ python scripts/train.py --config configs/experiments/sdcl_reg.yaml --epochs 30 -
 完整 BCE 分类消融也已完成 30 轮。复现实验时运行：
 
 ```powershell
-python scripts/train.py --config configs/experiments/sdcl_cls_full_bce.yaml --epochs 30 --batch 8
+python scripts/training/train.py --config configs/experiments/sdcl_cls_full_bce.yaml --epochs 30 --batch 8
 ```
 
 `classification_weighting: full_bce` 对已匹配真实类别的完整软标签 BCE 加权，
@@ -187,8 +187,8 @@ python scripts/train.py --config configs/experiments/sdcl_cls_full_bce.yaml --ep
 batch 8、640 输入、seed 0；分别从原始 `yolo11s.pt` 重新开始，逐条执行：
 
 ```powershell
-python scripts/train.py --config configs/experiments/baseline_100.yaml
-python scripts/train.py --config configs/experiments/sdcl_100.yaml
+python scripts/training/train.py --config configs/experiments/baseline_100.yaml
+python scripts/training/train.py --config configs/experiments/sdcl_100.yaml
 ```
 
 本组 SDCL 明确使用 `apply_to: both`、`classification_weighting: positive_term`、
@@ -197,7 +197,7 @@ python scripts/train.py --config configs/experiments/sdcl_100.yaml
 两组成功完成后使用这两个 100 轮检查点比较：
 
 ```powershell
-python scripts/analyze_sizes.py `
+python scripts/evaluation/analyze_sizes.py `
   --baseline output/runs/baseline_yolo11s_100ep_seed0/weights/best.pt `
   --sdcl output/runs/sdcl_yolo11s_100ep_seed0/weights/best.pt `
   --output output/analysis/size_100epoch_seed0_replication
@@ -214,16 +214,16 @@ python scripts/analyze_sizes.py `
 在一张 GPU 上逐条执行，上一组成功结束再执行下一组：
 
 ```powershell
-python scripts/train.py --config configs/experiments/baseline_100_seed1.yaml
-python scripts/train.py --config configs/experiments/sdcl_100_seed1.yaml
-python scripts/train.py --config configs/experiments/baseline_100_seed2.yaml
-python scripts/train.py --config configs/experiments/sdcl_100_seed2.yaml
+python scripts/training/train.py --config configs/experiments/baseline_100_seed1.yaml
+python scripts/training/train.py --config configs/experiments/sdcl_100_seed1.yaml
+python scripts/training/train.py --config configs/experiments/baseline_100_seed2.yaml
+python scripts/training/train.py --config configs/experiments/sdcl_100_seed2.yaml
 ```
 
 夜间可以用一条指令按上述顺序自动运行四组，任一组失败立即停止：
 
 ```powershell
-python scripts/train_multiseed.py
+python scripts/training/train_multiseed.py
 ```
 
 运行前可加 `--dry-run` 检查而不启动训练。队列直接使用终端显示进度，
@@ -241,7 +241,7 @@ python scripts/train_multiseed.py
 新入口会先跑仅尺度，再跑仅难度，直接显示终端进度，不生成额外队列日志或备份：
 
 ```powershell
-python scripts/train_signal_ablation.py
+python scripts/training/train_signal_ablation.py
 ```
 
 仅检查可加 `--dry-run`。新配置为 `sdcl_scale_100.yaml` 和
@@ -253,7 +253,7 @@ python scripts/train_signal_ablation.py
 中大目标直接权重保持为 1。先做一组 seed 0 的 100 轮试验：
 
 ```powershell
-python scripts/train.py --config configs/experiments/sdcl_small_group_100.yaml
+python scripts/training/train.py --config configs/experiments/sdcl_small_group_100.yaml
 ```
 
 首次输出为 `sdcl_small_group_yolo11s_100ep_seed0`。已有基线、联合与单信号实验无需重跑。
@@ -278,15 +278,36 @@ sdcl:
 ## 8. 目录
 
 ```text
-configs/experiments/  # baseline 与 SDCL 配方
-sdcl/                # 方法、数据、训练器与 CLI
-scripts/             # 可直接运行的入口
+configs/experiments/  # baseline、训练方法与固定筛选配方
+sdcl/
+  data/              # 数据转换、忽略区域、增强数据集
+  training/          # 检测器训练、损失、标签分配、评分器训练
+  evaluation/        # 尺寸指标、配对比较、固定筛选、官方格式导出
+  postprocess/       # 候选特征、视图可观测性、重评分模型
+  runtime/           # 环境、递归源码校验、原子文件写入
+  cli.py             # 统一 python -m sdcl 入口
+  config.py          # 配方解析、项目路径
+  trainer.py         # 历史 checkpoint 的兼容导入
+scripts/
+  data/              # 准备数据和 train-only 特征
+  training/          # 训练、恢复、多实验队列
+  evaluation/        # 验证、导出、各方向筛选
+  verification/      # 小规模训练烟测、机制预检
 tests/               # 张量公式、损失等价、数据增强、CUDA AMP
 data/                # 本地真实数据，不提交
 docs/                # 实现方案、文献分析、安装说明
 reference/           # 参考方法，与主训练依赖隔离
 output/              # 检查点、日志、烟测，不提交
 ```
+
+旧 `scripts/train.py` 等入口已迁入功能子目录，本文和 `docs/` 中的操作指令已同步。
+`python -m sdcl` 仍可使用。历史实验源码 ZIP、结果和权重保留原版本；
+目录迁移后的缓存使用新的递归源码哈希，旧缓存不会自动视为同一版本。
+当前源码不能替代历史实验归档源码进行“评估时版本”复验。
+
+本轮实验见 [960 Soft-NMS 强对照后的可观测性重评分筛选](docs/960_rescue_screen.md)。
+只训练三个小评分器，固定检测器、五视图和候选框；一次运行包含普通校准和机制消融，
+由预先声明的九项门槛决定是否继续。
 
 ## 9. 验证记录与限制
 

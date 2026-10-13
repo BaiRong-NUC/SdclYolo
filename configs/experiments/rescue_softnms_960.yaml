@@ -1,0 +1,15 @@
+version: 2026-10-13-vcr-v1
+seed: 0
+epochs: 20
+batch: 2048
+hidden: 64
+learning_rate: 0.002
+weight_decay: 0.0001
+samples_per_state_per_image: 32
+support_confidence: 0.25
+opportunity_coverage: 0.90
+opportunity_side: 8.0
+score_logit_gain: 1.0
+holdout_scene_modulus: 10
+reference_size: 640
+classes: 10

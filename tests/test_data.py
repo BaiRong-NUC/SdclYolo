@@ -5,9 +5,9 @@ import pytest
 import torch
 from ultralytics.cfg import DEFAULT_CFG, get_cfg
 
-from sdcl.data import audit_dataset, convert_annotation, make_toy_visdrone, prepare_visdrone
-from sdcl.geometry import anchor_ignore_mask
-from sdcl.trainer import make_dataset
+from sdcl.data.prepare import audit_dataset, convert_annotation, make_toy_visdrone, prepare_visdrone
+from sdcl.data.geometry import anchor_ignore_mask
+from sdcl.training.trainer import make_dataset
 
 
 def test_conversion_clip_ignore_and_invalid():

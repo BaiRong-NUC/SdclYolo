@@ -2,7 +2,7 @@ import pytest
 import torch
 
 from sdcl.config import SDCLConfig
-from sdcl.weights import object_weights
+from sdcl.training.weights import object_weights
 
 
 def inputs():

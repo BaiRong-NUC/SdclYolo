@@ -4,10 +4,10 @@ import json
 import pytest
 
 from sdcl.config import load_experiment
-from sdcl.phase_screen import (
+from sdcl.evaluation.phase_screen import (
     SCREEN_CONFIG, check_phase_training_pair, decide_phase, phase_deltas,
 )
-from sdcl.size_analysis import file_hash
+from sdcl.evaluation.size_analysis import file_hash
 
 
 def reports():
@@ -63,10 +63,11 @@ def test_invalid_probe_is_not_a_negative_research_result(key):
 
 def make_pair(tmp_path):
     from pathlib import Path
-    import sdcl.phase_screen
+    import sdcl.evaluation.phase_screen
     train, settings, ignore = load_experiment("configs/experiments/baseline_960_100.yaml")
     train.update(resume=False)
-    source = {p.name: file_hash(p) for p in sorted(Path(sdcl.phase_screen.__file__).parent.glob("*.py"))}
+    from sdcl.runtime.environment import package_source_hashes
+    source = package_source_hashes()
     checkpoints = []
     for name, phase in (("baseline", {}), ("candidate", SCREEN_CONFIG.to_dict())):
         run = tmp_path / name
@@ -108,7 +109,7 @@ def test_manifest_rejects_partial_runs_changed_recipe_and_inactive_objective(tmp
 
 
 def test_screen_writes_reviewable_decision_and_recaptures_both_models(tmp_path, monkeypatch):
-    import sdcl.phase_screen as screen
+    import sdcl.evaluation.phase_screen as screen
     report, first, second = reports()
     pair = make_pair(tmp_path)
     monkeypatch.setattr(screen, "check_phase_training_pair", lambda *args: {"verified": True})

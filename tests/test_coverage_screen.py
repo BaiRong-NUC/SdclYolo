@@ -3,8 +3,8 @@ import json
 
 import pytest
 
-from sdcl.coverage_screen import SCREEN_CONFIG, check_coverage_training_pair
-from sdcl.size_analysis import file_hash
+from sdcl.evaluation.coverage_screen import SCREEN_CONFIG, check_coverage_training_pair
+from sdcl.evaluation.size_analysis import file_hash
 from test_phase_screen import make_pair, reports
 
 
@@ -54,7 +54,7 @@ def test_rejects_recipe_data_source_changes_and_absent_mechanism(tmp_path):
 
 
 def test_screen_recaptures_both_models_and_uses_five_detection_gates(tmp_path, monkeypatch):
-    import sdcl.coverage_screen as screen
+    import sdcl.evaluation.coverage_screen as screen
     pair = coverage_pair(tmp_path)
     report, _, _ = reports()
     captures = []

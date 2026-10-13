@@ -3,7 +3,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from scripts import train_signal_ablation
+from scripts.training import train_signal_ablation
 
 
 @pytest.mark.parametrize("failure_index", [None, 0, 1])

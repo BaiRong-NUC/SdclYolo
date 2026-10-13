@@ -8,8 +8,8 @@ from ultralytics.nn.tasks import DetectionModel
 from ultralytics.utils.loss import v8DetectionLoss
 
 from sdcl.config import SDCLConfig
-from sdcl.criterion import SDCLLoss, weighted_classification
-from sdcl.weights import WeightResult
+from sdcl.training.criterion import SDCLLoss, weighted_classification
+from sdcl.training.weights import WeightResult
 
 
 @pytest.mark.parametrize("mode", ["positive_term", "full_bce"])
@@ -146,7 +146,7 @@ def test_nonzero_weighting_isolates_loss_branches_and_gradients(model, apply_to,
             weights[foreground] = 1.4
         return WeightResult(weights, {})
 
-    monkeypatch.setattr("sdcl.criterion.object_weights", fixed_weights)
+    monkeypatch.setattr("sdcl.training.criterion.object_weights", fixed_weights)
     model.train()
     torch.manual_seed(5)
     batch = {

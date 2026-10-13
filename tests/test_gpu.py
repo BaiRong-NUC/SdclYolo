@@ -6,7 +6,7 @@ from ultralytics.cfg import DEFAULT_CFG_DICT
 from ultralytics.nn.tasks import DetectionModel
 
 from sdcl.config import SDCLConfig
-from sdcl.criterion import SDCLLoss
+from sdcl.training.criterion import SDCLLoss
 
 
 @pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA unavailable")

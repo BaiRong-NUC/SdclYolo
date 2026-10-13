@@ -5,11 +5,11 @@ from datetime import datetime
 from functools import partial
 import json
 
-from .config import SDCLConfig, load_experiment, load_phase_config, load_coverage_config, project_path
+from sdcl.config import SDCLConfig, load_experiment, load_phase_config, load_coverage_config, project_path
 
 
 def train_experiment(config_file, **overrides):
-    from .trainer import SDCLTrainer
+    from sdcl.training.trainer import SDCLTrainer
 
     arguments, settings, ignore = load_experiment(config_file)
     phase = load_phase_config(config_file)
@@ -18,8 +18,8 @@ def train_experiment(config_file, **overrides):
         if value is not None:
             arguments[key] = str(project_path(value)) if key in {"data", "resume"} else value
     if coverage.enabled:
-        from .coverage_screen import SCREEN_CONFIG
-        from .phase_screen import BASELINE
+        from sdcl.evaluation.coverage_screen import SCREEN_CONFIG
+        from sdcl.evaluation.phase_screen import BASELINE
         if not project_path(BASELINE).is_file():
             raise FileNotFoundError("Coverage screen requires the completed 960 baseline.")
         original, original_sdcl, original_ignore = load_experiment("configs/experiments/baseline_960_100.yaml")
@@ -32,7 +32,7 @@ def train_experiment(config_file, **overrides):
         if run.exists():
             raise FileExistsError(f"Refusing to overwrite or increment coverage run: {run}")
     if phase.enabled:
-        from .phase_screen import BASELINE, SCREEN_CONFIG
+        from sdcl.evaluation.phase_screen import BASELINE, SCREEN_CONFIG
         baseline_run = project_path(BASELINE).parent.parent
         if not (baseline_run / "experiment.json").is_file():
             raise FileNotFoundError("The phase screen requires the completed 960 baseline.")
@@ -66,8 +66,8 @@ def train_experiment(config_file, **overrides):
 
 
 def smoke_test(output=None, device="0"):
-    from .data import audit_dataset, make_toy_visdrone, prepare_visdrone
-    from .trainer import SDCLTrainer, SDCLValidator
+    from sdcl.data.prepare import audit_dataset, make_toy_visdrone, prepare_visdrone
+    from sdcl.training.trainer import SDCLTrainer, SDCLValidator
     from ultralytics import YOLO
 
     root = project_path(output) if output else project_path(f"output/smoke/{datetime.now():%Y%m%d-%H%M%S-%f}")
@@ -149,13 +149,13 @@ def build_parser():
 def main(argv=None):
     args = build_parser().parse_args(argv)
     if args.command == "env":
-        from .environment import environment_info
+        from sdcl.runtime.environment import environment_info
         result = environment_info()
     elif args.command == "prepare":
-        from .data import prepare_visdrone
+        from sdcl.data.prepare import prepare_visdrone
         result = {"dataset_yaml": str(prepare_visdrone(project_path(args.raw_root), project_path(args.output)))}
     elif args.command == "audit":
-        from .data import audit_dataset
+        from sdcl.data.prepare import audit_dataset
         result = audit_dataset(project_path(args.dataset))
         print(json.dumps(result, indent=2, ensure_ascii=False))
         return 0 if result["ok"] else 1
@@ -164,7 +164,7 @@ def main(argv=None):
         result = train_experiment(args.config, **flags)
     elif args.command == "validate":
         from ultralytics import YOLO
-        from .trainer import SDCLValidator, check_version
+        from sdcl.training.trainer import SDCLValidator, check_version
         check_version()
         metrics = YOLO(str(project_path(args.model))).val(
             data=str(project_path(args.data)), device=args.device, imgsz=args.imgsz,
@@ -173,7 +173,7 @@ def main(argv=None):
         )
         result = {"metric_protocol": "Ultralytics diagnostic, NOT official VisDrone", **metrics.results_dict}
     elif args.command == "export":
-        from .export import export_visdrone
+        from sdcl.evaluation.export import export_visdrone
         result = export_visdrone(
             project_path(args.model), project_path(args.images), project_path(args.output),
             args.device, args.imgsz,

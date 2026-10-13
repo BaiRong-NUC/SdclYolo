@@ -102,22 +102,22 @@ def load_experiment(path: str | Path):
     if not isinstance(ignore, dict) or set(ignore) - {"enabled"}:
         raise ValueError("ignore_regions supports only 'enabled'.")
     settings = SDCLConfig.from_dict(config.get("sdcl"))
-    from .phase import PhaseConfig
+    from sdcl.training.phase import PhaseConfig
     PhaseConfig.from_dict(config.get("phase"))
-    from .coverage import CoverageConfig
+    from sdcl.training.coverage import CoverageConfig
     CoverageConfig.from_dict(config.get("coverage"))
     return train, settings, bool(ignore.get("enabled", True))
 
 
 def load_phase_config(path):
-    from .phase import PhaseConfig
+    from sdcl.training.phase import PhaseConfig
     with project_path(path).open(encoding="utf-8") as stream:
         config = yaml.safe_load(stream)
     return PhaseConfig.from_dict(config.get("phase"))
 
 
 def load_coverage_config(path):
-    from .coverage import CoverageConfig
+    from sdcl.training.coverage import CoverageConfig
     with project_path(path).open(encoding="utf-8") as stream:
         config = yaml.safe_load(stream)
     return CoverageConfig.from_dict(config.get("coverage"))

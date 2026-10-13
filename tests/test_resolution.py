@@ -7,8 +7,8 @@ import pytest
 import yaml
 
 from sdcl.config import SDCLConfig, load_experiment
-from sdcl.resolution import check_training_pair, decide_resolution, run_resolution_screen
-from sdcl.size_analysis import run_size_analysis
+from sdcl.evaluation.resolution import check_training_pair, decide_resolution, run_resolution_screen
+from sdcl.evaluation.size_analysis import run_size_analysis
 
 
 def gate_report():
@@ -134,7 +134,7 @@ def test_resolution_screen_keeps_gt_groups_stable_and_reuses_correct_capture(tmp
     baseline, candidate = make_pair(tmp_path)
     dataset = tiny_dataset(tmp_path)
     calls = []
-    monkeypatch.setattr("sdcl.size_analysis.capture_predictions", fake_capture(calls))
+    monkeypatch.setattr("sdcl.evaluation.size_analysis.capture_predictions", fake_capture(calls))
     result = run_resolution_screen(
         str(baseline), str(candidate), dataset=str(dataset), output=str(tmp_path / "screen"))
     assert result["decision"] == "STOP"
@@ -157,7 +157,7 @@ def test_resolution_screen_keeps_gt_groups_stable_and_reuses_correct_capture(tmp
 
 def test_legacy_analysis_uses_imgsz_for_groups_when_reference_is_unspecified(tmp_path, monkeypatch):
     dataset = tiny_dataset(tmp_path)
-    monkeypatch.setattr("sdcl.size_analysis.capture_predictions", fake_capture([]))
+    monkeypatch.setattr("sdcl.evaluation.size_analysis.capture_predictions", fake_capture([]))
     output = tmp_path / "legacy"
     run_size_analysis("base.pt", "candidate.pt", dataset=str(dataset), output=str(output), imgsz=960)
     report = json.loads((output / "report.json").read_text())
