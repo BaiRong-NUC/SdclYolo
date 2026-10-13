@@ -158,3 +158,42 @@ regret 对 uniform 的 tiny +0.048894 pp、small_all +0.042327 pp；
 
 版本管理记录：`docs/experiments/candidate_size_postignore_supplement_20261013.json`。
 完整产物：`output/analysis/candidate-size-postignore-fixed-20261013/`。
+
+## 实验 5：两个新头种子的排序确认
+
+seed1/seed2 的 absolute、uniform、regret 各完成固定 20 epoch。
+三头容量、初始化和批次均匹配；没有更改原 mean/std 或动作菜单。
+train 为 630,619 个采样原框，train-scene holdout 为 36,247 个原框；
+holdout 只监控。seed0 复用实验 1/3 的已核验 MAT，不挑种子或 checkpoint。
+每个新种子的三个分支全部完成 1610 张 test-dev 官方评价及完整性核验。
+
+| 头种子 | absolute AP (%) | uniform AP (%) | regret AP (%) | regret 对 uniform AP (pp) |
+|---|---:|---:|---:|---:|
+| 0 | 30.878382 | 31.110990 | 31.127982 | +0.016992 |
+| 1 | 30.859895 | 31.083358 | 31.121627 | +0.038268 |
+| 2 | 30.852787 | 31.076261 | 31.138151 | +0.061891 |
+| 等权均值 | 30.863688 | 31.090203 | 31.129253 | +0.039050 |
+
+uniform 对 calibration：平均 AP +0.195934 pp，平均 AR500 -0.231194 pp。
+uniform 对 absolute：平均 AP +0.226515 pp，平均 AR500 +0.174385 pp；
+三个种子的 AP 方向全部为正。固定判断 PROMISING_HEAD_SEED_REPEAT。
+
+regret 对 uniform：平均 AP +0.039050 pp，三个种子全部为正；
+平均 AR500 -0.121914 pp。regret 对 calibration 的平均 AP +0.234985 pp、
+平均 AR500 -0.353108 pp。固定判断 POSITIVE_EXTRA_HEAD_SEED_SIGNAL。
+AP 增量在头种子间重复，不能再简单视为只有 seed0 的偶然正点估计；
+但权重额外收益仍小，并有召回代价。
+
+这些重复只改变小头初始化和批次，不改变冻结检测器/校准器，
+数据也仍是已查看的同一 test-dev，不能称完整三种子检测器验证、独立数据确认，
+不能把头种子标准差当成数据采样 AP 置信区间。
+六项新增的匹配初始化、损失与汇总门槛测试通过。
+
+近邻论文的方法部分已进一步核对；RankDetNet 式 6 已在排序项内引入 IoU 差，
+Rank-NMS 已按 IoU 学习框排序，IoU-Net 已学习定位质量并保护定位退化。
+因此，继续执行事先条件登记的实验 6 普通已有方法对照，
+不直接把当前加权形式或稳定的工程收益当作原创。
+核对说明与条件登记：`960_ranking_nearest_prior_and_next_screen_20261013.md`。
+
+版本管理记录：`docs/experiments/candidate5_ranking_seeds_20261013.json`。
+完整产物：`output/analysis/ranking-seeds-fixed-20261013/`。

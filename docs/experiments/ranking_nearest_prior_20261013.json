@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-13",
+  "scope": "Targeted full-text method audit, with key equation pages rendered and read; not exhaustive novelty verification or reproduction.",
+  "evidence_directory": "D:\\Python\\YOLO\\output\\verification\\ranking_nearest_prior_20261013",
+  "sources": {
+    "rankdetnet": {
+      "url": "https://openaccess.thecvf.com/content/CVPR2021/papers/Liu_RankDetNet_Delving_Into_Ranking_Constraints_for_Object_Detection_CVPR_2021_paper.pdf",
+      "sha256": "32384f2e30437c22c204dbba7808fd03a38066099346fa991ec5a645cff77431",
+      "bytes": 1718284,
+      "path": "D:\\Python\\YOLO\\output\\verification\\ranking_nearest_prior_20261013\\rankdetnet.pdf"
+    },
+    "rank_nms": {
+      "url": "https://openaccess.thecvf.com/content_ICCV_2019/papers/Tan_Learning_to_Rank_Proposals_for_Object_Detection_ICCV_2019_paper.pdf",
+      "sha256": "59a8b103d3e3e5d23bf178d8b9fe7923b3d0e2fe46b91532029f7f149fb2c319",
+      "bytes": 1482452,
+      "path": "D:\\Python\\YOLO\\output\\verification\\ranking_nearest_prior_20261013\\rank_nms.pdf"
+    },
+    "iou_net": {
+      "url": "https://arxiv.org/pdf/1807.11590",
+      "sha256": "81d09db1dd1a63dc5eae00bf32a5e6a4c2ffa902c5086b59412b4e61420b62ba",
+      "bytes": 1622646,
+      "path": "D:\\Python\\YOLO\\output\\verification\\ranking_nearest_prior_20261013\\iou_net.pdf"
+    }
+  },
+  "analysis_document": "docs/960_ranking_nearest_prior_and_next_screen_20261013.md",
+  "method_findings": {
+    "rankdetnet": "Sec3.1 uses exponential L_rank; Sec3.3 Eq6 multiplies score and IoU differences inside exp; alpha1, joint score/localization optimization. Our external delta weighting is not a novelty proof.",
+    "rank_nms": "Sec3.1 Eqs1/2 use pairwise hinge; Sec3.2 Eq3 quantizes IoU in0.05 intervals. RoiAlign features and learned NMS ranking precede our work.",
+    "iou_net": "Sec3.1 predicts IoU from visual FPN features; Sec3.2 Algorithm1 IoU-based ranking/NMS; Sec3.3 Algorithm2 refinement and degeneration tolerance. Quality learning and protecting localization precede this work."
+  },
+  "extracted_text_sha256": {
+    "rankdetnet": "2647bdd1dcfaddf125bb4096687f9cac21b76e65e60f51b7fe493591323f0b67",
+    "rank_nms": "d9c553e88a037cca3d999d2a4a3149341c1ac4addde56d4d10c9d193437fde78",
+    "iou_net": "372bb75b54684ea8e13b242deddc38e9afb300b7d2e892e62f989961cdeb1cf6"
+  },
+  "rendered_method_page_sha256": {
+    "rankdetnet": "2faadf8e39e55166e9df05f6a5f4c4de3d5a4b7e75f20247331ea43c8b836026",
+    "rank_nms": "06c426779068c7f79f7406b1ebe6e5aef82000691d0c9da61faad3a2d576e757",
+    "iou_net": "aee43c106964f33ee775378c422ba978f1ae38ca88ce9bb26bd8a855efbe64e2"
+  }
+}
