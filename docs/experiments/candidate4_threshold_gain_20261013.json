@@ -1,0 +1,473 @@
+{
+  "experiment": "candidate4_threshold_gain_confirmation",
+  "date": "2026-10-13",
+  "images": 1610,
+  "evidence_directory": "D:\\Python\\YOLO\\output\\analysis\\threshold-gain-probe-fixed-20261013",
+  "official_metrics_percent": {
+    "threshold_absolute": {
+      "AP": 30.91467699816637,
+      "AP50": 52.29824829745577,
+      "AP75": 31.569948619885714,
+      "AR1": 2.1249412721325,
+      "AR10": 13.207417526300064,
+      "AR100": 39.74372770197233,
+      "AR500": 45.81995978674306
+    },
+    "threshold_gain": {
+      "AP": 30.99302562769737,
+      "AP50": 52.32120310675567,
+      "AP75": 31.728932265226668,
+      "AR1": 2.140014338959944,
+      "AR10": 13.246042718310735,
+      "AR100": 39.7303867855244,
+      "AR500": 45.93133855094627
+    },
+    "calibration": {
+      "AP": 30.89426876390022,
+      "AP50": 52.2954133316577,
+      "AP75": 31.54034849263872,
+      "AR1": 2.125917182367915,
+      "AR10": 13.20206629604485,
+      "AR100": 39.7854161210027,
+      "AR500": 46.01818047552792
+    }
+  },
+  "decision": {
+    "candidate": "threshold_supervision",
+    "decision": "SMALL_POSITIVE_SIGNAL",
+    "primary": "official AP: threshold_gain minus threshold_absolute",
+    "values": {
+      "AP_vs_matched_pp": 0.07834862953099986,
+      "AR500_vs_matched_pp": 0.11137876420320936,
+      "AP_vs_calibration_pp": 0.09875686379714921,
+      "AR500_vs_calibration_pp": -0.0868419245816483
+    },
+    "registered_policy": {
+      "version": "2026-10-13-candidate-confirmations-v1",
+      "ap_vs_calibration_min_pp": 0.1,
+      "ap_vs_matched_min_exclusive_pp": 0.0,
+      "ar500_vs_calibration_min_pp": -0.5,
+      "retention_ap_vs_always_min_pp": 0.0,
+      "retention_ar500_vs_always_min_exclusive_pp": 0.0,
+      "scope": "Low-cost investment screen, not significance, seed robustness or publication proof.",
+      "rationale": "User requested modest exploratory gates. +0.10 AP is a budget cutoff, not a noise estimate; -0.50 AR500 is an exploratory tolerance, not an application requirement. Mechanism/size/timing diagnostics are reported, not additional hard vetoes."
+    },
+    "limits": "Public test-dev control results were already seen; coordinate-head comparisons were registered before this run. One seed; no official AP CI. Positive point estimates do not prove novelty or reliable application performance.",
+    "historical_STOP": "Preserved; no historical thresholds or decisions changed.",
+    "existing_frozen_controls": {
+      "gain": {
+        "AP_pp": 0.01813349645793494,
+        "AP50_pp": 0.008328648807541583,
+        "AP75_pp": 0.01055395811085802,
+        "AR1_pp": -0.0020267472335526726,
+        "AR10_pp": 0.0008867942288386388,
+        "AR100_pp": 0.07922357674073055,
+        "AR500_pp": 0.17276066768742737
+      },
+      "uniform": {
+        "AP_pp": -0.11796403880715545,
+        "AP50_pp": -0.006553560124508806,
+        "AP75_pp": -0.14854944709571427,
+        "AR1_pp": -0.00600548234095255,
+        "AR10_pp": -0.06882119066262149,
+        "AR100_pp": 0.023560942802831164,
+        "AR500_pp": 0.1464217391556346
+      },
+      "regret": {
+        "AP_pp": -0.13495610194376795,
+        "AP50_pp": -0.028269609075998403,
+        "AP75_pp": -0.12825050872434218,
+        "AR1_pp": -0.003349308036591836,
+        "AR10_pp": -0.07849143594829577,
+        "AR100_pp": 0.06386963821295666,
+        "AR500_pp": 0.28014188538715246
+      }
+    }
+  },
+  "verification": {
+    "all1610testdev": true,
+    "source_cache_checkpoint_match": true,
+    "same_scores_classes_order_count": true,
+    "no_test_labels_in_predictions": true,
+    "runtime_verified": true,
+    "official_inputs_unchanged": true,
+    "no_detector_training_or_inference": true,
+    "no_checkpoint_or_threshold_selection": true
+  },
+  "training_provenance": {
+    "recipe": {
+      "version": "2026-10-13-threshold-gain-probe-v1",
+      "seed": 0,
+      "epochs": 20,
+      "batch": 2048,
+      "hidden": 64,
+      "learning_rate": 0.002,
+      "weight_decay": 0.0001,
+      "smooth_l1_beta": 0.1,
+      "selection_margin": 0.01,
+      "threshold_start": 0.5,
+      "threshold_step": 0.05,
+      "threshold_count": 10
+    },
+    "cache_path": "D:\\Python\\YOLO\\output\\localization\\train_actions_seed0",
+    "cache_sha256": "cc4e0906e279c244452500e9d0a663cca36220f7a19d382f277bf76b663bcecd",
+    "full_training_data": true,
+    "rows": {
+      "train": 630619,
+      "holdout": 36247
+    },
+    "parameters_per_head": 9226,
+    "selection": "Fixed epoch20, monitor train-scene holdout only; no val/test label fitting.",
+    "registration_sha256": "b1aaf3d6e6a43e212f7d576048655782d38f3bf7ca00fd7350382b4e37d1e76d",
+    "normalization": "Exact frozen localization train-fitting mean/std.",
+    "source_archive_sha256": "85a3e7ed974177584a8c9cb2b14be9b489e993b9419e6eade23662fb940b97e0"
+  },
+  "checkpoint_sha256": "2a96cd4219742c23ae36ea9ab78f675f2c8ca87dc362fe85bdf5fd9416dac6ec",
+  "secondary_size_diagnostic": {
+    "original_report_sha256": "6d6472b1f2fa694210462f3de3eefd97e2839845541a1ba06f270e437bde9963",
+    "scope": "COCO-style reference640 with valid GT and UNFILTERED no-GT predictions; no post-prediction IoF-ignore mask. NOT official size AP.",
+    "metrics": {
+      "calibration": {
+        "all": {
+          "gt": 75102,
+          "ap50": 0.43999374145025966,
+          "ap50_95": 0.2589689510117021,
+          "ar50_95_max500": 0.42506881014921105,
+          "per_class_ap50_95": {
+            "pedestrian": 0.20465661955326012,
+            "people": 0.11145371913059486,
+            "bicycle": 0.09954437798774966,
+            "car": 0.5403408772484508,
+            "van": 0.30472817472652536,
+            "truck": 0.3380988743610392,
+            "tricycle": 0.17735554367009812,
+            "awning-tricycle": 0.1470597583433936,
+            "bus": 0.4478538336887959,
+            "motor": 0.2185977314071133
+          }
+        },
+        "tiny": {
+          "gt": 54522,
+          "ap50": 0.3584853513752557,
+          "ap50_95": 0.18298619435939342,
+          "ar50_95_max500": 0.347093305556626,
+          "per_class_ap50_95": {
+            "pedestrian": 0.1774897713583994,
+            "people": 0.10444682160522145,
+            "bicycle": 0.08053658619251364,
+            "car": 0.4411333837859185,
+            "van": 0.21200866656234665,
+            "truck": 0.13494766862085822,
+            "tricycle": 0.15257057706596625,
+            "awning-tricycle": 0.12350192732231555,
+            "bus": 0.19826666102755636,
+            "motor": 0.2049598800528379
+          }
+        },
+        "small": {
+          "gt": 15468,
+          "ap50": 0.5761397762571068,
+          "ap50_95": 0.3621615270859969,
+          "ar50_95_max500": 0.5463966466333104,
+          "per_class_ap50_95": {
+            "pedestrian": 0.46508509739722126,
+            "people": 0.27817167219062505,
+            "bicycle": 0.20711619112689345,
+            "car": 0.6632455144023286,
+            "van": 0.418235132712818,
+            "truck": 0.38686022983687507,
+            "tricycle": 0.25427316842334347,
+            "awning-tricycle": 0.1599877265506639,
+            "bus": 0.46419370488410294,
+            "motor": 0.32444683333509794
+          }
+        },
+        "small_all": {
+          "gt": 69990,
+          "ap50": 0.4193194254256654,
+          "ap50_95": 0.23828082214133575,
+          "ar50_95_max500": 0.40388807862977694,
+          "per_class_ap50_95": {
+            "pedestrian": 0.20079854881979087,
+            "people": 0.11175081643666941,
+            "bicycle": 0.09722088983460474,
+            "car": 0.5182072012355136,
+            "van": 0.29586362716722714,
+            "truck": 0.26477127320327787,
+            "tricycle": 0.18495331433792203,
+            "awning-tricycle": 0.1367176250701469,
+            "bus": 0.3539644329899048,
+            "motor": 0.21856049231830013
+          }
+        },
+        "medium": {
+          "gt": 4994,
+          "ap50": 0.5726622128142378,
+          "ap50_95": 0.3952208328404884,
+          "ar50_95_max500": 0.5803841702367768,
+          "per_class_ap50_95": {
+            "pedestrian": 0.5751671434586835,
+            "people": 0.11538814792385832,
+            "bicycle": 0.2499246463107849,
+            "car": 0.747361270503762,
+            "van": 0.4405587898610496,
+            "truck": 0.4901845732082868,
+            "tricycle": 0.18995167131483598,
+            "awning-tricycle": 0.2652219903861892,
+            "bus": 0.6122580570774344,
+            "motor": 0.26619203835999977
+          }
+        },
+        "large": {
+          "gt": 118,
+          "ap50": 0.6438037019514733,
+          "ap50_95": 0.5305474100851066,
+          "ar50_95_max500": 0.6278595825426945,
+          "per_class_ap50_95": {
+            "pedestrian": null,
+            "people": null,
+            "bicycle": null,
+            "car": 0.7839584371248,
+            "van": 0.6723872387238724,
+            "truck": 0.5484232611396798,
+            "tricycle": null,
+            "awning-tricycle": 0.0,
+            "bus": 0.6479681134371817,
+            "motor": null
+          }
+        }
+      },
+      "threshold_absolute": {
+        "all": {
+          "gt": 75102,
+          "ap50": 0.4399515643215005,
+          "ap50_95": 0.2591799541036137,
+          "ar50_95_max500": 0.42331341216986756,
+          "per_class_ap50_95": {
+            "pedestrian": 0.20558707098862564,
+            "people": 0.11172603614161884,
+            "bicycle": 0.0992706318514166,
+            "car": 0.5404222207666023,
+            "van": 0.304721821880369,
+            "truck": 0.3379403168652679,
+            "tricycle": 0.17822638347277528,
+            "awning-tricycle": 0.14729741763021867,
+            "bus": 0.44716292536406615,
+            "motor": 0.21944471607517668
+          }
+        },
+        "tiny": {
+          "gt": 54522,
+          "ap50": 0.35862657631879513,
+          "ap50_95": 0.18317314579063665,
+          "ar50_95_max500": 0.34540567050091353,
+          "per_class_ap50_95": {
+            "pedestrian": 0.17843720533261678,
+            "people": 0.10463933938587767,
+            "bicycle": 0.080705681732821,
+            "car": 0.44092060331041216,
+            "van": 0.21232221435651405,
+            "truck": 0.13502330289332093,
+            "tricycle": 0.15259585537247264,
+            "awning-tricycle": 0.1232110573532003,
+            "bus": 0.19813720721243375,
+            "motor": 0.2057389909566971
+          }
+        },
+        "small": {
+          "gt": 15468,
+          "ap50": 0.5752024100523251,
+          "ap50_95": 0.36201203313468433,
+          "ar50_95_max500": 0.543966606875841,
+          "per_class_ap50_95": {
+            "pedestrian": 0.46585397202625695,
+            "people": 0.2787830294590995,
+            "bicycle": 0.20540702778570347,
+            "car": 0.6631469385437728,
+            "van": 0.4177980175717403,
+            "truck": 0.3859100658220524,
+            "tricycle": 0.254421974343214,
+            "awning-tricycle": 0.1601457123624365,
+            "bus": 0.46310183369639796,
+            "motor": 0.3255517597361694
+          }
+        },
+        "small_all": {
+          "gt": 69990,
+          "ap50": 0.41912513640849286,
+          "ap50_95": 0.23838583879308822,
+          "ar50_95_max500": 0.40210135404099445,
+          "per_class_ap50_95": {
+            "pedestrian": 0.2018530487896202,
+            "people": 0.1121111729069154,
+            "bicycle": 0.09714517660332742,
+            "car": 0.5179596718285888,
+            "van": 0.29601092990082206,
+            "truck": 0.26434223173640486,
+            "tricycle": 0.18498969105071075,
+            "awning-tricycle": 0.13655314660590726,
+            "bus": 0.3534216003085096,
+            "motor": 0.21947171820007594
+          }
+        },
+        "medium": {
+          "gt": 4994,
+          "ap50": 0.5731943077633028,
+          "ap50_95": 0.3963268761793744,
+          "ar50_95_max500": 0.5791536965168267,
+          "per_class_ap50_95": {
+            "pedestrian": 0.5755510928615449,
+            "people": 0.11538814792385832,
+            "bicycle": 0.2499246463107849,
+            "car": 0.7489131373581059,
+            "van": 0.44066888029946805,
+            "truck": 0.49106265785865444,
+            "tricycle": 0.19592670687477062,
+            "awning-tricycle": 0.27095982693922704,
+            "bus": 0.6112801659689757,
+            "motor": 0.263593499398354
+          }
+        },
+        "large": {
+          "gt": 118,
+          "ap50": 0.6443762771729932,
+          "ap50_95": 0.5295730025557039,
+          "ar50_95_max500": 0.6256831119544591,
+          "per_class_ap50_95": {
+            "pedestrian": null,
+            "people": null,
+            "bicycle": null,
+            "car": 0.7817603586269558,
+            "van": 0.6723872387238724,
+            "truck": 0.5432533820688474,
+            "tricycle": null,
+            "awning-tricycle": 0.0,
+            "bus": 0.6504640333588443,
+            "motor": null
+          }
+        }
+      },
+      "threshold_gain": {
+        "all": {
+          "gt": 75102,
+          "ap50": 0.4403860555949026,
+          "ap50_95": 0.25983040513144234,
+          "ar50_95_max500": 0.42426757308995616,
+          "per_class_ap50_95": {
+            "pedestrian": 0.20533811370946992,
+            "people": 0.11130699548301058,
+            "bicycle": 0.0999574369629256,
+            "car": 0.541590843753672,
+            "van": 0.30617870927860263,
+            "truck": 0.3389598191457583,
+            "tricycle": 0.17851956889041332,
+            "awning-tricycle": 0.14711805312081094,
+            "bus": 0.4503107619545133,
+            "motor": 0.2190237490152462
+          }
+        },
+        "tiny": {
+          "gt": 54522,
+          "ap50": 0.3588170352879407,
+          "ap50_95": 0.18321530067171565,
+          "ar50_95_max500": 0.3467023061676531,
+          "per_class_ap50_95": {
+            "pedestrian": 0.17755156128620078,
+            "people": 0.10466351169590878,
+            "bicycle": 0.08053658619251364,
+            "car": 0.4407693703833696,
+            "van": 0.2121698885044596,
+            "truck": 0.13487324192209946,
+            "tricycle": 0.15320689947498156,
+            "awning-tricycle": 0.12341776472326238,
+            "bus": 0.19936012814823462,
+            "motor": 0.20560405438612608
+          }
+        },
+        "small": {
+          "gt": 15468,
+          "ap50": 0.5772729977525779,
+          "ap50_95": 0.362981719938507,
+          "ar50_95_max500": 0.5446588898118317,
+          "per_class_ap50_95": {
+            "pedestrian": 0.46670845093686786,
+            "people": 0.2764002597842988,
+            "bicycle": 0.2087440138256364,
+            "car": 0.6651375604209949,
+            "van": 0.41902210054674305,
+            "truck": 0.3850204567236009,
+            "tricycle": 0.25846010391682855,
+            "awning-tricycle": 0.16016793698245563,
+            "bus": 0.46646724230074743,
+            "motor": 0.32368907394689633
+          }
+        },
+        "small_all": {
+          "gt": 69990,
+          "ap50": 0.4200421681070082,
+          "ap50_95": 0.23879043308571005,
+          "ar50_95_max500": 0.40315186790303636,
+          "per_class_ap50_95": {
+            "pedestrian": 0.20100896391169867,
+            "people": 0.1117858685250531,
+            "bicycle": 0.09778127206651448,
+            "car": 0.5187280803522877,
+            "van": 0.29629456375897817,
+            "truck": 0.26370483274076634,
+            "tricycle": 0.18705948459505234,
+            "awning-tricycle": 0.13671828398292715,
+            "bus": 0.35589384977536503,
+            "motor": 0.21892913114845713
+          }
+        },
+        "medium": {
+          "gt": 4994,
+          "ap50": 0.5731181342256839,
+          "ap50_95": 0.39797844605031163,
+          "ar50_95_max500": 0.5791644142653364,
+          "per_class_ap50_95": {
+            "pedestrian": 0.5850936225033662,
+            "people": 0.10740433114717458,
+            "bicycle": 0.2499246463107849,
+            "car": 0.7512687006867829,
+            "van": 0.4500849042565801,
+            "truck": 0.49335638040436297,
+            "tricycle": 0.18960247972339242,
+            "awning-tricycle": 0.2674672968888719,
+            "bus": 0.6155834404492081,
+            "motor": 0.2699986581325925
+          }
+        },
+        "large": {
+          "gt": 118,
+          "ap50": 0.6441362809898991,
+          "ap50_95": 0.5346857195484123,
+          "ar50_95_max500": 0.6268595825426945,
+          "per_class_ap50_95": {
+            "pedestrian": null,
+            "people": null,
+            "bicycle": null,
+            "car": 0.7989394969716752,
+            "van": 0.6723872387238724,
+            "truck": 0.5494028268623641,
+            "tricycle": null,
+            "awning-tricycle": 0.0,
+            "bus": 0.6526990351841498,
+            "motor": null
+          }
+        }
+      }
+    }
+  },
+  "interpretation": "Small positive signal (+0.098756864pp AP vs calibration), numerically below the fixed +0.10pp budget cutoff by0.001243136pp. Do not treat this negligible cutoff gap as evidence of no effect; current AP is0.134956102pp below regret. No detector retraining or margin/epoch changes.",
+  "evidence_sha256": {
+    "plan.json": "143705b5e3a212342123a2b426a59cdab9aeeccaa653caa88d11ae4265c305fe",
+    "input_manifest.json": "464ca14c0ecf1b0f104d1bb22a829b111a83e73b6addc0a7d28d016c3e891b74",
+    "official_metrics.json": "6a92be237c1193375a1bfaa8579bd66fcf11cf194cda326d173b79b3402fbbcb",
+    "decision.json": "31ebf1533dbb44ef11f4a5aff39862db74e44df57d103939c326e9287ae36988",
+    "verification.json": "29995e31fbf10219de800fda2caac8c2aa77a86cb6b2bdc6f3c133fe3f838ae8",
+    "size_diagnostic.json": "6d6472b1f2fa694210462f3de3eefd97e2839845541a1ba06f270e437bde9963",
+    "size_diagnostic_scope_corrected.json": "cab35a300dc193990dd515997c470891199169ae29c61816f8dd37fe46822311",
+    "timings.csv": "9582a9d480d73457b3c758b235ec86f72cb925c3031cda1fd699944555ad2e6f"
+  }
+}

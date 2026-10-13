@@ -103,3 +103,58 @@ IoU-Net、Rank & Sort、学习型 NMS 等的任务、输入和输出仍需要更
 
 版本管理记录：`docs/experiments/candidate3_ranking_20261013.json`。
 完整产物：`output/analysis/candidate-ranking-fixed-20261013/`。
+
+## 实验 4：十个 IoU 阈值的相对收益监督
+
+独立登记先于前面坐标候选的 test-dev 结果。复用 6471 张 train 动作缓存，
+同初始化、容量与批次的 threshold_absolute、threshold_gain 各训练固定 20 epoch。
+每头 9,226 参数，只取最终 epoch20，原场景 holdout 只监控。
+不重训或推理检测器；1610 张 test-dev 使用共享的预测端动作缓存。
+
+| 分支 | 官方 AP (%) | 官方 AR500 (%) |
+|---|---:|---:|
+| calibration | 30.894269 | 46.018180 |
+| threshold_absolute | 30.914677 | 45.819960 |
+| threshold_gain | 30.993026 | 45.931339 |
+
+threshold_gain 对 calibration：AP +0.098757 pp，AR500 -0.086842 pp。
+对匹配 threshold_absolute：AP +0.078349 pp，AR500 +0.111379 pp。
+对冻结 regret：AP -0.134956 pp，AR500 +0.280142 pp。
+
+固定判断：SMALL_POSITIVE_SIGNAL。相对校准距 +0.10 pp 预算界只有 0.001243 pp，
+这种极小差距不是“没有效果”的证据，也不是统计显著性界限。
+保留小幅正向与 AP/召回取舍，但它未超过已有排序方法，
+目前不再加 epoch、改 margin 或把它换为新强对照。
+
+十阈值标签对同一 GT 的条件成功不等于完整 AP 监督，不能据此宣称
+实现了直接 AP 最优化。辅助原始分尺寸报告保留，并另存真实口径澄清。
+四项针对性测试通过，完整官方输入、权重、训练缓存及源快照核验通过。
+版本管理记录：`docs/experiments/candidate4_threshold_gain_20261013.json`。
+完整产物：`output/analysis/threshold-gain-probe-fixed-20261013/`。
+
+## 补评：统一在预测之后过滤忽略区
+
+八个分支完整复用已经固定的预测。只在评价端对各分支使用相同规则：
+预测框与单个忽略框的最大 IoF >0.5 时过滤，再算 reference640 COCO-style 指标。
+不重训、不更改预测、不更改官方指标或前面主要判断。
+这是项目分尺寸诊断，过滤实现与官方忽略区预处理不能等同。
+
+| 分支 | tiny AP50–95 对校准 (pp) | small_all AP50–95 对校准 (pp) |
+|---|---:|---:|
+| absolute | -0.062217 | -0.051737 |
+| gain | -0.012105 | +0.012291 |
+| gain_always | -0.097433 | -0.082509 |
+| uniform | +0.083667 | +0.131067 |
+| regret | +0.132560 | +0.173394 |
+| threshold_absolute | +0.020012 | +0.010848 |
+| threshold_gain | +0.023581 | +0.053570 |
+
+regret 对 uniform 的 tiny +0.048894 pp、small_all +0.042327 pp；
+仍是很小的单种子辅助信号。阈值方案的小目标增量更弱，
+补评没有推翻优先确认排序路线的判断。
+原始未过滤报告及其真实口径澄清全部保留。
+原预测、记录和计算源核验通过；ignore 元数据未在运行前单独绑定 hash，
+因此不把这一补评包装成与正式官方输入同等级的全量注释字节审计。
+
+版本管理记录：`docs/experiments/candidate_size_postignore_supplement_20261013.json`。
+完整产物：`output/analysis/candidate-size-postignore-fixed-20261013/`。
