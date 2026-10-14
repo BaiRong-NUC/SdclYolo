@@ -1,0 +1,28 @@
+{
+  "experiment": "candidate54_visible_augmentation_label_censoring",
+  "date": "2026-10-15",
+  "question": "Does the current four-image Mosaic plus original affine recipe discard an appreciable number of fully visible tiny GT that still have native true-class detection support at locations actually trained as background?",
+  "difference": "Previous probes used fixed unaugmented images, postprocessed candidate changes or synthetic GT-edge noise. This audits real installed augmentation label filtering, without modifying its outputs or reopening any previous STOP.",
+  "selection": "Before any decode, select256 distinct train images by SHA256('candidate54-visible-censor-v1:'+stem), excluding all image stems mentioned by existing output/analysis/*/plan.json. Record every exclusion-plan hash and image/label/metadata hash. Consecutive groups of4 form64 fixed mosaics; first32 screening, last32 confirmation. These are fresh diagnostic scenes but not unseen by the trained detector. No val/test usage.",
+  "augmentation": "Installed Mosaic n4 p1, 960 target size; fixed chosen donor triples rather than dataloader-buffer random sampling. RandomPerspective parameters from original baseline args.yaml (degrees0 translate0.1 scale0.5 shear0 perspective0), output960 square. Per-mosaic Python/NumPy/torch seed derived from SHA256('candidate54-warp-v1:'+index). No color/Albumentations/flip/MixUp/CutMix, so this isolates the geometric prefix, not a historical whole-training replay.",
+  "visibility": "Track each source box through actual resized source crop bounds. A primary GT must be a valid class0..9, fully contained in its pasted source rectangle before Mosaic clipping, fully contained in affine output before clipping, and strictly positive in extent. No visible-fraction retuning or thin clipped remnants. Original ignore sentinel10 is never a primary GT.",
+  "groups": "all, tiny transformed area*(640/960)^2<256, small_all<1024. Denominator includes all fully visible GT in each group, retained and discarded. Discarded means actual installed RandomPerspective.box_candidates returnedFalse. Report size/aspect/area rejection reasons, including overlaps.",
+  "first_stage_policy": {
+    "fully_visible_tiny_gt_per_half_min": 100,
+    "fully_visible_discarded_tiny_per_half_min": 8,
+    "affected_mosaics_per_half_min": 4,
+    "discarded_tiny_fraction_per_half_min": 0.005
+  },
+  "early_stop": "Run both preregistered halves of geometry. If any first-stage gate fails in either half, stop without loading the detector, store native metrics as unmeasured, and do not substitute larger samples or different augmentations.",
+  "native_followup_if_first_stage_passes": "Exactly64 frozen FP32 baseline960 forwards on saved actual augmented tensors. Run unchanged nativeTAL with retained validGT only, original quality denominator, and retained ignore regions. For every fully visible discarded tinyGT, require an emitted native box IoU>=0.5, true-class probability>=0.05, true class argmax, nativeTAL foregroundFalse, and anchor outside every retained ignore box. All18900 rows and10classes saved; no NMS or confidence sampling of the inventory. Such a row has positive BCE negative-target logit derivative p; this is not proof of a harmful total model gradient or optimizer update.",
+  "second_stage_policy": {
+    "supported_discarded_tiny_per_half_min": 8,
+    "supported_mosaics_per_half_min": 4,
+    "supported_tiny_fraction_per_half_min": 0.005
+  },
+  "pass": "REPLICATED_VISIBLE_LABEL_CENSORING_SUPPORTS_SEPARATE_CONTROLLED_PILOT. Only allows separately preregistered provenance-aware treatment versus ordinary whole-anchor ignore, class-entry ignore, noMosaic and equal-count size/class/location-matched ignore controls; not full training or novelty authorization.",
+  "fail": "STOP_THIS_FULLY_VISIBLE_AUGMENTATION_CENSORING_ROUTE. No changes to sample, seed, visibility rule, thresholds, confidence, IoU, groups or affine recipe after viewing results. Does not rule out partially visible GT, earlier model stages, color transforms or all augmentation research.",
+  "budget": "256 source JPEG decodes,64Mosaic+affine transforms. Zero model loads/forwards if geometry fails, otherwise at most64detector forwards and64nativeTAL calls. No optimizer steps, AP, training or parameter search. Preserve all tensors and frozen sources for independent audit.",
+  "prior_boundary": "SNIP already uses scale-selective gradient training; Co-mining and prior sparse-annotation work already address unlabeled positives treated as background and ignored regions. Merely retaining rejected boxes as ignore regions is not innovation. Need a distinct mechanism and matched intervention benefit before any research claim.",
+  "limits": "Current installed augmentation source is hashed, but historical baseline training only recorded package version. Fixed donor groups are not original dataloader-buffer samples. Fresh mechanism confirmation within train is not independent detection generalization or official VisDrone AP."
+}

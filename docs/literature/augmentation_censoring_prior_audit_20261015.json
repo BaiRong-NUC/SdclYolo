@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-15",
+  "candidate": "candidate54 visible augmentation label censoring",
+  "scope": "Two targeted primary sources, exact version metadata, local full texts and specific rendered pages; not an exhaustive novelty search.",
+  "papers": [
+    {
+      "title": "An Analysis of Scale Invariance in Object Detection - SNIP",
+      "authors": ["Bharat Singh", "Larry S. Davis"],
+      "arxiv_version": "1711.08189v2",
+      "initial_submission": "2017-11-22",
+      "version_date": "2018-05-25",
+      "source": "https://arxiv.org/abs/1711.08189v2",
+      "pdf": "output/literature/papers/1711.08189v2.pdf",
+      "pdf_sha256": "989daed87b8e82e86ff9172c44ce6dae0d6fb2133ea94b30fd905bbc0275820b",
+      "text": "output/literature/text/1711.08189v2.txt",
+      "text_sha256": "4835c0084826297eae1010d157a6117f4ad10086bba1e7f745b3619e371cae53",
+      "pages": 10,
+      "review": "Abstract, scale-selective backpropagation argument and page6 rendered/read in full. Figure6 and text explicitly invalidate anchors overlapping out-of-range GT above0.3 rather than turning them into negatives. First-page arXiv version/date verified from PDF text.",
+      "overlap": "Scale-dependent supervision and invalid-GT anchor exclusion are established. Keeping filtered boxes as ordinary ignore regions cannot be presented as new.",
+      "difference_and_limit": "Candidate54 measures exact current Mosaic/affine rejection provenance and native support, not SNIP reproduction or a proven differentiated method.",
+      "zotero": {
+        "collection": "6HT9SNK7",
+        "parent": "SGG986UA",
+        "attachment": "88ZLY5HR",
+        "readback": "Version URL, two authors, initial date, collection, filename and application/pdf imported_file confirmed."
+      }
+    },
+    {
+      "title": "Co-mining: Self-Supervised Learning for Sparsely Annotated Object Detection",
+      "authors": ["Tiancai Wang", "Tong Yang", "Jiale Cao", "Xiangyu Zhang"],
+      "arxiv_version": "2012.01950v2",
+      "initial_submission": "2020-12-03",
+      "version_date": "2021-10-14",
+      "source": "https://arxiv.org/abs/2012.01950v2",
+      "pdf": "output/literature/papers/2012.01950v2.pdf",
+      "pdf_sha256": "f8a21276bcbab28d2bfea4f15aaf5068364cd6a27e24133a03395d8af4657142",
+      "text": "output/literature/text/2012.01950v2.txt",
+      "text_sha256": "5c8b999ae55b72de78df13b0bd9f11f21f2fc0c8734a50083ed6c06368daeb3a",
+      "pages": 9,
+      "review": "Abstract and page3 rendered/read in full: sparse annotations, ignore/reweighting prior work, and shared-weight original/augmented branches that co-generate missing positive labels. First-page arXiv version/date verified from PDF text.",
+      "overlap": "Missing-object negative supervision, ignore regions and multi-view pseudo-label mining are established.",
+      "difference_and_limit": "Candidate54 uses known geometric filtering provenance rather than discovering unknown sparse labels. That implementation distinction alone is not a research contribution.",
+      "zotero": {
+        "collection": "6HT9SNK7",
+        "parent": "ABJIQPTI",
+        "attachment": "8UVIXFD6",
+        "readback": "Version URL, four authors, initial date, collection, filename and application/pdf imported_file confirmed."
+      }
+    }
+  ],
+  "collection_work": "Both exact-version PDFs downloaded via Paper Search, parsed, text-extracted, and attached to Zotero. Semantic incremental update2added0errors; this is not the whole-library item count.",
+  "search_boundary": "arXiv annotation/augmentation/ignore query also returned unrelated work; no inference of absent closer precedents. SNIPER metadata was seen during search but not used as evidence or claimed downloaded.",
+  "candidate_result": "Both geometry halves pass,69/2359 and28/1961 fully visible tinyGT discarded by size filter. No GT in either half has registered native true-class support, even before foreground/ignore exclusion. STOP, no optimizer steps or training authorization."
+}

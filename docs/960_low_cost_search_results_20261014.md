@@ -1808,3 +1808,61 @@ Paper Search回读TOLF指定v1元数据。标注噪声与梯度稳定化已有�
 独立复核：`scripts/evaluation/verify_label_gradient.py`。
 论文核验：`docs/literature/label_gradient_prior_audit_20261014.json`。
 完整结果：`output/analysis/label-gradient-fixed-20261014/`。
+
+## 实验 54（2026-10-15）：真实几何增广删标签是否造成可识别tiny的背景监督
+
+保留全部历史STOP，转向当前实际训练几何前缀。预先哈希扫描已有
+analysis计划，排除曾用于诊断的图名；按固定SHA256顺序选256张不同
+训练图，连续四张形成64个Mosaic，前32筛选、后32确认。它们没有用于
+先前诊断，但检测器训练见过，不称为独立检测泛化集。
+
+使用已安装Mosaic4及基线原参数RandomPerspective，记录实际输入图、
+来源标签/忽略区、每块裁剪、缩放和矩阵、标签筛选原样输出。
+只统计在来源粘贴区域及仿射输出中都完整可见、严格正面积的有效GT，
+排除本来就被截断的薄片和ignore哨兵。没有颜色增广、翻转或其他混合，
+不声称重放了历史完整增广训练。
+
+| tiny机制统计 | 筛选32组 | 确认32组 |
+|---|---:|---:|
+| 完整可见tinyGT | 2359 | 1961 |
+| 被实际标签过滤器删掉 | 69 | 28 |
+| 占完整可见tiny比例 | 2.9250% | 1.4278% |
+| 受影响Mosaic数 | 12 | 9 |
+| 符合固定原生检测支持及背景条件的被删GT | 0 | 0 |
+
+八项几何前置门槛均通过，所以执行已登记的64次FP32冻结960前向，
+保留全部18900位置和十类概率，按保留GT重算原TAL。
+支持要求同一原生行IoU至少0.5、真类概率至少0.05、真类为argmax、
+不属于原TAL前景且不在保留ignore框内。两组支持均为零，
+六项支持门槛全部失败。所有被删主样本均因边长不超过2像素；
+不能只报“标签确实被删”就宣称存在值得修复的错误训练机制。
+
+结论STOP_THIS_FULLY_VISIBLE_AUGMENTATION_CENSORING_ROUTE，
+不扩大样本、不降低置信度/IoU、不放宽完整可见条件救结果，不训练。
+该结果不否定部分可见目标、早期检查点、颜色增广或整个小目标领域。
+
+主筛选14.80秒，256次来源JPEG加载请求、64次几何增广及冻结前向，
+64次TAL、零优化器更新、零AP。四项测试通过。
+独立复核全部来源图/标签/元数据及源文件/存档哈希、样本排除与选择、
+来源标签映射、粘贴完整可见条件、Mosaic/仿射坐标、过滤原因和分组。
+重建仿射坐标最大误差为0；保持预设2e-4像素核验容差。
+首轮复核误将原Python浮点缩放当成NumPy float64零维数组，产生
+0.000244像素缩放参考差；修正复核器的标量类型后通过，未改实验或容差。
+
+另以同一已固定TAL源码在CPU重放全部64组前景，全部一致；
+独立重算ignore和所有原生支持。甚至取消前景/ignore排除，原始库存
+也没有满足IoU、真类分数和argmax三条件的被删GT。复核不增加模型前向
+或JPEG解码；原始检测器张量与图像仿射结果只校验哈希，未重新提取/变换。
+同源码TAL重放不等于独立实现了分配算法。
+
+Paper Search下载SNIP1711.08189v2和Co-mining2012.01950v2，分别
+10/9页，核验PDF首版本标记、提取文本、渲染并阅读第6/3页。
+SNIP已用无效GT排除负anchor，Co-mining已有缺失标注与双视图补标签，
+普通ignore补丁本身不具有创新性。两篇元数据及指定PDF加入Zotero，
+回读作者/版本/集合和PDF附件，语义增量更新2条无错误。
+
+登记与结果：`docs/experiments/candidate54_augmentation_censoring_registration_20261015.json`、
+`docs/experiments/candidate54_augmentation_censoring_result_20261015.json`。
+独立复核：`scripts/evaluation/verify_augmentation_censoring.py`。
+论文核验：`docs/literature/augmentation_censoring_prior_audit_20261015.json`。
+完整结果：`output/analysis/augmentation-censoring-fixed-20261015/`。

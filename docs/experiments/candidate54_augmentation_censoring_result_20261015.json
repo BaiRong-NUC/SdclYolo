@@ -1,0 +1,155 @@
+{
+  "experiment": "candidate54_visible_augmentation_label_censoring",
+  "date": "2026-10-15",
+  "output": "D:\\Python\\YOLO\\output\\analysis\\augmentation-censoring-fixed-20261015",
+  "metrics": {
+    "screen": {
+      "all": {
+        "fully_visible_gt": 3032,
+        "rejected_gt": 69,
+        "affected_mosaics": 12,
+        "size_rejected_gt": 69,
+        "area_rejected_gt": 0,
+        "aspect_rejected_gt": 0,
+        "supported_gt": 0,
+        "supported_mosaics": 0,
+        "rejected_fraction": 0.022757255936675463,
+        "supported_fraction": 0.0
+      },
+      "tiny": {
+        "fully_visible_gt": 2359,
+        "rejected_gt": 69,
+        "affected_mosaics": 12,
+        "size_rejected_gt": 69,
+        "area_rejected_gt": 0,
+        "aspect_rejected_gt": 0,
+        "supported_gt": 0,
+        "supported_mosaics": 0,
+        "rejected_fraction": 0.029249682068673167,
+        "supported_fraction": 0.0
+      },
+      "small_all": {
+        "fully_visible_gt": 2833,
+        "rejected_gt": 69,
+        "affected_mosaics": 12,
+        "size_rejected_gt": 69,
+        "area_rejected_gt": 0,
+        "aspect_rejected_gt": 0,
+        "supported_gt": 0,
+        "supported_mosaics": 0,
+        "rejected_fraction": 0.02435580656547829,
+        "supported_fraction": 0.0
+      }
+    },
+    "confirmation": {
+      "all": {
+        "fully_visible_gt": 2598,
+        "rejected_gt": 28,
+        "affected_mosaics": 9,
+        "size_rejected_gt": 28,
+        "area_rejected_gt": 0,
+        "aspect_rejected_gt": 0,
+        "supported_gt": 0,
+        "supported_mosaics": 0,
+        "rejected_fraction": 0.01077752117013087,
+        "supported_fraction": 0.0
+      },
+      "tiny": {
+        "fully_visible_gt": 1961,
+        "rejected_gt": 28,
+        "affected_mosaics": 9,
+        "size_rejected_gt": 28,
+        "area_rejected_gt": 0,
+        "aspect_rejected_gt": 0,
+        "supported_gt": 0,
+        "supported_mosaics": 0,
+        "rejected_fraction": 0.014278429372768995,
+        "supported_fraction": 0.0
+      },
+      "small_all": {
+        "fully_visible_gt": 2419,
+        "rejected_gt": 28,
+        "affected_mosaics": 9,
+        "size_rejected_gt": 28,
+        "area_rejected_gt": 0,
+        "aspect_rejected_gt": 0,
+        "supported_gt": 0,
+        "supported_mosaics": 0,
+        "rejected_fraction": 0.011575031004547334,
+        "supported_fraction": 0.0
+      }
+    }
+  },
+  "decision": {
+    "decision": "STOP_THIS_FULLY_VISIBLE_AUGMENTATION_CENSORING_ROUTE",
+    "geometry_checks": {
+      "screen": {
+        "denominator": true,
+        "rejected": true,
+        "mosaics": true,
+        "fraction": true
+      },
+      "confirmation": {
+        "denominator": true,
+        "rejected": true,
+        "mosaics": true,
+        "fraction": true
+      }
+    },
+    "native_checks": {
+      "screen": {
+        "supported": false,
+        "mosaics": false,
+        "fraction": false
+      },
+      "confirmation": {
+        "supported": false,
+        "mosaics": false,
+        "fraction": false
+      }
+    },
+    "native_stage_measured": true,
+    "scope": "Actual geometric-prefix label filtering only; no historical replay, harmful total-gradient, detection gain, AP, training or novelty proof."
+  },
+  "verification": {
+    "source_JPEG_load_requests": 256,
+    "geometric_augmentations": 64,
+    "frozen_detector_forwards": 64,
+    "native_TAL_calls": 64,
+    "parameter_updates": 0,
+    "AP_evaluations": 0,
+    "previous_diagnostic_stems_excluded": true,
+    "source_unchanged": true,
+    "installed_source_unchanged": true,
+    "elapsed_seconds": 14.802735300036147
+  },
+  "artifacts_sha256": {
+    "decision.json": "059152aaafabdc4a0a7fb51e5d1dea6e7470a381bb8b9d249a991d95dc535e9c",
+    "frames.json": "67630bbe10f73c720d49dc2993a896a43d0f026bdbdb35f2406939920053fab1",
+    "layouts.json": "f241c3ab63c868147a87e3a4b47c5eaa91169f6d0106309da83aa85022d78c61",
+    "metrics.json": "cee66864d02b0b39135c87d0348360192aa1f151189cd8652d88ac81503885a7",
+    "per_image.json": "9fe4ba7e94621744fac633de27775e7d5173934a496dc4fe70b64bfd31aadadb",
+    "plan.json": "12673b34866015acaf759db4e8db15afaeac6894579b83c3e2011723d15b0509",
+    "source.zip": "ddbb7e1406156b62f55bc984f33282372f6bfdb020c03a81a47cf16d10c70308",
+    "verification.json": "7720b75df5f050a5c142c028071c0d1fabd69f70bc92cb0c386bfdcacdf7d593",
+    "independent_verification.json": "b238dc18e84e5d78a7e45d925c0ab27175f624a0057978c5f5741b7c25b48459"
+  },
+  "independent_verification": {
+    "all_sources_archives_256_source_images_labels_metadata_and64_frames_hashed": true,
+    "exclusions_selection_source_GT_and_crop_visibility_rebuilt": true,
+    "mosaic_affine_coordinates_maximum_absolute_error": 0.0,
+    "all_filter_reasons_groups_both_halves_and_fixed_gates_rebuilt": true,
+    "retained_GT_TAL_foreground_replayed_CPU_from_saved_predictions": 64,
+    "raw_native_support_before_background_filter": 0,
+    "all_ignore_masks_and_native_support_recomputed": true,
+    "extra_detector_forwards": 0,
+    "extra_JPEG_decodes": 0,
+    "extra_optimizer_updates": 0,
+    "verifier_sha256": "b05fa4c9b3575018ceedaf7f12466877f8248fa6f2d8791ff8f52b9e66eca67b",
+    "verifier_repair": "First attempt used a NumPy float64 0d scale instead of original Python float; corrected scalar type, retaining original2e-4pixel tolerance.",
+    "limits": "Coordinate recomputation tolerance2e-4pixels; threshold decisions use saved float32 coordinates. TAL replay shares installed assigner source. Raw detector tensors and image warps are hashed, not independently re-extracted/rewarped. No AP, historical training replay or novelty proof."
+  },
+  "prior_audit": "docs/literature/augmentation_censoring_prior_audit_20261015.json",
+  "prior_audit_sha256": "e29b136bce56e06c3fddeb79b4fe0abecb58a639256de4a811fb2caf7e2f0560",
+  "tests": "4 passed: python -m pytest tests/test_augmentation_censoring.py -q. Additional full saved64-frame geometry/support verification and CPU TAL replay passed."
+}
