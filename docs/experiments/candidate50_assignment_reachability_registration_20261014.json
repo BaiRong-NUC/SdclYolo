@@ -1,0 +1,23 @@
+{
+  "experiment": "candidate50_assignment_nonnegative_distance_reachability",
+  "date": "2026-10-14",
+  "question": "Does the installed TAL tiny-box pool expansion put appreciable actual regression supervision on tiny GT/anchor pairs whose nonnegative-distance representation cannot attain IoU0.75?",
+  "difference": "CPR-TAL only repaired zero-positive true-inside GT. Candidate36 inspected emitted native predictions and candidate49 spatial crop truncation. This examines geometric reachability of actual supervised anchor-to-GT pairs before any coordinate fitting; it does not reopen those STOPs.",
+  "sample": "64 original train images selected by ascending SHA256('candidate50-support-v1:'+stem), excluding every image in candidate9 and candidate29 image_selection. Exactly64 additional diagnostic images, not unseen detector scenes or an independent generalization set. No val/test use. Save selected identities before first image read/forward.",
+  "preprocessing": "Current pinned IgnoreDataset, augment=False, rect=False, imgsz960, batch1, pad0. No mosaic, crop, flip, phase perturbation or multi-view. Use its actual transformed GT and image tensors. GT grouping by transformed area*(640/960)^2. This is a deterministic unaugmented training proxy, not actual historical augmented assignments.",
+  "model": "Frozen baseline960 best.pt SHA256 eac88f7e348134d3bdaf8b8d3c93845002b634b66a4fa28bd6246abbbeba1a25. Eval-mode float32 CUDA, no AMP, no model updates. Current SDCLLoss with SDCL/phase/coverage disabled and original TAL parameters; preserve installed package source bytes.",
+  "representation": "Native anchor locations in input pixels; decoded ltrb are nonnegative expectations of bins0..15. For each GT B and anchor a, U=area(B)/area(enclosing_rectangle(B,a)) is an upper bound on achievable IoU under nonnegative distances, ignoring the finite upper bin limit. This is exact for the closure with unbounded upper distances. It is NOT actual predicted IoU or AP.",
+  "matching": "Use current TAL on frozen sigmoid scores and decoded boxes, without confidence filtering or NMS. Productive positives are foreground with target_scores.sum>0. Every GT stays in denominator, including unassigned GT. Save full native scores/boxes and actual owner/mass for independent replay.",
+  "metrics": "For all/tiny/small_all report total GT, covered GT, productive positives, total target mass, outside-true-GT pairs, U<0.75 pairs/mass/fraction, affected GT/images, per-GT maximum U over assigned productive points and over ALL three-level grid points. Also report affected GT which have an inside assigned alternative, an unassigned representable alternative, or no representation-feasible grid point. Do not pool only failures.",
+  "policy": {
+    "tiny_low_ceiling_affected_gt_min": 30,
+    "tiny_low_ceiling_affected_images_min": 12,
+    "tiny_low_ceiling_mass_fraction_min": 0.03,
+    "tiny_weighted_unattainable_iou_gap_min": 0.005
+  },
+  "pass": "MECHANISM_SUPPORTS_SEPARATE_BOUNDED_REPARAMETERIZATION_SCREEN. Only allows a new preregistered feasibility comparison against strict-inside assignment, masking unsupported regression and ordinary center-offset/signed-distance controls. Does not authorize long training or claim novelty/effectiveness.",
+  "fail": "STOP_THIS_NONNEGATIVE_SUPPORT_ROUTE_ON_FIXED_PROXY. No changing threshold, image count, size group, checkpoint or augmentation to rescue the result. This proxy cannot exclude an effect under training augmentations or earlier checkpoints.",
+  "budget": "64 image decodes and64 frozen single-view forwards, no warmup required, no gradients, fits, optimizer steps, AP or official evaluator.",
+  "prior_boundary": "FCOS already uses inside-GT nonnegative ltrb regression; GFL already has bounded distributed coordinates; RFLA already discusses tiny-box point/assignment outliers. Center offsets, signed regression, deformable points and geometric feasibility are established concepts. This audit alone is not innovation.",
+  "limits": "Current code hashes are evidence of this probe, not proof that historical training used identical package bytes. A constrained upper bound or substantial target mass alone does not demonstrate harmful gradients, a fix, AP gain, or a differentiated research method."
+}

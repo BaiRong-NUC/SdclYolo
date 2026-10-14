@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-14",
+  "scope": "Targeted primary-source geometry/assignment overlap check, not exhaustive novelty verification.",
+  "papers": [
+    {
+      "title": "FCOS: Fully Convolutional One-Stage Object Detection",
+      "authors": [
+        "Zhi Tian",
+        "Chunhua Shen",
+        "Hao Chen",
+        "Tong He"
+      ],
+      "arxiv_version": "1904.01355v5",
+      "version_date": "2019-08-20",
+      "initial_submission": "2019-04-02",
+      "pdf": "output/literature/papers/1904.01355v5.pdf",
+      "text": "output/literature/text/1904.01355v5.txt",
+      "pages": 13,
+      "reviewed": "Section3.1 on PDF page4: point inside GT, equation1 nonnegative ltrb distances, positive exponential regression output. Read complete relevant page and rendered pages3/4.",
+      "overlap": "Inside-positive geometric feasibility and limitations from point sampling are explicit prior art; a center offset or signed regressor is not automatically innovation.",
+      "metadata_provenance": "Paper Search exact-title arXiv search and version-pinned download; Zotero metadata/attachment readback.",
+      "zotero": {
+        "collection_key": "6HT9SNK7",
+        "item_key": "R3GT2QZQ",
+        "attachment_key": "NRI2CTCA",
+        "readback": "Exact version URL, creators/date/collection and PDF child MIME/filename verified. Incremental semantic update1 added,0errors."
+      },
+      "source": "https://arxiv.org/abs/1904.01355v5",
+      "pdf_sha256": "371091dbe8d3d9e990eecd9a435d350ce24a0602c0ceec327d0a48eddbf95ec4",
+      "text_sha256": "798c4d2c90bb8d98b3020717e731569fbcc4fe6041c7fd18a6230f099d4e5488"
+    },
+    {
+      "title": "Generalized Focal Loss: Learning Qualified and Distributed Bounding Boxes for Dense Object Detection",
+      "arxiv_version": "2006.04388v1",
+      "pdf": "output/literature/papers/arxiv-2006.04388.pdf",
+      "text": "output/literature/text/arxiv-2006.04388.txt",
+      "reviewed": "Section3.2 distributed regression equations4/5: expectation lies in chosen label range, discretized into bins.",
+      "overlap": "General distributed regression and choosing finite support are established. The local implementation selects bins0..15; the paper itself states a general range and must not be misreported as mathematically requiring nonnegative support.",
+      "source": "https://arxiv.org/abs/2006.04388v1",
+      "pdf_sha256": "04a56cf0bd1c144ff940ad12a4134b75090843994bbfc22b84a04c1e5ed68a54",
+      "text_sha256": "c7d7e0d5e6a9af77ae69080ebfa4259e077e0ed7da66345c2b728738bd5d882d"
+    },
+    {
+      "title": "RFLA: Gaussian Receptive Field based Label Assignment for Tiny Object Detection",
+      "authors": [
+        "Chang Xu",
+        "Jinwang Wang",
+        "Wen Yang",
+        "Huai Yu",
+        "Lei Yu",
+        "Gui-Song Xia"
+      ],
+      "arxiv_version": "2208.08738v2",
+      "version_date": "2022-10-17",
+      "pdf": "output/literature/papers/arxiv-2208.08738.pdf",
+      "text": "output/literature/text/arxiv-2208.08738.txt",
+      "reviewed": "Abstract and label-assignment analysis: point/box priors, outlier tiny GT, receptive-field distance and hierarchical assignment.",
+      "overlap": "Tiny assignment outliers and departing from inside-center heuristics are established. Candidate50 measures compatibility with the actual nonnegative-distance output, not a new assignment method or an RFLA reproduction.",
+      "source": "https://arxiv.org/abs/2208.08738v2",
+      "pdf_sha256": "ad3fe3acd4d586b60251c1f7d6e7916570559a80c61adfe9d03478b4d0df5770",
+      "text_sha256": "9d898d2c17700881500a973bdc327ae56b32b1a8a4ace723de861f23d2c359c1"
+    }
+  ],
+  "installed_sources": "Actual installed ultralytics8.4.172 TAL expands tiny dimensions to stride_val16. DFL/BboxLoss clamp regression distances to nonnegative support; exact files archived/hashed in the experiment.",
+  "conclusion": "703tiny GT are affected but their IoU<.75 impossible positive-pair mass is only1.743994%, below preregistered3%. Preserve STOP on this unaugmented checkpoint proxy; no training or innovation promotion.",
+  "historical_limit": "Historical baseline experiment recorded package version, not these package-file hashes. Do not claim exact reproduction of historical augmented training assignments."
+}

@@ -1585,3 +1585,60 @@ tiny的59个匹配目标分布于30图，共67个截断边观测，其中65个�
 论文核验：`docs/literature/crop_censored_sides_prior_audit_20261014.json`。
 Zotero补录：`docs/literature/zotero_catchup_20261014.json`。
 完整结果：`output/analysis/crop-censored-sides-fixed-20261014/`。
+
+## 实验 50：扩大的tiny正样本区域与非负距离回归是否不相容
+
+转向检测器训练机制，保留CPR-TAL和全部后处理STOP。
+实际安装版本的TAL会把窄边扩到stride_val=16；回归头的DFL期望距离
+采用0..15支持，预测框必须包含所属网格点。扩区可以提供正样本，
+但不一定保证该网格点能精确回归原GT。
+
+先登记，再按固定哈希选64张额外训练图，排除实验9/29全部小头样本。
+它们仍是检测器见过的训练图，不作独立场景泛化结论。
+固定960、无增广、真实IgnoreDataset坐标变换、FP32冻结基线。
+64次单视图前向，不做置信度筛选、NMS、拟合、反传或AP评价。
+
+对GT B和点a计算U=area(B)/area(enclosing_rectangle(B,a))。
+这是只考虑距离非负、忽略有限上界时的IoU可达上界，
+不是当前预测IoU、AP或未来收益；真实有限DFL范围只可能更受限。
+保留全部GT及实际TAL正样本质量权重，不只计数失败框。
+
+| tiny机制统计 | 数值 |
+|---|---:|
+| GT总数 / 有有效监督GT | 2728 / 2561 |
+| 有效正样本点数 | 11647 |
+| 点在真实框外的正样本 | 3416 |
+| U<0.75的正样本 / 受影响GT / 图 | 1127 / 703 / 48 |
+| U<0.75正样本占tiny监督质量权重 | 1.743994% |
+| 按监督权重平均的不可达IoU缺口 | 0.017971 |
+| 受影响GT中已有框内正样本备选 | 475 |
+| 有框内网格但未分配框内备选 | 60 |
+| 全部三层网格都没有框内点 | 168 |
+
+四项机制门槛三过一败，低可达性监督权重未达预登记3%。
+结论STOP_THIS_NONNEGATIVE_SUPPORT_ROUTE_ON_FIXED_PROXY。
+703个受影响目标不能替代质量权重门槛，不改阈值、图片数、
+分组、检查点或增广挽救；不授权长训、换参数化或创新声明。
+无增广最终检查点代理不能否定更早训练阶段/增广下的效应。
+
+主实验6.12秒。四项新测试通过，包括非负距离框的独立数值优化，
+验证解析上界；未分配GT保留在分母，并区分已分配与未分配备选。
+独立核验无新增图像解码/检测器前向，复核64张图及标签/元数据/张量、
+检查点和源码存档哈希；从归一化YOLO标签及原尺寸重建变换后GT，
+最大坐标差0.000103像素。使用同一固定TAL实现的CPU重放核对全部
+归属、前景、权重和目标框；以独立标量外延面积公式验证1209600个
+GT/点组合，并用每GT每层四个相邻网格点重算全网格最优上界。
+全部逐图统计和四项门槛复现。
+
+FCOS第3.1节已有框内正样本和非负ltrb；GFL已有一般分布坐标支持；
+RFLA已有tiny点先验异常和分配修复，不能把这些概念本身当创新。
+新下载FCOS1904.01355v5，提取13页文本、渲染核查第3/4页，
+补入Zotero并回读版本/作者/集合及PDF附件；GFL/RFLA复用现有PDF。
+历史训练只记录包版本，未记录此次安装文件哈希，因此本轮不声称
+逐步复现了历史增广训练的分配。
+
+登记与结果：`docs/experiments/candidate50_assignment_reachability_registration_20261014.json`、
+`docs/experiments/candidate50_assignment_reachability_result_20261014.json`。
+独立复核：`scripts/evaluation/verify_assignment_reachability.py`。
+论文核验：`docs/literature/assignment_reachability_prior_audit_20261014.json`。
+完整结果：`output/analysis/assignment-reachability-fixed-20261014/`。

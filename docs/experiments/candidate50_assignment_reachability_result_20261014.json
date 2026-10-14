@@ -1,0 +1,109 @@
+{
+  "experiment": "candidate50_assignment_nonnegative_distance_reachability",
+  "date": "2026-10-14",
+  "output": "D:\\Python\\YOLO\\output\\analysis\\assignment-reachability-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_NONNEGATIVE_SUPPORT_ROUTE_ON_FIXED_PROXY",
+    "checks": {
+      "affected_gt": true,
+      "affected_images": true,
+      "mass_fraction": false,
+      "weighted_gap": true
+    },
+    "scope": "Assignment/representation mechanism only, not harmful-gradient, AP, official evaluation, novelty or training authorization."
+  },
+  "metrics": {
+    "all": {
+      "gt": 3948,
+      "covered_gt": 3780,
+      "productive_positive_pairs": 23489,
+      "target_mass": 14124.123821258545,
+      "outside_pairs": 3419,
+      "low_ceiling_pairs": 1127,
+      "low_ceiling_mass": 96.42481777817011,
+      "unattainable_iou_gap_mass": 99.36138336970932,
+      "low_ceiling_affected_gt": 703,
+      "low_ceiling_affected_images": 48,
+      "affected_with_inside_assigned_alternative": 475,
+      "affected_with_inside_grid_but_no_inside_assigned": 60,
+      "affected_without_any_inside_grid_point": 168,
+      "covered_gt_all_assigned_below075": 135,
+      "gt_all_grid_below075": 93,
+      "low_ceiling_mass_fraction": 0.006826959250600656,
+      "weighted_unattainable_iou_gap": 0.007034870596373434
+    },
+    "tiny": {
+      "gt": 2728,
+      "covered_gt": 2561,
+      "productive_positive_pairs": 11647,
+      "target_mass": 5528.9644985198975,
+      "outside_pairs": 3416,
+      "low_ceiling_pairs": 1127,
+      "low_ceiling_mass": 96.42481777817011,
+      "unattainable_iou_gap_mass": 99.3604657922025,
+      "low_ceiling_affected_gt": 703,
+      "low_ceiling_affected_images": 48,
+      "affected_with_inside_assigned_alternative": 475,
+      "affected_with_inside_grid_but_no_inside_assigned": 60,
+      "affected_without_any_inside_grid_point": 168,
+      "covered_gt_all_assigned_below075": 135,
+      "gt_all_grid_below075": 93,
+      "low_ceiling_mass_fraction": 0.017439941566632054,
+      "weighted_unattainable_iou_gap": 0.0179708995814318
+    },
+    "small_all": {
+      "gt": 3609,
+      "covered_gt": 3441,
+      "productive_positive_pairs": 20101,
+      "target_mass": 11394.692046165466,
+      "outside_pairs": 3419,
+      "low_ceiling_pairs": 1127,
+      "low_ceiling_mass": 96.42481777817011,
+      "unattainable_iou_gap_mass": 99.36138336970932,
+      "low_ceiling_affected_gt": 703,
+      "low_ceiling_affected_images": 48,
+      "affected_with_inside_assigned_alternative": 475,
+      "affected_with_inside_grid_but_no_inside_assigned": 60,
+      "affected_without_any_inside_grid_point": 168,
+      "covered_gt_all_assigned_below075": 135,
+      "gt_all_grid_below075": 93,
+      "low_ceiling_mass_fraction": 0.008462257460535664,
+      "weighted_unattainable_iou_gap": 0.008719970927441286
+    }
+  },
+  "verification": {
+    "image_decodes": 64,
+    "frozen_detector_forwards": 64,
+    "detector_updates": 0,
+    "fitting_steps": 0,
+    "AP_evaluations": 0,
+    "no_validation_or_test_images": true,
+    "source_unchanged": true,
+    "installed_source_unchanged": true,
+    "elapsed_seconds": 6.119498699903488
+  },
+  "artifacts_sha256": {
+    "decision.json": "d68be7257457972ddc56720bcf7defe19ff91775493da2d4daaaf7187f21c995",
+    "frames.json": "2f85a76b19adb4c2584312e6cb6e71652305ddfa3cc9f697b9e080c53990436c",
+    "metrics.json": "a0187aed6652c9aeddfb1e0b4e3869f7c35657cf1a42eaec8ca1829516c3250c",
+    "per_image.json": "13ee8b3b0462e2382cc3749449b462b0d62e5e87d9935625386f9324094f0361",
+    "plan.json": "dc43e6326899956f1dcb6715f8afd29c226d1b3e8cba1fdf86157a0aa2eed828",
+    "source.zip": "12d6aa7b45194a62a8238f06eb4f3308073894e4a1dd0fac62f51d11d9c644d7",
+    "verification.json": "b6315d43fd2a5654377711fa56637e792476eaf9654ca8b92a0a8ed5513b4de8",
+    "independent_verification.json": "617294f089c25836e2e3e2cf3b4f1485fd6ead9ea215016d9b5acfebb35bfc54"
+  },
+  "independent_verification": {
+    "all_sources_package_snapshots_checkpoint_selection_and64_image_metadata_label_frame_hashes_verified": true,
+    "all_GT_transforms_rebuilt_from_labels_and_metadata_without_image_decode": true,
+    "maximum_independent_label_transform_absolute_error_pixels": 0.00010275840759277344,
+    "all64_TAL_owners_foreground_target_mass_and_boxes_replayed_from_saved_native_outputs": true,
+    "nonnegative_output_containment_and_scalar_enclosure_bounds_checked_for_pairs": 1209600,
+    "all_grid_maxima_verified_with_independent12_nearest_center_candidates": true,
+    "all_per_image_group_metrics_and_four_gates_independently_recomputed": true,
+    "verifier_sha256": "ed39bbf41b2c1de528d587a93b68843f36ebf2f2a61847903b1f432b61f54e65",
+    "limits": "No new detector forwards. CPU TAL uses the same pinned implementation and numerical tolerances; historical augmented assignments, harmful gradients, AP and novelty remain untested."
+  },
+  "prior_audit": "docs/literature/assignment_reachability_prior_audit_20261014.json",
+  "prior_audit_sha256": "75a8158b345ff80053d99a0925da5e6b4bfbb4de88f632b1ede54f7dce5dcffe",
+  "tests": "4 passed: geometric bound with inside/outside/boundary cases, independent nonlinear constrained box optimum, uncovered-GT/alternative-support denominators, low-mass STOP. python -m pytest tests/test_assignment_reachability.py -q"
+}
