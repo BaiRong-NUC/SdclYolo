@@ -1,0 +1,187 @@
+{
+  "experiment": "candidate55_scene_background_response_information",
+  "date": "2026-10-15",
+  "output": "D:\\Python\\YOLO\\output\\analysis\\scene-background-fixed-20261015",
+  "metrics": {
+    "all": {
+      "rows": 3172,
+      "tp": 2487,
+      "fp": 685,
+      "duplicate_excluded": 15,
+      "images": 64,
+      "NLL": {
+        "row": 0.36522430368398584,
+        "whole": 0.36696601539968854,
+        "masked": 0.36753166874899285,
+        "shuffled": 0.36968340248136694
+      },
+      "AUROC": {
+        "row": 0.859587519334114,
+        "whole": 0.8585508879751349,
+        "masked": 0.8577073776337686,
+        "shuffled": 0.8560508806377103
+      },
+      "whole_minus_masked_NLL_bootstrap95ci": [
+        -0.0020518816321212488,
+        0.0010624347242455274
+      ]
+    },
+    "tiny": {
+      "rows": 2533,
+      "tp": 1956,
+      "fp": 577,
+      "duplicate_excluded": 10,
+      "images": 64,
+      "NLL": {
+        "row": 0.3937501569473632,
+        "whole": 0.3958679520813757,
+        "masked": 0.39590265227880944,
+        "shuffled": 0.39879912818844804
+      },
+      "AUROC": {
+        "row": 0.8422752903566504,
+        "whole": 0.8417755614861441,
+        "masked": 0.8413289952614361,
+        "shuffled": 0.8390766711677707
+      },
+      "whole_minus_masked_NLL_bootstrap95ci": [
+        -0.0014840201076507435,
+        0.0016831035330400533
+      ]
+    },
+    "small_all": {
+      "rows": 3007,
+      "tp": 2346,
+      "fp": 661,
+      "duplicate_excluded": 15,
+      "images": 64,
+      "NLL": {
+        "row": 0.3739082737791045,
+        "whole": 0.37620791003871934,
+        "masked": 0.37668662747373666,
+        "shuffled": 0.3788114309985902
+      },
+      "AUROC": {
+        "row": 0.854116770038937,
+        "whole": 0.8526935473261856,
+        "masked": 0.8519867724765364,
+        "shuffled": 0.8504313519132576
+      },
+      "whole_minus_masked_NLL_bootstrap95ci": [
+        -0.0018758285929337932,
+        0.001185435242247907
+      ]
+    }
+  },
+  "training": {
+    "row": {
+      "success": true,
+      "solver_success": true,
+      "iterations": 34,
+      "objective": 0.3154178189442679,
+      "gradient_inf": 7.926868530846098e-07,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+    },
+    "whole": {
+      "success": true,
+      "solver_success": true,
+      "iterations": 56,
+      "objective": 0.3111632299404209,
+      "gradient_inf": 9.946937902481634e-07,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+    },
+    "masked": {
+      "success": true,
+      "solver_success": true,
+      "iterations": 91,
+      "objective": 0.31032177215354634,
+      "gradient_inf": 9.4533515379347e-07,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+    },
+    "shuffled": {
+      "success": true,
+      "solver_success": true,
+      "iterations": 90,
+      "objective": 0.30989638756051374,
+      "gradient_inf": 9.168319357683247e-07,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+    }
+  },
+  "decision": {
+    "decision": "STOP_THIS_SCENE_BACKGROUND_QUANTILE_LINEAR_RECIPE",
+    "checks": {
+      "numerical": true,
+      "tp": true,
+      "fp": true,
+      "images": true,
+      "vs_row": false,
+      "vs_whole": false,
+      "vs_shuffle": true,
+      "AUROC": false,
+      "interval": false,
+      "all_NLL": false
+    },
+    "scope": "Repeated-train-scene information screen only, no deployed scores/AP or innovation proof."
+  },
+  "verification": {
+    "fit_images": 128,
+    "holdout_images": 64,
+    "JPEG_decodes": 192,
+    "frozen_forwards_excluding_warmup": 960,
+    "all960_raw_kept_replays_exact": true,
+    "detector_updates": 0,
+    "linear_models_fit": 4,
+    "AP_evaluations": 0,
+    "reference_has_no_GT_ignore_filter": true,
+    "no_GT_in_scene_inputs": true,
+    "source_unchanged": true,
+    "installed_sources_unchanged": true,
+    "elapsed_seconds": 61.26684680022299
+  },
+  "artifacts_sha256": {
+    "coefficients.npz": "4ee0210a1949ea0306ef5f1fd3c1ba681761136f5b6dc40e65bf6e1dbcd07fb4",
+    "decision.json": "b66432f3bf6c443828d566fe87c7e41424b6225f73a979f23903b9377e166b8e",
+    "frames.json": "f2e8a6ba92f0a062802358bf51a6354593c016354f33e4a46253119848d74d56",
+    "metrics.json": "9c2dac687eae9e5e8256a1241c7ebb10dfbc1e0d55313ae55cd8a872981bfc1f",
+    "normalization.json": "3bae008393080e4134821d7a554dca302c8580322badd96df60a0cc1f8d5674f",
+    "per_image.json": "e73adc8cf57eb1743b6f0dc4f1e6f2b79dba6dbb6fa48c77e17bca158cb9c77c",
+    "plan.json": "bc5a29c8ea6439ce4265c91a6e588ad66f349e53f13706b7dbfaa13b1df30925",
+    "source.zip": "b2f5718de30616f1bea58d6caf913ae778818d855fdb8ac15557ff9a35fd6c54",
+    "training.json": "78a90d12a3f0d0a26d451593f8ca4cc74d57934e1b3c82f32e3e6fe2c836cc1b",
+    "verification.json": "04f2a347c4a30a0af34ff1057f3b5a1d07a236e44eb246c1ecb8c354eb1188da",
+    "independent_verification.json": "658e72fa01e1f0c8b22e612143286343d0b604813715ce35ba20a5d633d1962b"
+  },
+  "independent_verification": {
+    "all192_sources_frames_inputs_image_metadata_and_selection_hashes_verified": true,
+    "all_original_calibration_predictions_and_features_rebuilt_with_shared_frozen_readout": true,
+    "independently_rebuilt_scalar_statistics": 230400,
+    "fallback_level_pools": 0,
+    "global192_prediction_masks_independently_rebuilt": true,
+    "local768_saved_masks_consistent_with_conservative_FP32_mapping_intervals": true,
+    "local_mask_rounding_diagnostics": {
+      "ambiguous_point_memberships": 16781,
+      "inverse_mapping_point_disagreements": 1965
+    },
+    "all_statistics_recomputed_from_saved_logits_and_verified_masks": true,
+    "all_normalization_inputs_shuffles_fit_labels_eval_matching_NLL_AUROC_bootstrap_and_ten_gates_rebuilt": true,
+    "four_convex_fit_stationarity_gradient_inf": {
+      "row": 7.926868530846098e-07,
+      "whole": 9.946937902481634e-07,
+      "masked": 9.4533515379347e-07,
+      "shuffled": 9.168319357683247e-07
+    },
+    "extra_detector_forwards": 0,
+    "extra_image_decodes": 0,
+    "verifier_sha256": "26f093216e4b6466c589500cf4d697563b8d795001745c53830fa669b7ad5c15",
+    "verifier_repairs": "First attempted exact inverse mapping/float64 box arithmetic; corrected originalFP32 multiplication and audited local coordinate intervals without changing primary sources or numerical tolerances.",
+    "limits": "Local masks at ambiguous FP32 mapping boundaries are not uniquely independently reconstructed; stored memberships satisfy conservative coordinate bounds and feed statistic replay. Saved detector logits hashed, not re-extracted. Calibration uses shared frozen implementation. Train scenes repeatedly viewed; no AP, generalization or novelty proof."
+  },
+  "prior_audit": "docs/literature/scene_background_prior_audit_20261015.json",
+  "prior_audit_sha256": "c765cf31d0ab9c8710bd7eb5e78de85e6fdf93ecf911bbe50ebd0ac4ac1c9cf3",
+  "tests": "4 passed: python -m pytest tests/test_scene_background.py -q. Full cached-output audit passed with bounded local FP32 mask consistency, not unique independent reconstruction.",
+  "preflight_correction": {
+    "archive": "output/analysis/scene-background-fixed-20261015-preflight-source-attempt/source.zip",
+    "sha256": "6b51ebe51ac30dadf36da0ee329148f5f3e169bb774e3b82fa73ef943772f969",
+    "reason": "Initial larger candidate12 selection failed the128/64assertion before model load, JPEG decoding or outcomes. Corrected to already-frozen candidate18 subset; no recipe, sample count or gates changed."
+  }
+}

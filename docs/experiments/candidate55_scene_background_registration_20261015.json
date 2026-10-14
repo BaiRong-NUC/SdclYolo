@@ -1,0 +1,36 @@
+{
+  "experiment": "candidate55_scene_background_response_information",
+  "date": "2026-10-15",
+  "question": "Do class-conditional native score distributions outside high-score predicted regions distinguish tiny nonduplicate false positives beyond row features, whole-scene response statistics and a scene-shuffled control?",
+  "difference": "New scene-level input, not candidate48 nullspace, candidate45 neighbor covariance or a modification of a stopped score/coordinate head. Use original ordinary calibration detections, not regret/uniform coordinate actions.",
+  "sample": "Exactly candidate18 fixed128fit/64headholdout train-image subset inherited from the larger candidate12 cache; five-view windows/raw kept detections come from candidate12. These scenes have been repeatedly inspected and detector/calibrator trained on train scenes. No independent generalization claim. A pass only permits a new-scene bounded deployment trial.",
+  "reference": "Recompute frozen ordinary calibration from original five-view raw detections with ignores=[]; verify complete strong-control provenance. Keep every reference row before GT-based diagnostic filtering. No coordinate, class, count, NMS or deployed score changes in this information screen.",
+  "native": "Frozen actual FP16 square960 five-view predictor, at most960forwards plus its existing one warmup,192JPEG decodes. Each view's kept boxes must match original cached raw detections bit-for-bit or stop without changing the control. Save all18900x10 native pre-sigmoid logits per view, including low scores.",
+  "scene_inputs": "For each native level8/16/32, remove padding locations using original view dimensions and actual rounded LetterBox content dimensions. Mask anchor centers inside ANY raw kept same-view prediction with confidence>=0.25, class-agnostic, no GT. A background-candidate pool is merely outside predicted regions, not verified background. If fewer32points remain, use the whole content pool for quantiles and record the fallback. Record retained-point fraction in common features.",
+  "statistics": "For each view/level/class, use raw-logit median,90th and99th linear-interpolated quantiles and fraction whose sigmoid probability>=0.05. Whole and masked each produce5x3x10x4. Select predicted class of each reference row; flatten in view,level,stat order to60features. No native row association, confidence-based query selection or GT enters these features.",
+  "arms": {
+    "row": "Original raw calibration candidate features plus predicted-class10onehot. Zero-fill all135scene columns.",
+    "whole": "Row plus60whole-content statistics and15retained fractions; zero-fill60masked columns.",
+    "masked": "Whole arm plus60masked-pool statistics.",
+    "shuffled": "Whole arm plus60masked statistics from a different image in the same split, same class/view/level. Fixed no-fixed-point cyclic permutation of SHA256('candidate55-scene-shuffle:'+stem) order. This negative control is batch-transductive, not a proposed single-image deployable arm."
+  },
+  "normalization": "Common row mean/std on fit eligible rows only; whole/masked scene features use common per-column mean/std from both fit-arm pools selected by predicted class. Fraction columns use fit-row mean/std. Floors1e-6. Shuffled masked statistics use masked normalization. No holdout-based normalization.",
+  "labels": "Greedy class-aware IoU0.5 matching against allGT using original ordinary-calibration scores. Apply historical max-individual-ignore-IoF>0.5 only to supervision/diagnostic population after prediction, never to reference or scene inputs. Fit all score>=0.05 nonignored rows. Evaluation uses original score>=0.25 nonignored rows and omits only unmatched same-classIoU>=0.5 duplicate-like rows, equally for all arms. Report duplicate exclusions. This is not official VisDrone preprocessing.",
+  "fit": "Four CPUfloat64 convex logistic residual fits: logit(originalcalibratedscore)+Xtheta+intercept; ordinary unweighted BCE plus0.005*sum(theta_squared), intercept unpenalized; zero initialization; L-BFGS-B maxiter200 ftol1e-12 gtol1e-6; solver success and gradient infinitynorm<=1e-5 required. Same nominal dimension; zero columns mean different effective capacity. No detector updates, epochs/checkpoints/feature/regularization tuning.",
+  "metrics": "NLL/AUROC on common fixed original-score queries for all/tiny/small_all by predicted box area*(640/max_original_dimension)^2. All64-image paired multinomial bootstrap400draws default_rng0 for whole-minus-masked pooled NLL. Group/duplicate exclusions only diagnostic, never inference.",
+  "policy": {
+    "tiny_tp_min": 100,
+    "tiny_nonduplicate_fp_min": 100,
+    "tiny_images_min": 20,
+    "tiny_NLL_gain_vs_row_min": 0.002,
+    "tiny_NLL_gain_vs_whole_min": 0.001,
+    "tiny_NLL_gain_vs_shuffle_min": 0.001,
+    "tiny_AUROC_gain_vs_whole_min": 0.003,
+    "tiny_NLL_gain_vs_whole_bootstrap_lower_min_exclusive": 0.0,
+    "all_NLL_gain_vs_whole_min": 0.0
+  },
+  "pass": "SCENE_BACKGROUND_INFORMATION_SUPPORTS_SEPARATE_FRESH_SCENE_DEPLOYMENT_PILOT. Not AP, full training or novelty authorization. Require fixed deployable score/AP/FPPI gains beyond frozen calibration and whole-scene controls on fresh scenes and closer prior comparison.",
+  "fail": "STOP_THIS_SCENE_BACKGROUND_QUANTILE_LINEAR_RECIPE. No changes to mask confidence, quantiles, pool size/fallback, sample, dimensions, logistic fit, query score or primary group to rescue; do not switch to reporting whole/shuffled arm as the successful candidate.",
+  "prior_boundary": "Multivariate Confidence Calibration for Object Detection2004.13546v1 already conditions on location/scale. On Calibration of Object Detectors2405.20459v1 establishes strong cheap post-hoc baselines and evaluation pitfalls. Scene context and background adaptation are established general concepts. This audit cannot establish novelty.",
+  "budget": "192JPEG decodes,960frozenFP16forwards plus existing predictor warmup,4small convex fits,zero detector updates/optimizer steps/AP evaluations. Cache full logits/statistics/inputs/scores and frozen sources for independent audit."
+}

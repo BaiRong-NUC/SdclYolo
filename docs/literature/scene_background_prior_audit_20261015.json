@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-15",
+  "candidate": "candidate55 scene background response information",
+  "scope": "Two targeted primary sources with exact-version PDFs and rendered pages; not an exhaustive novelty search.",
+  "papers": [
+    {
+      "title": "Multivariate Confidence Calibration for Object Detection",
+      "authors": ["Fabian Kuppers", "Jan Kronenberger", "Amirhossein Shantia", "Anselm Haselhoff"],
+      "arxiv_version": "2004.13546v1",
+      "version_date": "2020-04-28",
+      "source": "https://arxiv.org/abs/2004.13546v1",
+      "pdf": "output/literature/papers/2004.13546v1.pdf",
+      "pdf_sha256": "c845f74d7a0aa7605832a64b9e4b74f02b2c4e85c119bdae7ca72209089f9759",
+      "text": "output/literature/text/2004.13546v1.txt",
+      "text_sha256": "eaf8be3b036472ffb70087197d4b003bb26cb266752034fe5c86f06c438cd351",
+      "pages": 9,
+      "review": "Abstract, introduction and rendered PDF page4 read. Independent and dependent logistic/beta calibration condition on confidence and box geometry; dependence modeling is established.",
+      "overlap_and_limit": "Additional geometric variables and multivariate calibration are prior work. This screen uses predicted-region-excluded scene response summaries, not a reproduction or proof of a new method.",
+      "zotero": {
+        "collection": "6HT9SNK7",
+        "parent": "RQIKGRP9",
+        "attachment": "4HFERNLI",
+        "readback": "Four authors, exact-version URL, date and collection confirmed; attachment filename and application/pdf imported_file confirmed."
+      }
+    },
+    {
+      "title": "On Calibration of Object Detectors: Pitfalls, Evaluation and Baselines",
+      "authors": ["Selim Kuzucu", "Kemal Oksuz", "Jonathan Sadeghi", "Puneet K. Dokania"],
+      "arxiv_version": "2405.20459v1",
+      "version_date": "2024-05-30",
+      "source": "https://arxiv.org/abs/2405.20459v1",
+      "pdf": "output/literature/papers/2405.20459v1.pdf",
+      "pdf_sha256": "0fc33fd164511ad6ef2f2459d2ffc772f32823c570d7fe6425eb457ebf293edf",
+      "text": "output/literature/text/2405.20459v1.txt",
+      "text_sha256": "57ba20103b5888d08855a8dfcaf49a6700ac9bba36b89f5a2707978cc6a7354c",
+      "pages": 31,
+      "review": "Abstract, introduction and rendered PDF page5 read. The paper separates accuracy and calibration, shows binary TP/FP calibration can miss localization quality, and emphasizes properly designed calibration data and cheap post-hoc baselines.",
+      "overlap_and_limit": "Cheap post-hoc fitting is an established strong baseline. Candidate55 NLL/AUROC is a fixed-query binary diagnostic, not detection AP, localization-aware calibration or proof of deployment utility.",
+      "zotero": {
+        "collection": "6HT9SNK7",
+        "parent": "K3VYDTZE",
+        "attachment": "S69F7FDK",
+        "readback": "Four authors, exact-version URL, date and collection confirmed; attachment filename and application/pdf imported_file confirmed."
+      }
+    }
+  ],
+  "collection_work": "Exact-version PDFs downloaded through Paper Search, parsed and locally extracted. Both PDFs attached to existing Zotero parents and children read back. Incremental semantic update:2 added,0 errors.",
+  "search_boundary": "An initial broad detector-calibration query returned irrelevant physics papers. Corrected cs.CV query located these papers. Other returned metadata was not treated as read or downloaded evidence. No absence-of-prior-work claim.",
+  "candidate_result": "Masked background summaries fail row and whole-scene controls, tiny AUROC, paired interval and all-size protection. STOP; no detector training or AP trial authorized."
+}
