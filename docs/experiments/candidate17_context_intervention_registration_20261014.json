@@ -1,0 +1,21 @@
+{
+  "experiment": "candidate17_frozen_context_intervention",
+  "date": "2026-10-14",
+  "hypothesis": "Removing distant background texture at identical crop scale and fixed classifier anchor can correct class evidence that is not explained by zoom alone.",
+  "selection": "First64 images of candidate12's fixed head-held-out list. Per image, at most8 predicted small_all boxes withbaseline score>=0.25 andoriginal width/height<=96. Four lowest aggregate native soft-score normalized top2 gaps, then four highest baseline confidences among remaining boxes. No labels used.",
+  "crop": "192x192 original-pixel square centered on each predicted box, outside-image padding114. Identical field of view and960 letterbox in all arms. Keep the centered2x predicted-box rectangle pixel-identical.",
+  "arms": ["uniform", "raw_crop", "far_context_blur", "far_context_fill"],
+  "interventions": "Primary blur: Gaussian31x31 outside kept2x rectangle. Secondary fill:114 outside same rectangle. Original and treatment use the same native classifier anchor chosen on originalcrop bymax(confidence*IoU), IoU>=0.5 to predicted box. Missing anchor means allkeep.",
+  "inference": "Read native sigmoid class probabilities at fixed anchor; replace original label only when best probability minus original-class probability>0.10 andbestprobability>=0.05. Same condition in every crop arm. Original score/coordinates/order/count remain fixed. No further NMS.",
+  "primary": "Full64-image small_all recall atconfidence0.25, compared to uniform andmatched raw_crop; allFPPI. Also report owned wrong/correct selected rows, class fixes/losses and trueclass logit margin.",
+  "policy": {
+    "owned_original_wrong_count_min": 10,
+    "blur_small_all_recall_vs_uniform_min_pp": 0.10,
+    "blur_small_all_recall_vs_raw_crop_min_exclusive_pp": 0.0,
+    "blur_all_fppi_vs_uniform_max_increase": 0.10
+  },
+  "pass_action": "Only permits a separately registered train-scene pilot and counterfactual-artifact controls. No large training or official evaluation yet.",
+  "budget": "At most512 selected crops x3variants=1536 frozen960 patch forwards, batch8, plus warmup/sham identity check. No fitting, threshold selection or test-dev.",
+  "prior_art": "Contextual debiasing, counterfactual detection, background masking and object-centric crops exist. This screens the specific failure signal for safe class interventions on current frozen final boxes, not a claim of original mechanism.",
+  "limits": "Previously viewed train scenes, shared historically trained detector. Predicted preserved rectangle includes near context and may be inaccurate. Blur/fill also introduce distribution/boundary changes. Fixed anchor isolates class evidence but ignores regression changes. Diagnostic ignore handling and confidence recall are not official AP. Zoom control is mandatory; fill cannot rescue a failed primary blur."
+}

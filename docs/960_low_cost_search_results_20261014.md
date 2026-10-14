@@ -321,3 +321,40 @@ local 对 uniform 和 CE 均无召回收益；对 blind +0.107958 pp，
 `docs/experiments/candidate16_marginal_class_intervention_registration_20261014.json`、
 `docs/experiments/candidate16_marginal_class_intervention_result_20261014.json`。
 完整结果：`output/analysis/marginal-class-intervention-fixed-20261014/`。
+
+## 实验 17：相同倍率、固定分类位置的上下文干预
+
+固定实验 12 留出列表的前 64 张图片。每图选择四个原生软证据最不确定、
+再选四个最高置信度的剩余预测 small_all 框，均 score>=0.25、原像素宽高<=96。
+选择只使用预测，512 个框。192x192 原像素裁剪统一送入960，
+保持预测框两倍大小的矩形内像素逐元素不变；仅模糊或填充其外背景。
+原始裁剪确定一个 IoU>=0.5 的 native anchor，各干预读取相同 anchor，
+不按标注或干预后的坐标重新选位置。所有分支按相同类别概率差>0.10 替换，
+最终框坐标/分数/数量/顺序不变。29 个裁剪没有合格原生位置，统一保留原类。
+
+| 分支，confidence0.25 | small_all 召回 (%) | 全尺寸 FPPI | 类别变更 |
+|---|---:|---:|---:|
+| uniform | 75.693996 | 10.906250 | 0 |
+| raw_crop | 72.401549 | 12.500000 | 152 |
+| far_context_blur，主分支 | 73.273079 | 12.078125 | 107 |
+| far_context_fill，次分支 | 73.402195 | 12.015625 | 96 |
+
+原类几何归属正确/错误为 355/43 个。原始裁剪修复7、损伤93；
+模糊修复3、损伤66；填充修复3、损伤65。模糊相对裁剪回收
+small_all 召回 0.871530 pp，但对强基线下降 2.420917 pp，
+全尺寸 FPPI 增加1.171875。固定四项两项通过，
+判断 STOP_THIS_CONTEXT_INTERVENTION，不转为训练或调阈值。
+次分支不能挽救主分支。目标类 margin 也未显示错误样本总体改善：
+原错误框平均 raw/blur logit margin 为 -2.364304/-2.557757。
+
+1,536 个 patch 前向，不含暖机和同输入 batch 位置 sham 检查，
+总计24.698439秒，无训练。保留区域像素与 sham 原始 logits 精确相等。
+三个裁剪边界/固定 anchor/无标注采样测试通过。
+矩形保留近上下文、合成边界和 crop 分布偏移是限制；不将结果扩大为
+真实背景毫无影响或整个小目标方向无价值。
+
+上下文去偏、反事实干预、Mask Pooling 已有直接先例，详见本轮论文目录。
+本实验没有建立原创或可部署收益。
+登记与数值记录：`docs/experiments/candidate17_context_intervention_registration_20261014.json`、
+`docs/experiments/candidate17_context_intervention_result_20261014.json`。
+完整结果：`output/analysis/context-intervention-fixed-20261014/`。
