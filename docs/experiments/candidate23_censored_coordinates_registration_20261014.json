@@ -1,0 +1,31 @@
+{
+  "experiment": "candidate23_censored_coordinate_exchange",
+  "date": "2026-10-14",
+  "question": "Can suppressed native coordinates improve localization of existing detections, without promoting candidate scores or adding instances?",
+  "motivation": "Candidate21's IoU0.75 inventory gap is larger than its IoU0.5 gap. Candidate22's contrast ranking beats native/ordinary agreement at equal addition count, but direct additions fail precision. This is a new coordinate action test and does not overturn candidate22 STOP.",
+  "budget": "Same fixed64 head-held-out train images and cached native pools. Zero detector forwards, zero fitting, zero official evaluator, no sweep.",
+  "pool": "Dense score>=0.05, exact(view,row) absent from uncapped NMS, with same-view higher-score NMS retained witness at IoU>0.7.",
+  "anchor": "Assign each suppressed candidate to its highest-IoU same-class uniform baseline row at score>=0.25 and IoU>=0.7, ties by original row order. One candidate can belong to only one anchor.",
+  "score": "Use unchanged candidate22 cross-view agreement and contrast calculations, comparing peer IoU to the anchor baseline coordinates. Require candidate-peer IoU>=0.5 and contrast difference>=0.10. Contrast score=candidate_native_score*max(peer_native_score*difference).",
+  "action": "Globally rank positive contrast proposals, accept at most4 perimage, at most one coordinate replacement per anchor. Preserve every baseline score, class, count and row order. No promotion and no extra prediction.",
+  "controls": {
+    "uniform": "Frozen candidate12 exact baseline",
+    "regret": "Frozen historical regret head applied to candidate18 original cached action menu. Candidate18 uniform reconstruction must exactly equal candidate12.",
+    "native_coordinates": "On exactly the same anchor rows selected by contrast, choose highest-native-score suppressed candidate from the same pool",
+    "ordinary_agreement_coordinates": "On exactly the same anchor rows, choose highest ordinary cross-view agreement suppressed candidate",
+    "kept_agreement_coordinates": "On exactly the same anchor rows, use highest ordinary cross-view agreement coordinate from the uncapped retained pool at same-class IoU>=0.7; keep baseline when unavailable"
+  },
+  "primary": "Greedy one-to-one detection matching at score0.25 over IoU0.50:0.05:0.95, tiny/small_all ten-threshold average recall. This is not AP/AR. Also score IoU0.5 recall and FPPI.",
+  "policy": {
+    "tiny_ten_threshold_vs_uniform_min_pp": 0.10,
+    "small_all_ten_threshold_vs_uniform_min_pp": 0.10,
+    "small_all_ten_threshold_vs_regret_min_exclusive_pp": 0.0,
+    "small_all_ten_threshold_vs_native_min_exclusive_pp": 0.0,
+    "small_all_ten_threshold_vs_agreement_min_exclusive_pp": 0.0,
+    "small_all_ten_threshold_vs_kept_min_exclusive_pp": 0.0,
+    "all_fppi50_vs_uniform_max_increase": 0.10
+  },
+  "pass_action": "Only permits a separately registered repeated-scene learning/official feasibility screen. No detector training, novelty or efficacy claim yet.",
+  "fail_action": "Stop this fixed native-coordinate contrast exchange. No changed candidate thresholds, IoU neighborhood, contrast gap, action budget, metric or additional seed to rescue it.",
+  "limits": "Previously trained and repeatedly viewed scenes, fixed64 tiny sample, diagnostic cached ignore filtering inherited from uniform. Regret on the uniform-retained diagnostic row set is a matched row comparison, not its independent official AP output. Coordinate menus, ranking and preNMS fusion are known methods; specific suppression evidence needs stronger ablations before originality claims."
+}

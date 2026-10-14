@@ -515,7 +515,7 @@ Soft-NMS、AdaptiveNMS和CLOCs已有相关先例，不能将“使用NMS前框�
 
 ## 实验 22：对比被压制框和压制它的框，能否安全补回实例
 
-只复用实验21的64张缓存，零前向、零训练，4.70秒。
+只复用实验21的64张缓存，零前向、零训练，4.68秒。
 规则不读对象标注：寻找同视图NMS压制见证，再检查其他视图是否更支持
 被压制框的位置。差值固定0.10，最多每图4框，统一补框分数0.25。
 所有匹配排序对照请求完全相同的每图补框数量。
@@ -549,3 +549,33 @@ tiny召回+1.313814pp，十IoU阈值small_all平均召回+0.603615pp均为诊断
 登记与数值记录：`docs/experiments/candidate22_censored_retrieval_registration_20261014.json`、
 `docs/experiments/candidate22_censored_retrieval_result_20261014.json`。
 完整结果：`output/analysis/censored-retrieval-fixed-20261014/`。
+
+## 实验 23：NMS前证据用于替换已有框坐标
+
+独立登记新的定位动作，保留实验22直接补框STOP。
+复用相同64张缓存，零前向、零训练，耗时6.41秒。
+压制见证和跨视图对比要求均固定；候选归给唯一的已有同类原框，
+每图最多4个原框换坐标。所有分支分数、类别、数量、顺序完全相同。
+普通分数、普通一致性和NMS保留池对照作用在对比分支选中的同一组原框。
+历史regret用旧动作缓存和冻结epoch20头重放，uniform逐数组复现。
+
+| 分支 | small_all十阈值平均召回(%) | 对uniform(pp) | FPPI@0.5 |
+|---|---:|---:|---:|
+| uniform | 49.548096 | 0 | 10.906250 |
+| 历史regret | 49.899935 | +0.351840 | 10.812500 |
+| 压制对比坐标 | 49.280181 | -0.267915 | 10.890625 |
+| 同池原始分数坐标 | 49.548096 | 0 | 10.921875 |
+| 同池普通一致性坐标 | 49.502905 | -0.045190 | 10.906250 |
+| 保留池普通一致性坐标 | 49.544868 | -0.003228 | 10.890625 |
+
+对比分支改235个框，IoU0.5净增1个TP，但高IoU平均表现下降；
+tiny十阈值平均召回-0.255255pp，small_all对regret-0.619755pp。
+七项门槛仅误检预算通过，判断STOP_THIS_CENSORED_COORDINATE_EXCHANGE。
+不将IoU0.5单点微增当成定位成功，也不改预算、对比差值或候选邻域重试。
+两个唯一归属和坐标替换身份保持测试通过。
+
+本轮仍是训练图上的头留出诊断，缓存继承uniform的ignore过滤；
+不能声称独立泛化或官方AP。NMS前容量存在不代表可预测地选对坐标。
+登记与数值记录：`docs/experiments/candidate23_censored_coordinates_registration_20261014.json`、
+`docs/experiments/candidate23_censored_coordinates_result_20261014.json`。
+完整结果：`output/analysis/censored-coordinates-fixed-20261014/`。
