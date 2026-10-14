@@ -1,0 +1,136 @@
+{
+  "experiment": "candidate52_crop_teacher_consensus_supervision",
+  "date": "2026-10-14",
+  "output": "D:\\Python\\YOLO\\output\\analysis\\crop-teacher-fixed-20261014",
+  "metrics": {
+    "all": {
+      "rows": 985,
+      "images": 59,
+      "NLL": {
+        "student": 0.8089016664822246,
+        "teacher1": 1.1520628498880887,
+        "confidence": 0.8898352407951233,
+        "consensus": 1.1178335846624348
+      },
+      "top1_percent": {
+        "student": 77.56345177664974,
+        "teacher1": 73.4010152284264,
+        "confidence": 81.11675126903553,
+        "consensus": 76.24365482233503
+      },
+      "teacher1_recovered": 85,
+      "teacher1_lost": 126,
+      "action_rows": {
+        "student": 0,
+        "teacher1": 985,
+        "confidence": 590,
+        "consensus": 886
+      }
+    },
+    "tiny": {
+      "rows": 790,
+      "images": 49,
+      "NLL": {
+        "student": 0.888526678374241,
+        "teacher1": 0.8634441798828951,
+        "confidence": 0.9015465327840876,
+        "consensus": 0.8552121116479687
+      },
+      "top1_percent": {
+        "student": 74.17721518987342,
+        "teacher1": 75.82278481012658,
+        "confidence": 79.24050632911393,
+        "consensus": 78.22784810126582
+      },
+      "teacher1_recovered": 83,
+      "teacher1_lost": 70,
+      "action_rows": {
+        "student": 0,
+        "teacher1": 790,
+        "confidence": 524,
+        "consensus": 706
+      },
+      "NLL_gain_vs_confidence_image_bootstrap95ci": [
+        -0.026106399145140735,
+        0.12199033558126438
+      ]
+    },
+    "small_all": {
+      "rows": 958,
+      "images": 57,
+      "NLL": {
+        "student": 0.7513451675398987,
+        "teacher1": 0.9863655043761994,
+        "confidence": 0.782969560507244,
+        "consensus": 0.9635369709114132
+      },
+      "top1_percent": {
+        "student": 78.18371607515658,
+        "teacher1": 75.36534446764092,
+        "confidence": 82.25469728601253,
+        "consensus": 78.07933194154488
+      },
+      "teacher1_recovered": 85,
+      "teacher1_lost": 112,
+      "action_rows": {
+        "student": 0,
+        "teacher1": 958,
+        "confidence": 577,
+        "consensus": 862
+      }
+    }
+  },
+  "decision": {
+    "decision": "STOP_THIS_TWO_FULL_CROP_CONSENSUS_TEACHER_RECIPE",
+    "checks": {
+      "rows": true,
+      "images": true,
+      "recovered": true,
+      "lost": true,
+      "NLL_vs_student": true,
+      "NLL_vs_confidence": true,
+      "top1": true,
+      "interval": false,
+      "all_NLL": false
+    },
+    "scope": "GT-anchored conditional classification-supervision proxy; no learned transfer, AP, detection performance or novelty evidence."
+  },
+  "verification": {
+    "image_decodes": 64,
+    "frozen_model_forwards": 320,
+    "parameter_updates": 0,
+    "gradients": 0,
+    "AP_evaluations": 0,
+    "all_gt": 3948,
+    "primary_gt": 985,
+    "parameter_and_buffer_digest_before": "f74491da34578392512c2cf569698edc7731380d529de850a8171a9784227029",
+    "parameter_and_buffer_digest_after": "f74491da34578392512c2cf569698edc7731380d529de850a8171a9784227029",
+    "source_unchanged": true,
+    "elapsed_seconds": 11.843476900132373
+  },
+  "artifacts_sha256": {
+    "decision.json": "f9d0e465511a718b25b40a62d2053120e8409f20149be3b4bad939db04d25df7",
+    "frames.json": "0fa2e86170ec29bb044a9a5d0812d61a5586bda6d42b1c9d9a69a9123ed3c7f9",
+    "metrics.json": "682955aa430cff64030fd54cc4198d6e9a61569aa2c6e0a8f22aab34b50e0efe",
+    "per_image.json": "2a9d812aeb520f07abcfa324d49664b9fd42c8835a827fdbc490c5e6935c3586",
+    "plan.json": "d046c0a231c20fe3308ec4253988274e7e0ad8379e225a077a5365965b798003",
+    "source.zip": "311baf49b7676f361a626419a2140a8e5cf811b78f0533ad32ae1395aa2b7bdd",
+    "verification.json": "f9d9f95f956efc0107a9c096365036c52ebaf56ec9a9c3e96b290eb276970062",
+    "independent_verification.json": "7505d9962cb887b1e2376985c027b3566349495092fd53afde8ce46ae93e283e"
+  },
+  "independent_verification": {
+    "all_archived_and_current_sources_checkpoint_prior_selection_image_metadata_and64_frames_hashed": true,
+    "full_metadata_GT_and_five_windows_rebuilt_without_detector_forward": true,
+    "checked_native_sample_locations": 19740,
+    "all_full_containment_margins_teacher_order_and_actions_independently_rebuilt": true,
+    "all_classification_NLL_top1_recoveries_losses_and_action_counts_recomputed_with_scalar_math": true,
+    "all400_image_bootstrap_samples_and_nine_gates_recomputed": true,
+    "extra_image_decodes": 0,
+    "extra_detector_forwards": 0,
+    "verifier_sha256": "9403daedf18ddfd3a9fa117aae7034d34b0866dd3ac341be5d231566f60e927b",
+    "limits": "Complete saved P3 tensors are hashed and sampled independently but not re-extracted. Conditional labeled-object center classification is not whole-detector distillation, AP, background handling or novelty proof."
+  },
+  "prior_audit": "docs/literature/crop_teacher_prior_audit_20261014.json",
+  "prior_audit_sha256": "14d8e8a38a46cc71a1152d41d5cdf3835d606370d5bb29d306747d8e34c301c7",
+  "tests": "16 passed: four candidate52 mapping/containment/rules/common-sample tests plus twelve candidate49--51 tests. Command: python -m pytest tests/test_crop_teacher.py tests/test_scale_gradient_conflict.py tests/test_assignment_reachability.py tests/test_crop_censored_sides.py -q"
+}

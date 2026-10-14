@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-14",
+  "scope": "Targeted multi-resolution distillation and teacher-target-conflict audit, not exhaustive novelty verification.",
+  "papers": [
+    {
+      "title": "Multi-Scale Aligned Distillation for Low-Resolution Detection",
+      "authors": [
+        "Lu Qi",
+        "Jason Kuen",
+        "Jiuxiang Gu",
+        "Zhe Lin",
+        "Yi Wang",
+        "Yukang Chen",
+        "Yanwei Li",
+        "Jiaya Jia"
+      ],
+      "arxiv_version": "2109.06875v1",
+      "version_date": "2021-09-14",
+      "source": "https://arxiv.org/abs/2109.06875v1",
+      "pdf": "output/literature/papers/2109.06875v1.pdf",
+      "pdf_sha256": "b6771b1b9093a3586e553ad69830c68a65bf0096f90714407c806d282c619d5b",
+      "pages": 11,
+      "text": "output/literature/text/2109.06875v1.txt",
+      "text_sha256": "45e8fb7a936307e666a7997f9ee6620dd06abb1fc5778643dc82e4c703e83acb",
+      "metadata_provenance": "Paper Search exact title/version returned; local extracted first-page/version header agrees; version-pinned arXiv download.",
+      "reviewed": "Sections3.1/3.2 and Figure2, spatial FPN-level shift and crossing-resolution teacher/student knowledge transfer. Complete rendered method page3 inspected.",
+      "overlap": "High/multi-resolution knowledge transfer to a lower-resolution student, scale-aligned features and a fused teacher are established. Candidate52 does not reproduce these trained networks or aligned feature losses.",
+      "zotero": {
+        "collection_key": "6HT9SNK7",
+        "item_key": "Q5P6YRER",
+        "attachment_key": "UGRL4LTR",
+        "children_readback": "application/pdf; imported_file; exact filename verified in batched readback"
+      }
+    },
+    {
+      "title": "CSCWD: Cross-Scale Channel-wise Knowledge Distillation for Lightweight Tiny Object Detection on Edge Devices",
+      "authors": [
+        "Amir Zamani",
+        "Zeinab Ghasemi-Naraghi"
+      ],
+      "arxiv_version": "2609.30395v1",
+      "version_date": "2026-09-24",
+      "source": "https://arxiv.org/abs/2609.30395v1",
+      "pdf": "output/literature/papers/2609.30395v1.pdf",
+      "pdf_sha256": "e05a7ac8bc9a0c01c92f02b920e63a3e6cd0af2e7dbe566c72911fe0327737d2",
+      "pages": 12,
+      "text": "output/literature/text/2609.30395v1.txt",
+      "text_sha256": "ce5c04430cca745c85bdcd9db5987c1ec92f6c6f0441370f3c2620e67cfea4ad",
+      "metadata_provenance": "Paper Search exact title/version returned; local extracted first-page/version header agrees; version-pinned arXiv download.",
+      "reviewed": "Sections3.1--3.4: YOLO11m-P2 teacher, YOLO11n student, P2-to-P3 alignment,1x1channel map, bilinear spatial match and channel-wise spatial KL. Complete rendered page3 inspected.",
+      "overlap": "Teacher-only high-resolution features can be distilled without adding student inference modules. Generic P2/P3 transfer is not a new contribution. Candidate52 is same-model cropped P3 categorical classification, not this method or its benchmarks.",
+      "zotero": {
+        "collection_key": "6HT9SNK7",
+        "item_key": "J58GJ2ZV",
+        "attachment_key": "XMHR4YA4",
+        "children_readback": "application/pdf; imported_file; exact filename verified in batched readback"
+      }
+    },
+    {
+      "title": "Scale-Equivalent Distillation for Semi-Supervised Object Detection",
+      "authors": [
+        "Qiushan Guo",
+        "Yao Mu",
+        "Jianyu Chen",
+        "Tianqi Wang",
+        "Yizhou Yu",
+        "Ping Luo"
+      ],
+      "arxiv_version": "2203.12244v2",
+      "version_date": "2022-03-26",
+      "source": "https://arxiv.org/abs/2203.12244v2",
+      "pdf": "output/literature/papers/2203.12244v2.pdf",
+      "pdf_sha256": "33d5f21e2d9992dbc2cf105a8cda6a27c6830f50951de2178bf8abe279607820",
+      "pages": 14,
+      "text": "output/literature/text/2203.12244v2.txt",
+      "text_sha256": "ea8f604161ab4dc0638f68c95cca52e3f99c23846a3b20037b85ebbc339734de",
+      "metadata_provenance": "Paper Search exact title/version returned; local extracted first-page/version header agrees; version-pinned arXiv download.",
+      "reviewed": "Sections3.1--3.3: scale consistency, self-distillation and gradient-histogram foreground reweighting.",
+      "overlap": "Scale consistency and weighting teacher signals by hard/foreground examples are established. Candidate52 has no unlabeled data, gradient histograms or semi-supervised training.",
+      "zotero": {
+        "collection_key": "6HT9SNK7",
+        "item_key": "JMGWHNS7",
+        "attachment_key": "K7IVMVR3",
+        "children_readback": "application/pdf; imported_file; exact filename verified in batched readback"
+      }
+    },
+    {
+      "title": "CrossKD: Cross-Head Knowledge Distillation for Object Detection",
+      "authors": [
+        "Jiabao Wang",
+        "Yuming Chen",
+        "Zhaohui Zheng",
+        "Xiang Li",
+        "Ming-Ming Cheng",
+        "Qibin Hou"
+      ],
+      "arxiv_version": "2306.11369v2",
+      "version_date": "2024-04-15",
+      "source": "https://arxiv.org/abs/2306.11369v2",
+      "pdf": "output/literature/papers/2306.11369v2.pdf",
+      "pdf_sha256": "2c012d41f4a43f58f22e1adf7d6863ee6d906c495a019a794f7019af00bfbe5a",
+      "pages": 15,
+      "text": "output/literature/text/2306.11369v2.txt",
+      "text_sha256": "8f4fffcbb81ed94a0973b3c3f0804504de68d10daa5f5bfeea56c23e2110bee8",
+      "metadata_provenance": "Paper Search exact title/version returned; local extracted first-page/version header agrees; version-pinned arXiv download.",
+      "reviewed": "Abstract and Sections3.1/3.2: student head target conflict and routing student intermediate features through teacher head for task-oriented prediction mimicry.",
+      "overlap": "Contradictory annotation/teacher targets and avoiding conflict are explicit prior art. Candidate52 neither implements CrossKD nor supplies a new task-decoupling mechanism.",
+      "zotero": {
+        "collection_key": "6HT9SNK7",
+        "item_key": "ML2NNBVZ",
+        "attachment_key": "CZFKBF7U",
+        "children_readback": "application/pdf; imported_file; exact filename verified in batched readback"
+      }
+    }
+  ],
+  "download_limit": "CSCWD MCP download call timed out after180s; no restart. Later observed12.83MB target file, fully parsed12pages with exact version header and attached it. Other three exact-version calls returned saved paths.",
+  "zotero": "Four exact-version metadata imports and PDF attachments succeeded, all four children read back; CSCWD authors/date/collection/version URL rechecked. Incremental semantic index4added,0errors; not a total-library count.",
+  "conclusion": "Two-crop consensus has tiny NLL benefit.03331457 versus student and.04633442 versus confidence, but paired confidence advantage interval[-.02610640,.12199034] crosses0 and all NLL worsens.30893192. Stop registered consensus recipe, no trained transfer, detector AP, novelty or long-training authorization.",
+  "protocol_limits": "All arms use GT object-center P3 logits normalized categorically over10classes, omitting background, localization and quality. Different crop scale maps to a different effective original-pixel stride; this is not spatially/multilevel aligned MSAD or CSCWD reproduction. No claim that consensus is a new invention or all cross-scale KD is ineffective."
+}

@@ -1,0 +1,33 @@
+{
+  "experiment": "candidate52_crop_teacher_consensus_supervision",
+  "date": "2026-10-14",
+  "question": "At fixed GT-anchored P3 locations, does agreement between two full-object crop teachers give safer classification supervision than ordinary higher-confidence teacher selection?",
+  "sample": "Exactly all64 original-image identities fixed by candidate50. Full valid original metadata GT, not only matched/detected GT. Dataset is training scenes already seen by the detector and diagnostic screening, not an independent efficacy set. No fit split or training this stage.",
+  "views": "Global plus original tile_windows(width,height,overlap=.20) four fixed crops. Direct FP32 baseline eval960 forward. Per-view LetterBox960 autoFalse scaleupTrue, RGB/255. Use each original GT center mapped with min(960/w,960/h) and centered round padding. P3 sample is nearest native stride8 center, ties to higher grid index via floor(center/8), clipped to120x120. No confidence, argmax or NMS selection of locations.",
+  "alignment": "Crop fully contains original GT iff all four GT edges within crop window; no partial-box tolerance. Sort eligible crop views by minimum normalized GT-to-window-edge margin, descending; ties lower view id. Primary rows require at least2 fully containing crop teachers. This uses labeled training coordinates to align teachers, never GT class to select a view or rule.",
+  "arms": {
+    "student": "Original10logits at global P3 mapped GT center.",
+    "teacher1": "10logits from most-interior fully containing crop.",
+    "confidence": "Use teacher1 only when its maximum categorical softmax probability exceeds student's; else student. No threshold sweep.",
+    "consensus": "Use teacher1 only when teacher1 and teacher2 argmax classes agree; otherwise keep student. No weighting, averaging, temperature or confidence condition. Both teachers are aligned independently to the same GT center."
+  },
+  "metrics": "Categorical10class NLL and top1 correctness on SAME primary rows, by originalGT area*(640/max(originalsize))^2: all,tiny,small_all. Report allGT/eligible counts and images, student-to-teacher1 recovered/lost correct labels, source/control action counts and both teacher confidences. No background/objectness/every-anchor loss. These conditional object-center metrics are not detection AP, precision/recall, AP upper bounds or deployable correction gains.",
+  "policy": {
+    "tiny_primary_rows_min": 100,
+    "tiny_primary_images_min": 12,
+    "tiny_teacher1_recovered_min": 20,
+    "tiny_teacher1_lost_min": 20,
+    "tiny_consensus_NLL_gain_vs_student_min": 0.02,
+    "tiny_consensus_NLL_gain_vs_confidence_min": 0.005,
+    "tiny_consensus_top1_gain_vs_student_min_pp": 0.5,
+    "tiny_consensus_NLL_gain_vs_confidence_bootstrap_lower_min": 0.0,
+    "all_consensus_NLL_gain_vs_student_min": -0.01
+  },
+  "bootstrap": "400 multinomial image draws using default_rng0 over all64images. Ratio of sampled NLL sums to sampled eligible tiny counts; preserve images with0eligible rows. Percentiles2.5/97.5. No per-row bootstrap or selecting a class/subset after results.",
+  "pass": "TEACHER_SUPERVISION_SUPPORTS_SEPARATE_BOUNDED_TRANSFER_PILOT. Only permits separately preregistered matched student-only low-budget transfer vs GT-only, ordinary KD, confidence-KD and shuffled teacher controls. Does not prove the student can learn this signal, justify long training or confirm innovation.",
+  "fail": "STOP_THIS_TWO_FULL_CROP_CONSENSUS_TEACHER_RECIPE. No changing views, sample, alignment, teacher selection, consensus action, logits temperature, threshold or grouping to rescue. Does not rule out ordinary cross-scale KD.",
+  "budget": "64JPEG image decodes,320 FP32 frozen detector forwards,0gradients/fits/updates/AP calls. Save complete five-view P3 logits and all GT/location/source records so metrics can be audited without rerunning detector.",
+  "technical_checks": "Checkpoint SHA256 eac88f7e348134d3bdaf8b8d3c93845002b634b66a4fa28bd6246abbbeba1a25. P3 logits1x10x14400, native square120x120 grid. No nonfinite entries, stored full logits equal sampled logits at integer indices. Model parameter/buffer digest unchanged. Archive sources and package LetterBox/head source bytes before forward.",
+  "prior_boundary": "MSAD already distills aligned multi-resolution features to lower-resolution detection; SED treats scale consistency/foreground weighting; CSCWD already distills high-resolution teacher P2 to lightweightYOLO11student P3 without inference changes. CrossKD already addresses contradictory annotation/teacher supervision. Teacher confidence/consensus are established concepts. This specific comparison alone is not a new method or exhaustive prior-art proof.",
+  "limits": "GT-aligned teachers can be confidently wrong, and categorical logits omit objectness/quality and localization. Consensus may retain redundant errors. Different source grids sample approximate, not identical, visual support. Seen training scenes and many preceding hypotheses limit confirmatory interpretation."
+}
