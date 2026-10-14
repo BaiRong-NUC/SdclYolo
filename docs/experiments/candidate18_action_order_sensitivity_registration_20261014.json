@@ -1,0 +1,28 @@
+{
+  "experiment": "candidate18_coordinate_action_order_sensitivity",
+  "date": "2026-10-14",
+  "stage": "Annotation-assisted nuisance sensitivity diagnostic, no fitting and no efficacy claim.",
+  "hypothesis": "One-original-pixel annotation-corner perturbations can reverse meaningful coordinate-action advantages on tiny targets, while some stable action improvements over the frozen uniform policy remain.",
+  "sample": {
+    "source": "candidate12 exact fixed image order",
+    "train_images": 128,
+    "holdout_images": 64,
+    "rule": "First128 fitting and first64 head-held-out images. Detector historically saw all train scenes. Only the head split is disjoint. No fresh data or independent confirmation is claimed."
+  },
+  "replay": "Reuse raw five-view captures. Rebuild calibrated candidates and coordinate menus with ignores=[]; apply frozen uniform head, then filter predictions by its final boxes' diagnostic ignore IoF. Require exact equality to candidate12 cached uniform predictions.",
+  "ownership": "Score-ordered, same-class, one-to-one IoU>=0.5 ownership on the filtered original calibrated candidates at score>=0.001, fixed for every perturbation. Analyze owned rows at calibrated score>=0.05 with >=2 valid actions; exclude an anchor if any perturbed box has nonpositive width or height.",
+  "perturbation": "Nominal GT plus all16 independent +-1 ORIGINAL-pixel corner combinations (x1,y1,x2,y2), clipped to image bounds. This is a finite corner sensitivity probe, not a certified uncertainty bound, a measured label-noise model or a robustness guarantee.",
+  "primary": "On64 head-held-out images: tiny actions with nominal IoU improvement>0.01 over uniform whose minimum improvement across17 GT variants is<-0.01, divided by all nominally beneficial tiny actions. Also report a label-assisted stable oracle's owned small_all ten-IoU-threshold hit fraction gain over uniform.",
+  "stable_oracle": "An alternative must beat the same uniform action by>0.01 at ALL17 variants. Among eligible actions choose highest NOMINAL IoU, otherwise keep uniform. Counts threshold hits at0.50:0.05:0.95 against nominal same-owned GT; no rematching. This uses labels and cannot deploy.",
+  "secondary": "All valid unordered action pairs with nominal abs IoU gap>0.01: sign reversals and hard reversals at opposite gap>0.01 by size. Nominal/oracle/uniform threshold fractions, mean IoUs and stable-action prevalence.",
+  "policy": {
+    "holdout_tiny_nominal_beneficial_actions_min": 100,
+    "holdout_tiny_hard_reversal_percent_min": 10.0,
+    "holdout_small_all_stable_oracle_threshold_gain_min_pp": 0.10
+  },
+  "pass_action": "Only permits separately registering matched tiny-head pilots: ordinary ranking versus stable partial-order supervision and a matched randomly thinned ranking control. Frozen detector, geometry inputs and original inference action rule remain fixed.",
+  "fail_action": "Stop this annotation-order recipe without adjusting pixel radius, thresholds or image list.",
+  "budget": "192 cached images, zero detector forwards, zero image crops, zero training. CPU replay and vectorized17x6 IoUs. No val/test-dev or official evaluator.",
+  "prior_art": "TOLF arxiv2601.00617 already studies tiny annotation-noise sensitivity and uncertainty-guided optimization. RankDetNet, Rank&Sort and proposal ranking establish ranking priors. This diagnostic cannot establish novelty; specific partial-order supervision still needs closer robust-ranking comparisons.",
+  "limits": "Synthetic corner nuisance need not match real annotation uncertainty. Ownership selection is biased toward already detected objects. Same-owned ten-threshold fraction is not detection AP/AR. Report all failures and retain prior STOP decisions."
+}

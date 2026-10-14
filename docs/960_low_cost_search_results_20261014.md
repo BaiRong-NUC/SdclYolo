@@ -358,3 +358,34 @@ small_all 召回 0.871530 pp，但对强基线下降 2.420917 pp，
 登记与数值记录：`docs/experiments/candidate17_context_intervention_registration_20261014.json`、
 `docs/experiments/candidate17_context_intervention_result_20261014.json`。
 完整结果：`output/analysis/context-intervention-fixed-20261014/`。
+
+## 实验 18：一原像素边界扰动下的候选坐标排序
+
+复用实验12前128张拟合图、前64张头部留出图的五视图预测，
+重建校准和坐标菜单，所有192张的 uniform 最终预测与历史缓存逐元素相等。
+零检测器前向、零训练，总计14.06秒。
+原校准框先按同类、score顺序、IoU>=0.5拥有GT，所有扰动保持同一归属；
+分析score>=0.05且至少两个有效动作的原框。
+对GT四条边各加减一个原像素，名义框加16个角点组合，越图边界裁剪。
+一个留出原框有退化扰动，按登记排除。
+
+留出tiny名义上比uniform多出IoU>0.01的动作1,602个，其中914个
+在至少一个扰动上反向差于uniform超过0.01，比例57.053683%。
+对应small为35.746606%，medium为10.416667%；
+这是合成扰动敏感性，不能称为真实标注错误率。
+small_all共2,370个合格原框，340个至少有一个动作在所有17个GT变体上
+均胜过uniform超过0.01。使用标注选择这种稳定改进的参考，
+同归属GT十个IoU阈值命中比例从63.924051%变为66.371308%，+2.447257pp；
+tiny为+2.580808pp。名义oracle的small_all增量为+5.578059pp。
+
+固定三项门槛通过：有效tiny有益动作>=100、强反转>=10%、
+稳定参考small_all阈值命中增量>=0.10pp。
+判断MATCHED_STABLE_ORDER_HEAD_PILOT_ALLOWED，仅允许另行登记小头匹配实验。
+没有可部署性能提升，没有AP/AR，没有独立数据或创新性结论。
+TOLF已研究小目标标注噪声；角点采样也不是连续不确定性的认证界，
+不能把该诊断包装成原创方法。
+
+三个边界/退化扰动、同归属向量IoU等价、稳定参考拒绝反转测试通过。
+登记与数值记录：`docs/experiments/candidate18_action_order_sensitivity_registration_20261014.json`、
+`docs/experiments/candidate18_action_order_sensitivity_result_20261014.json`。
+完整结果：`output/analysis/action-order-sensitivity-fixed-20261014/`。
