@@ -1,0 +1,28 @@
+{
+  "experiment": "candidate28_native_boundary_difference_pilot",
+  "date": "2026-10-14",
+  "question": "Does learnable ordered RGB evidence at original-resolution boundaries discriminate coordinate actions beyond geometry, interior appearance and spatially shuffled boundary differences?",
+  "motivation": "Prior hand statistics collapse spatial order; frozen stride8 ROI features downsample tiny structures. Test ordered native image differences, not altered thresholds or continued training of those stopped representations.",
+  "sample": "Exactly candidate18 original128 fitting and64 head-held-out train images with unchanged action menus/owners. Detector already trained on these images; repeated holdout is not independent confirmation.",
+  "budget": "Read192 original images, zero detector forwards or detector training. Four residual MLPs of32 hidden units,8epochs, batch512, AdamW lr0.0002 weight_decay0.0001. Seed0 first; repeat1/2 only if every seed0 gate passes. No learned backbone or crop search.",
+  "boundary": "Each action: four sides,8 equally spaced positions from0.1 to0.9 along side, five signed normal offsets[-2,-1,0,1,2] ORIGINAL pixels. Positive normal points inside. Bilinear BGR samples, border replicate,160 RGB triplets=480 values. Subtract samples at the frozen uniform action and divide255.",
+  "interior_control": "Same480 values from a10x16 interior grid spanning0.1..0.9 of each action box, subtract uniform samples and divide255.",
+  "shuffle_control": "Same boundary difference values, shuffle160 spatial RGB triplets using a deterministic image/anchor hash, identical permutation across the six actions. Preserves peraction color moments and paired differences; discards globally aligned side/normal/position identity.",
+  "heads": "Frozen historical uniform utility is unchanged. Add an MLP residual from68 historical normalized action geometry features plus480 image differences. All four MLPs share initial weights; last layer is zero, exactly preserving uniform before fitting. geometry_residual zeros the480 image inputs; other arms use interior_difference, boundary_difference or boundary_shuffled. Nominal capacity matches, active input capacity differs.",
+  "supervision": "Same nominal-owner labels for all arms. Train rows at calibrated score>=0.05 with >=2 valid actions. Owned rows: all valid unordered action pairs with abs nominal same-GT IoU gap>0.01, average softplus(-sign*utility_difference/0.05). Unowned rows: prefer the frozen uniform action over other valid actions using the same softplus temperature. Rows without comparisons contribute zero. No stable-order labels or GT-dependent pixel sampling.",
+  "inference": "Apply residual only to score>=0.05 rows with>=2 valid actions; use original select_actions rule and unchanged six action coordinates. Preserve count, order, class and score. At zero residual, all choices must exactly equal cached uniform.",
+  "primary": "Full one-to-one detection matching at confidence0.25 and ten IoUs0.50:0.05:0.95 on64 heldout images, average tiny/small_all recall. Not official AP/AR.",
+  "policy": {
+    "tiny_ten_threshold_vs_uniform_min_pp": 0.10,
+    "small_all_ten_threshold_vs_uniform_min_pp": 0.10,
+    "small_all_ten_threshold_vs_regret_min_exclusive_pp": 0.0,
+    "small_all_ten_threshold_vs_geometry_min_exclusive_pp": 0.0,
+    "small_all_ten_threshold_vs_interior_min_exclusive_pp": 0.0,
+    "small_all_ten_threshold_vs_shuffled_min_exclusive_pp": 0.0,
+    "all_fppi50_vs_uniform_max_increase": 0.10,
+    "repeat_min_positive_matched_seeds": 2
+  },
+  "pass_action": "Only permits a separately registered official/repeated-scene feasibility audit and closer prior comparison. Boundary sampling, learned image quality and relative ranking are not independently novel.",
+  "fail_action": "Stop this fixed native-pixel-difference representation and residual recipe. Do not change offsets, grid sizes, normalization, labels, epochs, learning rate or seeds to rescue it.",
+  "limits": "No new detector generalization, small scene split, inherited uniform diagnostic ignore rows, GT annotation uncertainty, native boundary pixels may describe occluders rather than object extent. BorderDet/SABL already establish boundary-aware features/localization; a positive proxy alone would not establish originality."
+}

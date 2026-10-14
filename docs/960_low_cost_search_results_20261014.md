@@ -712,3 +712,43 @@ ESOD第III节已用ObjSeeker/AdaSlicer及去重覆盖减少冗余计算。
 登记与数值记录：`docs/experiments/candidate27_dense_view_policy_registration_20261014.json`、
 `docs/experiments/candidate27_dense_view_policy_result_20261014.json`。
 完整结果：`output/analysis/dense-view-policy-fixed-20261014/`。
+
+## 实验 28：原图边界像素差与空间顺序的独立贡献
+
+固定旧128/64图及六动作，图像输入不读GT。
+每条边8个位置、5个原图像素法向偏移，四边合计160个BGR三元组；
+减去同一原框uniform动作对应采样，保留空间顺序。
+普通图像对照用同数量的10x16框内网格差；
+打乱对照在每个原框内随机重排160个三元组，六动作共用置换，
+保持每动作颜色统计和对应差值，但移除统一边/法向/位置排列。
+这与旧手工统计、冻结stride8特征表示不同，不修改它们的STOP。
+
+四个17601参数残差MLP共享初始化，末层零初始化，
+冻结uniform效用不更新，初始动作逐数组完全复现。
+geometry_residual屏蔽图像输入；名义容量匹配但有效输入容量不同。
+11784个训练原框，8epoch、lr0.0002，同样的名义IoU比较与未归属原框保留uniform监督。
+只训练小头，零检测器前向，总计23.28秒。
+
+| 分支 | small_all十阈值平均召回(%) | 对uniform(pp) | tiny对uniform(pp) |
+|---|---:|---:|---:|
+| uniform | 49.548096 | 0 | 0 |
+| regret | 49.899935 | +0.351840 | +0.446697 |
+| 纯几何残差 | 49.651388 | +0.103292 | +0.127628 |
+| 框内像素差 | 49.661072 | +0.112976 | +0.138889 |
+| 边界像素差 | 49.625565 | +0.077469 | +0.097598 |
+| 边界顺序打乱 | 49.644932 | +0.096837 | +0.135135 |
+
+边界差相对uniform有小幅正向点估计，tiny距离0.10门槛极近，
+不能因为0.002402pp差距称其没有效果。
+决定停止的实质原因是它比几何、普通框内输入、打乱边界和历史regret都低，
+没有观察到有序边界表示的独立贡献。
+七项仅FP预算通过，STOP_THIS_NATIVE_PIXEL_DIFFERENCE_PILOT；
+不追加种子，不换偏移、采样密度、训练轮数或归一化挽救。
+
+两个采样参照/空间打乱与零残差动作保持测试通过。
+论文SABL/BorderDet已下载、核对方法并加入Zotero，边界特征本身已有明确先例；
+本轮结果不足以提出有效新边界方法。
+所有召回仍是重复查看的训练图头留出诊断，非官方AP。
+登记与数值记录：`docs/experiments/candidate28_native_boundary_registration_20261014.json`、
+`docs/experiments/candidate28_native_boundary_result_20261014.json`。
+完整结果：`output/analysis/native-boundary-pilot-fixed-20261014/`。

@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-14",
+  "scope": "Nearest-prior method check for native boundary evidence and side-wise localization; not exhaustive novelty review",
+  "papers": [
+    {
+      "title": "Side-Aware Boundary Localization for More Precise Object Detection",
+      "doi": "10.1007/978-3-030-58548-8_24",
+      "arxiv": "1912.04260",
+      "year": 2020,
+      "metadata_provenance": "Paper Search Crossref exact title/DOI, PDF title/author page",
+      "source_url": "https://arxiv.org/pdf/1912.04260",
+      "pdf": "output/literature/papers/arxiv-1912.04260.pdf",
+      "pdf_sha256": "b44e1a2ab46007c41e64689bd171b77bf577cee3b2cd1b552c692bedad90f199",
+      "pages": 21,
+      "text": "output/literature/text/arxiv-1912.04260.txt",
+      "text_sha256": "034bd615997587f8a5d1076158f109cdcf46399028feb1e5d16bd078cc9c7813",
+      "read_sections": ["3.1 side-aware feature extraction", "3.2 boundary bucketing and fine regression", "3.3 bucketing-guided rescoring"],
+      "overlap": "Side-specific localization, side-aware features, coarse candidate bins/fine offsets and boundary-confidence quality rescoring are established.",
+      "zotero": {"collection_key": "6HT9SNK7", "item_key": "IYWMKRSX", "attachment_key": "YYQGW5QW", "pdf_readback": true}
+    },
+    {
+      "title": "BorderDet: Border Feature for Dense Object Detection",
+      "doi": "10.1007/978-3-030-58452-8_32",
+      "arxiv": "2007.11056",
+      "year": 2020,
+      "metadata_provenance": "Paper Search Crossref exact title/DOI, PDF title/author page",
+      "source_url": "https://arxiv.org/pdf/2007.11056",
+      "pdf": "output/literature/papers/arxiv-2007.11056.pdf",
+      "pdf_sha256": "23c58af2fca42ea401be4366f85fe91f3501d761537736d051526548c44394a7",
+      "pages": 16,
+      "text": "output/literature/text/arxiv-2007.11056.txt",
+      "text_sha256": "f78e55bf58ff3501c2c461970b6f259c4b19ee1cb4f03652cf6c96f9e4e6cc87",
+      "read_sections": ["3.2 BorderAlign equation", "3.3 BorderDet and Border Alignment Module"],
+      "overlap": "Bilinear boundary feature sampling, separate side channel pooling, coarse-to-fine box and classification refinement are established.",
+      "zotero": {"collection_key": "6HT9SNK7", "item_key": "N52SLUCF", "attachment_key": "3C4T93DT", "pdf_readback": true}
+    }
+  ],
+  "version_limit": "Local arXiv PDFs and DOI-imported Unpaywall attachments can be different versions; both provenance routes retained.",
+  "semantic_incremental_report": {"total": 2, "processed": 2, "added": 2, "errors": 0},
+  "current_claim": "Candidate28 fails to show independent ordered boundary evidence; neither border sampling nor side-specific localization can be claimed novel."
+}

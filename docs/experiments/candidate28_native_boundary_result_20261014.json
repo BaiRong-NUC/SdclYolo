@@ -1,0 +1,236 @@
+{
+  "experiment": "candidate28_native_boundary_difference_pilot",
+  "date": "2026-10-14",
+  "output": "output/analysis/native-boundary-pilot-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_NATIVE_PIXEL_DIFFERENCE_PILOT",
+    "per_seed": {
+      "0": {
+        "passed": false,
+        "checks": {
+          "tiny_gain": false,
+          "small_gain": false,
+          "regret_gain": false,
+          "geometry_gain": false,
+          "interior_gain": false,
+          "shuffled_gain": false,
+          "fp_budget": true
+        },
+        "values": {
+          "small_all_gains_pp": {
+            "uniform": 0.07746933505487164,
+            "regret": -0.27437056165268103,
+            "geometry_residual": -0.025823111684957212,
+            "interior_difference": -0.03550677856681972,
+            "boundary_shuffled": -0.01936733376371791
+          },
+          "tiny_vs_uniform_pp": 0.09759759759759845,
+          "all_fppi50_increase": -0.015625
+        }
+      }
+    },
+    "seeds_executed": 1,
+    "positive_seeds": 0,
+    "scope": "Reused train head-holdout detection proxy, not AP or innovation proof."
+  },
+  "metrics": {
+    "0": {
+      "uniform": {
+        "all_ten_threshold_recall_percent": 51.17955035417309,
+        "tiny_ten_threshold_recall_percent": 45.232732732732735,
+        "small_all_ten_threshold_recall_percent": 49.548095545513235,
+        "all_fppi50": 10.90625,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2488,
+              "tp_ten": 16618
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1940,
+              "tp_ten": 12050
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2345,
+              "tp_ten": 15350
+            }
+          },
+          "fp50": 698,
+          "moves": 0
+        }
+      },
+      "regret": {
+        "all_ten_threshold_recall_percent": 51.51524484139205,
+        "tiny_ten_threshold_recall_percent": 45.67942942942943,
+        "small_all_ten_threshold_recall_percent": 49.89993544222079,
+        "all_fppi50": 10.8125,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2494,
+              "tp_ten": 16727
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1946,
+              "tp_ten": 12169
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2351,
+              "tp_ten": 15459
+            }
+          },
+          "fp50": 692,
+          "moves": 585
+        }
+      },
+      "geometry_residual": {
+        "all_ten_threshold_recall_percent": 51.27194333230675,
+        "tiny_ten_threshold_recall_percent": 45.36036036036036,
+        "small_all_ten_threshold_recall_percent": 49.65138799225306,
+        "all_fppi50": 10.890625,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2489,
+              "tp_ten": 16648
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1941,
+              "tp_ten": 12084
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2346,
+              "tp_ten": 15382
+            }
+          },
+          "fp50": 697,
+          "moves": 213
+        }
+      },
+      "interior_difference": {
+        "all_ten_threshold_recall_percent": 51.281182630120114,
+        "tiny_ten_threshold_recall_percent": 45.37162162162162,
+        "small_all_ten_threshold_recall_percent": 49.661071659134926,
+        "all_fppi50": 10.875,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2490,
+              "tp_ten": 16651
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1942,
+              "tp_ten": 12087
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2347,
+              "tp_ten": 15385
+            }
+          },
+          "fp50": 696,
+          "moves": 239
+        }
+      },
+      "boundary_difference": {
+        "all_ten_threshold_recall_percent": 51.250384970742225,
+        "tiny_ten_threshold_recall_percent": 45.330330330330334,
+        "small_all_ten_threshold_recall_percent": 49.625564880568106,
+        "all_fppi50": 10.890625,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2489,
+              "tp_ten": 16641
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1941,
+              "tp_ten": 12076
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2346,
+              "tp_ten": 15374
+            }
+          },
+          "fp50": 697,
+          "moves": 243
+        }
+      },
+      "boundary_shuffled": {
+        "all_ten_threshold_recall_percent": 51.268863566368964,
+        "tiny_ten_threshold_recall_percent": 45.367867867867865,
+        "small_all_ten_threshold_recall_percent": 49.644932214331824,
+        "all_fppi50": 10.875,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2490,
+              "tp_ten": 16647
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1942,
+              "tp_ten": 12086
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2347,
+              "tp_ten": 15380
+            }
+          },
+          "fp50": 696,
+          "moves": 227
+        }
+      }
+    }
+  },
+  "verification": {
+    "fitting_images": 128,
+    "head_holdout_images": 64,
+    "detector_forwards": 0,
+    "detector_training_steps": 0,
+    "initial_uniform_choice_replay_exact": true,
+    "same_residual_initialization": true,
+    "no_GT_in_pixel_features": true,
+    "pixel_cache_fp16_used_for_fit_and_evaluation": true,
+    "no_val_no_testdev_no_threshold_or_hyperparameter_search": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 23.283106499817222
+  },
+  "training": {
+    "0": {
+      "parameters_each": 17601,
+      "active_training_rows": 11784,
+      "checkpoint": "heads-seed0.pt",
+      "sha256": "483013f378d249e8a61286bae760b04ad9fa63f0f392d50370dd9d1969e3698d"
+    }
+  },
+  "artifacts_sha256": {
+    "plan.json": "72f8fc4da848821007c0aff97c7f6d7d3421fafafde00c04af317ed9ab4b6203",
+    "source.zip": "17c7c49f9286d28e02548dfd017561308e2197cd22976513f1d0c3f85d497906",
+    "frames.json": "1340d9bde3aea16f92c7faf2dc4a8ed75f904f2d1fb8e47f1a2bb306995ea454",
+    "metrics.json": "8f982c30f86dd3db55638c65e5a9aa40714c40d0edd8889806f684766ff26f5d",
+    "decision.json": "e98e570c9bd67f0183e5b75f4b84324f5ce8f9d7d1e84b209db0fd6e5d34007a",
+    "verification.json": "0b089d1699a86bcd0cc0397e4a77f145be5bc3b60e28dd916ae101411caafef0",
+    "training.json": "7966e80dbe4719503c3b3668e3d4a6aeee8d1afd2cb37fa69b73b950d0c32851",
+    "heads-seed0.pt": "483013f378d249e8a61286bae760b04ad9fa63f0f392d50370dd9d1969e3698d",
+    "choices-seed0.json": "b8d908cc6e33a5869e2543992e142bc61042be41fea5ee1beb0d5102035a844a",
+    "losses-seed0.json": "c3ecbc42de1c3ac4a14753f4c920f8e630af040582ed9365f22ef752fce9557e"
+  },
+  "tests": "2 passed: reference-zero pixel differences and moment-preserving shuffle; zero-residual exact action replay"
+}
