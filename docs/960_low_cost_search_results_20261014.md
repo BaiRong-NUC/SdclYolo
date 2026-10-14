@@ -678,3 +678,37 @@ ESOD第III节已用ObjSeeker/AdaSlicer及去重覆盖减少冗余计算。
 登记与数值记录：`docs/experiments/candidate26_marginal_view_policy_registration_20261014.json`、
 `docs/experiments/candidate26_marginal_view_policy_result_20261014.json`。
 完整结果：`output/analysis/marginal-view-policy-fixed-20261014/`。
+
+## 实验 27：阈值与NMS之前的全图稠密分类图能否改善省略决策
+
+新的输入信息假设：普通全图输出框丢掉了弱证据及非argmax类别。
+固定同128/64图，仅补192次全图原生960前向，不跑局部视图、不训练检测器。
+每个窗口分别统计三层、十类的最大值、Top5均值、全均值和>=0.05计数，
+120维新统计覆盖低于输出阈值及非argmax类别；排除letterbox填充区。
+192张全图NMS输出逐数组等于历史缓存。
+
+三个5857参数、181输入维MLP同初始化和优化过程：
+稠密边际头、稠密普通覆盖头，以及归一化后屏蔽稠密通道的边际头。
+屏蔽对照只是相同名义容量的输入消融，不声称有效输入容量相同。
+三个头均80epoch、Adam0.003，仍每图恰好少一个视图。
+
+| 策略 | tiny丢支持GT@0.5 | tiny丢支持GT@0.75 |
+|---|---:|---:|
+| 稠密边际头 | 10 | 25 |
+| 稠密普通覆盖头 | 8 | 13 |
+| 屏蔽稠密通道边际头 | 7 | 13 |
+| 最低密度规则 | 11 | 13 |
+
+稠密边际头高IoU比三个对照都多丢12个tiny支持，
+损失占tiny GT的0.938438pp。
+五项仅低IoU预算通过，判断STOP_THIS_DENSE_SUMMARY_VIEW_POLICY；
+不补种子、不改统计、池化或训练目标挽救。
+这没有否定所有稠密空间信息，只否定这一固定汇总表示与边际回归配方。
+普通覆盖头与密度在高IoU都丢13个，不能把普通头作为已证明的新方法。
+
+耗时13.18秒；两个非argmax/弱证据与逆letterbox映射测试通过。
+预测输入全程没有局部视图预测或标注。
+仍仅候选覆盖代理，未实现可部署AP/延迟改进，也未认定创新。
+登记与数值记录：`docs/experiments/candidate27_dense_view_policy_registration_20261014.json`、
+`docs/experiments/candidate27_dense_view_policy_result_20261014.json`。
+完整结果：`output/analysis/dense-view-policy-fixed-20261014/`。

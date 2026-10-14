@@ -1,0 +1,29 @@
+{
+  "experiment": "candidate27_preselection_view_evidence_pilot",
+  "date": "2026-10-14",
+  "question": "Does the fullimage detector's dense class map contain missing view-value evidence discarded by thresholding, argmax and NMS?",
+  "motivation": "Candidate25 shows substantial safe omission space, candidate26 sparse global-box features fail. Test a distinct input-information hypothesis rather than tuning that stopped regressor.",
+  "sample": "Same candidate26 first128 fit/64 head-held-out train images and scene split.",
+  "budget": "192 single fullimage frozen960 forwards plus warmup; no local-view forwards and no detector training. Three matched small32-hidden MLP heads on cached labels,80epochs/batch128/Adam0.003. Seed0 first, then1/2 only if seed0 passes.",
+  "dense_inputs": "Original FP16 native ten-class probabilities at every anchor, including nonargmax classes and anchors discarded by threshold/NMS. For each of four windows, separately at each of three pyramid levels and each class: max, mean top5, mean all, log1p count>=0.05.120 new statistics. Anchor centers inverse-map exact letterbox scale/padding into original coordinates; exclude padding. No local-view predictions or annotations.",
+  "replay": "Fullimage kept predictions exactly match candidate12 original raw capture for all192 images, no substitutions or changes to native inference.",
+  "controls": {
+    "dense_marginal": "61 sparse global-box/window features plus120 dense statistics, candidate26 marginal-loss target",
+    "dense_coverage": "Identical full inputs and architecture, ordinary standalone coverage target from candidate26",
+    "sparse_marginal": "Same181-input nominal architecture and initialization, zero dense channels after normalization, marginal target; this is an input ablation, not equal active feature capacity",
+    "global_density_one": "Untrained density control, same one-view omission"
+  },
+  "fit": "Same labels and model/optimizer schedule as candidate26. Fitting-only input standardization floor1e-3, clip[-6,6]; fitting-only normalized log1p targets. Same initialization and batch order across heads. Only final epoch80. No crop/target/threshold/architecture sweep.",
+  "inference": "From unfiltered global raw predictions/dense map only, omit exactly the local view with lowest predicted value. Identical four-view budget, count saving20%.",
+  "policy": {
+    "tiny075_reduction_vs_dense_coverage_min_count": 3,
+    "tiny075_reduction_vs_sparse_marginal_min_count": 3,
+    "tiny075_reduction_vs_density_min_count": 3,
+    "tiny050_extra_vs_density_max_count": 0,
+    "tiny075_loss_max_pp": 0.50,
+    "repeat_min_positive_seeds": 2
+  },
+  "pass_action": "Only permits bounded annotation-free full fusion replay and official accuracy/cost feasibility audit. Do not claim the dense map or learned object-seeking is novel; compare against AutoFocus/ESOD and an ordinary learned control.",
+  "fail_action": "Stop this fixed dense-summary marginal-view policy, without changing statistics, pooling, thresholds, epochs, losses or seeds on this cache.",
+  "limits": "Spatially pooled dense map summaries may discard the relevant structure. Previously seen train scenes, repeated64 holdout and noisy coverage labels. Forward counts and candidate retention are not actual speed or AP."
+}

@@ -1,0 +1,176 @@
+{
+  "experiment": "candidate27_preselection_view_evidence_pilot",
+  "date": "2026-10-14",
+  "output": "output/analysis/dense-view-policy-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_DENSE_SUMMARY_VIEW_POLICY",
+    "per_seed": {
+      "0": {
+        "passed": false,
+        "checks": {
+          "dense_coverage_gain": false,
+          "sparse_marginal_gain": false,
+          "global_density_one_gain": false,
+          "low_iou_budget": true,
+          "absolute_loss_budget": false
+        },
+        "values": {
+          "tiny075_reductions": {
+            "dense_coverage": -12,
+            "sparse_marginal": -12,
+            "global_density_one": -12
+          },
+          "tiny050_extra_vs_density": -1,
+          "tiny075_loss_pp": 0.9384384384384384
+        }
+      }
+    },
+    "positive_seeds": 0,
+    "seeds_executed": 1,
+    "scope": "Reused train head-holdout coverage proxy; not AP, latency or novelty proof."
+  },
+  "metrics": {
+    "0": {
+      "dense_marginal": {
+        "lost_supported_gt": {
+          "0.5": {
+            "all": 10,
+            "tiny": 10,
+            "small_all": 10
+          },
+          "0.75": {
+            "all": 27,
+            "tiny": 25,
+            "small_all": 26
+          }
+        },
+        "lost_support_pp": {
+          "0.5": {
+            "all": 0.3079765937788728,
+            "tiny": 0.37537537537537535,
+            "small_all": 0.32278889606197547
+          },
+          "0.75": {
+            "all": 0.8315368032029566,
+            "tiny": 0.9384384384384384,
+            "small_all": 0.8392511297611362
+          }
+        },
+        "forward_count_saving_percent": 20.0
+      },
+      "dense_coverage": {
+        "lost_supported_gt": {
+          "0.5": {
+            "all": 8,
+            "tiny": 8,
+            "small_all": 8
+          },
+          "0.75": {
+            "all": 13,
+            "tiny": 13,
+            "small_all": 13
+          }
+        },
+        "lost_support_pp": {
+          "0.5": {
+            "all": 0.24638127502309826,
+            "tiny": 0.3003003003003003,
+            "small_all": 0.25823111684958033
+          },
+          "0.75": {
+            "all": 0.4003695719125347,
+            "tiny": 0.487987987987988,
+            "small_all": 0.4196255648805681
+          }
+        },
+        "forward_count_saving_percent": 20.0
+      },
+      "sparse_marginal": {
+        "lost_supported_gt": {
+          "0.5": {
+            "all": 8,
+            "tiny": 7,
+            "small_all": 8
+          },
+          "0.75": {
+            "all": 15,
+            "tiny": 13,
+            "small_all": 15
+          }
+        },
+        "lost_support_pp": {
+          "0.5": {
+            "all": 0.24638127502309826,
+            "tiny": 0.2627627627627628,
+            "small_all": 0.25823111684958033
+          },
+          "0.75": {
+            "all": 0.4619648906683092,
+            "tiny": 0.487987987987988,
+            "small_all": 0.48418334409296315
+          }
+        },
+        "forward_count_saving_percent": 20.0
+      },
+      "global_density_one": {
+        "lost_supported_gt": {
+          "0.5": {
+            "all": 11,
+            "tiny": 11,
+            "small_all": 11
+          },
+          "0.75": {
+            "all": 13,
+            "tiny": 13,
+            "small_all": 13
+          }
+        },
+        "lost_support_pp": {
+          "0.5": {
+            "all": 0.3387742531567601,
+            "tiny": 0.4129129129129129,
+            "small_all": 0.35506778566817304
+          },
+          "0.75": {
+            "all": 0.4003695719125347,
+            "tiny": 0.487987987987988,
+            "small_all": 0.4196255648805681
+          }
+        },
+        "forward_count_saving_percent": 20.0
+      }
+    }
+  },
+  "verification": {
+    "fit_images": 128,
+    "head_heldout_images": 64,
+    "fullimage_forwards_excluding_warmup": 192,
+    "local_view_forwards": 0,
+    "detector_training_steps": 0,
+    "raw_global_replay_exact": true,
+    "no_val_no_testdev_no_hyperparameter_or_threshold_search": true,
+    "dense_inputs_include_prethreshold_nonargmax_probabilities": true,
+    "no_local_predictions_or_annotations_in_features": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 13.177364900009707
+  },
+  "training": {
+    "0": {
+      "checkpoint": "heads-seed0.pt",
+      "sha256": "cc96d70cfb0615228bbdd75fc5087294714078f954d55e2f42162a1db25623ff",
+      "parameters_per_head": 5857
+    }
+  },
+  "artifacts_sha256": {
+    "plan.json": "4062a60262f3089b85c2afcec20585554cd50970b57e381ca311225e47766390",
+    "source.zip": "002b2e2f4ca769ad2e1104a37e43cfe80ac70716925362341ce996e442235dd8",
+    "frames.json": "758f0145f3c44f5b999ad59e512cf2f8891acec66f805af169d62e4575aedebd",
+    "metrics.json": "6d40449bb330bacd308d057c394dfd3356ec54f1aed1a26964680f6dbcb3fd4b",
+    "decision.json": "4a8aa25846eafce7952d1daebf19389e43729914a7a2be9a57134d15ecdfb4e3",
+    "verification.json": "02206cc8de1b52c0d7bd7ae5013a01a0c1ecc3bf62c4e83d35b3ea8a636135d2",
+    "training.json": "386971e2b9d777ea98ee25ba7595b42c33eb29c12a72b63851e6e1e9e4515374",
+    "heads-seed0.pt": "cc96d70cfb0615228bbdd75fc5087294714078f954d55e2f42162a1db25623ff",
+    "choices-seed0.json": "408058343857fc4b1683177eb4a9165e8f4311ffe1310558bdd137fae4e6f86a"
+  },
+  "tests": "2 passed: prethreshold nonargmax probabilities/padding exclusion and anchor inverse-letterbox mapping"
+}
