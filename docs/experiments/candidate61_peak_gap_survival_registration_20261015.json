@@ -1,0 +1,24 @@
+{
+  "experiment": "candidate61_peak_gap_after_strong_control",
+  "date": "2026-10-15",
+  "question": "Do candidate60's oracle native score-peak gaps remain genuine high-IoU support gaps in the untouched ordinary-calibration output, or are they already covered downstream?",
+  "sample": "Exactly candidate60's64screen/64confirmationimages,allGTandoriginalfixedorder. Read all frozen60perGT/view statistics and original56cachedper-view NMS outputs/fullordinarycalibrationreference. Do not select only harmed/successful images. These are repeatedly inspected detector/calibrator-training images;60outcomes are known. This is a new downstream-survival question,not independent generalization.",
+  "strong_control": "Verify frozen ordinary-calibration manifest/weights/sourcearchive and56/60artifacts. Reconstruct all128references from original five-view kept arrays, original windows/size and ignores=[], using unchanged calibrated_candidates and frozen calibrator. References must be exactly equal to56savedfullreference orstop. NoGTfilter enters replay; no score,class,coordinates,NMS/countlimit orweightschanged.",
+  "native_flags": "From60cachedarrays: native_high=anyviewbestIoU>=0.75;peak_selected=anyviewoptimisticpeakIoU>=0.75;peak_gap=native_high&~peak_selected. Keep exact60GT/classes/areas andpoolpolicy. Nativeflags reuse verified60results,notnewdetectorreplays.",
+  "downstream": "PerGT compute existence of same-classIoU>=0.75support in mapped original per-view kept outputs atscore>=0.001and0.05, and frozen full calibrated output atscore>=0.001and0.25. NoGTignore filtering: validGT-only support diagnostic,notofficialVisDroneAP. Positions/predictions may support multipleGT. Also report class-aware greedy one-to-one calibrated matching atscore0.25IoU0.75 overALLGT, but do not replace support primary with matching after outcomes.",
+  "primary": "peak_gap AND no calibrated same-classIoU>=0.75support atscore>=0.25. Count perhalf among ALLtinyGT with area*(640/maxoriginaldimension)^2<256. This conservatively excludes anyGTalreadyhavinghighqualitysupport,whetherornotgreedymatched. It is not a recoverableTP/AP estimate or evidence for a particular intervention.",
+  "partition": "Withinpeak_gap, fourexclusiveprioritycategories:0calibratedsupport>=0.25(alreadycovered);1no0.25supportbutcalibratedsupport>=0.001(presentbelowcut);2nocalibrated0.001supportbutrawretained0.001support(lostafterviewpool);3norawretained0.001support(absentfromoriginalperviewkeptpool). Categories1+2+3exactlyequalprimary. Names describe cache stages,notcausalNMS attribution: mapping,classification,scorefloors,SoftNMS/capsalsoexist.",
+  "metrics": "all/tiny/small_all/medium_plusperGTflags, perimagecounts,partitionandstronggreedymatches.400all64-imagepairedmultinomialbootstrapdraws,default_rng0,forprimaryfraction. Undefineddenominatorfails. Report raw0.05supportandcalibrated0.001without raw0.001supportasdescriptiveconsistencychecks. NoNLL,refit,AP,falsepositiveorlatencybenefitclaims.",
+  "policy_per_half": {
+    "tiny_gt_min": 500,
+    "tiny_original_peak_gap_min": 20,
+    "tiny_remaining_gap_min": 10,
+    "tiny_remaining_gap_images_min": 5,
+    "tiny_remaining_gap_fraction_all_GT_min": 0.005,
+    "tiny_remaining_gap_fraction_bootstrap_lower_min_exclusive": 0.0
+  },
+  "pass": "REPLICATED_POSTCONTROL_PEAK_GAP_SUPPORTS_SEPARATE_SMALL_LEARNABILITY_PILOT. Requires genuinelynewqualityevidenceversusordinaryquality/rankingcontrols,deployableinferenceandindependentdata. No full detector-training,AP,orinnovationauthorization.",
+  "fail": "STOP_THIS_POSTCONTROL_PEAK_GAP_ROUTE_ON_FIXED_INVENTORY. Preserve60positiveoraclespacebutdonotinvestinthisfollowupbychangingcuts,IoU,population,partition,grouporprimarymatchingrule.",
+  "prior_boundary": "Reuse correctTOOD2108.07755v3/GFLV22011.12885v1PDFs,provenanceandpriorauditfrom60. Genericqualityalignment,rereankingandDFLstatisticsareestablished. This stage audits materialityagainstactualstrongcontrol,notanewalgorithmorpublicationclaim.",
+  "budget": "128cachedframes/metadataand128frozenCPUcalibratorMLPcallsplusunchangedSoftNMSreplays. ZeroJPEGdecodes,YOLO/encoderforwards,gradients,fits,parameterupdatesorAP. IndependentauditmustrebuildIoU,support,partition,greedymatching,bootstrap/gatesfromoriginalkept/referencearrayswithoutcallingmainstatisticsfunctions."
+}

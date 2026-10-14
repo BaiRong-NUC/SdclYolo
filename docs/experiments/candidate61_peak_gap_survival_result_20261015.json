@@ -1,0 +1,245 @@
+{
+  "experiment": "candidate61_peak_gap_after_strong_control",
+  "date": "2026-10-15",
+  "output": "D:\\Python\\YOLO\\output\\analysis\\peak-gap-survival-fixed-20261015",
+  "metrics": {
+    "screen": {
+      "all": {
+        "gt": 4833,
+        "native_high": 3587,
+        "peak_gap": 517,
+        "remaining_gap": 516,
+        "remaining_gap_images": 56,
+        "raw001_support": 3397,
+        "raw005_support": 3270,
+        "calibrated001_support": 3056,
+        "calibrated025_support": 2568,
+        "calibrated025_greedy_matched": 2566,
+        "calibrated001_without_raw001": 0,
+        "partition": [
+          1,
+          67,
+          183,
+          266
+        ],
+        "remaining_gap_fraction_all_GT": 0.10676598386095593
+      },
+      "tiny": {
+        "gt": 3593,
+        "native_high": 2425,
+        "peak_gap": 421,
+        "remaining_gap": 420,
+        "remaining_gap_images": 56,
+        "raw001_support": 2280,
+        "raw005_support": 2172,
+        "calibrated001_support": 1995,
+        "calibrated025_support": 1599,
+        "calibrated025_greedy_matched": 1597,
+        "calibrated001_without_raw001": 0,
+        "partition": [
+          1,
+          54,
+          153,
+          213
+        ],
+        "remaining_gap_fraction_all_GT": 0.1168939604787086
+      },
+      "small_all": {
+        "gt": 4602,
+        "native_high": 3358,
+        "peak_gap": 516,
+        "remaining_gap": 515,
+        "remaining_gap_images": 56,
+        "raw001_support": 3168,
+        "raw005_support": 3041,
+        "calibrated001_support": 2827,
+        "calibrated025_support": 2344,
+        "calibrated025_greedy_matched": 2342,
+        "calibrated001_without_raw001": 0,
+        "partition": [
+          1,
+          66,
+          183,
+          266
+        ],
+        "remaining_gap_fraction_all_GT": 0.11190786614515429
+      },
+      "medium_plus": {
+        "gt": 1240,
+        "native_high": 1162,
+        "peak_gap": 96,
+        "remaining_gap": 96,
+        "remaining_gap_images": 29,
+        "raw001_support": 1117,
+        "raw005_support": 1098,
+        "calibrated001_support": 1061,
+        "calibrated025_support": 969,
+        "calibrated025_greedy_matched": 969,
+        "calibrated001_without_raw001": 0,
+        "partition": [
+          0,
+          13,
+          30,
+          53
+        ],
+        "remaining_gap_fraction_all_GT": 0.07741935483870968
+      },
+      "tiny_remaining_gap_fraction_bootstrap95ci": [
+        0.10172185502143075,
+        0.133461379049534
+      ]
+    },
+    "confirmation": {
+      "all": {
+        "gt": 4435,
+        "native_high": 3121,
+        "peak_gap": 409,
+        "remaining_gap": 407,
+        "remaining_gap_images": 57,
+        "raw001_support": 2961,
+        "raw005_support": 2846,
+        "calibrated001_support": 2716,
+        "calibrated025_support": 2326,
+        "calibrated025_greedy_matched": 2323,
+        "calibrated001_without_raw001": 0,
+        "partition": [
+          2,
+          66,
+          116,
+          225
+        ],
+        "remaining_gap_fraction_all_GT": 0.09177001127395716
+      },
+      "tiny": {
+        "gt": 3090,
+        "native_high": 1899,
+        "peak_gap": 307,
+        "remaining_gap": 305,
+        "remaining_gap_images": 52,
+        "raw001_support": 1772,
+        "raw005_support": 1684,
+        "calibrated001_support": 1577,
+        "calibrated025_support": 1315,
+        "calibrated025_greedy_matched": 1314,
+        "calibrated001_without_raw001": 0,
+        "partition": [
+          2,
+          42,
+          80,
+          183
+        ],
+        "remaining_gap_fraction_all_GT": 0.09870550161812297
+      },
+      "small_all": {
+        "gt": 4132,
+        "native_high": 2832,
+        "peak_gap": 404,
+        "remaining_gap": 402,
+        "remaining_gap_images": 57,
+        "raw001_support": 2674,
+        "raw005_support": 2560,
+        "calibrated001_support": 2431,
+        "calibrated025_support": 2058,
+        "calibrated025_greedy_matched": 2056,
+        "calibrated001_without_raw001": 0,
+        "partition": [
+          2,
+          65,
+          114,
+          223
+        ],
+        "remaining_gap_fraction_all_GT": 0.09728944820909971
+      },
+      "medium_plus": {
+        "gt": 1345,
+        "native_high": 1222,
+        "peak_gap": 102,
+        "remaining_gap": 102,
+        "remaining_gap_images": 30,
+        "raw001_support": 1189,
+        "raw005_support": 1162,
+        "calibrated001_support": 1139,
+        "calibrated025_support": 1011,
+        "calibrated025_greedy_matched": 1009,
+        "calibrated001_without_raw001": 0,
+        "partition": [
+          0,
+          24,
+          36,
+          42
+        ],
+        "remaining_gap_fraction_all_GT": 0.0758364312267658
+      },
+      "tiny_remaining_gap_fraction_bootstrap95ci": [
+        0.08463642859001493,
+        0.1161390322814397
+      ]
+    }
+  },
+  "decision": {
+    "checks": {
+      "screen": {
+        "gt": true,
+        "original_gap": true,
+        "remaining": true,
+        "images": true,
+        "fraction": true,
+        "interval": true
+      },
+      "confirmation": {
+        "gt": true,
+        "original_gap": true,
+        "remaining": true,
+        "images": true,
+        "fraction": true,
+        "interval": true
+      }
+    },
+    "decision": "REPLICATED_POSTCONTROL_PEAK_GAP_SUPPORTS_SEPARATE_SMALL_LEARNABILITY_PILOT",
+    "scope": "Fixed cached support gaps only, not recoverableTP,AP,falsepositive-control,training orinnovation evidence."
+  },
+  "costs": {
+    "cached_frames": 128,
+    "exact_full_reference_replays": 128,
+    "CPU_calibrator_MLP_calls": 128,
+    "JPEG_decodes": 0,
+    "detector_encoder_forwards": 0,
+    "fits": 0,
+    "gradients": 0,
+    "parameter_updates": 0,
+    "AP_evaluations": 0,
+    "elapsed_seconds": 6.093122099991888
+  },
+  "artifacts_sha256": {
+    "decision.json": "ec706ef5b63f9662af258b485057d82980cbaa2be2a2ef61e93e9d7d9be8741a",
+    "frames.json": "c7a5f33adb2c5ac171331abca827f4ee73fa15425ade412c4d74bb50fb1a0d7b",
+    "metrics.json": "da5bcd848c9ba89b72e03ebf93abe74a7368d5b5e13c2a8c4951c3faee86791e",
+    "per_image.json": "cfde21ddde281a37a4e98b067c726745d2f971c7ef337b044b09a5523f1dbcfb",
+    "plan.json": "7d6482c9fde8ad72d38ea1d7f913043c047f93aa50a0edc4b1892a19c75e7f4e",
+    "source.zip": "78f167498a6646f5e7381e9709382385d12e89e529524e6b66fbb792b15d126d",
+    "result.json": "3253e0be0902c3efc8714244ea0776c71e29a5860b514b122a1a7b3d78e9c621",
+    "independent_verification.json": "09a0262f990afd8297268d19ebc0df4af5a33684ab0ad9c9862571309f9e4103"
+  },
+  "independent_verification": {
+    "all_source_archive_prior_control_weight_metadata_frame_hashes_verified": true,
+    "fixed128images_and_sequence_disjointness_verified": true,
+    "independently_rebuilt_GT_view_or_reference_support_queries": 55608,
+    "all_raw_calibrated_support_scores_flags_partition_and_greedy_owners_reconstructed": true,
+    "all_groups_traces_bootstrap_and_twelve_gates_rebuilt": true,
+    "added_JPEG_decodes": 0,
+    "added_detector_encoder_forwards": 0,
+    "added_calibrator_calls": 0,
+    "added_fits": 0,
+    "added_updates": 0,
+    "verifier_sha256": "aec688b4f1685dddfaa07ec242f712bb95d426e6d9d9eaff1dc980303ecfe123",
+    "limits": "Uses same cached detector/reference arrays. Main replayed all128references exactly through frozen calibration; verifier does not independently reimplement calibration MLP orSoftNMS. Support may reuse detections acrossGT; noignore/officialAP/FPbudget/causality/learnability/innovation proof."
+  },
+  "independent_verifier_exit_code_observed": 0,
+  "tests": "6 passed, exit0: python -m pytest tests/test_peak_gap_survival.py tests/test_native_peak_quality.py -q",
+  "prior_audit": "docs/literature/native_peak_quality_prior_audit_20261015.json",
+  "prior_audit_sha256": "6271a8a8bb4135600518ef9b7e964c736e64aea2043842675d0e21161a1417ed",
+  "generalization_limit": "Same repeatedly inspected 128 detector/calibrator-training images; screen/confirmation sequence separation does not establish unseen-data generalization.",
+  "interpretation": "Replicated high-IoU support gaps survive the unchanged strong control. This supports a separate small learnability pilot, not recoverable TP, AP gain, a trainable mechanism or novelty.",
+  "next_scope": "Preregister a bounded frozen-detector quality-selection pilot on disjoint training and untouched evaluation sequences; compare geometry/class-score and ordinary DGQP-style quality controls at matched capacity and candidate budget. Test the proposed common-image-coordinate boundary-distribution comparison as an unproven hypothesis, with inference free of GT and an end-to-end strong-control comparison. Do not expand detector training without deployable gains.",
+  "innovation_status": "Problem-space prerequisite only. No learned candidate has passed, no new full detector training is recommended, goal remains active."
+}
