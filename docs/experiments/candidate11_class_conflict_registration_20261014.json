@@ -1,0 +1,23 @@
+{
+  "experiment": "candidate11_cross_view_class_conflict_headroom",
+  "date": "2026-10-14",
+  "hypothesis": "Cross-view label disagreement contains correct-class evidence lost by a fixed-label coordinate policy; observer context may help decide which label to trust.",
+  "stage": "Cached annotation-assisted headroom only, not a deployable result or novelty confirmation.",
+  "sample": "First256 of the1610 previously viewed test-dev images sorted by SHA256('class-conflict-preflight-v1:'+stem). No result-dependent sample.",
+  "baseline": "Frozen fixed seed0 uniform coordinates, calibrated scores and count.",
+  "label_actions": "Keep original class; alternatively any class supported by a cached view box of IoU>=0.7 and raw confidence>=0.05. At most one maximum score*IoU contribution per class per view.",
+  "ordinary_control": "Weighted cross-view class vote: sum maximum score*IoU per view; prefer original class on exact tie; keep original when no evidence. No learned parameters.",
+  "oracle": "Class-agnostic IoU>=0.5 score-ordered one-to-one original ownership; set owned class to that GT only if already present in valid label actions; unowned rows keep original class.",
+  "operating_points": [0.001, 0.25],
+  "primary_operating_point": 0.25,
+  "diagnostic_ignore": "All actions and predictions constructed without GT. Apply max individual ignored-box IoF>0.5 only afterwards, equally to all arms. Not official VisDrone preprocessing.",
+  "policy": {
+    "available_owned_wrong_class_actions_min": 20,
+    "small_all_oracle_vs_uniform_recall_min_pp": 0.1,
+    "small_all_oracle_vs_weighted_vote_recall_min_pp": 0.05
+  },
+  "interpretation": "Three conditions only permit a small train-scene-held-out class-choice pilot. Ordinary voting gains alone are not a novel mechanism. Negative result ends this label-action menu.",
+  "limits": "Oracle may alter global matching and is not an AP upper bound; physical GT ownership is a geometry proxy. Reused sampled test-dev proposes a hypothesis, not independent confirmation. Fixed confidence recall/FP are not official AP/AR.",
+  "budget": "No image decoding, detector inference, training or official evaluation; one sampled cached pass.",
+  "prior_art": "Class fusion already appears in FUSE(KDD2021); multiscale learned fusion/rescoring appears in FUSEye(arXiv2610.02799v1,2026-10-02). Context-dependent class trust remains only a candidate requiring closer comparison."
+}

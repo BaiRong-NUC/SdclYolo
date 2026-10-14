@@ -120,3 +120,42 @@ all +0.385609 pp、tiny +0.302997 pp、small_all +0.381769 pp。
 登记与数值记录：`docs/experiments/candidate10_frozen_roi_preflight_registration_20261014.json`、
 `docs/experiments/candidate10_frozen_roi_preflight_result_20261014.json`。
 完整结果：`output/analysis/frozen-roi-preflight-fixed-20261014/`。
+
+## 实验 11：跨视图类别分歧的缓存空间
+
+先核查近邻：FUSE 已有分类融合，2026-10-02 的 FUSEye 预印本已有
+多尺度重叠视图及学习型重评分，因此不能把普通融合当原创。
+候选问题收窄为观察尺度/上下文是否能解释类别证据可靠性，
+详细边界见 `960_class_conflict_prior_audit_20261014.md`。
+
+固定哈希选已查看 test-dev 的 256 张图，只用缓存，不推理/训练检测器，
+不解码图片、不运行官方评价，总耗时 19.03 秒。
+主对照是冻结 seed0 uniform 的坐标及原校准分数。
+替代类别要求现有视图中 IoU>=0.7 且置信度>=0.05 的框支持，
+每类别每视图最多贡献一次最高 score*IoU，避免重复框制造票数。
+普通对照直接按五视图权重和投票，平票保留原类别。
+
+GT 辅助参考：原框按无类别的一对一 IoU>=0.5 归属确定，
+正确类别必须已经出现在预测动作中；不匹配原框保留类别。
+全部证据/普通投票无标注生成，仅在评价时共同使用 max 单框 IoF>0.5 忽略过滤。
+标注辅助归属不是实例真值，参考也不是全局 AP 上界。
+
+91,498 个原框中，10,730 个有跨类别动作（均为忽略过滤前计数）。
+有 468 个已拥有几何 GT 的原框，可用已有视图证据纠正原类别。
+
+| 分支，confidence0.25 | small_all TP / GT | small_all 召回 (%) | 全尺寸 FP |
+|---|---:|---:|---:|
+| uniform | 6,290 / 10,228 | 61.497849 | 3,131 |
+| weighted_vote | 6,127 / 10,228 | 59.904185 | 3,315 |
+| class_oracle | 6,423 / 10,228 | 62.798201 | 2,992 |
+
+登记条件：至少 20 个可纠正类别动作，small_all 参考对 uniform 至少 +0.10 pp、
+对普通投票至少 +0.05 pp。实测 468 个、+1.300352 pp、+2.894016 pp，
+判断 SMALL_CLASS_CHOICE_PILOT_WORTH_TESTING。
+它只允许小头可学习性实验；直接投票的负向结果不证明新机制会有效。
+这些是采样固定置信度召回/FP，不是官方 AP/AR 或独立数据确认。
+
+三个重复票数、平票保留和类别动作边界测试通过。
+登记与数值记录：`docs/experiments/candidate11_class_conflict_registration_20261014.json`、
+`docs/experiments/candidate11_class_conflict_result_20261014.json`。
+完整结果：`output/analysis/class-conflict-headroom-fixed-20261014/`。

@@ -1,0 +1,301 @@
+{
+  "experiment": "candidate11_class_conflict_headroom",
+  "date": "2026-10-14",
+  "decision": {
+    "decision": "SMALL_CLASS_CHOICE_PILOT_WORTH_TESTING",
+    "checks": {
+      "wrong_class_actions": true,
+      "oracle_vs_uniform": true,
+      "oracle_vs_vote": true
+    },
+    "values": {
+      "small_all_oracle_vs_uniform_recall_pp": 1.3003519749706687,
+      "small_all_oracle_vs_weighted_vote_recall_pp": 2.894016425498631,
+      "available_owned_wrong_class_actions": 468
+    },
+    "policy": {
+      "available_owned_wrong_class_actions_min": 20,
+      "small_all_oracle_vs_uniform_recall_min_pp": 0.1,
+      "small_all_oracle_vs_weighted_vote_recall_min_pp": 0.05
+    },
+    "scope": "Sampled annotation-assisted headroom only; not official AP or novelty."
+  },
+  "summary": {
+    "0.001": {
+      "uniform": {
+        "all": {
+          "gt": 11009,
+          "tp": 8659,
+          "recall_percent": 78.65382868562085
+        },
+        "tiny": {
+          "gt": 7840,
+          "tp": 5834,
+          "recall_percent": 74.41326530612244
+        },
+        "small_all": {
+          "gt": 10228,
+          "tp": 7967,
+          "recall_percent": 77.89401642549863
+        }
+      },
+      "weighted_vote": {
+        "all": {
+          "gt": 11009,
+          "tp": 8253,
+          "recall_percent": 74.96593696066854
+        },
+        "tiny": {
+          "gt": 7840,
+          "tp": 5567,
+          "recall_percent": 71.00765306122449
+        },
+        "small_all": {
+          "gt": 10228,
+          "tp": 7594,
+          "recall_percent": 74.2471646460696
+        }
+      },
+      "class_oracle": {
+        "all": {
+          "gt": 11009,
+          "tp": 8675,
+          "recall_percent": 78.79916432010174
+        },
+        "tiny": {
+          "gt": 7840,
+          "tp": 5849,
+          "recall_percent": 74.60459183673468
+        },
+        "small_all": {
+          "gt": 10228,
+          "tp": 7983,
+          "recall_percent": 78.05044974579586
+        }
+      }
+    },
+    "0.25": {
+      "uniform": {
+        "all": {
+          "gt": 11009,
+          "tp": 6930,
+          "recall_percent": 62.94849668453084
+        },
+        "tiny": {
+          "gt": 7840,
+          "tp": 4365,
+          "recall_percent": 55.67602040816326
+        },
+        "small_all": {
+          "gt": 10228,
+          "tp": 6290,
+          "recall_percent": 61.49784904184591
+        }
+      },
+      "weighted_vote": {
+        "all": {
+          "gt": 11009,
+          "tp": 6746,
+          "recall_percent": 61.277136888000726
+        },
+        "tiny": {
+          "gt": 7840,
+          "tp": 4258,
+          "recall_percent": 54.31122448979592
+        },
+        "small_all": {
+          "gt": 10228,
+          "tp": 6127,
+          "recall_percent": 59.90418459131796
+        }
+      },
+      "class_oracle": {
+        "all": {
+          "gt": 11009,
+          "tp": 7069,
+          "recall_percent": 64.21110000908348
+        },
+        "tiny": {
+          "gt": 7840,
+          "tp": 4461,
+          "recall_percent": 56.900510204081634
+        },
+        "small_all": {
+          "gt": 10228,
+          "tp": 6423,
+          "recall_percent": 62.79820101681658
+        }
+      }
+    }
+  },
+  "false_positives": {
+    "0.001": {
+      "uniform": 77347,
+      "weighted_vote": 77753,
+      "class_oracle": 77331
+    },
+    "0.25": {
+      "uniform": 3131,
+      "weighted_vote": 3315,
+      "class_oracle": 2992
+    }
+  },
+  "class_transitions": {
+    "rows_original_class_columns_owned_gt_class": [
+      [
+        0,
+        29,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        25,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        16
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        111,
+        11,
+        4,
+        2,
+        4,
+        3
+      ],
+      [
+        0,
+        0,
+        0,
+        92,
+        0,
+        13,
+        0,
+        0,
+        7,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        7,
+        6,
+        0,
+        0,
+        2,
+        30,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        10,
+        0,
+        5
+      ],
+      [
+        0,
+        0,
+        0,
+        3,
+        0,
+        2,
+        6,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        8,
+        14,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        12,
+        10,
+        15,
+        3,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0
+      ]
+    ],
+    "available_owned_wrong_class_actions": 468,
+    "prediction_rows_before_diagnostic_ignore": 91498,
+    "cross_class_action_rows_before_diagnostic_ignore": 10730
+  },
+  "verification": {
+    "images": 256,
+    "no_training": true,
+    "no_detector_inference": true,
+    "no_image_decoding": true,
+    "no_official_evaluation": true,
+    "source_unchanged": true,
+    "total_seconds": 19.032567700138316
+  },
+  "prior_sources": {
+    "fuseye.html": {
+      "url": "https://arxiv.org/html/2610.02799v1",
+      "sha256": "dc1c888cd83aa3287d981d182d18a19a6917699fd86c4242b77757d4fb8a70ee",
+      "bytes": 248844
+    },
+    "fuse_readme.md": {
+      "url": "https://raw.githubusercontent.com/git-disl/FUSE/main/README.md",
+      "sha256": "8f8e644fdcdfbdfd3aa7bc6847840766bfe702a27f3edc7d442391e11c334da7",
+      "bytes": 4812
+    }
+  },
+  "artifacts_sha256": {
+    "class_transitions.json": "a2d3646b3bb026263630db290f667577eb887d1b027e6fa5d33b48667e642646",
+    "decision.json": "d773ad5e46b96b4272c53791e9583e86b37a82b176c479a008ce5329965c208d",
+    "false_positives.json": "998bd7ab5ddaf6a2b10a3a9fc7581133cfc36bbee1fbf63d01f68709dced4b57",
+    "per_image.csv": "cf301ad5fa52de4f85b51716d5923bf119dfcd884cfef12a1f01f04be26e9a96",
+    "plan.json": "29f5f11738ca11120adc21fc937b364adaccf02d843aad0d28c4a7dfeaabf8bf",
+    "source.zip": "f4e5ee3c1be811597dba9682296aa4d8f6aab546e3df9cda8eeeb3e39655cca6",
+    "summary.json": "3a06910643a25484af94495f0c510cb1db40600b316b66e27fc56f2721a5ddbf",
+    "verification.json": "da604292fa0105c53d2dfb88fe300de2a3b8265de4bc35c519053a4d936dd5be"
+  }
+}
