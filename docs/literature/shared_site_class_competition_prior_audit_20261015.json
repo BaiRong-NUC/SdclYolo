@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-15",
+  "candidate": "candidate64_shared_site_cross_class_contradiction",
+  "scope": "Targeted primary-paper audit,not exhaustive novelty search. PaperSearch exact ALFAmetadata/PDF acquired; other exact-version priors reused. Inter-class search returned Meta-DETR,CAT,license-plate relationloss as leads only,not read/evidence for methods.",
+  "papers": [
+    {
+      "title": "ALFA: Agglomerative Late Fusion Algorithm for Object Detection",
+      "arxiv_version": "1907.06067v1",
+      "source": "https://arxiv.org/abs/1907.06067v1",
+      "pdf": "output/literature/papers/1907.06067v1.pdf",
+      "text": "output/literature/text/1907.06067v1.txt",
+      "preview": "output/literature/previews/1907.06067v1-p3.png",
+      "pages": 7,
+      "review": "Read abstract,introduction and methodIII.A/III.B including equations2-9 and renderedpage3. Already combines IoU and normalized full class-score Bhattacharyya affinity,complete-link clustering,one output per object hypothesis and class-score aggregation. Cross-class geometric/semantic late fusion is prior art. Candidate64affinity arm borrows BC only,not a faithful ALFA reproduction. Same-site directionalcontrast remains narrow and unproven,not an originality claim.",
+      "zotero": {
+        "parent": "B9CDHEMB",
+        "attachment": "VG4CBCTL",
+        "collection": "6HT9SNK7",
+        "readback": "Exact-version metadata and imported_file PDF child read back; semanticindex not verified."
+      },
+      "pdf_sha256": "783a0d0ae33cf029fe28924de4bfb5a30a5ca49df238940fdf5cae725543d02e",
+      "text_sha256": "1e58a275f2a72d2b45925433bfa8705f31633b0590f5856e0819bf45cab23949",
+      "preview_sha256": "14979e9c1c4b3dcd47a819b7771b22da8b7eff915928769ca369c9f2d60deca5"
+    },
+    {
+      "title": "Learning non-maximum suppression",
+      "arxiv_version": "1705.02950v2",
+      "source": "https://arxiv.org/abs/1705.02950v2",
+      "pdf": "output/literature/papers/arxiv-1705.02950.pdf",
+      "text": "output/literature/text/arxiv-1705.02950.txt",
+      "review": "Abstract and4.1 loss: competing detections, one detection per object, earlier Hungarian matching-loss work and score-ordered benchmark-matching binary targets. Competition-aware detection scoring and matching-derived positive/negative labels are established. Relational scoring or adding a matching algorithm is not novel by itself.",
+      "pdf_sha256": "4b66a439f14cd2ef813ec33ac3f920bbd00f1826872c80d61865889811a62b07",
+      "text_sha256": "bb3a18b0713e6ddae52f261d9878671d3bdcf1600424ff0e49c917533a2c0692"
+    },
+    {
+      "title": "FUSEye: Training-Light Fisheye Detection with Overlapping Views and Zero-Initialized Adapters",
+      "arxiv_version": "2610.02799v1",
+      "source": "https://arxiv.org/abs/2610.02799v1",
+      "pdf": "output/literature/papers/arxiv-2610.02799v1.pdf",
+      "text": "output/literature/text/arxiv-2610.02799v1.txt",
+      "review": "AgreeFusion paragraph before/after Figure3: descending-score fixed-seed clusters use still-unassigned detections, IoU>=.5, distinct-view support, cluster scoring and final NMS. Disjoint greedy clusters already prevent a detection from being reused across clusters. Distinct-view support counting is explicit prior art. Candidate47 must beat ordinary exclusive greedy allocation, not just unrestricted support.",
+      "pdf_sha256": "a1127e41972bf0e0ff16a6383a1d72c2de6b3a71e53c635e6ff539e1c6a3d24c",
+      "text_sha256": "317745a645f267afe3b8c4325db67606043103c90c4598dddb3fe7c771083305"
+    }
+  ],
+  "novelty_boundary": "Classdistribution affinity,multiview grouping,competition-aware scoring,NMS are established. Fixed directional class evidence at shared native sites versus independent-site maxima is a narrow design difference requiring actual deployment superiority and wider close-prior audit. Deterministic mathematical formula alone is not innovation."
+}

@@ -1,0 +1,2287 @@
+{
+  "experiment": "candidate64_shared_site_cross_class_contradiction",
+  "output": "D:\\Python\\YOLO\\output\\analysis\\shared-site-class-competition-fixed-20261015",
+  "decision": {
+    "checks": {
+      "screen": {
+        "tiny_GT": true,
+        "changed_rows": true,
+        "tiny_ap_vs_strong": false,
+        "small_all_ap_vs_strong": true,
+        "all_ap_vs_strong": true,
+        "tiny_ap_vs_marginal": false,
+        "tiny_ap_vs_affinity": false,
+        "tiny_ap_vs_geometry": false,
+        "small_all_recall_fppi5_vs_strong": true,
+        "small_all_recall_fppi10_vs_strong": true,
+        "sequence_interval": true,
+        "processing": true
+      },
+      "confirmation": {
+        "tiny_GT": true,
+        "changed_rows": true,
+        "tiny_ap_vs_strong": false,
+        "small_all_ap_vs_strong": false,
+        "all_ap_vs_strong": true,
+        "tiny_ap_vs_marginal": false,
+        "tiny_ap_vs_affinity": true,
+        "tiny_ap_vs_geometry": true,
+        "small_all_recall_fppi5_vs_strong": true,
+        "small_all_recall_fppi10_vs_strong": true,
+        "sequence_interval": false,
+        "processing": true
+      }
+    },
+    "decision": "STOP_THIS_SHARED_SITE_CROSS_CLASS_CONTRADICTION_RECIPE",
+    "scope": "Deterministic score-only deployment pilot on reused detector-training data. Not official AP,external generalization orinnovation; no full training recommendation."
+  },
+  "metrics": {
+    "screen": {
+      "AP": {
+        "strong": {
+          "all": {
+            "gt": 2135,
+            "ap50": 0.7103419359160066,
+            "ap50_95": 0.452422783319993,
+            "ar50_95_max500": 0.5740580594727392,
+            "per_class_ap50_95": {
+              "pedestrian": 0.38865545701448045,
+              "people": 0.24301288326899562,
+              "bicycle": 0.2532057463879156,
+              "car": 0.6412755781447763,
+              "van": 0.5231262623415932,
+              "truck": 0.595812961570859,
+              "tricycle": 0.414671490024538,
+              "awning-tricycle": 0.43225149212105946,
+              "bus": 0.6533036550534057,
+              "motor": 0.3789123072723067
+            }
+          },
+          "tiny": {
+            "gt": 1620,
+            "ap50": 0.6080241223153301,
+            "ap50_95": 0.34302464279687955,
+            "ar50_95_max500": 0.4823157635374804,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3676999549253753,
+              "people": 0.2312611159802676,
+              "bicycle": 0.21505706120673013,
+              "car": 0.540904321028227,
+              "van": 0.362078113410571,
+              "truck": 0.4986916871473855,
+              "tricycle": 0.22115855538744048,
+              "awning-tricycle": 0.19219569942118025,
+              "bus": 0.45723656294200854,
+              "motor": 0.34396335651961013
+            }
+          },
+          "small": {
+            "gt": 384,
+            "ap50": 0.9236197208858099,
+            "ap50_95": 0.6586206361346274,
+            "ar50_95_max500": 0.7580329462180816,
+            "per_class_ap50_95": {
+              "pedestrian": 0.631264025811074,
+              "people": 0.5711613942285937,
+              "bicycle": 0.6067837498035518,
+              "car": 0.7697084075544635,
+              "van": 0.693181101616395,
+              "truck": 0.5649520614382839,
+              "tricycle": 0.7013883596283284,
+              "awning-tricycle": 0.6619417788139137,
+              "bus": 0.8047913859708953,
+              "motor": 0.5810340964807745
+            }
+          },
+          "small_all": {
+            "gt": 2004,
+            "ap50": 0.6920261618441194,
+            "ap50_95": 0.4265757164370511,
+            "ar50_95_max500": 0.553355581233441,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3886554990638125,
+              "people": 0.24301288326899562,
+              "bicycle": 0.2532057463879156,
+              "car": 0.616402806479002,
+              "van": 0.45761665132774465,
+              "truck": 0.5134863485210063,
+              "tricycle": 0.3884727714921474,
+              "awning-tricycle": 0.3846369603618002,
+              "bus": 0.6440028159690872,
+              "motor": 0.37626468149899966
+            }
+          },
+          "medium": {
+            "gt": 125,
+            "ap50": 0.9264176017524882,
+            "ap50_95": 0.7905603665534509,
+            "ar50_95_max500": 0.8548825831702543,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": 0.8628849470451722,
+              "van": 0.8612617415587712,
+              "truck": 0.7645802148468269,
+              "tricycle": 0.7230363036303631,
+              "awning-tricycle": 0.9504950495049505,
+              "bus": 0.6026874115983027,
+              "motor": 0.768976897689769
+            }
+          },
+          "large": {
+            "gt": 6,
+            "ap50": 0.9834983498349836,
+            "ap50_95": 0.917949294929493,
+            "ar50_95_max500": 0.95,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": null,
+              "van": null,
+              "truck": 0.8358985898589859,
+              "tricycle": null,
+              "awning-tricycle": null,
+              "bus": 0.9999999999999998,
+              "motor": null
+            }
+          }
+        },
+        "shared": {
+          "all": {
+            "gt": 2135,
+            "ap50": 0.7119824471764052,
+            "ap50_95": 0.4532817193667836,
+            "ar50_95_max500": 0.5737487811222238,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3881626713217643,
+              "people": 0.2445164935075507,
+              "bicycle": 0.2546303730629067,
+              "car": 0.6415060712757114,
+              "van": 0.5232305074484245,
+              "truck": 0.5955985749682765,
+              "tricycle": 0.41431418460165786,
+              "awning-tricycle": 0.4372115076515968,
+              "bus": 0.6548417512451858,
+              "motor": 0.3788050585847622
+            }
+          },
+          "tiny": {
+            "gt": 1620,
+            "ap50": 0.608843875147378,
+            "ap50_95": 0.34336233893983825,
+            "ar50_95_max500": 0.4817985221581701,
+            "per_class_ap50_95": {
+              "pedestrian": 0.36702393467741595,
+              "people": 0.23277813527268212,
+              "bicycle": 0.21641075949303787,
+              "car": 0.5412730710644028,
+              "van": 0.3623131364966727,
+              "truck": 0.49395141764262707,
+              "tricycle": 0.22068950953960517,
+              "awning-tricycle": 0.19360510485417814,
+              "bus": 0.4613202391667738,
+              "motor": 0.34425808119098683
+            }
+          },
+          "small": {
+            "gt": 384,
+            "ap50": 0.9249292423992133,
+            "ap50_95": 0.6594294832052969,
+            "ar50_95_max500": 0.7580329462180816,
+            "per_class_ap50_95": {
+              "pedestrian": 0.6320626397544397,
+              "people": 0.5742477492059075,
+              "bicycle": 0.6067837498035518,
+              "car": 0.7699332022262684,
+              "van": 0.6972333860160448,
+              "truck": 0.5687328970844469,
+              "tricycle": 0.6988566135965822,
+              "awning-tricycle": 0.6656420197341864,
+              "bus": 0.8025365616271772,
+              "motor": 0.5782660130043643
+            }
+          },
+          "small_all": {
+            "gt": 2004,
+            "ap50": 0.6931687685543776,
+            "ap50_95": 0.42729523007876774,
+            "ar50_95_max500": 0.5529897275749045,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3881627136086628,
+              "people": 0.2445164935075507,
+              "bicycle": 0.2546303730629067,
+              "car": 0.6166171199660352,
+              "van": 0.4587928375534928,
+              "truck": 0.5121587803788531,
+              "tricycle": 0.3882598318690605,
+              "awning-tricycle": 0.38935993598368324,
+              "bus": 0.6444072758120487,
+              "motor": 0.3760469390453839
+            }
+          },
+          "medium": {
+            "gt": 125,
+            "ap50": 0.9329221923037092,
+            "ap50_95": 0.7940151389958956,
+            "ar50_95_max500": 0.8548825831702543,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": 0.863291338231716,
+              "van": 0.8662585111809586,
+              "truck": 0.7648786129503915,
+              "tricycle": 0.7263366336633664,
+              "awning-tricycle": 0.9504950495049505,
+              "bus": 0.6145685997171146,
+              "motor": 0.7722772277227723
+            }
+          },
+          "large": {
+            "gt": 6,
+            "ap50": 0.9834983498349836,
+            "ap50_95": 0.917949294929493,
+            "ar50_95_max500": 0.95,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": null,
+              "van": null,
+              "truck": 0.8358985898589859,
+              "tricycle": null,
+              "awning-tricycle": null,
+              "bus": 0.9999999999999998,
+              "motor": null
+            }
+          }
+        },
+        "marginal": {
+          "all": {
+            "gt": 2135,
+            "ap50": 0.7126832122239679,
+            "ap50_95": 0.453498135065176,
+            "ar50_95_max500": 0.5737487811222238,
+            "per_class_ap50_95": {
+              "pedestrian": 0.38844120951936256,
+              "people": 0.244320634767398,
+              "bicycle": 0.25421746414804847,
+              "car": 0.6414563513048315,
+              "van": 0.5237005883600018,
+              "truck": 0.5967449578894187,
+              "tricycle": 0.4153808195223955,
+              "awning-tricycle": 0.4413216176546447,
+              "bus": 0.6499482778552441,
+              "motor": 0.37944942963041545
+            }
+          },
+          "tiny": {
+            "gt": 1620,
+            "ap50": 0.6104834421532962,
+            "ap50_95": 0.344544216251068,
+            "ar50_95_max500": 0.4817985221581701,
+            "per_class_ap50_95": {
+              "pedestrian": 0.36743353562916287,
+              "people": 0.23260666873254052,
+              "bicycle": 0.21608914936100548,
+              "car": 0.5412405186474784,
+              "van": 0.363789973304242,
+              "truck": 0.4978812808757054,
+              "tricycle": 0.22136090424019125,
+              "awning-tricycle": 0.2017647142461499,
+              "bus": 0.4591469789305851,
+              "motor": 0.34412843854361946
+            }
+          },
+          "small": {
+            "gt": 384,
+            "ap50": 0.9248852000290585,
+            "ap50_95": 0.6591491526486839,
+            "ar50_95_max500": 0.7580329462180816,
+            "per_class_ap50_95": {
+              "pedestrian": 0.6315813664015504,
+              "people": 0.5742477492059075,
+              "bicycle": 0.6067837498035518,
+              "car": 0.7698535362956933,
+              "van": 0.6956004426594675,
+              "truck": 0.5677942271070525,
+              "tricycle": 0.7017621062456646,
+              "awning-tricycle": 0.6649951405963548,
+              "bus": 0.7968815730513966,
+              "motor": 0.5819916351201997
+            }
+          },
+          "small_all": {
+            "gt": 2004,
+            "ap50": 0.6935993826443064,
+            "ap50_95": 0.4273158736321598,
+            "ar50_95_max500": 0.5529897275749045,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3884412518062611,
+              "people": 0.244320634767398,
+              "bicycle": 0.25421746414804847,
+              "car": 0.6165614685869399,
+              "van": 0.45935864594152503,
+              "truck": 0.5141160788292098,
+              "tricycle": 0.38932892196508334,
+              "awning-tricycle": 0.3917660234667736,
+              "bus": 0.6384344346281523,
+              "motor": 0.3766138121822063
+            }
+          },
+          "medium": {
+            "gt": 125,
+            "ap50": 0.9329221923037092,
+            "ap50_95": 0.7932816323494478,
+            "ar50_95_max500": 0.8548825831702543,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": 0.8631823149355956,
+              "van": 0.8661671174261985,
+              "truck": 0.7647637153993293,
+              "tricycle": 0.7248177317731773,
+              "awning-tricycle": 0.9504950495049505,
+              "bus": 0.6145685997171146,
+              "motor": 0.768976897689769
+            }
+          },
+          "large": {
+            "gt": 6,
+            "ap50": 0.9834983498349836,
+            "ap50_95": 0.917949294929493,
+            "ar50_95_max500": 0.95,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": null,
+              "van": null,
+              "truck": 0.8358985898589859,
+              "tricycle": null,
+              "awning-tricycle": null,
+              "bus": 0.9999999999999998,
+              "motor": null
+            }
+          }
+        },
+        "affinity": {
+          "all": {
+            "gt": 2135,
+            "ap50": 0.7105914295152715,
+            "ap50_95": 0.4521030292744366,
+            "ar50_95_max500": 0.5735887045772757,
+            "per_class_ap50_95": {
+              "pedestrian": 0.38664612481596866,
+              "people": 0.2440368947472538,
+              "bicycle": 0.2532927275250711,
+              "car": 0.6412293739767224,
+              "van": 0.5218754451926262,
+              "truck": 0.5941282440506513,
+              "tricycle": 0.41004678737536265,
+              "awning-tricycle": 0.44406493391768764,
+              "bus": 0.6471104495553384,
+              "motor": 0.37859931158768384
+            }
+          },
+          "tiny": {
+            "gt": 1620,
+            "ap50": 0.6092603516449674,
+            "ap50_95": 0.3434136470642844,
+            "ar50_95_max500": 0.4816249095845575,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3653853318134553,
+              "people": 0.23230219763186188,
+              "bicycle": 0.21511003502666254,
+              "car": 0.5405923788233699,
+              "van": 0.360731999465668,
+              "truck": 0.49369115901901056,
+              "tricycle": 0.21660595183250206,
+              "awning-tricycle": 0.2042096656818909,
+              "bus": 0.46144667748628143,
+              "motor": 0.3440610738621417
+            }
+          },
+          "small": {
+            "gt": 384,
+            "ap50": 0.9218521924455296,
+            "ap50_95": 0.6571004226294712,
+            "ar50_95_max500": 0.7580329462180816,
+            "per_class_ap50_95": {
+              "pedestrian": 0.6324365398042434,
+              "people": 0.5749766146621126,
+              "bicycle": 0.6067837498035518,
+              "car": 0.7696399766616062,
+              "van": 0.6973414714805309,
+              "truck": 0.5640695308955095,
+              "tricycle": 0.6956050812219555,
+              "awning-tricycle": 0.6680142578737512,
+              "bus": 0.7842819637314902,
+              "motor": 0.57785504015996
+            }
+          },
+          "small_all": {
+            "gt": 2004,
+            "ap50": 0.6913475686657446,
+            "ap50_95": 0.42570538225766513,
+            "ar50_95_max500": 0.5528293551675916,
+            "per_class_ap50_95": {
+              "pedestrian": 0.38664616748027375,
+              "people": 0.2440368947472538,
+              "bicycle": 0.2532927275250711,
+              "car": 0.6159193196257955,
+              "van": 0.45858552219801474,
+              "truck": 0.5102630551761295,
+              "tricycle": 0.38400806911510116,
+              "awning-tricycle": 0.3941913909570152,
+              "bus": 0.6343208120795908,
+              "motor": 0.37578986367240574
+            }
+          },
+          "medium": {
+            "gt": 125,
+            "ap50": 0.933049847306061,
+            "ap50_95": 0.793068608724168,
+            "ar50_95_max500": 0.8548825831702543,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": 0.86388731910873,
+              "van": 0.8657270534745782,
+              "truck": 0.7643923636608575,
+              "tricycle": 0.723432977913176,
+              "awning-tricycle": 0.9504950495049505,
+              "bus": 0.6145685997171146,
+              "motor": 0.768976897689769
+            }
+          },
+          "large": {
+            "gt": 6,
+            "ap50": 0.9834983498349836,
+            "ap50_95": 0.917949294929493,
+            "ar50_95_max500": 0.95,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": null,
+              "van": null,
+              "truck": 0.8358985898589859,
+              "tricycle": null,
+              "awning-tricycle": null,
+              "bus": 0.9999999999999998,
+              "motor": null
+            }
+          }
+        },
+        "geometry": {
+          "all": {
+            "gt": 2135,
+            "ap50": 0.7099536705270526,
+            "ap50_95": 0.4516071206503526,
+            "ar50_95_max500": 0.5730208033427079,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3863599260721114,
+              "people": 0.2444534470138252,
+              "bicycle": 0.2524927351859378,
+              "car": 0.641129479765566,
+              "van": 0.5205013099492636,
+              "truck": 0.5937417724397287,
+              "tricycle": 0.40947677695826457,
+              "awning-tricycle": 0.44404135876485934,
+              "bus": 0.6455246445505821,
+              "motor": 0.3783497558033865
+            }
+          },
+          "tiny": {
+            "gt": 1620,
+            "ap50": 0.6088887299186039,
+            "ap50_95": 0.3431978362035974,
+            "ar50_95_max500": 0.4807484989046786,
+            "per_class_ap50_95": {
+              "pedestrian": 0.36507996516964186,
+              "people": 0.23272986241200186,
+              "bicycle": 0.21421012555085991,
+              "car": 0.5403804437045512,
+              "van": 0.35928673921593896,
+              "truck": 0.49254077428610277,
+              "tricycle": 0.2155599421456605,
+              "awning-tricycle": 0.20421180400313987,
+              "bus": 0.4639021428130339,
+              "motor": 0.3440765627350424
+            }
+          },
+          "small": {
+            "gt": 384,
+            "ap50": 0.9210626521544679,
+            "ap50_95": 0.6566342080771002,
+            "ar50_95_max500": 0.7580329462180816,
+            "per_class_ap50_95": {
+              "pedestrian": 0.6322314478664782,
+              "people": 0.5751146032508875,
+              "bicycle": 0.6069917706056319,
+              "car": 0.7697291954091662,
+              "van": 0.6972530151658584,
+              "truck": 0.5636563343641745,
+              "tricycle": 0.6957763770583396,
+              "awning-tricycle": 0.668385545002464,
+              "bus": 0.7810386614600866,
+              "motor": 0.5761651305879141
+            }
+          },
+          "small_all": {
+            "gt": 2004,
+            "ap50": 0.6906165209332362,
+            "ap50_95": 0.4251940485351822,
+            "ar50_95_max500": 0.5522157866465603,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3863599691889926,
+              "people": 0.2444534470138252,
+              "bicycle": 0.2524927351859378,
+              "car": 0.6157414734275208,
+              "van": 0.4582040689346184,
+              "truck": 0.509229803198904,
+              "tricycle": 0.38336313156108465,
+              "awning-tricycle": 0.39414774427977844,
+              "bus": 0.6323412969036335,
+              "motor": 0.3756068156575268
+            }
+          },
+          "medium": {
+            "gt": 125,
+            "ap50": 0.9330663742056559,
+            "ap50_95": 0.79376531011607,
+            "ar50_95_max500": 0.8548825831702543,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": 0.864309948895794,
+              "van": 0.8658346729321761,
+              "truck": 0.7645211298426053,
+              "tricycle": 0.722417491749175,
+              "awning-tricycle": 0.9504950495049505,
+              "bus": 0.6165016501650166,
+              "motor": 0.7722772277227723
+            }
+          },
+          "large": {
+            "gt": 6,
+            "ap50": 0.9834983498349836,
+            "ap50_95": 0.917949294929493,
+            "ar50_95_max500": 0.95,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": null,
+              "van": null,
+              "truck": 0.8358985898589859,
+              "tricycle": null,
+              "awning-tricycle": null,
+              "bus": 0.9999999999999998,
+              "motor": null
+            }
+          }
+        }
+      },
+      "fixed_fp": {
+        "shared": [
+          {
+            "label": "fppi_5",
+            "maximum_fp": 160,
+            "maximum_fppi": 5.0,
+            "models": {
+              "baseline": {
+                "confidence": 0.5640521583624613,
+                "actual_fp": 160,
+                "actual_fppi": 5.0,
+                "recall": {
+                  "all": 0.6454332552693208,
+                  "tiny": 0.5654320987654321,
+                  "small": 0.8958333333333334,
+                  "small_all": 0.6287425149700598,
+                  "medium": 0.904,
+                  "large": 0.8333333333333334
+                }
+              },
+              "sdcl": {
+                "confidence": 0.5546671220110041,
+                "actual_fp": 160,
+                "actual_fppi": 5.0,
+                "recall": {
+                  "all": 0.6473067915690867,
+                  "tiny": 0.5691358024691358,
+                  "small": 0.8932291666666666,
+                  "small_all": 0.6312375249500998,
+                  "medium": 0.896,
+                  "large": 0.8333333333333334
+                }
+              }
+            },
+            "delta_recall_pp": {
+              "all": 0.18735362997658322,
+              "tiny": 0.37037037037036535,
+              "small": -0.26041666666667407,
+              "small_all": 0.24950099800399306,
+              "medium": -0.8000000000000007,
+              "large": 0.0
+            },
+            "paired_image_bootstrap_delta_recall_95ci_pp": {
+              "all": null,
+              "tiny": null,
+              "small": null,
+              "small_all": null,
+              "medium": null,
+              "large": null
+            }
+          },
+          {
+            "label": "fppi_10",
+            "maximum_fp": 320,
+            "maximum_fppi": 10.0,
+            "models": {
+              "baseline": {
+                "confidence": 0.3507193500213819,
+                "actual_fp": 320,
+                "actual_fppi": 10.0,
+                "recall": {
+                  "all": 0.7185011709601874,
+                  "tiny": 0.6512345679012346,
+                  "small": 0.9348958333333334,
+                  "small_all": 0.7055888223552894,
+                  "medium": 0.92,
+                  "large": 0.8333333333333334
+                }
+              },
+              "sdcl": {
+                "confidence": 0.33187179862196325,
+                "actual_fp": 320,
+                "actual_fppi": 10.0,
+                "recall": {
+                  "all": 0.7241217798594848,
+                  "tiny": 0.658641975308642,
+                  "small": 0.9375,
+                  "small_all": 0.7120758483033932,
+                  "medium": 0.912,
+                  "large": 0.8333333333333334
+                }
+              }
+            },
+            "delta_recall_pp": {
+              "all": 0.5620608899297386,
+              "tiny": 0.7407407407407418,
+              "small": 0.26041666666666297,
+              "small_all": 0.6487025948103797,
+              "medium": -0.8000000000000007,
+              "large": 0.0
+            },
+            "paired_image_bootstrap_delta_recall_95ci_pp": {
+              "all": null,
+              "tiny": null,
+              "small": null,
+              "small_all": null,
+              "medium": null,
+              "large": null
+            }
+          }
+        ],
+        "marginal": [
+          {
+            "label": "fppi_5",
+            "maximum_fp": 160,
+            "maximum_fppi": 5.0,
+            "models": {
+              "baseline": {
+                "confidence": 0.5640521583624613,
+                "actual_fp": 160,
+                "actual_fppi": 5.0,
+                "recall": {
+                  "all": 0.6454332552693208,
+                  "tiny": 0.5654320987654321,
+                  "small": 0.8958333333333334,
+                  "small_all": 0.6287425149700598,
+                  "medium": 0.904,
+                  "large": 0.8333333333333334
+                }
+              },
+              "sdcl": {
+                "confidence": 0.5546671220110041,
+                "actual_fp": 160,
+                "actual_fppi": 5.0,
+                "recall": {
+                  "all": 0.6482435597189695,
+                  "tiny": 0.5697530864197531,
+                  "small": 0.8958333333333334,
+                  "small_all": 0.6322355289421158,
+                  "medium": 0.896,
+                  "large": 0.8333333333333334
+                }
+              }
+            },
+            "delta_recall_pp": {
+              "all": 0.2810304449648693,
+              "tiny": 0.43209876543209846,
+              "small": 0.0,
+              "small_all": 0.3493013972055925,
+              "medium": -0.8000000000000007,
+              "large": 0.0
+            },
+            "paired_image_bootstrap_delta_recall_95ci_pp": {
+              "all": null,
+              "tiny": null,
+              "small": null,
+              "small_all": null,
+              "medium": null,
+              "large": null
+            }
+          },
+          {
+            "label": "fppi_10",
+            "maximum_fp": 320,
+            "maximum_fppi": 10.0,
+            "models": {
+              "baseline": {
+                "confidence": 0.3507193500213819,
+                "actual_fp": 320,
+                "actual_fppi": 10.0,
+                "recall": {
+                  "all": 0.7185011709601874,
+                  "tiny": 0.6512345679012346,
+                  "small": 0.9348958333333334,
+                  "small_all": 0.7055888223552894,
+                  "medium": 0.92,
+                  "large": 0.8333333333333334
+                }
+              },
+              "sdcl": {
+                "confidence": 0.335850336954439,
+                "actual_fp": 320,
+                "actual_fppi": 10.0,
+                "recall": {
+                  "all": 0.7227166276346604,
+                  "tiny": 0.6567901234567901,
+                  "small": 0.9375,
+                  "small_all": 0.7105788423153693,
+                  "medium": 0.912,
+                  "large": 0.8333333333333334
+                }
+              }
+            },
+            "delta_recall_pp": {
+              "all": 0.4215456674472984,
+              "tiny": 0.5555555555555536,
+              "small": 0.26041666666666297,
+              "small_all": 0.4990019960079861,
+              "medium": -0.8000000000000007,
+              "large": 0.0
+            },
+            "paired_image_bootstrap_delta_recall_95ci_pp": {
+              "all": null,
+              "tiny": null,
+              "small": null,
+              "small_all": null,
+              "medium": null,
+              "large": null
+            }
+          }
+        ],
+        "affinity": [
+          {
+            "label": "fppi_5",
+            "maximum_fp": 160,
+            "maximum_fppi": 5.0,
+            "models": {
+              "baseline": {
+                "confidence": 0.5640521583624613,
+                "actual_fp": 160,
+                "actual_fppi": 5.0,
+                "recall": {
+                  "all": 0.6454332552693208,
+                  "tiny": 0.5654320987654321,
+                  "small": 0.8958333333333334,
+                  "small_all": 0.6287425149700598,
+                  "medium": 0.904,
+                  "large": 0.8333333333333334
+                }
+              },
+              "sdcl": {
+                "confidence": 0.5444283925448136,
+                "actual_fp": 160,
+                "actual_fppi": 5.0,
+                "recall": {
+                  "all": 0.6505854800936768,
+                  "tiny": 0.5746913580246914,
+                  "small": 0.8880208333333334,
+                  "small_all": 0.6347305389221557,
+                  "medium": 0.896,
+                  "large": 0.8333333333333334
+                }
+              }
+            },
+            "delta_recall_pp": {
+              "all": 0.5152224824355955,
+              "tiny": 0.92592592592593,
+              "small": -0.78125,
+              "small_all": 0.5988023952095856,
+              "medium": -0.8000000000000007,
+              "large": 0.0
+            },
+            "paired_image_bootstrap_delta_recall_95ci_pp": {
+              "all": null,
+              "tiny": null,
+              "small": null,
+              "small_all": null,
+              "medium": null,
+              "large": null
+            }
+          },
+          {
+            "label": "fppi_10",
+            "maximum_fp": 320,
+            "maximum_fppi": 10.0,
+            "models": {
+              "baseline": {
+                "confidence": 0.3507193500213819,
+                "actual_fp": 320,
+                "actual_fppi": 10.0,
+                "recall": {
+                  "all": 0.7185011709601874,
+                  "tiny": 0.6512345679012346,
+                  "small": 0.9348958333333334,
+                  "small_all": 0.7055888223552894,
+                  "medium": 0.92,
+                  "large": 0.8333333333333334
+                }
+              },
+              "sdcl": {
+                "confidence": 0.32495521652110243,
+                "actual_fp": 320,
+                "actual_fppi": 10.0,
+                "recall": {
+                  "all": 0.7231850117096019,
+                  "tiny": 0.6592592592592592,
+                  "small": 0.9322916666666666,
+                  "small_all": 0.7115768463073853,
+                  "medium": 0.904,
+                  "large": 0.8333333333333334
+                }
+              }
+            },
+            "delta_recall_pp": {
+              "all": 0.4683840749414525,
+              "tiny": 0.8024691358024638,
+              "small": -0.26041666666667407,
+              "small_all": 0.5988023952095856,
+              "medium": -1.6000000000000014,
+              "large": 0.0
+            },
+            "paired_image_bootstrap_delta_recall_95ci_pp": {
+              "all": null,
+              "tiny": null,
+              "small": null,
+              "small_all": null,
+              "medium": null,
+              "large": null
+            }
+          }
+        ],
+        "geometry": [
+          {
+            "label": "fppi_5",
+            "maximum_fp": 160,
+            "maximum_fppi": 5.0,
+            "models": {
+              "baseline": {
+                "confidence": 0.5640521583624613,
+                "actual_fp": 160,
+                "actual_fppi": 5.0,
+                "recall": {
+                  "all": 0.6454332552693208,
+                  "tiny": 0.5654320987654321,
+                  "small": 0.8958333333333334,
+                  "small_all": 0.6287425149700598,
+                  "medium": 0.904,
+                  "large": 0.8333333333333334
+                }
+              },
+              "sdcl": {
+                "confidence": 0.5444283925448136,
+                "actual_fp": 160,
+                "actual_fppi": 5.0,
+                "recall": {
+                  "all": 0.6501170960187354,
+                  "tiny": 0.5740740740740741,
+                  "small": 0.8880208333333334,
+                  "small_all": 0.6342315369261478,
+                  "medium": 0.896,
+                  "large": 0.8333333333333334
+                }
+              }
+            },
+            "delta_recall_pp": {
+              "all": 0.4683840749414525,
+              "tiny": 0.8641975308641969,
+              "small": -0.78125,
+              "small_all": 0.5489021956087914,
+              "medium": -0.8000000000000007,
+              "large": 0.0
+            },
+            "paired_image_bootstrap_delta_recall_95ci_pp": {
+              "all": null,
+              "tiny": null,
+              "small": null,
+              "small_all": null,
+              "medium": null,
+              "large": null
+            }
+          },
+          {
+            "label": "fppi_10",
+            "maximum_fp": 320,
+            "maximum_fppi": 10.0,
+            "models": {
+              "baseline": {
+                "confidence": 0.3507193500213819,
+                "actual_fp": 320,
+                "actual_fppi": 10.0,
+                "recall": {
+                  "all": 0.7185011709601874,
+                  "tiny": 0.6512345679012346,
+                  "small": 0.9348958333333334,
+                  "small_all": 0.7055888223552894,
+                  "medium": 0.92,
+                  "large": 0.8333333333333334
+                }
+              },
+              "sdcl": {
+                "confidence": 0.32432426571908485,
+                "actual_fp": 320,
+                "actual_fppi": 10.0,
+                "recall": {
+                  "all": 0.7227166276346604,
+                  "tiny": 0.6592592592592592,
+                  "small": 0.9296875,
+                  "small_all": 0.7110778443113772,
+                  "medium": 0.904,
+                  "large": 0.8333333333333334
+                }
+              }
+            },
+            "delta_recall_pp": {
+              "all": 0.4215456674472984,
+              "tiny": 0.8024691358024638,
+              "small": -0.520833333333337,
+              "small_all": 0.5489021956087803,
+              "medium": -1.6000000000000014,
+              "large": 0.0
+            },
+            "paired_image_bootstrap_delta_recall_95ci_pp": {
+              "all": null,
+              "tiny": null,
+              "small": null,
+              "small_all": null,
+              "medium": null,
+              "large": null
+            }
+          }
+        ]
+      },
+      "small_all_fppi10_sequence_bootstrap": {
+        "sequence_units": 32,
+        "interval_pp": [
+          0.26207714554523603,
+          0.9956321553011447
+        ],
+        "per_image": [
+          {
+            "stem": "0000366_06273_d_0000808",
+            "gt": 43,
+            "TP_difference": 0
+          },
+          {
+            "stem": "9999981_00000_d_0000146",
+            "gt": 10,
+            "TP_difference": 0
+          },
+          {
+            "stem": "9999940_00000_d_0000085",
+            "gt": 41,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000008_03999_d_0000044",
+            "gt": 10,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000351_03137_d_0000535",
+            "gt": 95,
+            "TP_difference": 1
+          },
+          {
+            "stem": "0000251_00155_d_0000002",
+            "gt": 71,
+            "TP_difference": 1
+          },
+          {
+            "stem": "0000100_02616_d_0000012",
+            "gt": 10,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000133_00846_d_0000143",
+            "gt": 176,
+            "TP_difference": 1
+          },
+          {
+            "stem": "0000157_00651_d_0000083",
+            "gt": 116,
+            "TP_difference": 1
+          },
+          {
+            "stem": "0000279_01601_d_0000592",
+            "gt": 142,
+            "TP_difference": 2
+          },
+          {
+            "stem": "9999977_00000_d_0000045",
+            "gt": 50,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000363_02157_d_0000793",
+            "gt": 81,
+            "TP_difference": 2
+          },
+          {
+            "stem": "0000196_02020_d_0000139",
+            "gt": 116,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000303_00001_d_0000183",
+            "gt": 105,
+            "TP_difference": 1
+          },
+          {
+            "stem": "0000240_03011_d_0000008",
+            "gt": 17,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000106_00458_d_0000049",
+            "gt": 72,
+            "TP_difference": 1
+          },
+          {
+            "stem": "0000045_01032_d_0000085",
+            "gt": 56,
+            "TP_difference": -1
+          },
+          {
+            "stem": "0000325_06201_d_0000693",
+            "gt": 73,
+            "TP_difference": 1
+          },
+          {
+            "stem": "0000331_01401_d_0000848",
+            "gt": 40,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000165_03725_d_0000102",
+            "gt": 36,
+            "TP_difference": 0
+          },
+          {
+            "stem": "9999991_00000_d_0000012",
+            "gt": 47,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000352_06469_d_0000572",
+            "gt": 61,
+            "TP_difference": -1
+          },
+          {
+            "stem": "0000256_01740_d_0000025",
+            "gt": 25,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000200_00000_d_0000168",
+            "gt": 32,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000260_04159_d_0000118",
+            "gt": 63,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000209_00609_d_0000221",
+            "gt": 2,
+            "TP_difference": 0
+          },
+          {
+            "stem": "9999953_00000_d_0000101",
+            "gt": 7,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000307_06201_d_0000299",
+            "gt": 51,
+            "TP_difference": 0
+          },
+          {
+            "stem": "9999956_00000_d_0000091",
+            "gt": 46,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000141_00851_d_0000012",
+            "gt": 112,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000293_02001_d_0000932",
+            "gt": 152,
+            "TP_difference": 3
+          },
+          {
+            "stem": "0000223_00001_d_0000001",
+            "gt": 46,
+            "TP_difference": 1
+          }
+        ]
+      },
+      "changed_rows": {
+        "shared": 895,
+        "marginal": 893,
+        "affinity": 1337,
+        "geometry": 1483
+      },
+      "competing_pairs": 1884,
+      "shared_active_pairs": 1142,
+      "mean_evidence_plus_four_arm_processing_ms": 23.31054688693257
+    },
+    "confirmation": {
+      "AP": {
+        "strong": {
+          "all": {
+            "gt": 1501,
+            "ap50": 0.7562896802674322,
+            "ap50_95": 0.5034932339121904,
+            "ar50_95_max500": 0.6118728197282832,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3560469281032505,
+              "people": 0.23014247808847324,
+              "bicycle": 0.3881751193941708,
+              "car": 0.7182217822023252,
+              "van": 0.5318719686763606,
+              "truck": 0.629936510848994,
+              "tricycle": 0.5498218290625909,
+              "awning-tricycle": 0.6570562713922392,
+              "bus": 0.6458208747210752,
+              "motor": 0.32783857663242383
+            }
+          },
+          "tiny": {
+            "gt": 1109,
+            "ap50": 0.6954255689449533,
+            "ap50_95": 0.4346070367474361,
+            "ar50_95_max500": 0.5489172386328786,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3593257726026234,
+              "people": 0.22870921263660543,
+              "bicycle": 0.3667539645770429,
+              "car": 0.6334546972402756,
+              "van": 0.37327600158925295,
+              "truck": 0.5337496728142938,
+              "tricycle": 0.4380363911810965,
+              "awning-tricycle": 0.5258884600834665,
+              "bus": 0.5589293818211126,
+              "motor": 0.32794681292859174
+            }
+          },
+          "small": {
+            "gt": 310,
+            "ap50": 0.8108036134284763,
+            "ap50_95": 0.6145843479128726,
+            "ar50_95_max500": 0.6758302818315706,
+            "per_class_ap50_95": {
+              "pedestrian": 0.36534653465346534,
+              "people": 0.45445544554455436,
+              "bicycle": 0.6491749174917492,
+              "car": 0.8342460014098732,
+              "van": 0.7051913418503161,
+              "truck": 0.7096981761148788,
+              "tricycle": 0.6330864112634061,
+              "awning-tricycle": 0.8008162679621998,
+              "bus": 0.6353135313531354,
+              "motor": 0.35851485148514844
+            }
+          },
+          "small_all": {
+            "gt": 1419,
+            "ap50": 0.7437674790290641,
+            "ap50_95": 0.4855029819071163,
+            "ar50_95_max500": 0.5958779768334377,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3560469281032505,
+              "people": 0.23014247808847324,
+              "bicycle": 0.3881751193941708,
+              "car": 0.7002382365626576,
+              "van": 0.47727857524023637,
+              "truck": 0.6328504871271785,
+              "tricycle": 0.5385459275546292,
+              "awning-tricycle": 0.6249985420592814,
+              "bus": 0.5789149483088608,
+              "motor": 0.32783857663242383
+            }
+          },
+          "medium": {
+            "gt": 81,
+            "ap50": 0.9834983498349835,
+            "ap50_95": 0.8683587699500134,
+            "ar50_95_max500": 0.9224055829228243,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": 0.885793067148186,
+              "van": 0.9030006309454475,
+              "truck": 0.6928485705713427,
+              "tricycle": 0.9504950495049505,
+              "awning-tricycle": 0.9126237623762377,
+              "bus": 0.8653915391539153,
+              "motor": null
+            }
+          },
+          "large": {
+            "gt": 1,
+            "ap50": 0.9999999999999999,
+            "ap50_95": 0.9999999999999998,
+            "ar50_95_max500": 1.0,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": null,
+              "van": null,
+              "truck": null,
+              "tricycle": null,
+              "awning-tricycle": null,
+              "bus": 0.9999999999999998,
+              "motor": null
+            }
+          }
+        },
+        "shared": {
+          "all": {
+            "gt": 1501,
+            "ap50": 0.7561060815440757,
+            "ap50_95": 0.5030855065347135,
+            "ar50_95_max500": 0.6118728197282832,
+            "per_class_ap50_95": {
+              "pedestrian": 0.35588388083997263,
+              "people": 0.2303447277826921,
+              "bicycle": 0.3888883659177233,
+              "car": 0.7183210884585056,
+              "van": 0.5266468146451049,
+              "truck": 0.635550248984431,
+              "tricycle": 0.5488784426517295,
+              "awning-tricycle": 0.652611811317156,
+              "bus": 0.6427949176849032,
+              "motor": 0.33093476706491737
+            }
+          },
+          "tiny": {
+            "gt": 1109,
+            "ap50": 0.6939508789743344,
+            "ap50_95": 0.433178530353088,
+            "ar50_95_max500": 0.5489172386328786,
+            "per_class_ap50_95": {
+              "pedestrian": 0.35936500982635816,
+              "people": 0.22914363487832504,
+              "bicycle": 0.36880861632350126,
+              "car": 0.6334365914295179,
+              "van": 0.3551385981253788,
+              "truck": 0.5473547831008081,
+              "tricycle": 0.4359009016466563,
+              "awning-tricycle": 0.5198249990671406,
+              "bus": 0.5526707288604933,
+              "motor": 0.33014144027270004
+            }
+          },
+          "small": {
+            "gt": 310,
+            "ap50": 0.8060462858333199,
+            "ap50_95": 0.6121813177160456,
+            "ar50_95_max500": 0.6758302818315706,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3376237623762376,
+              "people": 0.45445544554455436,
+              "bicycle": 0.6491749174917492,
+              "car": 0.8345212338220565,
+              "van": 0.7047682607882467,
+              "truck": 0.7091575118003838,
+              "tricycle": 0.634962251410466,
+              "awning-tricycle": 0.8014402229696653,
+              "bus": 0.6366336633663366,
+              "motor": 0.35907590759075897
+            }
+          },
+          "small_all": {
+            "gt": 1419,
+            "ap50": 0.742996770405989,
+            "ap50_95": 0.48449677987138823,
+            "ar50_95_max500": 0.5958779768334377,
+            "per_class_ap50_95": {
+              "pedestrian": 0.35588388083997263,
+              "people": 0.2303447277826921,
+              "bicycle": 0.3888883659177233,
+              "car": 0.7003401691763045,
+              "van": 0.46983634059348717,
+              "truck": 0.6368333784621727,
+              "tricycle": 0.5374416246205419,
+              "awning-tricycle": 0.6198255361005972,
+              "bus": 0.5746390081554739,
+              "motor": 0.33093476706491737
+            }
+          },
+          "medium": {
+            "gt": 81,
+            "ap50": 0.9853318665199853,
+            "ap50_95": 0.8713624225580003,
+            "ar50_95_max500": 0.9224055829228243,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": 0.8860258645985737,
+              "van": 0.9047580566880218,
+              "truck": 0.7088802630263026,
+              "tricycle": 0.9504950495049505,
+              "awning-tricycle": 0.9126237623762377,
+              "bus": 0.8653915391539153,
+              "motor": null
+            }
+          },
+          "large": {
+            "gt": 1,
+            "ap50": 0.9999999999999999,
+            "ap50_95": 0.9999999999999998,
+            "ar50_95_max500": 1.0,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": null,
+              "van": null,
+              "truck": null,
+              "tricycle": null,
+              "awning-tricycle": null,
+              "bus": 0.9999999999999998,
+              "motor": null
+            }
+          }
+        },
+        "marginal": {
+          "all": {
+            "gt": 1501,
+            "ap50": 0.7564757754577354,
+            "ap50_95": 0.5032255944923875,
+            "ar50_95_max500": 0.6118728197282832,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3558824603199602,
+              "people": 0.23112865010865435,
+              "bicycle": 0.38837929698379464,
+              "car": 0.7183017176161584,
+              "van": 0.5268982550479974,
+              "truck": 0.6327079195074027,
+              "tricycle": 0.5511934447626229,
+              "awning-tricycle": 0.6532311856053021,
+              "bus": 0.6444503529525119,
+              "motor": 0.33008266201946923
+            }
+          },
+          "tiny": {
+            "gt": 1109,
+            "ap50": 0.6950717265891125,
+            "ap50_95": 0.4340120501641456,
+            "ar50_95_max500": 0.5489172386328786,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3592658140100212,
+              "people": 0.22993391800583984,
+              "bicycle": 0.3681655945791904,
+              "car": 0.6334485270987285,
+              "van": 0.36297684433443556,
+              "truck": 0.5404459233188887,
+              "tricycle": 0.4375394021918598,
+              "awning-tricycle": 0.5232751910251119,
+              "bus": 0.5555719725015853,
+              "motor": 0.329497314575795
+            }
+          },
+          "small": {
+            "gt": 310,
+            "ap50": 0.8055814235434001,
+            "ap50_95": 0.6115106402477365,
+            "ar50_95_max500": 0.6758302818315706,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3376237623762376,
+              "people": 0.45445544554455436,
+              "bicycle": 0.6491749174917492,
+              "car": 0.834466068242273,
+              "van": 0.6979067402084906,
+              "truck": 0.7084799600226497,
+              "tricycle": 0.636449853625913,
+              "awning-tricycle": 0.8014011401140113,
+              "bus": 0.6366336633663366,
+              "motor": 0.35851485148514844
+            }
+          },
+          "small_all": {
+            "gt": 1419,
+            "ap50": 0.7433619891330615,
+            "ap50_95": 0.48466706933576786,
+            "ar50_95_max500": 0.5958779768334377,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3558824603199602,
+              "people": 0.23112865010865435,
+              "bicycle": 0.38837929698379464,
+              "car": 0.7003157350810454,
+              "van": 0.469631631937078,
+              "truck": 0.6340072770191141,
+              "tricycle": 0.539953764163937,
+              "awning-tricycle": 0.6208836925333129,
+              "bus": 0.5764055231913133,
+              "motor": 0.33008266201946923
+            }
+          },
+          "medium": {
+            "gt": 81,
+            "ap50": 0.9853318665199853,
+            "ap50_95": 0.8705489854450582,
+            "ar50_95_max500": 0.9224055829228243,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": 0.8860169790946386,
+              "van": 0.9043867695593089,
+              "truck": 0.7043798129812981,
+              "tricycle": 0.9504950495049505,
+              "awning-tricycle": 0.9126237623762377,
+              "bus": 0.8653915391539153,
+              "motor": null
+            }
+          },
+          "large": {
+            "gt": 1,
+            "ap50": 0.9999999999999999,
+            "ap50_95": 0.9999999999999998,
+            "ar50_95_max500": 1.0,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": null,
+              "van": null,
+              "truck": null,
+              "tricycle": null,
+              "awning-tricycle": null,
+              "bus": 0.9999999999999998,
+              "motor": null
+            }
+          }
+        },
+        "affinity": {
+          "all": {
+            "gt": 1501,
+            "ap50": 0.7531520972609587,
+            "ap50_95": 0.5005555554658587,
+            "ar50_95_max500": 0.6118434942150868,
+            "per_class_ap50_95": {
+              "pedestrian": 0.35468449482374337,
+              "people": 0.22917347552113712,
+              "bicycle": 0.3884463615005407,
+              "car": 0.7180530879580049,
+              "van": 0.5163609435899775,
+              "truck": 0.6324467240143625,
+              "tricycle": 0.5508753967979376,
+              "awning-tricycle": 0.6465203829253301,
+              "bus": 0.6385540754549455,
+              "motor": 0.3304406120726086
+            }
+          },
+          "tiny": {
+            "gt": 1109,
+            "ap50": 0.6921382375011645,
+            "ap50_95": 0.4313977803180315,
+            "ar50_95_max500": 0.5488874767281167,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3579546380715022,
+              "people": 0.22779005230226854,
+              "bicycle": 0.3673966533722788,
+              "car": 0.632462806202688,
+              "van": 0.3417242825446276,
+              "truck": 0.5477398686412974,
+              "tricycle": 0.4365721581912628,
+              "awning-tricycle": 0.5211224376681856,
+              "bus": 0.5516085516114637,
+              "motor": 0.32960635457474036
+            }
+          },
+          "small": {
+            "gt": 310,
+            "ap50": 0.8084650118939891,
+            "ap50_95": 0.6125347580275571,
+            "ar50_95_max500": 0.6758302818315706,
+            "per_class_ap50_95": {
+              "pedestrian": 0.36534653465346534,
+              "people": 0.45445544554455436,
+              "bicycle": 0.6491749174917492,
+              "car": 0.8347444045332091,
+              "van": 0.6972536146156318,
+              "truck": 0.7068926634815832,
+              "tricycle": 0.63805872570454,
+              "awning-tricycle": 0.7862130060555964,
+              "bus": 0.6341323606044814,
+              "motor": 0.35907590759075897
+            }
+          },
+          "small_all": {
+            "gt": 1419,
+            "ap50": 0.7402938634803835,
+            "ap50_95": 0.4819758845496005,
+            "ar50_95_max500": 0.5958486513202411,
+            "per_class_ap50_95": {
+              "pedestrian": 0.35468449482374337,
+              "people": 0.22917347552113712,
+              "bicycle": 0.3884463615005407,
+              "car": 0.7000241324553331,
+              "van": 0.45771898812951506,
+              "truck": 0.6332071928517062,
+              "tricycle": 0.5395515472541174,
+              "awning-tricycle": 0.6135654227322108,
+              "bus": 0.5729466181550925,
+              "motor": 0.3304406120726086
+            }
+          },
+          "medium": {
+            "gt": 81,
+            "ap50": 0.9822378071140447,
+            "ap50_95": 0.8696448128220873,
+            "ar50_95_max500": 0.9224055829228243,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": 0.8861550901692311,
+              "van": 0.9098756029449099,
+              "truck": 0.7044664466446644,
+              "tricycle": 0.9504950495049505,
+              "awning-tricycle": 0.9126237623762377,
+              "bus": 0.8542529252925292,
+              "motor": null
+            }
+          },
+          "large": {
+            "gt": 1,
+            "ap50": 0.9999999999999999,
+            "ap50_95": 0.9999999999999998,
+            "ar50_95_max500": 1.0,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": null,
+              "van": null,
+              "truck": null,
+              "tricycle": null,
+              "awning-tricycle": null,
+              "bus": 0.9999999999999998,
+              "motor": null
+            }
+          }
+        },
+        "geometry": {
+          "all": {
+            "gt": 1501,
+            "ap50": 0.7511855157476363,
+            "ap50_95": 0.49910521293502835,
+            "ar50_95_max500": 0.6118434942150868,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3544738880033395,
+              "people": 0.22871746774242774,
+              "bicycle": 0.38569891383662447,
+              "car": 0.7179806991828508,
+              "van": 0.5122800057052118,
+              "truck": 0.6333155887772257,
+              "tricycle": 0.550921532248524,
+              "awning-tricycle": 0.6404713175417958,
+              "bus": 0.636952521193056,
+              "motor": 0.33024019511922753
+            }
+          },
+          "tiny": {
+            "gt": 1109,
+            "ap50": 0.6919154305422677,
+            "ap50_95": 0.4313569630673776,
+            "ar50_95_max500": 0.5488874767281167,
+            "per_class_ap50_95": {
+              "pedestrian": 0.35775536867974006,
+              "people": 0.22730097245055036,
+              "bicycle": 0.36788951709789525,
+              "car": 0.6323916948253784,
+              "van": 0.33996496947586635,
+              "truck": 0.5500857337782473,
+              "tricycle": 0.4367654186589754,
+              "awning-tricycle": 0.5204172520342475,
+              "bus": 0.5516085516114637,
+              "motor": 0.32939015206141153
+            }
+          },
+          "small": {
+            "gt": 310,
+            "ap50": 0.8041103113345714,
+            "ap50_95": 0.606898175525379,
+            "ar50_95_max500": 0.6758302818315706,
+            "per_class_ap50_95": {
+              "pedestrian": 0.36534653465346534,
+              "people": 0.45445544554455436,
+              "bicycle": 0.6277227722772277,
+              "car": 0.8347897619882313,
+              "van": 0.6855004818662858,
+              "truck": 0.7038109801280035,
+              "tricycle": 0.6386687962787395,
+              "awning-tricycle": 0.7659005610179891,
+              "bus": 0.6321074964639322,
+              "motor": 0.3606789250353606
+            }
+          },
+          "small_all": {
+            "gt": 1419,
+            "ap50": 0.7378807955476798,
+            "ap50_95": 0.480175953691309,
+            "ar50_95_max500": 0.5958486513202411,
+            "per_class_ap50_95": {
+              "pedestrian": 0.3544738880033395,
+              "people": 0.22871746774242774,
+              "bicycle": 0.38569891383662447,
+              "car": 0.6999696171497231,
+              "van": 0.4527959607534112,
+              "truck": 0.6316692553524514,
+              "tricycle": 0.5394881915842429,
+              "awning-tricycle": 0.6064202173303723,
+              "bus": 0.5722858300412689,
+              "motor": 0.33024019511922753
+            }
+          },
+          "medium": {
+            "gt": 81,
+            "ap50": 0.9845297029702971,
+            "ap50_95": 0.8717659306887915,
+            "ar50_95_max500": 0.9224055829228243,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": 0.8862089916273452,
+              "van": 0.9122723810842622,
+              "truck": 0.7147424742474247,
+              "tricycle": 0.9504950495049505,
+              "awning-tricycle": 0.9126237623762377,
+              "bus": 0.8542529252925292,
+              "motor": null
+            }
+          },
+          "large": {
+            "gt": 1,
+            "ap50": 0.9999999999999999,
+            "ap50_95": 0.9999999999999998,
+            "ar50_95_max500": 1.0,
+            "per_class_ap50_95": {
+              "pedestrian": null,
+              "people": null,
+              "bicycle": null,
+              "car": null,
+              "van": null,
+              "truck": null,
+              "tricycle": null,
+              "awning-tricycle": null,
+              "bus": 0.9999999999999998,
+              "motor": null
+            }
+          }
+        }
+      },
+      "fixed_fp": {
+        "shared": [
+          {
+            "label": "fppi_5",
+            "maximum_fp": 85,
+            "maximum_fppi": 5.0,
+            "models": {
+              "baseline": {
+                "confidence": 0.5959728707685439,
+                "actual_fp": 85,
+                "actual_fppi": 5.0,
+                "recall": {
+                  "all": 0.6855429713524317,
+                  "tiny": 0.6050495942290351,
+                  "small": 0.896774193548387,
+                  "small_all": 0.6687808315715292,
+                  "medium": 0.9753086419753086,
+                  "large": 1.0
+                }
+              },
+              "sdcl": {
+                "confidence": 0.5911589133683636,
+                "actual_fp": 85,
+                "actual_fppi": 5.0,
+                "recall": {
+                  "all": 0.6875416389073951,
+                  "tiny": 0.6077547339945897,
+                  "small": 0.896774193548387,
+                  "small_all": 0.6708949964763918,
+                  "medium": 0.9753086419753086,
+                  "large": 1.0
+                }
+              }
+            },
+            "delta_recall_pp": {
+              "all": 0.19986675549633626,
+              "tiny": 0.2705139765554532,
+              "small": 0.0,
+              "small_all": 0.21141649048626032,
+              "medium": 0.0,
+              "large": 0.0
+            },
+            "paired_image_bootstrap_delta_recall_95ci_pp": {
+              "all": null,
+              "tiny": null,
+              "small": null,
+              "small_all": null,
+              "medium": null,
+              "large": null
+            }
+          },
+          {
+            "label": "fppi_10",
+            "maximum_fp": 170,
+            "maximum_fppi": 10.0,
+            "models": {
+              "baseline": {
+                "confidence": 0.4096668391936615,
+                "actual_fp": 170,
+                "actual_fppi": 10.0,
+                "recall": {
+                  "all": 0.754163890739507,
+                  "tiny": 0.6916140667267808,
+                  "small": 0.9193548387096774,
+                  "small_all": 0.7413671599718111,
+                  "medium": 0.9753086419753086,
+                  "large": 1.0
+                }
+              },
+              "sdcl": {
+                "confidence": 0.3942723329284685,
+                "actual_fp": 170,
+                "actual_fppi": 10.0,
+                "recall": {
+                  "all": 0.7554963357761493,
+                  "tiny": 0.6943192064923355,
+                  "small": 0.9161290322580645,
+                  "small_all": 0.7427766032417196,
+                  "medium": 0.9753086419753086,
+                  "large": 1.0
+                }
+              }
+            },
+            "delta_recall_pp": {
+              "all": 0.13324450366423157,
+              "tiny": 0.2705139765554643,
+              "small": -0.3225806451612856,
+              "small_all": 0.14094432699084392,
+              "medium": 0.0,
+              "large": 0.0
+            },
+            "paired_image_bootstrap_delta_recall_95ci_pp": {
+              "all": null,
+              "tiny": null,
+              "small": null,
+              "small_all": null,
+              "medium": null,
+              "large": null
+            }
+          }
+        ],
+        "marginal": [
+          {
+            "label": "fppi_5",
+            "maximum_fp": 85,
+            "maximum_fppi": 5.0,
+            "models": {
+              "baseline": {
+                "confidence": 0.5959728707685439,
+                "actual_fp": 85,
+                "actual_fppi": 5.0,
+                "recall": {
+                  "all": 0.6855429713524317,
+                  "tiny": 0.6050495942290351,
+                  "small": 0.896774193548387,
+                  "small_all": 0.6687808315715292,
+                  "medium": 0.9753086419753086,
+                  "large": 1.0
+                }
+              },
+              "sdcl": {
+                "confidence": 0.5930777291700913,
+                "actual_fp": 85,
+                "actual_fppi": 5.0,
+                "recall": {
+                  "all": 0.6868754163890739,
+                  "tiny": 0.6077547339945897,
+                  "small": 0.8935483870967742,
+                  "small_all": 0.6701902748414377,
+                  "medium": 0.9753086419753086,
+                  "large": 1.0
+                }
+              }
+            },
+            "delta_recall_pp": {
+              "all": 0.13324450366422047,
+              "tiny": 0.2705139765554532,
+              "small": -0.3225806451612856,
+              "small_all": 0.14094432699084392,
+              "medium": 0.0,
+              "large": 0.0
+            },
+            "paired_image_bootstrap_delta_recall_95ci_pp": {
+              "all": null,
+              "tiny": null,
+              "small": null,
+              "small_all": null,
+              "medium": null,
+              "large": null
+            }
+          },
+          {
+            "label": "fppi_10",
+            "maximum_fp": 170,
+            "maximum_fppi": 10.0,
+            "models": {
+              "baseline": {
+                "confidence": 0.4096668391936615,
+                "actual_fp": 170,
+                "actual_fppi": 10.0,
+                "recall": {
+                  "all": 0.754163890739507,
+                  "tiny": 0.6916140667267808,
+                  "small": 0.9193548387096774,
+                  "small_all": 0.7413671599718111,
+                  "medium": 0.9753086419753086,
+                  "large": 1.0
+                }
+              },
+              "sdcl": {
+                "confidence": 0.39500150805210693,
+                "actual_fp": 170,
+                "actual_fppi": 10.0,
+                "recall": {
+                  "all": 0.7561625582944703,
+                  "tiny": 0.6952209197475203,
+                  "small": 0.9161290322580645,
+                  "small_all": 0.7434813248766737,
+                  "medium": 0.9753086419753086,
+                  "large": 1.0
+                }
+              }
+            },
+            "delta_recall_pp": {
+              "all": 0.19986675549633626,
+              "tiny": 0.36068530207394867,
+              "small": -0.3225806451612856,
+              "small_all": 0.21141649048626032,
+              "medium": 0.0,
+              "large": 0.0
+            },
+            "paired_image_bootstrap_delta_recall_95ci_pp": {
+              "all": null,
+              "tiny": null,
+              "small": null,
+              "small_all": null,
+              "medium": null,
+              "large": null
+            }
+          }
+        ],
+        "affinity": [
+          {
+            "label": "fppi_5",
+            "maximum_fp": 85,
+            "maximum_fppi": 5.0,
+            "models": {
+              "baseline": {
+                "confidence": 0.5959728707685439,
+                "actual_fp": 85,
+                "actual_fppi": 5.0,
+                "recall": {
+                  "all": 0.6855429713524317,
+                  "tiny": 0.6050495942290351,
+                  "small": 0.896774193548387,
+                  "small_all": 0.6687808315715292,
+                  "medium": 0.9753086419753086,
+                  "large": 1.0
+                }
+              },
+              "sdcl": {
+                "confidence": 0.586694865985535,
+                "actual_fp": 85,
+                "actual_fppi": 5.0,
+                "recall": {
+                  "all": 0.6882078614257162,
+                  "tiny": 0.6095581605049594,
+                  "small": 0.8935483870967742,
+                  "small_all": 0.671599718111346,
+                  "medium": 0.9753086419753086,
+                  "large": 1.0
+                }
+              }
+            },
+            "delta_recall_pp": {
+              "all": 0.26648900732845204,
+              "tiny": 0.45085662759242195,
+              "small": -0.3225806451612856,
+              "small_all": 0.28188865398167673,
+              "medium": 0.0,
+              "large": 0.0
+            },
+            "paired_image_bootstrap_delta_recall_95ci_pp": {
+              "all": null,
+              "tiny": null,
+              "small": null,
+              "small_all": null,
+              "medium": null,
+              "large": null
+            }
+          },
+          {
+            "label": "fppi_10",
+            "maximum_fp": 170,
+            "maximum_fppi": 10.0,
+            "models": {
+              "baseline": {
+                "confidence": 0.4096668391936615,
+                "actual_fp": 170,
+                "actual_fppi": 10.0,
+                "recall": {
+                  "all": 0.754163890739507,
+                  "tiny": 0.6916140667267808,
+                  "small": 0.9193548387096774,
+                  "small_all": 0.7413671599718111,
+                  "medium": 0.9753086419753086,
+                  "large": 1.0
+                }
+              },
+              "sdcl": {
+                "confidence": 0.3831909615183421,
+                "actual_fp": 170,
+                "actual_fppi": 10.0,
+                "recall": {
+                  "all": 0.7574950033311126,
+                  "tiny": 0.6988277727682597,
+                  "small": 0.9096774193548387,
+                  "small_all": 0.7448907681465821,
+                  "medium": 0.9753086419753086,
+                  "large": 1.0
+                }
+              }
+            },
+            "delta_recall_pp": {
+              "all": 0.33311125916056783,
+              "tiny": 0.7213706041478862,
+              "small": -0.9677419354838679,
+              "small_all": 0.35236081747709314,
+              "medium": 0.0,
+              "large": 0.0
+            },
+            "paired_image_bootstrap_delta_recall_95ci_pp": {
+              "all": null,
+              "tiny": null,
+              "small": null,
+              "small_all": null,
+              "medium": null,
+              "large": null
+            }
+          }
+        ],
+        "geometry": [
+          {
+            "label": "fppi_5",
+            "maximum_fp": 85,
+            "maximum_fppi": 5.0,
+            "models": {
+              "baseline": {
+                "confidence": 0.5959728707685439,
+                "actual_fp": 85,
+                "actual_fppi": 5.0,
+                "recall": {
+                  "all": 0.6855429713524317,
+                  "tiny": 0.6050495942290351,
+                  "small": 0.896774193548387,
+                  "small_all": 0.6687808315715292,
+                  "medium": 0.9753086419753086,
+                  "large": 1.0
+                }
+              },
+              "sdcl": {
+                "confidence": 0.586694865985535,
+                "actual_fp": 85,
+                "actual_fppi": 5.0,
+                "recall": {
+                  "all": 0.6875416389073951,
+                  "tiny": 0.6095581605049594,
+                  "small": 0.8903225806451613,
+                  "small_all": 0.6708949964763918,
+                  "medium": 0.9753086419753086,
+                  "large": 1.0
+                }
+              }
+            },
+            "delta_recall_pp": {
+              "all": 0.19986675549633626,
+              "tiny": 0.45085662759242195,
+              "small": -0.6451612903225712,
+              "small_all": 0.21141649048626032,
+              "medium": 0.0,
+              "large": 0.0
+            },
+            "paired_image_bootstrap_delta_recall_95ci_pp": {
+              "all": null,
+              "tiny": null,
+              "small": null,
+              "small_all": null,
+              "medium": null,
+              "large": null
+            }
+          },
+          {
+            "label": "fppi_10",
+            "maximum_fp": 170,
+            "maximum_fppi": 10.0,
+            "models": {
+              "baseline": {
+                "confidence": 0.4096668391936615,
+                "actual_fp": 170,
+                "actual_fppi": 10.0,
+                "recall": {
+                  "all": 0.754163890739507,
+                  "tiny": 0.6916140667267808,
+                  "small": 0.9193548387096774,
+                  "small_all": 0.7413671599718111,
+                  "medium": 0.9753086419753086,
+                  "large": 1.0
+                }
+              },
+              "sdcl": {
+                "confidence": 0.37782145795804156,
+                "actual_fp": 170,
+                "actual_fppi": 10.0,
+                "recall": {
+                  "all": 0.7581612258494337,
+                  "tiny": 0.7006311992786294,
+                  "small": 0.9064516129032258,
+                  "small_all": 0.7455954897815363,
+                  "medium": 0.9753086419753086,
+                  "large": 1.0
+                }
+              }
+            },
+            "delta_recall_pp": {
+              "all": 0.3997335109926725,
+              "tiny": 0.901713255184855,
+              "small": -1.2903225806451535,
+              "small_all": 0.42283298097252064,
+              "medium": 0.0,
+              "large": 0.0
+            },
+            "paired_image_bootstrap_delta_recall_95ci_pp": {
+              "all": null,
+              "tiny": null,
+              "small": null,
+              "small_all": null,
+              "medium": null,
+              "large": null
+            }
+          }
+        ]
+      },
+      "small_all_fppi10_sequence_bootstrap": {
+        "sequence_units": 5,
+        "interval_pp": [
+          -0.12237831993973111,
+          0.4479283314669653
+        ],
+        "per_image": [
+          {
+            "stem": "0000124_02088_d_0000121",
+            "gt": 119,
+            "TP_difference": 1
+          },
+          {
+            "stem": "0000142_04858_d_0000047",
+            "gt": 260,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000142_01458_d_0000030",
+            "gt": 88,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000142_02858_d_0000037",
+            "gt": 72,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000142_00258_d_0000024",
+            "gt": 157,
+            "TP_difference": 1
+          },
+          {
+            "stem": "0000205_02019_d_0000201",
+            "gt": 88,
+            "TP_difference": -1
+          },
+          {
+            "stem": "0000205_01665_d_0000200",
+            "gt": 117,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000205_00000_d_0000196",
+            "gt": 10,
+            "TP_difference": -1
+          },
+          {
+            "stem": "0000205_00405_d_0000197",
+            "gt": 63,
+            "TP_difference": 1
+          },
+          {
+            "stem": "0000221_01770_d_0000006",
+            "gt": 34,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000221_00001_d_0000001",
+            "gt": 72,
+            "TP_difference": 1
+          },
+          {
+            "stem": "0000221_00500_d_0000002",
+            "gt": 58,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000221_01292_d_0000004",
+            "gt": 46,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000343_00197_d_0000276",
+            "gt": 61,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000343_01373_d_0000282",
+            "gt": 41,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000343_01569_d_0000283",
+            "gt": 66,
+            "TP_difference": 0
+          },
+          {
+            "stem": "0000343_03137_d_0000291",
+            "gt": 67,
+            "TP_difference": 0
+          }
+        ]
+      },
+      "changed_rows": {
+        "shared": 551,
+        "marginal": 554,
+        "affinity": 812,
+        "geometry": 889
+      },
+      "competing_pairs": 1134,
+      "shared_active_pairs": 707,
+      "mean_evidence_plus_four_arm_processing_ms": 25.248388253042805
+    }
+  },
+  "costs": {
+    "cached_images": 49,
+    "cached_native_views": 245,
+    "strong_output_replays": 49,
+    "JPEG_decodes": 0,
+    "detector_forwards": 0,
+    "fits": 0,
+    "gradients": 0,
+    "parameter_updates": 0,
+    "official_AP_evaluations": 0,
+    "elapsed_seconds": 28.490751599892974
+  },
+  "artifacts_sha256": {
+    "decision.json": "9c2f2dcd60440a128239d853ae13ad4204a1927b1c440914f9e6822f1e24a5f5",
+    "frames.json": "651b8c7418d085d103dbbd633bbc934cf8dba3afc268d0a8f5e52ed54223e8fb",
+    "metrics.json": "3dc81e64af3544e04bb8f373966bd43345e2618795c6d09a627cd7291d9581b8",
+    "plan.json": "bfc02d64e5bc12f712c4e6b498657d13b0c8d3d24f51aaf228add3bea888a2ac",
+    "source.zip": "f6d14b624e2de666af2bd2c58b160728df2bb268f4fc5528c19a69c4eb9332c0",
+    "result.json": "08a50747594eddfc83d70730dc988677ca2d012bce14ddf949193a4f7b2a83c0",
+    "independent_verification.json": "f51813d4d9e45b7a4ee42ebc5a3bee2722c7c8e7ce1a86b5e27b7873ed4ac6cb"
+  },
+  "independent_verification": {
+    "all_hashes_sources_prior_control_cached_native_views_and_paper_hashes_checked": true,
+    "unchanged_strong_outputs_replayed_exactly": 49,
+    "cross_class_pairs_independently_rebuilt": 3018,
+    "shared_witness_slots_independently_rebuilt": 15090,
+    "four_arm_evidence_penalties_outputs_replayed_exactly": true,
+    "AP_FPbudget_counts_sequence_intervals_and_fixed_gates_recomputed": true,
+    "decision": "STOP_THIS_SHARED_SITE_CROSS_CLASS_CONTRADICTION_RECIPE",
+    "added_detector_forwards": 0,
+    "added_JPEG_decodes": 0,
+    "added_fits": 0,
+    "verifier_sha256": "8962fa0d81e96d4df50c338fccc5ebcdff42c56470f6d01a7b6aab9b4fa413a3",
+    "limits": "Pair/evidence/witness/score-update/operating-point TP matching/bootstrap/gates independently coded. Original calibration/SoftNMS,diagnostic ignore,COCO and FPbudget engines reused. Timing is audit of saved measurement,not a new latency benchmark. Reused detector-training data,not official AP/external generalization/innovation."
+  },
+  "independent_verifier_exit_code_observed": 0,
+  "tests": "11passed exit0: python -m pytest tests/test_class_competition.py tests/test_assignment_quality_conflict.py -q",
+  "prior_audit": "docs/literature/shared_site_class_competition_prior_audit_20261015.json",
+  "prior_audit_sha256": "55138b118cee1995cc829051827ef6d0a0dd3d20da8eac0ba926795faf66fd48",
+  "interpretation": "Shared-site arm yields small_all recall improvements atFPPI5/10 inboth halves, but confirmation tinyAPdecreases and shared loses tomarginal tinyAPinboth halves. Confirmation sequence interval spanszero. Stop fixedrecipe; do not promote control arms,retune or recommend fulltraining. Positive FPbudget point estimates are limited lead only,not replicated efficacy/novelty.",
+  "innovation_status": "No validated innovation or worthwhile complete detectortraining candidate yet; goal remains active/unachieved.",
+  "verification_engineering_note": "Initial scalar power in independent penalty aggregation differed from frozen vectorized NumPy square by2.2204e-16in1/500penalty slots. Preserved failurelog; corrected verifier arithmetic order,retained exact assertions. No maincache,predictions,thresholds,formula ordecision changed.",
+  "preserved_verifier_failure_log": "output/analysis/candidate64-verification-initial-scalar-rounding-20261015.log",
+  "preserved_verifier_failure_log_sha256": "e2eea47935b94764fa21316e4f8300524d38765aa2120d20704bbbbf1715bdb0",
+  "zotero_semantic_update": {
+    "total": 1,
+    "processed": 1,
+    "added": 1,
+    "updated": 0,
+    "skipped": 0,
+    "errors": 0,
+    "scope": "Global incremental index reported1added item. No per-paper semantic query readback performed."
+  },
+  "next_scope": "Preserve allSTOPdecisions. Examine a genuinely distinct bottleneck with cheap matched deployment pilot,not new threshold or score-formula variation to rescue64. Standard cross-classNMS/ALFA/fullposterior fusion is established and cannot be reframed as innovation."
+}

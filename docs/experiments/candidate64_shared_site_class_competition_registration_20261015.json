@@ -1,0 +1,33 @@
+{
+  "experiment": "candidate64_shared_site_cross_class_contradiction",
+  "date": "2026-10-15",
+  "question": "Can paired class evidence at the SAME native position selectively downrank a lower-scored cross-class collision better than independent-site class evidence, ordinary posterior affinity, and geometry-only suppression?",
+  "difference": "Candidate16 changed labels using learned marginal intervention targets and kept all scores fixed. Candidate45 measured same-class neighborhood semantic/geometric coupling without modifying outputs. Candidate47 allocated same-class peer support. This fixed no-learning deployment policy changes only scores of cross-class overlapping final detections. It does not reopen those recipes or candidate63 background-label hypothesis.",
+  "sample": "Reuse exactly candidate62 screen32 and confirmation17 images, preserving its sequence partition and order. No fit images used and no new images selected. Five confirmation sequences and32 screen sequences are repeatedly inspected detector-training data, not fresh or external validation.",
+  "provenance": "Verify candidate62 closeout artifacts, source archive, detector/calibrator and cached raw views/references. Reconstruct unchanged strong output from cached original_local views with original ordinary calibration and SoftNMS, no GT, and require exact equality to saved reference. Use saved FP16 decoded sigmoid class scores and FP32 original-image clipped native boxes. No detector forward or real image decode.",
+  "pairs": "Use all frozen strong final rows, original stable descending score order. A row competes with EVERY earlier row of a different class with boxIoU>=0.7. Equal scores follow original row order. Never recurse on adjusted scores. For each pair and view, native pool has max ten-class probability>=0.05, finite positive-size boxes, IoU>=0.5 to BOTH final boxes. Each view contributes at most one common witness.",
+  "shared": "In each nonempty common pool choose maximum min(IoU_i,IoU_j)*max(p_i,p_j), ties lowest native index. Weight w equals that maximum. Per-view contradiction d=(p_j-p_i)/(p_i+p_j+1e-12), where j is earlier higher-score competitor. Contrast=max(0,sum(w*d)/sum(w)), empty evidence zero. Pair penalty=IoU_final^2*contrast/0.5. Row penalty=max over its cross-class competitors, empty zero.",
+  "marginal_control": "Same pairs, same per-view common pools, identical geometry factor, max-pair aggregation and score update. Replace shared-site contrast with max(0,(sum_v max_pool(g*p_j)-sum_v max_pool(g*p_i))/(sum_v max_pool(g*p_j)+sum_v max_pool(g*p_i)+1e-12)), with g=minIoUs. Each class may use a different native position. This is an ordinary independently pooled class-support control, not an exact intervention preserving every feature distribution.",
+  "affinity_control": "For each collided final row and each view independently choose max IoU_to_row*p_rowclass among nativeIoU>=0.5 and native maxprob>=0.05. Normalize that row's full ten sigmoid scores to sum1 and average across views using chosen support as weights. Pair contrast is Bhattacharyya coefficient between these two averaged vectors, clipped to[0,1], empty zero. Same max penalties and exponential score update. ALFA-inspired semantic-affinity control; not a faithful ALFA clustering/box-fusion reproduction or calibrated posterior.",
+  "geometry_control": "Same competing pairs, geometry factor, max aggregation and score update; replace class contrast with1. Standard cross-class Gaussian score suppression. Original strong already has class-specific Gaussian SoftNMS; this adds cross-class-only suppression.",
+  "score_update": "For each arm, newscore=originalscore*exp(-penalty). Preserve exact coordinates and classes. Rows with zero penalty unchanged bitwise. Keep newscore>=0.001, stable descending newscore order, original max500. Save original row IDs, full penalties, competing-pair indices/IoUs/contrasts and per-view shared witness native IDs. No GT enters evidence or outputs. Ignore metadata applied only after outputs, identically for diagnostic evaluation.",
+  "evaluation": "COCO-style all,tiny,small_all AP50:95, reference640 size bins, max500, plus recall at common FPPI5 and10. Reuse original individual-IoF ignore diagnostic engine; NOT officialVisDrone AP. For FPPI10 small_all, record per-image GT and difference in TP at the two globally frozen per-half operating thresholds, then400 sequence-cluster bootstrap default_rng0. This interval conditions on selected global thresholds, does not re-estimate thresholds per draw.",
+  "policy_per_half": {
+    "tiny_GT_min": 200,
+    "changed_rows_min": 10,
+    "tiny_ap_vs_strong_min_pp": 0.05,
+    "small_all_ap_vs_strong_min_pp": 0.03,
+    "all_ap_vs_strong_min_pp": -0.05,
+    "tiny_ap_vs_marginal_min_pp": 0.02,
+    "tiny_ap_vs_affinity_min_pp": 0.02,
+    "tiny_ap_vs_geometry_min_pp": 0.02,
+    "small_all_recall_fppi5_vs_strong_min_pp": 0.0,
+    "small_all_recall_fppi10_vs_strong_min_pp": 0.0,
+    "small_all_recall_fppi10_sequence_interval_lower_min_exclusive_pp": 0.0,
+    "mean_evidence_plus_four_arm_processing_ms_max": 50.0
+  },
+  "pass": "REPEATED_DEPLOYABLE_SHARED_SITE_CLASS_COMPETITION_SUPPORTS_SEPARATE_OFFICIAL_EXTERNAL_AUDIT. This pilot alone does not establish novelty or justify complete detector training. A pass requires wider prior-work audit and official/external or untouched-data confirmation.",
+  "fail": "STOP_THIS_SHARED_SITE_CROSS_CLASS_CONTRADICTION_RECIPE. Do not adjust thresholds,pools,witnesses,contrasts,penalties,data,groups or gates, promote a control arm, or turn a proxy statistic into success.",
+  "budget": "49 existing cached images,245 cached native views,49 original calibration/SoftNMS replays,four deterministic score-only arms,zero JPEG decodes,detector forwards,gradients,fits or parameter updates. Source and plan frozen before reading labels/evaluating outcomes.",
+  "prior_boundary": "ALFA1907.06067v1 already combines IoU with full class-distribution similarity and clusters detections into object hypotheses. LearnedNMS1705.02950v2 already models competing detections. FUSEye2610.02799v1 already uses multiview grouping/distinct-view support. A same-site directional class contrast is a narrow unproven design difference, not an originality proof."
+}
