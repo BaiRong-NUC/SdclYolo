@@ -1,0 +1,22 @@
+{
+  "experiment": "candidate20_stable_order_official_val_audit",
+  "date": "2026-10-14",
+  "permission": "Candidate19 three matched head seeds passed the registered diagnostic screen.",
+  "data": "All548 existing VisDrone val images and frozen five-view raw captures. This split has been repeatedly viewed historically; audit is exploratory, not fresh confirmation.",
+  "arms": "Frozen calibration, uniform, regret; candidate19 final epoch8 nominal, count-matched random-thinned and stable heads at eachseed0/1/2. All12 arms, no selecting the best seed.",
+  "inference": "Frozen calibration, action menu and absolute selection margin0.01. No inference ignore regions or annotations. Original score,class,count,order unchanged. No fitting or detector forwards.",
+  "official": "Pinned VisDrone2018-DET-toolkit with previously validated Octave native helpers. Original calcAccuracy/category aggregation and ignore handling. Reproduce historical calibration/uniform/regret metrics and exact exported detection bytes.",
+  "policy": {
+    "mean_stable_AP_vs_uniform_min_pp": 0.10,
+    "mean_stable_AP_vs_regret_min_exclusive_pp": 0.0,
+    "mean_stable_AP_vs_nominal_min_exclusive_pp": 0.0,
+    "mean_stable_AP_vs_thinned_min_exclusive_pp": 0.0,
+    "positive_vs_both_matched_seeds_min": 2,
+    "mean_stable_AR500_vs_uniform_max_decrease_pp": 0.10
+  },
+  "secondary": "All7 official metrics perarm, individual seed deltas versus all controls, CPU action-menu and scorer timings. No confidence interval or independent data claim.",
+  "pass_action": "Candidate worth a separately registered wider train-only geometry pilot and robust-ranking prior-art audit; still not innovation confirmed.",
+  "fail_action": "Stop this stable-order recipe. No threshold/radius/learning-rate/epoch retuning or promotion based on a secondary metric.",
+  "budget": "Zero detector forwards, zero training. One548-image cached replay for all12 arms, official evaluation with at most3 workers.",
+  "limits": "Small pilot heads share one detector and pretrained uniform initialization; seeds change batch order and random thinning. Reused validation selection can overfit research decisions. Synthetic annotation perturbations are not observed annotation noise. Lower FPPI pilot result does not guarantee official AR or AP."
+}

@@ -426,3 +426,57 @@ seed0稳定分支同归属small_all的损伤率4.894515%，
 登记与数值记录：`docs/experiments/candidate19_stable_order_pilot_registration_20261014.json`、
 `docs/experiments/candidate19_stable_order_pilot_result_20261014.json`。
 完整结果：`output/analysis/stable-order-pilot-fixed-20261014/`。
+
+## 实验 20：稳定部分排序的548张官方协议审计
+
+实验19通过后预登记，再重放548张val的冻结五视图缓存。
+所有推理不读取标注，不进行ignore筛选；只改变坐标，分数、类别、数量和顺序固定。
+普通校准、uniform、regret的导出文件逐字节等于历史审计，
+三个历史对照的全部7项官方指标也在1e-12内完全复现。
+使用固定VisDrone工具及已做数值等价核验的Octave原生助手，
+保留官方忽略区域与类别聚合方式。
+
+| 分支 | AP (%) | AR500 (%) |
+|---|---:|---:|
+| 普通校准 | 34.123353 | 49.599308 |
+| uniform | 34.423492 | 49.403373 |
+| 历史regret | 34.539777 | 49.291598 |
+| 普通排序seed0 | 34.455773 | 49.365032 |
+| 等量随机seed0 | 34.320353 | 49.463739 |
+| 稳定排序seed0 | 34.497378 | 49.314886 |
+| 普通排序seed1 | 34.470454 | 49.359482 |
+| 等量随机seed1 | 34.327957 | 49.462129 |
+| 稳定排序seed1 | 34.496025 | 49.311144 |
+| 普通排序seed2 | 34.448482 | 49.376001 |
+| 等量随机seed2 | 34.342030 | 49.469610 |
+| 稳定排序seed2 | 34.487025 | 49.307564 |
+
+三个稳定头平均AP对uniform+0.069984pp，对regret-0.046302pp，
+对普通微调+0.035240pp，对等量随机+0.163362pp。
+3/3均胜过两个本轮匹配对照，说明比较选择不是纯随机删样本的效果；
+但本轮没有测AP置信区间，这也不是稳定性标签独立机制的充分证明。
+AR500对uniform平均-0.092176pp，在登记的0.10pp预算内。
+
+固定六项四项通过，两项失败：对uniform未达+0.10pp，
+对历史regret未严格为正。
+判断STOP_THIS_STABLE_ORDER_OFFICIAL_RECIPE，停止该固定稳定排序配方的扩大训练，
+不改半径、epoch、学习率、选择阈值或另挑种子。记录小幅正向点估计，
+不将STOP解释为零收益或否定整个小目标检测领域。
+实验18的问题证据与实验19的代理收益保留，但没有升级成有效创新。
+
+总计403.38秒，其中缓存重放约53秒，12个官方分支并行3worker；
+零检测器前向、零训练。
+菜单及归一化CPU均值约5.07ms/图，稳定头打分/选择约0.67--0.69ms/图；
+这是缓存CPU阶段计时，不含五视图检测器，且受固定执行顺序影响，
+不能声称比uniform更快或视为部署延迟。
+一个门槛聚合测试通过，确认均值不能掩盖匹配种子数或召回预算失败。
+
+新增近邻全文包括CVPR2019框不确定性/variance voting与2025 Relaxed Bounding Boxes，
+都限制了泛称“抗标注噪声”“不确定性集合”的创新表述。
+详细审计在`docs/literature/stable_order_prior_audit_20261014.json`。
+本配方已STOP，不以未来的消融补救本次官方失败。
+下一轮研究须有独立的新问题与登记，不能把继续调此配方改名为新方向。
+
+登记与数值记录：`docs/experiments/candidate20_stable_order_official_registration_20261014.json`、
+`docs/experiments/candidate20_stable_order_official_result_20261014.json`。
+完整结果：`output/analysis/stable-order-official-val-fixed-20261014/`。
