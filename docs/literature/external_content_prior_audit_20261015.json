@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-15",
+  "candidate": "candidate58 frozen external object content",
+  "scope": "Two exact-version primary PDFs downloaded using Paper Search, text extracted and page3 rendered/read during experiment setup; abstracts and introductions reread at closeout. Targeted prior check, not exhaustive novelty search.",
+  "papers": [
+    {
+      "title": "DINOv2: Learning Robust Visual Features without Supervision",
+      "arxiv_version": "2304.07193v1",
+      "version_date": "2023-04-14",
+      "author_count_verified": 26,
+      "pages": 31,
+      "source": "https://arxiv.org/abs/2304.07193v1",
+      "pdf": "output/literature/papers/2304.07193v1.pdf",
+      "text": "output/literature/text/2304.07193v1.txt",
+      "preview": "output/literature/previews/2304.07193v1-p3.png",
+      "review": "Frozen all-purpose image/pixel features and smaller distilled encoders are established. Candidate58 uses predicted-box CLS features with a linear TP/FP residual head; it does not reproduce the paper's training or establish a new representation method.",
+      "zotero": {
+        "collection": "6HT9SNK7",
+        "parent": "QPTRIRYV",
+        "attachment": "67UKWBT3",
+        "readback": "Title, all26authors, exact-version URL, date and collection verified; exact PDF filename, application/pdf and imported_file child confirmed."
+      },
+      "pdf_sha256": "ba47279a742327b613f213dfa057bd3715c88142f2fd88437e318a51544cb176",
+      "text_sha256": "f27fab444c277a14221305e73bd0f202cc4f2ae7e495ac319be0c32aa3452f33",
+      "preview_sha256": "c2e1f5dcde9555d9588448fddd1ebfa556d4a7acb8fa74523d1d4a65e5be083b"
+    },
+    {
+      "title": "Localizing Objects with Self-Supervised Transformers and no Labels",
+      "arxiv_version": "2109.14279v1",
+      "version_date": "2021-09-29",
+      "author_count_verified": 9,
+      "pages": 25,
+      "source": "https://arxiv.org/abs/2109.14279v1",
+      "pdf": "output/literature/papers/2109.14279v1.pdf",
+      "text": "output/literature/text/2109.14279v1.txt",
+      "preview": "output/literature/previews/2109.14279v1-p3.png",
+      "review": "LOST uses DINO patch-key relations for object discovery and class-agnostic detector training. External self-supervised features for object localization are established. Candidate58's CLS binary readout is not LOST replication or a novelty claim.",
+      "zotero": {
+        "collection": "6HT9SNK7",
+        "parent": "ILPK2RWX",
+        "attachment": "8735DUU7",
+        "readback": "Title, all9authors, exact-version URL, date and collection verified; exact PDF filename, application/pdf and imported_file child confirmed."
+      },
+      "pdf_sha256": "3f61f31796720db4cd4a6e8d6083c29c93d98813c5e04ae18f7b60cb7e33734a",
+      "text_sha256": "f104af7cb6a5f0b51090e294ae361e04dbf72833036e50f1bfc5f6906796b32c",
+      "preview_sha256": "2ff0f806035c1685a5882ef487e3e768373e48320ade98dc8228ec95b4e047df"
+    }
+  ],
+  "search_boundary": "The broader arXiv search failed HTTP429 after three attempts. Exact-version downloads succeeded. Search failure is not evidence of absent prior work; TokenCut was not downloaded or read as part of this audit.",
+  "collection_work": "Both parent records and PDF children read back at closeout. Incremental semantic index:2processed,2added,0errors.",
+  "candidate_result": "Both fixed holdouts fail own-content versus common-base NLL. Confirmation extreme loss is largely common association-IoU normalization extrapolation, not exploding DINO features. Preserve STOP for this recipe; no broad SSL-information impossibility, deployment, AP or innovation claim."
+}
