@@ -1,0 +1,23 @@
+{
+  "experiment": "candidate39_ordinary_geometry_residual_confirmation",
+  "date": "2026-10-14",
+  "stage": "Conventional control confirmation, not an innovation experiment",
+  "trigger": "Candidate38 geometry control gained tiny+.376741pp and small_all+.329778pp versus frozen regret; native features failed their own matched controls. Continue the ordinary geometry signal without reviving native feature STOP.",
+  "sample": "Exactly original128fit/64headholdout train images, original score>=.05 and native-association activity from candidate38. No new detector inference or independent detector test.",
+  "recipe": "Geometry head is exactly candidate38 geometry132->32->4, normalization, targets, clipping, balanced two-group SmoothL1(beta.02), AdamW(.002,.0001),8epochs,batch512. Reuse seed0 checkpoint/predictions/metrics and reproduce all saved predictions exactly. If gates pass, fit seeds1/2 once. Do not tune any parameter.",
+  "bias_control": "Ordinary globally constant four-coordinate correction, four zero-initialized logits with same .1*tanh bound, target/loss/batches/optimizer and8epochs. Fit seed0 first; only proceed if geometry beats it. Constant control tests whether a generic global box bias explains the geometry gain. Lower capacity is acknowledged, not treated as matched parameter count.",
+  "budget": "At most two geometry heads plus three constant four-parameter controls. Zero image decode, detector forward or detector training. Evaluate at most three seeds on64 cached headholdout scenes. Failed seed0 stops repetitions.",
+  "policy": {
+    "tiny_ap_vs_regret_min_pp": 0.05,
+    "small_all_ap_vs_regret_min_pp": 0.05,
+    "all_ap_vs_regret_min_pp": -0.05,
+    "tiny_ap_vs_constant_min_pp": 0.05,
+    "small_all_ap_vs_constant_min_pp": 0.05,
+    "small_all_recall_fppi10_vs_regret_min_pp": 0.0,
+    "repeat_min_positive_seeds": 2
+  },
+  "decision_rule": "Seed0 must pass all gates before seeds1/2. Final needs>=2/3 fully passing, mean tiny/smallAP versus regret and constant meeting gates, and everyseed allAP/FP guards. Otherwise STOP_THIS_ORDINARY_GEOMETRY_RESIDUAL_CONFIRMATION.",
+  "pass_action": "Allow newly registered bounded official-validation confirmation of the conventional control, with frozen geometry head/association/readout and source hashes. Do not upgrade strong control before that. No detector retraining.",
+  "fail_action": "Do not tune constants, normalization, features, bounds, thresholds or seeds. Do not relabel the native/shuffled arms as a successful innovation.",
+  "limits": "Postselection of a conventional control after candidate38, repeated64 detector-training scenes, inherited uniform diagnostic ignore handling and COCO area protocol. Seed consistency is not independent data confirmation or novelty. Association comes from all native anchors, not only saved post-NMS detections."
+}

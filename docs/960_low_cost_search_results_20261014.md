@@ -1091,3 +1091,34 @@ STOP_THIS_NATIVE_REGRESSION_FEATURE_RESIDUAL_RECIPE，不补该分支种子。
 登记与结果：`docs/experiments/candidate38_native_regression_features_registration_20261014.json`、
 `docs/experiments/candidate38_native_regression_features_result_20261014.json`。
 完整结果：`output/analysis/native-regression-residual-fixed-20261014/`。
+
+## 实验 39：常规几何连续残差的重复确认
+
+只确认实验38的普通几何对照，原生回归特征STOP不变。
+原seed0头及64图预测逐元素复现；直接读192图特征缓存，
+不新增图片解码/前向，维持原目标/初始化/训练预算/受限坐标读出。
+全局常量四边偏移作为低容量常规对照，用相同标签、批次、损失及优化器。
+种子0全部六项通过后才拟合几何种子1/2；没有重跑种子0几何训练。
+
+| 种子 | tiny AP对regret(pp) | small_all AP对regret(pp) | small_all AP对常量(pp) | FPPI10 small_all召回增量(pp) |
+|---|---:|---:|---:|---:|
+| 0 | +0.376741 | +0.329778 | +0.250499 | +0.032279 |
+| 1 | +0.276930 | +0.189556 | +0.118355 | -0.032279 |
+| 2 | +0.259993 | +0.120180 | +0.083106 | +0.064558 |
+
+三个种子tiny/small_all诊断AP均提升，也均胜过常量对照；
+均值对regret分别+0.304555/+0.213172pp，对常量+0.279421/+0.150653pp。
+这是菜单外连续几何修正的重复正向线索，不能简单归为完全没信号。
+但预登记要求每种子固定误报预算召回不降，种子1少1个small_all GT，
+即-0.032279pp，因此总体STOP_THIS_ORDINARY_GEOMETRY_RESIDUAL_CONFIRMATION。
+不事后放宽误报保护条件，不做官方确认或强对照升级，不择优报种子0。
+
+下一步仅允许新的机制归因登记，区分低IoU几何损伤与固定误报截断的影响，
+不通过调整边界、学习率、epoch或种子挽救本配方。
+当前方法是普通残差回归，重复AP增益也不证明创新，论文差异仍缺失。
+51.77秒左右，两个几何头加三个4参数常量头，无检测器训练。
+源哈希及三个种子192份预测全部核验，seed0逐元素复现通过；
+结果仍是反复查看的检测器训练图及历史诊断协议。
+登记与结果：`docs/experiments/candidate39_geometry_residual_confirmation_registration_20261014.json`、
+`docs/experiments/candidate39_geometry_residual_confirmation_result_20261014.json`。
+完整结果：`output/analysis/geometry-residual-confirmation-fixed-20261014/`。

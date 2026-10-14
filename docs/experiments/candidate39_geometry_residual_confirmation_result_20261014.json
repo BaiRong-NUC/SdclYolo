@@ -1,0 +1,203 @@
+{
+  "experiment": "candidate39_ordinary_geometry_residual_confirmation",
+  "date": "2026-10-14",
+  "output": "output/analysis/geometry-residual-confirmation-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_ORDINARY_GEOMETRY_RESIDUAL_CONFIRMATION",
+    "per_seed": {
+      "0": {
+        "passed": true,
+        "checks": {
+          "tiny_AP": true,
+          "small_all_AP": true,
+          "all_AP": true,
+          "tiny_vs_constant": true,
+          "small_all_vs_constant": true,
+          "fppi10": true
+        },
+        "values": {
+          "AP_vs_regret_pp": {
+            "tiny": 0.376740885035759,
+            "small_all": 0.3297782039112962,
+            "all": 0.2843775398725712
+          },
+          "AP_vs_constant_pp": {
+            "tiny": 0.3421410181945972,
+            "small_all": 0.2504990345928715
+          },
+          "small_all_recall_fppi10_gain_pp": 0.032278889606196515
+        }
+      },
+      "1": {
+        "passed": false,
+        "checks": {
+          "tiny_AP": true,
+          "small_all_AP": true,
+          "all_AP": true,
+          "tiny_vs_constant": true,
+          "small_all_vs_constant": true,
+          "fppi10": false
+        },
+        "values": {
+          "AP_vs_regret_pp": {
+            "tiny": 0.2769297199576026,
+            "small_all": 0.18955630933812362,
+            "all": 0.08516391804324619
+          },
+          "AP_vs_constant_pp": {
+            "tiny": 0.25230913687790957,
+            "small_all": 0.11835508892584778
+          },
+          "small_all_recall_fppi10_gain_pp": -0.032278889606196515
+        }
+      },
+      "2": {
+        "passed": true,
+        "checks": {
+          "tiny_AP": true,
+          "small_all_AP": true,
+          "all_AP": true,
+          "tiny_vs_constant": true,
+          "small_all_vs_constant": true,
+          "fppi10": true
+        },
+        "values": {
+          "AP_vs_regret_pp": {
+            "tiny": 0.2599931452783977,
+            "small_all": 0.1201801595723917,
+            "all": 0.06715775459674722
+          },
+          "AP_vs_constant_pp": {
+            "tiny": 0.2438132136252935,
+            "small_all": 0.0831055425171312
+          },
+          "small_all_recall_fppi10_gain_pp": 0.06455777921240413
+        }
+      }
+    },
+    "mean_gains": {
+      "AP_vs_regret_pp": {
+        "tiny": 0.3045545834239198,
+        "small_all": 0.2131715576072705
+      },
+      "AP_vs_constant_pp": {
+        "tiny": 0.27942112289926674,
+        "small_all": 0.15065322201195017
+      }
+    },
+    "scope": "Repeated-train-scene conventional control only, no novelty or official confirmation."
+  },
+  "AP50_95_percent": {
+    "0": {
+      "regret": {
+        "tiny": 37.834862966,
+        "small_all": 43.571579548,
+        "all": 45.975873747
+      },
+      "geometry": {
+        "tiny": 38.211603851,
+        "small_all": 43.901357752,
+        "all": 46.260251287
+      },
+      "constant": {
+        "tiny": 37.869462833,
+        "small_all": 43.650858717,
+        "all": 46.033972076
+      }
+    },
+    "1": {
+      "regret": {
+        "tiny": 37.834862966,
+        "small_all": 43.571579548,
+        "all": 45.975873747
+      },
+      "geometry": {
+        "tiny": 38.111792686,
+        "small_all": 43.761135857,
+        "all": 46.061037665
+      },
+      "constant": {
+        "tiny": 37.859483549,
+        "small_all": 43.642780769,
+        "all": 46.026487442
+      }
+    },
+    "2": {
+      "regret": {
+        "tiny": 37.834862966,
+        "small_all": 43.571579548,
+        "all": 45.975873747
+      },
+      "geometry": {
+        "tiny": 38.094856112,
+        "small_all": 43.691759708,
+        "all": 46.043031501
+      },
+      "constant": {
+        "tiny": 37.851042898,
+        "small_all": 43.608654165,
+        "all": 45.996032738
+      }
+    }
+  },
+  "training": {
+    "0": {
+      "checkpoint": "heads-seed0.pt",
+      "sha256": "bd57f6bf425dc4c1a403828ceb1292cc70a2645a2ec93d32012520e6ab8d443b",
+      "training_rows": 15001,
+      "parameters": {
+        "constant": 4
+      }
+    },
+    "1": {
+      "checkpoint": "heads-seed1.pt",
+      "sha256": "662e0a8da7742fd920e52532ac6e99d3f93cbd30423c8c4b9674720a9b53641c",
+      "training_rows": 15001,
+      "parameters": {
+        "geometry": 4388,
+        "constant": 4
+      }
+    },
+    "2": {
+      "checkpoint": "heads-seed2.pt",
+      "sha256": "0c57460a75f423a930b6090ec5e65d19f0ecbcccc814a964f874720ca9413b49",
+      "training_rows": 15001,
+      "parameters": {
+        "geometry": 4388,
+        "constant": 4
+      }
+    }
+  },
+  "verification": {
+    "detector_forwards": 0,
+    "image_decodes": 0,
+    "detector_training_steps": 0,
+    "seed0_geometry_predictions_exact_replay": true,
+    "train_only_normalization_and_same_original_owner": true,
+    "unchanged_candidate38_geometry_recipe": true,
+    "no_val_no_testdev_no_threshold_or_hyperparameter_search": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 51.815350300166756
+  },
+  "artifacts_sha256": {
+    "decision.json": "6b926a2af7d7d710960674ea26a83c655605ddde3d22fcb3bd90570392844f21",
+    "fixed-fp-budgets-seed0.json": "272f9b189d7fbfa957d6a2f283a449c2e1d5942a067f2e5a7d725f5ae5e14ad1",
+    "fixed-fp-budgets-seed1.json": "21eeb32b69225e29e4bf37790ba6592b0c878bc92a675a85d12a0e3d3795b6c9",
+    "fixed-fp-budgets-seed2.json": "b8dfe5c49d99de6634c5516a5959b729dff0032415225b393ddfe32c364c43e9",
+    "frames-seed0.json": "ce1091bcde7d9aa687b077319713c9d206f94c3be5823cae97d8ddb74df9ec2f",
+    "frames-seed1.json": "20a28d31cb24cb155143ca6298a6197d4edddeb203731f3f27216e3dee679ee1",
+    "frames-seed2.json": "b2f340c6f8d6f3637ac2c3b541f7e278b8f71b5fe9d338ca74aff051caea6d0a",
+    "heads-seed0.pt": "bd57f6bf425dc4c1a403828ceb1292cc70a2645a2ec93d32012520e6ab8d443b",
+    "heads-seed1.pt": "662e0a8da7742fd920e52532ac6e99d3f93cbd30423c8c4b9674720a9b53641c",
+    "heads-seed2.pt": "0c57460a75f423a930b6090ec5e65d19f0ecbcccc814a964f874720ca9413b49",
+    "losses-seed0.json": "3432959da9125c408a67542ae8c8d58292ec425fffd7b3c42f5f8724673299c6",
+    "losses-seed1.json": "ce559a3e70f023184936d333271c7eca7b9c10dda8311898d95a91ebd86b66f9",
+    "losses-seed2.json": "182ab61fedd516009830277ff97b8f51b5ac566567326c3ddb8d04b3e683f3b1",
+    "metrics.json": "1157037da819e0d56eb634e3d4d9f38d31258d09ed817ec18e7f9f228d31e07f",
+    "plan.json": "075d804633ef88dfe5e0df54d44ca4f12b47a3e74f80e049070d09065b6e0d06",
+    "source.zip": "ca0cbff38dab7770668f70f186d8c14974acc5ea81c0e3d9d2a0c449ae0d2ca6",
+    "training.json": "f06fd363bc4bc5717c510edd12bee22ff397212bfb713f6d232eb72b05626ad3",
+    "verification.json": "d1ca0ead3b20194aab09b9cc2b248bc7e694caa7cfc1b79ac8fcf4561a205068"
+  },
+  "validation": "Exact GPU replay of all64 historical seed0 geometry prediction arrays; seed0 cached AP reused only after exact replay. Seeds1/2 same fixed original128/64 rows, train normalization and model recipe."
+}
