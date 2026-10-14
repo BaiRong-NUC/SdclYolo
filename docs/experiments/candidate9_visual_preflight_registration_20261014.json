@@ -1,0 +1,40 @@
+{
+  "experiment": "candidate9_visual_boundary_context_preflight",
+  "date": "2026-10-14",
+  "hypothesis": "Image boundary and local context evidence distinguishes beneficial from harmful coordinate actions beyond the frozen geometry features.",
+  "stage": "Train-scene-held-out learnability pilot, not official AP or novelty confirmation.",
+  "sample": {
+    "train_images": 256,
+    "holdout_images": 128,
+    "selection": "Sort each existing train/scene-holdout group by SHA256('visual-preflight-v1:'+stem); take fixed first N. Cached anchor samples and importance weights unchanged.",
+    "all_images_are_from_training_split": true
+  },
+  "arms": ["geometry_absolute", "geometry_ranking", "visual_absolute", "visual_ranking"],
+  "visual_input": "24 grayscale boundary/context features sampled at each cached action; no GT-derived features. Same input for visual regression and visual ranking.",
+  "geometry_input": "Original 68 normalized geometry features; append 24 zeros for capacity-matched pilot controls.",
+  "normalization": "Historical geometry train-only mean/std; new visual moments fit only on the selected training scenes.",
+  "recipe": {
+    "seeds": [0, 1, 2],
+    "conditional_repeats": "Run seed0 first. Only if seed0 passes the small-pilot budget gates, run seeds1/2 on the same cached features.",
+    "epochs": 8,
+    "batch": 512,
+    "hidden": 64,
+    "learning_rate": 0.002,
+    "weight_decay": 0.0001,
+    "selection_margin": 0.01,
+    "ranking_temperature": 0.05,
+    "absolute_smooth_l1_beta": 0.1,
+    "selection": "Final epoch only; no best holdout checkpoint or feature/margin tuning."
+  },
+  "policy": {
+    "visual_ranking_vs_geometry_ranking_owned_ten_threshold_min_pp": 0.05,
+    "visual_ranking_vs_geometry_ranking_owned_mean_iou_min_exclusive_pp": 0.0,
+    "visual_ranking_vs_geometry_ranking_harm_rate_max_increase_pp": 0.5,
+    "repeat_mean_threshold_min_pp": 0.05,
+    "repeat_positive_seeds_min": 2
+  },
+  "metrics": "Importance-weighted sampled owned-anchor mean IoU, mean hit fraction at IoU0.50:0.05:0.95, harmful-move rate (IoU drop>0.01), and unowned move rate. Report all four arms and existing full-train frozen uniform on the same holdout.",
+  "interpretation": "A positive visual-input effect permits a larger low-cost head experiment; visual ranking versus ordinary visual regression is a separate comparison. If visual ranking does not beat the existing frozen uniform, do not promote it to the strong control.",
+  "limits": "Sampled fixed-reference targets are not detection AP/AR; independent pilot heads do not test complete detector seed robustness. Eight-epoch small-data failure stops this recipe, not all visual signals. Geometry padded controls have equal nominal architecture but inactive visual weights.",
+  "budget": "Decode 384 train images once; reuse action cache. No detector inference/training, no test-dev selection, no official evaluation. Four small heads at seed0; at most eight additional small heads after a positive gate."
+}

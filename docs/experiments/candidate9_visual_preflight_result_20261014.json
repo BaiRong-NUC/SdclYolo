@@ -1,0 +1,131 @@
+{
+  "experiment": "candidate9_visual_preflight",
+  "date": "2026-10-14",
+  "decision": {
+    "decision": "STOP_THIS_VISUAL_FEATURE_PILOT",
+    "per_seed": {
+      "0": {
+        "decision": "STOP_THIS_VISUAL_FEATURE_PILOT",
+        "checks": {
+          "threshold_gain": false,
+          "mean_iou_gain": false,
+          "harm_budget": true
+        },
+        "comparisons": {
+          "visual_ranking_vs_geometry_ranking": {
+            "owned_mean_iou_percent_pp": -0.03567934036254883,
+            "owned_ten_threshold_percent_pp": -0.09313373048480855,
+            "owned_harm_rate_percent_pp": 0.48788003623485565,
+            "owned_move_rate_percent_pp": -0.3137856721878052,
+            "unowned_move_rate_percent_pp": 0.06440883874893188,
+            "owned_oracle_regret_iou_pp_pp": 0.035682693123817444
+          },
+          "visual_absolute_vs_geometry_absolute": {
+            "owned_mean_iou_percent_pp": -0.02599954605102539,
+            "owned_ten_threshold_percent_pp": -0.09241474938374239,
+            "owned_harm_rate_percent_pp": 0.7972985506057739,
+            "owned_move_rate_percent_pp": -1.213279366493225,
+            "unowned_move_rate_percent_pp": -1.3264541625976562,
+            "owned_oracle_regret_iou_pp_pp": 0.026006437838077545
+          },
+          "visual_ranking_vs_visual_absolute": {
+            "owned_mean_iou_percent_pp": 0.10213851928710938,
+            "owned_ten_threshold_percent_pp": 0.1784613804437143,
+            "owned_harm_rate_percent_pp": -8.561010658740997,
+            "owned_move_rate_percent_pp": -19.29745376110077,
+            "unowned_move_rate_percent_pp": -4.464321821928024,
+            "owned_oracle_regret_iou_pp_pp": -0.1021338626742363
+          },
+          "visual_ranking_vs_frozen_uniform": {
+            "owned_mean_iou_percent_pp": -0.0921010971069336,
+            "owned_ten_threshold_percent_pp": -0.20670706655711513,
+            "owned_harm_rate_percent_pp": -0.16973093152046204,
+            "owned_move_rate_percent_pp": -3.308340907096863,
+            "unowned_move_rate_percent_pp": 0.15044347196817398,
+            "owned_oracle_regret_iou_pp_pp": 0.09210966527462006
+          }
+        },
+        "scope": "Sampled train-scene holdout only; not detection AP or novelty."
+      }
+    },
+    "head_seeds_completed": [
+      "0"
+    ],
+    "official_evaluation_ran": false,
+    "detector_inference_ran": false,
+    "detector_training_ran": false
+  },
+  "metrics": {
+    "0": {
+      "geometry_absolute": {
+        "owned_mean_iou_percent": 78.2078742980957,
+        "owned_ten_threshold_percent": 61.525831963845526,
+        "owned_harm_rate_percent": 14.381162822246552,
+        "owned_move_rate_percent": 46.67753577232361,
+        "unowned_move_rate_percent": 5.968251705169678,
+        "owned_oracle_regret_iou_pp": 2.529812417924404
+      },
+      "geometry_ranking": {
+        "owned_mean_iou_percent": 78.31969261169434,
+        "owned_ten_threshold_percent": 61.70501232539031,
+        "owned_harm_rate_percent": 6.1295706778764725,
+        "owned_move_rate_percent": 26.48058831691742,
+        "unowned_move_rate_percent": 0.11306688189506531,
+        "owned_oracle_regret_iou_pp": 2.418002299964428
+      },
+      "visual_absolute": {
+        "owned_mean_iou_percent": 78.18187475204468,
+        "owned_ten_threshold_percent": 61.433417214461784,
+        "owned_harm_rate_percent": 15.178461372852325,
+        "owned_move_rate_percent": 45.46425640583038,
+        "unowned_move_rate_percent": 4.6417975425720215,
+        "owned_oracle_regret_iou_pp": 2.5558188557624817
+      },
+      "visual_ranking": {
+        "owned_mean_iou_percent": 78.28401327133179,
+        "owned_ten_threshold_percent": 61.6118785949055,
+        "owned_harm_rate_percent": 6.617450714111328,
+        "owned_move_rate_percent": 26.166802644729614,
+        "unowned_move_rate_percent": 0.1774757206439972,
+        "owned_oracle_regret_iou_pp": 2.4536849930882454
+      },
+      "frozen_uniform": {
+        "owned_mean_iou_percent": 78.37611436843872,
+        "owned_ten_threshold_percent": 61.81858566146261,
+        "owned_harm_rate_percent": 6.78718164563179,
+        "owned_move_rate_percent": 29.475143551826477,
+        "unowned_move_rate_percent": 0.02703224867582321,
+        "owned_oracle_regret_iou_pp": 2.3615753278136253
+      }
+    }
+  },
+  "verification": {
+    "train_scene_count": 72,
+    "holdout_scene_count": 17,
+    "train_rows": 26388,
+    "holdout_rows": 13616,
+    "scene_overlap": 0,
+    "source_unchanged": true,
+    "selected_image_count": 384,
+    "nominal_parameters_per_head": 10177,
+    "fixed_uniform_checkpoint_sha256": "8f8eafa2f0b8925741ba19c74bba1437af1df9132e40efa02a6ab52a5e24fc43",
+    "preparation_seconds": 20.63507980015129,
+    "total_seconds": 31.24934390000999,
+    "scope": "Sampled fixed-reference training holdout, not AP/AR or independent-data evidence."
+  },
+  "artifacts_sha256": {
+    "decision.json": "405644e285054ae00328da7bd5fff8c164c612c1149403f9aea0a30e6cd3dc4f",
+    "holdout_features.npz": "3d6ca10e39618cee17f52563f4c3721bafdd7614c2a517ee27a4f9be4ee976fd",
+    "input_manifest.json": "2f2325e2bb8167dca7e16f0b1736f19373b6af624cae56e0b62882517efa7554",
+    "metrics.json": "437c46b7fb27dc1073b279c84bad427d0777afec4604c936c2c937fe03e67a51",
+    "plan.json": "02cb59a82bd6835edfb5e1246a56970f8f417f0f7dde123255ac677dd6346408",
+    "source.zip": "32ecf2ad4d456bd77b1a3a4fd363b371074129b105e073767b31c1836f4afaf3",
+    "train_features.npz": "2b97cc7302636b2afdac673297e0184d9e4d4ff532756bdac326c091f041de64",
+    "verification.json": "7c4f160ce1fa1d107d62d4e601eba1a58eac35183a6553cb41ac592ea4d09858",
+    "visual_normalization.json": "9c6996b09bbd324b836429e292657b705af205739186894e3f0ad0fa2a50f976",
+    "seed0/decision.json": "5b371b34f854e7494a412341a0244a8397ec65ea341664f1ea5b74a35d259f11",
+    "seed0/last.pt": "17eac13d35648d560313d021ce75562f30368f77f9419c4cc05c60f09f44a728",
+    "seed0/losses.csv": "e785421bdf9ab84f21283f75fadae56136f14aa4fa058edb06df8240232f7716",
+    "seed0/metrics.json": "a10d9ef5547eafce84d6dde935f0eb6e0b87b3b3fcfefc8ad77f1418f00ea21c"
+  }
+}
