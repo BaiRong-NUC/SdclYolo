@@ -1,0 +1,114 @@
+{
+  "experiment": "candidate8_identity_preflight",
+  "date": "2026-10-14",
+  "decision": {
+    "decision": "STOP_IDENTITY_REPAIR_RECIPE",
+    "checks": {
+      "strict_drift_count": false,
+      "fixed_owner_threshold_recovery": false
+    },
+    "primary_arm": "uniform",
+    "primary_space_pp": 0.0011983702165055525,
+    "policy": {
+      "primary_strict_drift_count_min": 10,
+      "primary_fixed_owner_threshold_recovery_all_or_small_all_min_pp": 0.05
+    },
+    "scope": "Diagnosis only; no official AP or deployable gain."
+  },
+  "summary": {
+    "uniform": {
+      "all": {
+        "gt": 75102,
+        "owned": 57482,
+        "changed_owned": 17651,
+        "harmed_owned": 4683,
+        "suspect_count": 2,
+        "strict_drift_count": 2,
+        "strict_recovered_threshold_hits": 0.8999999999999999,
+        "all_harm_recovered_threshold_hits": 289.5999999999988,
+        "strict_drift_fixed_owner_recovery_pp": 0.0011983702165055525,
+        "all_harm_fixed_owner_recovery_pp": 0.38560890522222946
+      },
+      "tiny": {
+        "gt": 54522,
+        "owned": 39052,
+        "changed_owned": 7986,
+        "harmed_owned": 2468,
+        "suspect_count": 0,
+        "strict_drift_count": 0,
+        "strict_recovered_threshold_hits": 0.0,
+        "all_harm_recovered_threshold_hits": 165.19999999999882,
+        "strict_drift_fixed_owner_recovery_pp": 0.0,
+        "all_harm_fixed_owner_recovery_pp": 0.30299695535746823
+      },
+      "small_all": {
+        "gt": 69990,
+        "owned": 52859,
+        "changed_owned": 15346,
+        "harmed_owned": 4301,
+        "suspect_count": 1,
+        "strict_drift_count": 1,
+        "strict_recovered_threshold_hits": 0.2,
+        "all_harm_recovered_threshold_hits": 267.19999999999806,
+        "strict_drift_fixed_owner_recovery_pp": 0.00028575510787255323,
+        "all_harm_fixed_owner_recovery_pp": 0.38176882411772833
+      }
+    },
+    "regret": {
+      "all": {
+        "gt": 75102,
+        "owned": 57482,
+        "changed_owned": 25638,
+        "harmed_owned": 7338,
+        "suspect_count": 8,
+        "strict_drift_count": 8,
+        "strict_recovered_threshold_hits": 1.6000000000000003,
+        "all_harm_recovered_threshold_hits": 478.60000000000167,
+        "strict_drift_fixed_owner_recovery_pp": 0.002130435940454316,
+        "all_harm_fixed_owner_recovery_pp": 0.6372666506883993
+      },
+      "tiny": {
+        "gt": 54522,
+        "owned": 39052,
+        "changed_owned": 13544,
+        "harmed_owned": 4426,
+        "suspect_count": 4,
+        "strict_drift_count": 4,
+        "strict_recovered_threshold_hits": 0.6,
+        "all_harm_recovered_threshold_hits": 317.69999999999976,
+        "strict_drift_fixed_owner_recovery_pp": 0.0011004732034774953,
+        "all_harm_fixed_owner_recovery_pp": 0.5827005612413333
+      },
+      "small_all": {
+        "gt": 69990,
+        "owned": 52859,
+        "changed_owned": 22590,
+        "harmed_owned": 6772,
+        "suspect_count": 7,
+        "strict_drift_count": 7,
+        "strict_recovered_threshold_hits": 0.9,
+        "all_harm_recovered_threshold_hits": 448.00000000000153,
+        "strict_drift_fixed_owner_recovery_pp": 0.0012858979854264896,
+        "all_harm_fixed_owner_recovery_pp": 0.6400914416345214
+      }
+    }
+  },
+  "verification": {
+    "images": 1610,
+    "complete": true,
+    "registered_source_unchanged": true,
+    "no_detector_inference": true,
+    "no_training": true,
+    "no_image_decoding": true,
+    "no_official_evaluation": true
+  },
+  "artifacts_sha256": {
+    "decision.json": "87b19959c9d94bd0103f41b319cfef21ecc8afd156a323c08c150e8e8454b21a",
+    "examples.json": "06db2f14d79720b25350e01a6b8f5b8b197661f2dcf65303697480739f1c9f5b",
+    "per_image.csv": "d2efe45b210bda3e626d9c5e643ce4b36b6a40a35558294cdaa4d47ab081b35d",
+    "plan.json": "658e98abecadd0063e8d33bf94b196f9de4e0d14bdd61d83f07bd91f33ed1df0",
+    "source.zip": "cb672cd06fe429cec80a4073012c27b58ab4583150e92e5da314e2d184b44b1e",
+    "summary.json": "4d7a2c4a31736d2303c09d7909df0b3e6d9df6206fef34b7e1d95df0984f2210",
+    "verification.json": "b6a1bbfd93957d813760aadc80c0afcb9ed9897ddf86d16b2f063ae4bf4f0563"
+  }
+}

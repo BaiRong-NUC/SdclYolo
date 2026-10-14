@@ -1,0 +1,20 @@
+{
+  "experiment": "candidate8_identity_preflight",
+  "date": "2026-10-14",
+  "stage": "annotation-assisted diagnosis only",
+  "arms": ["uniform", "regret"],
+  "primary_arm": "uniform",
+  "dataset": "Existing complete 1610-image test-dev action cache, already viewed; not independent confirmation.",
+  "ownership": "Calibration score-ordered one-to-one same-class IoU>=0.5 matching at confidence>=0.001.",
+  "strict_drift": "Original owned GT was at least tied for best same-class IoU; selected coordinate lowers its IoU by >0.01, and another same-class GT has IoU>=0.5 and exceeds owned IoU by >0.01.",
+  "oracle": "For diagnosis only, keep original coordinates on strict-drift rows; unchanged otherwise. Also report keeping every harmed owned row as a broader diagnostic.",
+  "thresholds": [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95],
+  "groups": ["all", "tiny", "small_all"],
+  "policy": {
+    "primary_strict_drift_count_min": 10,
+    "primary_fixed_owner_threshold_recovery_all_or_small_all_min_pp": 0.05
+  },
+  "decision": "Both primary-arm conditions permit a small train-scene-held-out pilot only. No detector training or full official evaluation is authorized by this diagnostic alone. Regret is descriptive, not a substitute primary arm.",
+  "limits": "Fixed-owner threshold recovery is not official AP/AR, not an upper bound on AP, not instance identity ground truth, and not a deployable result. Counts may miss drift on unowned detections.",
+  "budget": "No detector inference, no training, no image decoding, no official evaluator. One full cached pass; no threshold search."
+}
