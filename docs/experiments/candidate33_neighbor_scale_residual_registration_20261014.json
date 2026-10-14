@@ -1,0 +1,33 @@
+{
+  "experiment": "candidate33_neighbor_scale_residual_pilot",
+  "date": "2026-10-14",
+  "question": "Does local other-instance scale information deliver incremental coordinate-selection benefit over frozen regret and same-budget controls?",
+  "prerequisite": "Candidate32 original fixed local-median information screen passed all5 gates. Verify its source/artifacts and cached context before fitting.",
+  "sample": "Exact128 fitting/64 head-held-out train frames. All branches only update anchors at calibrated score>=.05, >=2 valid actions and candidate32 supported local context. Context and active mask depend on predictions only.",
+  "base": "Frozen historical regret per-action utility; base detector, calibrator, action menus, scores/classes/count/order unchanged. Every residual output zero initialized, initial choices/predictions must exactly replay regret.",
+  "features": "Historical68 train-normalized geometry plus4 context channels per action: candidate32 scale score, difference from original regret-action scale score, log1p peer count, available marker. Context normalized on active FITTING rows and valid actions only, then clipped+-6. Local peers/score/radius/count unchanged from32. Global uses same statistic across image and its peer count.",
+  "arms": {
+    "local_context": "Real local other-instance scale input.",
+    "global_context": "Real all-image same-class scale input, same4-channel format.",
+    "shuffled_context": "True local4-channel blocks deterministically deranged between all anchors WITHIN each split. Entire6-action block remains together, but menus need not have identical validity; this is an information destruction control, not a distribution-perfect surrogate.",
+    "geometry_only": "Same nominal72->32->1 SiLU residual MLP,4 context channels zero AFTER normalization. Effective input capacity differs and is reported.",
+    "regret": "Untouched frozen historical strong coordinate selector.",
+    "uniform": "Untouched historical diagnostic selector."
+  },
+  "fit": "Four identical2369-parameter residual MLPs, shared initialization and batches,8epoch/batch512/AdamWlr.0002 weight_decay.0001. Owned anchors use mean valid unordered action-pair signed softplus(temp.05) with nominal same-owned IoUgap>.01. Unowned anchors prefer original regret action. No stable-perturbation or side-specific targets. Seed0 first;1/2 only after all seed0 gates pass.",
+  "prediction": "Frozen regret utility plus scalar residual per action; original select_actions absolute gain margin.01, unchanged. Only registered active anchors can receive residual. Context peers computed ONCE from original regret prediction, no iteration or GT.",
+  "policy": {
+    "tiny_ten_threshold_vs_regret_min_pp": 0.05,
+    "small_all_ten_threshold_vs_regret_min_pp": 0.05,
+    "small_all_ten_threshold_vs_geometry_min_exclusive_pp": 0.0,
+    "small_all_ten_threshold_vs_global_min_exclusive_pp": 0.0,
+    "small_all_ten_threshold_vs_shuffled_min_exclusive_pp": 0.0,
+    "all_fppi50_vs_regret_max_increase": 0.10,
+    "repeat_min_positive_seeds": 2
+  },
+  "evaluation": "Actual score.25 one-to-one matching overIoU.50:.05:.95, tiny/small_all mean recall, allFPPI50. Preserve frozen diagnostic ignore-filtered frame scope. Not official AP/AR or independent generalization.",
+  "pass_action": "Only permits separately registered annotation-free official replay and fresh-scene feasibility audit. Local-context gains alone remain conventional contextual localization; actual novelty needs closer scale/perspective prior checks and distinct tested mechanism.",
+  "fail_action": "Stop this local-median residual recipe without changing peers, labels, loss, epoch, learning rate or seeds to rescue it.",
+  "budget": "192 cached frames, zero detector forwards/training and image decoding;4 small heads or12 if seed0passes.",
+  "limits": "Information screen was univariate and cannot ensure incremental conditional signal. Repeated training-scene head holdout is biased; physical sizes/pose can invalidate neighbor scale. Head seed repetitions are not detector training repetitions."
+}

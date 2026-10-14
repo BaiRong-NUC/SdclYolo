@@ -1,0 +1,234 @@
+{
+  "experiment": "candidate33_neighbor_scale_residual_pilot",
+  "date": "2026-10-14",
+  "output": "output/analysis/neighbor-scale-residual-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_LOCAL_SCALE_MEDIAN_RESIDUAL",
+    "per_seed": {
+      "0": {
+        "passed": false,
+        "checks": {
+          "tiny_gain": false,
+          "small_gain": false,
+          "geometry_only": true,
+          "global_context": true,
+          "shuffled_context": true,
+          "fp_budget": true
+        },
+        "values": {
+          "small_all_gains_pp": {
+            "regret": -0.006455777921239303,
+            "geometry_only": 0.01936733376371791,
+            "global_context": 0.006455777921239303,
+            "shuffled_context": 0.01936733376371791
+          },
+          "tiny_vs_regret_pp": -0.007507507507511946,
+          "fppi50_increase": 0.0
+        }
+      }
+    },
+    "seeds_executed": 1,
+    "positive_seeds": 0,
+    "scope": "Reused train-head-holdout detection proxy, not AP or innovation."
+  },
+  "metrics": {
+    "0": {
+      "uniform": {
+        "all_ten_threshold_recall_percent": 51.17955035417309,
+        "tiny_ten_threshold_recall_percent": 45.232732732732735,
+        "small_all_ten_threshold_recall_percent": 49.548095545513235,
+        "all_fppi50": 10.90625,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2488,
+              "tp_ten": 16618
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1940,
+              "tp_ten": 12050
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2345,
+              "tp_ten": 15350
+            }
+          },
+          "fp50": 698,
+          "moves_vs_regret": 585
+        }
+      },
+      "regret": {
+        "all_ten_threshold_recall_percent": 51.51524484139205,
+        "tiny_ten_threshold_recall_percent": 45.67942942942943,
+        "small_all_ten_threshold_recall_percent": 49.89993544222079,
+        "all_fppi50": 10.8125,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2494,
+              "tp_ten": 16727
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1946,
+              "tp_ten": 12169
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2351,
+              "tp_ten": 15459
+            }
+          },
+          "fp50": 692,
+          "moves_vs_regret": 0
+        }
+      },
+      "local_context": {
+        "all_ten_threshold_recall_percent": 51.52140437326763,
+        "tiny_ten_threshold_recall_percent": 45.67192192192192,
+        "small_all_ten_threshold_recall_percent": 49.89347966429955,
+        "all_fppi50": 10.8125,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2494,
+              "tp_ten": 16729
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1946,
+              "tp_ten": 12167
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2351,
+              "tp_ten": 15457
+            }
+          },
+          "fp50": 692,
+          "moves_vs_regret": 66
+        }
+      },
+      "global_context": {
+        "all_ten_threshold_recall_percent": 51.5029257776409,
+        "tiny_ten_threshold_recall_percent": 45.656906906906904,
+        "small_all_ten_threshold_recall_percent": 49.88702388637831,
+        "all_fppi50": 10.84375,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2492,
+              "tp_ten": 16723
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1944,
+              "tp_ten": 12163
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2349,
+              "tp_ten": 15455
+            }
+          },
+          "fp50": 694,
+          "moves_vs_regret": 71
+        }
+      },
+      "shuffled_context": {
+        "all_ten_threshold_recall_percent": 51.49060671388974,
+        "tiny_ten_threshold_recall_percent": 45.6493993993994,
+        "small_all_ten_threshold_recall_percent": 49.87411233053583,
+        "all_fppi50": 10.828125,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2493,
+              "tp_ten": 16719
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1945,
+              "tp_ten": 12161
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2350,
+              "tp_ten": 15451
+            }
+          },
+          "fp50": 693,
+          "moves_vs_regret": 74
+        }
+      },
+      "geometry_only": {
+        "all_ten_threshold_recall_percent": 51.49060671388974,
+        "tiny_ten_threshold_recall_percent": 45.64189189189189,
+        "small_all_ten_threshold_recall_percent": 49.87411233053583,
+        "all_fppi50": 10.828125,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2493,
+              "tp_ten": 16719
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1945,
+              "tp_ten": 12159
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2350,
+              "tp_ten": 15451
+            }
+          },
+          "fp50": 693,
+          "moves_vs_regret": 72
+        }
+      }
+    }
+  },
+  "verification": {
+    "fit_images": 128,
+    "head_holdout_images": 64,
+    "detector_forwards": 0,
+    "image_decodes": 0,
+    "detector_training_steps": 0,
+    "initial_all_arms_exact_regret_replay": true,
+    "same_training_rows_batches_labels_and_initial_weights": true,
+    "context_GT_excluded_and_normalization_fit_only": true,
+    "no_val_no_testdev_no_threshold_or_hyperparameter_search": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 11.417153500020504
+  },
+  "training": {
+    "0": {
+      "checkpoint": "heads-seed0.pt",
+      "sha256": "fdd622254d18d42fab5a7dbd8b8d2ba54918ac5c8418f632c5a02e17b0a0387d",
+      "parameters_each": 2369,
+      "active_training_rows": 8765
+    }
+  },
+  "artifacts_sha256": {
+    "decision.json": "a5aeea3808a806eaabb772dd351a4e9e6b2b983d579209d79e2c9a8f66152437",
+    "frames-seed0.json": "3fac68651c51bbe1b7c847ec024cfca0c9d4cd5146f9c2d0905189936a1fba2b",
+    "heads-seed0.pt": "fdd622254d18d42fab5a7dbd8b8d2ba54918ac5c8418f632c5a02e17b0a0387d",
+    "losses-seed0.json": "0e451b59c4bebbcde52ce0b27795c6a36660a73862e974909f4ec47d602e4441",
+    "metrics.json": "ed1db9ddfc70a65c8cac9b08e28b65f94ac11d86b9669fcada82890dcbc556dd",
+    "plan.json": "7e6df8dbe27451af6257024789cad8251e19ad0f3fd7e6da1740dda08fd2136f",
+    "shuffle-partners.json": "1d3da0d0c8aa066d4051dd1287c9f4908c30ba558648b4549f4a6ef47fe1ccc1",
+    "source.zip": "de70577168b270f38352e55f19efb8e82ad53410adc22efc408bffe48270bb04",
+    "training.json": "7c228234a546d5ef63e97446e8274c8a9eba51621f4f5842a7b8059c7a3258fa",
+    "verification.json": "89ff18d21b08d89ebdc88866e28eb583822f47d46ce5cebf737fe38d6a211b5b"
+  },
+  "tests": "2 passed: zero residual exact utility preservation and block derangement; unowned reference supervision favors nonzero original regret action"
+}

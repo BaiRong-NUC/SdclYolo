@@ -884,3 +884,37 @@ Relation Networks原文第2--3节已核对，其他实例的几何与上下文�
 登记与数值记录：`docs/experiments/candidate32_neighbor_scale_signal_registration_20261014.json`、
 `docs/experiments/candidate32_neighbor_scale_signal_result_20261014.json`。
 完整结果：`output/analysis/neighbor-scale-signal-fixed-20261014/`。
+
+## 实验 33：弱邻域尺度信息能否转成regret之上的净收益
+
+实验32通过后另行登记。冻结regret效用，每动作增加四维局部尺度输入：
+原尺度分数、相对regret动作分数差、log邻居数和可用标记。
+归一化仅用拟合图的有效动作；对照为全图同类尺度、整动作块跨原框乱序、
+归一化后零上下文的同名义结构几何头，均2369参数。
+四个末层零初始化残差头初始完整复现regret，
+同8765个支持上下文的训练原框、批次和名义同归属IoU成对排序监督，
+8epoch、lr0.0002，不训练检测器。
+未归属原框保留regret选定动作，未要求它必须是slot0。
+
+| 分支 | small_all十阈值平均召回(%) | 对regret(pp) |
+|---|---:|---:|
+| 原regret | 49.899935 | 0 |
+| 局部尺度残差 | 49.893480 | -0.006456 |
+| 全图尺度残差 | 49.887024 | -0.012912 |
+| 乱序局部上下文 | 49.874112 | -0.025823 |
+| 零上下文几何残差 | 49.874112 | -0.025823 |
+
+局部分支small_all对几何/乱序各+0.019367pp，对全图+0.006456pp，
+但对regret为-0.006456pp，tiny对regret-0.007508pp，FPPI增量0。
+六项通过四项，tiny和small_all对强对照收益失败。
+STOP_THIS_LOCAL_SCALE_MEDIAN_RESIDUAL，不追加seed1/2、不调邻居/训练超参挽救。
+保留实验32单变量信息信号和相对匹配头的微小点估计，
+不把未过门槛解释成所有上下文无用；当前也没有依据投入大训练或官方评价。
+
+耗时11.42秒，192张缓存，无图像解码或检测器前向。
+两个零残差/块乱序和非slot0参考保留的梯度测试通过。
+几何零输入对照仅名义容量匹配，乱序块菜单有效性不一定匹配，限制已预登记。
+仍是已查看训练图的头留出召回代理，没有独立泛化、AP或创新证明。
+登记与数值记录：`docs/experiments/candidate33_neighbor_scale_residual_registration_20261014.json`、
+`docs/experiments/candidate33_neighbor_scale_residual_result_20261014.json`。
+完整结果：`output/analysis/neighbor-scale-residual-fixed-20261014/`。
