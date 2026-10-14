@@ -1,0 +1,206 @@
+{
+  "experiment": "candidate26_marginal_view_value_pilot",
+  "date": "2026-10-14",
+  "output": "output/analysis/marginal-view-policy-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_GLOBAL_FEATURE_MARGINAL_VIEW_REGRESSOR",
+    "per_seed": {
+      "0": {
+        "passed": false,
+        "checks": {
+          "ordinary_objective_gain": false,
+          "density_gain": false,
+          "low_iou_budget": true,
+          "all_size_budget": false,
+          "absolute_loss_budget": false,
+          "same_cost": true
+        },
+        "values": {
+          "tiny075_reduction_vs_ordinary": -6,
+          "tiny075_reduction_vs_density": -7,
+          "tiny050_extra_vs_density": -3,
+          "all075_extra_vs_ordinary": 7,
+          "tiny075_loss_pp": 0.7507507507507507
+        }
+      }
+    },
+    "positive_seeds": 0,
+    "seeds_executed": 1,
+    "scope": "Coverage proxy on reused train head-holdout, not AP/latency or novelty proof."
+  },
+  "metrics": {
+    "0": {
+      "ordinary_coverage": {
+        "forward_count_saving_percent": 20.0,
+        "thresholds": {
+          "0.5": {
+            "lost_supported_gt": {
+              "all": 8,
+              "tiny": 8,
+              "small_all": 8
+            },
+            "capacity_loss": 8
+          },
+          "0.75": {
+            "lost_supported_gt": {
+              "all": 14,
+              "tiny": 14,
+              "small_all": 14
+            },
+            "capacity_loss": 14
+          }
+        },
+        "lost_supported_gt_pp": {
+          "0.5": {
+            "all": 0.24638127502309826,
+            "tiny": 0.3003003003003003,
+            "small_all": 0.25823111684958033
+          },
+          "0.75": {
+            "all": 0.4311672312904219,
+            "tiny": 0.5255255255255256,
+            "small_all": 0.4519044544867657
+          }
+        }
+      },
+      "marginal_loss": {
+        "forward_count_saving_percent": 20.0,
+        "thresholds": {
+          "0.5": {
+            "lost_supported_gt": {
+              "all": 9,
+              "tiny": 8,
+              "small_all": 9
+            },
+            "capacity_loss": 10
+          },
+          "0.75": {
+            "lost_supported_gt": {
+              "all": 21,
+              "tiny": 20,
+              "small_all": 21
+            },
+            "capacity_loss": 22
+          }
+        },
+        "lost_supported_gt_pp": {
+          "0.5": {
+            "all": 0.2771789344009855,
+            "tiny": 0.3003003003003003,
+            "small_all": 0.2905100064557779
+          },
+          "0.75": {
+            "all": 0.6467508469356329,
+            "tiny": 0.7507507507507507,
+            "small_all": 0.6778566817301485
+          }
+        }
+      },
+      "global_density_one": {
+        "forward_count_saving_percent": 20.0,
+        "thresholds": {
+          "0.5": {
+            "lost_supported_gt": {
+              "all": 11,
+              "tiny": 11,
+              "small_all": 11
+            },
+            "capacity_loss": 11
+          },
+          "0.75": {
+            "lost_supported_gt": {
+              "all": 13,
+              "tiny": 13,
+              "small_all": 13
+            },
+            "capacity_loss": 13
+          }
+        },
+        "lost_supported_gt_pp": {
+          "0.5": {
+            "all": 0.3387742531567601,
+            "tiny": 0.4129129129129129,
+            "small_all": 0.35506778566817304
+          },
+          "0.75": {
+            "all": 0.4003695719125347,
+            "tiny": 0.487987987987988,
+            "small_all": 0.4196255648805681
+          }
+        }
+      },
+      "fixed_one": {
+        "forward_count_saving_percent": 20.0,
+        "thresholds": {
+          "0.5": {
+            "lost_supported_gt": {
+              "all": 18,
+              "tiny": 17,
+              "small_all": 18
+            },
+            "capacity_loss": 19
+          },
+          "0.75": {
+            "lost_supported_gt": {
+              "all": 40,
+              "tiny": 37,
+              "small_all": 40
+            },
+            "capacity_loss": 40
+          }
+        },
+        "lost_supported_gt_pp": {
+          "0.5": {
+            "all": 0.554357868801971,
+            "tiny": 0.6381381381381381,
+            "small_all": 0.5810200129115558
+          },
+          "0.75": {
+            "all": 1.2319063751154913,
+            "tiny": 1.3888888888888888,
+            "small_all": 1.2911555842479019
+          }
+        }
+      }
+    }
+  },
+  "verification": {
+    "fitting_images": 128,
+    "head_heldout_images": 64,
+    "scene_prefix_sets_disjoint": true,
+    "detector_forwards": 0,
+    "no_val_no_testdev": true,
+    "heldout_pools_exactly_match_candidate21": true,
+    "model_features_only_unfiltered_global_predictions": true,
+    "heads_same_initialization_capacity_batches_epochs_per_seed": true,
+    "no_hyperparameter_or_threshold_search": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 4.578520800219849
+  },
+  "training": {
+    "0": {
+      "parameters_per_head": 2017,
+      "input_dimensions": 61,
+      "training_rows": 512,
+      "final_batch_loss": {
+        "ordinary_coverage": 0.03369555249810219,
+        "marginal_loss": 0.1627091020345688
+      },
+      "checkpoint": "heads-seed0.pt",
+      "sha256": "67066034437dc0d0a957143af0bab9abff44db9df8dfdd151dc99617bc63730d"
+    }
+  },
+  "artifacts_sha256": {
+    "plan.json": "83bd5c0e37ae275b6e539a9d72efa976b12a1123384b6c9eb7f822392098b929",
+    "source.zip": "42c61897ab5224c2332ba0b6b9eff292aa19a5ac8551f17b8f15b6201e1fba7f",
+    "metrics.json": "ef7882acb2bcfb4b7bc72e98cc76a73662627046be5679f3d6afd47e8ec4e52e",
+    "decision.json": "b824badf8cc98f65dd655adf07f83a792b3fe194d1e1ed847af33dbf70f5151a",
+    "verification.json": "f142701d0ffb9bfe3476eb01e435985cb6b9db7dca37bca426f0c6f4cce3d78c",
+    "training.json": "098dda48986c62dcc573edb3b6817f516bfa5c9e741e6d4735feb19ad112272f",
+    "heads-seed0.pt": "67066034437dc0d0a957143af0bab9abff44db9df8dfdd151dc99617bc63730d",
+    "choices-seed0.json": "04dd7b33f00e7b1ce89f490920cad44ba6841916db558ebefeb5727cf25c63e0",
+    "train-features-targets.npz": "d26e0cc8885bc0bdbccf70de5262cd07c108086b76d6470e762bcb65826d5b8b",
+    "holdout-features-targets.npz": "5fe6e8c0b00ab1c9e9f662e21769ee684d34be5de8b4912ba8b12aa49021bef9"
+  },
+  "tests": "2 passed: redundant standalone coverage versus marginal value and annotation-free empty/nonempty input features"
+}

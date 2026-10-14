@@ -1,0 +1,30 @@
+{
+  "experiment": "candidate26_marginal_view_value_pilot",
+  "date": "2026-10-14",
+  "prerequisite": "candidate25 BOUNDED_VIEW_POLICY_SCREEN_ALLOWED",
+  "hypothesis": "Predicting evidence uniquely lost when omitting a view selects a safer omission than predicting the number of objects a view detects, at identical four-view cost.",
+  "sample": "Exactly first128 candidate12 fitting and first64 head-held-out train images, same order. First filename-prefix scene sets must be disjoint. Detector already saw both splits; not independent generalization.",
+  "budget": "Existing raw predictions only, no detector forwards, no official evaluation. Two small32-hidden-unit MLPs, CPU,80 epochs, batch128, Adam lr0.003, no scheduler or weight decay. Seed0 first; only if every seed0 gate passes repeat fixed seeds1/2.",
+  "prediction_inputs": "Only native unfiltered fullimage raw predictions and five known view windows, before local views are available. Perwindow geometry, score/size/class counts, boundary contacts and fullimage/global-window context. No local-view predictions, object labels, ignores or filenames in the model input.",
+  "targets": {
+    "ordinary_coverage": "For each local view, sum its standalone all-GT maximum match capacity at native confidence0.05 and IoU0.5/0.75",
+    "marginal_loss": "For each omission, sum over IoU0.5/0.75 of max(number full-pool-supported GT losing support, all-GT maximum matching capacity loss)"
+  },
+  "matching": "Heads share input, architecture, seed initialization, batch order, loss and training rows. For each head separately normalize log1p target using fitting-only mean/std, with floor1e-3. Standardize inputs using fitting-only mean/std floor1e-3 and clip to[-6,6]. Mean squared regression loss, final epoch80 only.",
+  "inference": "For every image choose the local view with lowest predicted target, tie earliest view index. Always omit exactly one local view and retain global+three locals: count savings fixed20%. No score threshold or selective abstention tuned on holdout.",
+  "controls": "Full5, global-density-one at confidence0.25 from candidate25, fixed-one, and matched ordinary_coverage head. Candidate25 empty and GT-assisted oracle remain descriptive references.",
+  "evaluation": "Before metric inspection, produce all perimage choices from global predictions only. Then evaluate native pool support loss by group at IoU0.5/0.75 and all-GT matching loss. These are coverage proxies, not actual AP, detector recall or runtime.",
+  "policy": {
+    "tiny_lost_support075_vs_ordinary_min_reduction_count": 3,
+    "tiny_lost_support075_vs_density_min_reduction_count": 3,
+    "tiny_lost_support050_vs_density_max_extra_count": 0,
+    "all_lost_support075_vs_ordinary_max_extra_count": 0,
+    "tiny_lost_support075_max_pp": 0.50,
+    "forward_saving_percent": 20.0,
+    "repeat_min_positive_seeds": 2
+  },
+  "pass_action": "Register a bounded prediction-only fusion/calibration replay and official accuracy/cost audit. The frozen five-view calibrator's missing-view distribution must be audited, not assumed compatible. No full detector training.",
+  "fail_action": "Stop this fixed global-box-feature marginal-view regressor. Do not change epochs, learning rate, target weights, omission count, threshold or seed to rescue it.",
+  "prior_art": "AutoFocus already predicts where high-resolution processing is useful; selective regions, learned crop values and avoiding redundant processing have substantial prior art. A narrower marginal-evidence objective must demonstrate independent benefit and still requires nearest-method review before novelty claims.",
+  "limits": "Tiny128/64 scene split, repeated study data, noisy proxy labels, inherited diagnostic ignore filtering for label/evaluation pools, no AP/latency proof. Prediction inputs themselves must remain unfiltered and annotation-free."
+}

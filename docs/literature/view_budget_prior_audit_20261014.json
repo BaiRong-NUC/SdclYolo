@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-14",
+  "scope": "Nearest-method reading for candidate25/26; no novelty confirmation",
+  "papers": [
+    {
+      "title": "AutoFocus: Efficient Multi-Scale Inference",
+      "authors": ["Mahyar Najibi", "Bharat Singh", "Larry S. Davis"],
+      "doi": "10.1109/ICCV.2019.00984",
+      "year": 2019,
+      "metadata_provenance": "Paper Search Crossref exact title/DOI and CVF PDF metadata",
+      "pdf_url": "https://openaccess.thecvf.com/content_ICCV_2019/papers/Najibi_AutoFocus_Efficient_Multi-Scale_Inference_ICCV_2019_paper.pdf",
+      "local_pdf": "output/literature/papers/cvf-Najibi_AutoFocus_Efficient_Multi-Scale_Inference_ICCV_2019_paper.pdf",
+      "pdf_sha256": "2e5622cd8776cb8e2531176205cd77d21b730da7072bd20022130902fb4a6f7a",
+      "pages": 11,
+      "text": "output/literature/text/cvf-Najibi_AutoFocus_Efficient_Multi-Scale_Inference_ICCV_2019_paper.txt",
+      "text_sha256": "1adb706aff29162bc8efa6079702af7c487a183fc6db8def3e151aa34086d479",
+      "read_sections": ["3 SNIP background", "4 framework", "4.1 FocusPixels supervision", "4.2 FocusChips generation and cross-scale merging"],
+      "overlap": "Coarse-to-fine selective inference and predicting small-object regions from coarse evidence are established. Object count supervision alone is no innovation.",
+      "zotero": {
+        "collection_key": "6HT9SNK7",
+        "item_key": "STPY7857",
+        "attachment_key": "HYFVS9K2",
+        "children_readback": "application/pdf confirmed",
+        "pdf_route": "DOI import attached Unpaywall PDF; local CVF PDF separately hashed"
+      }
+    },
+    {
+      "title": "ESOD: Efficient Small Object Detection on High-Resolution Images",
+      "authors": ["Kai Liu", "Zhihang Fu", "Sheng Jin", "Ze Chen", "Fan Zhou", "Rongxin Jiang", "Yaowu Chen", "Jieping Ye"],
+      "doi": "10.1109/TIP.2024.3501853",
+      "year": 2025,
+      "metadata_provenance": "Paper Search Crossref exact title/DOI; author repository points to arxiv2407.16424",
+      "author_source": "https://raw.githubusercontent.com/alibaba/esod/main/README.md",
+      "author_source_snapshot": "output/literature/primary_sources/esod_author_readme_20261014.md",
+      "author_source_sha256": "785b2a4cd8cb2511737263d3b69d56993d6732891f7b3e12681a677ee3d38c53",
+      "pdf_url": "https://arxiv.org/pdf/2407.16424",
+      "local_pdf": "output/literature/papers/arxiv-2407.16424.pdf",
+      "pdf_sha256": "9deae95958cefdde0552351c294d1cba8f2d435f6dbfdf300b552c89fff6c29c",
+      "pages": 13,
+      "text": "output/literature/text/arxiv-2407.16424.txt",
+      "text_sha256": "9def0bf7c3162346e068fb76468e322419ab8ada0b6df8f0b4281d44119eed68",
+      "read_sections": ["III overview and ObjSeeker", "III AdaSlicer", "Algorithms1/2 and coverage removal"],
+      "overlap": "Joint object-seeking, feature reuse, adaptive patches, removal of covered objects/overlapped patches and sparse heads already address redundant computation. Marginal coverage must not be described as an unprecedented principle.",
+      "zotero": {
+        "collection_key": "6HT9SNK7",
+        "existing_item_key": "XEFBGT66",
+        "search_readback": "Title confirmed in collection; document record still lacks creators/date and is tagged metadata-needs-review",
+        "action": "Reused existing PDF archive and library record; no redundant DOI/version import",
+        "metadata_limit": "Structured Crossref citation is recorded here; original Zotero record not yet enriched."
+      }
+    }
+  ],
+  "current_claim": "Candidate25 establishes conditional computational headroom only. Candidate26's marginal objective does not beat matched ordinary coverage or density at highIoU. No deployable innovation established."
+}

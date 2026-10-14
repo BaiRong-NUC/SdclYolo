@@ -642,3 +642,39 @@ AutoFocus和ESOD已经研究选择性区域、特征复用及稀疏检测，不�
 登记与数值记录：`docs/experiments/candidate25_view_budget_registration_20261014.json`、
 `docs/experiments/candidate25_view_budget_result_20261014.json`。
 完整结果：`output/analysis/view-budget-headroom-fixed-20261014/`。
+
+## 实验 26：省掉视图的独有证据损失与普通区域覆盖监督
+
+严格使用原128张拟合、64张头留出训练图，首文件名前缀场景无交集。
+每个策略只看未经ignore过滤的全图原生预测、窗口几何和全图统计，
+推理输入没有局部视图预测、标注或文件名。
+两个61维输入、2017参数的MLP初始化、批次、80epoch、Adam lr0.003相同。
+普通头预测该视图单独可匹配的GT数；边际头预测省掉它造成的候选证据损失，
+均使用两个IoU阈值、拟合集归一化的log1p标签与MSE。
+每图一律省一次，固定20%的视图前向计数节省，不调阈值。
+
+| 策略 | tiny丢支持GT@0.5 | tiny丢支持GT@0.75 | @0.75相对GT比例 |
+|---|---:|---:|---:|
+| 普通覆盖头 | 8 | 14 | 0.525526pp |
+| 独有证据损失头 | 8 | 20 | 0.750751pp |
+| 最低密度规则 | 11 | 13 | 0.487988pp |
+| 固定省第4块 | 17 | 37 | 1.388889pp |
+
+边际头在IoU0.5比密度少丢3个tiny支持，但在IoU0.75比密度多丢7个、
+比普通覆盖多丢6个；全尺寸匹配容量分别丢10/22个。
+六项仅low_iou_budget与same_cost两项通过，四项失败。
+判断STOP_THIS_GLOBAL_FEATURE_MARGINAL_VIEW_REGRESSOR。
+不追加seed1/2，不改epoch、学习率、损失权重或每图省略次数。
+本轮尚未把候选覆盖转换成融合结果或官方AP；不能声称实现了20%实测加速。
+
+耗时4.58秒，零检测器前向，仅训练两个小头。
+两个冗余视图标签与无标注输入测试通过；
+64张评价池逐数组复现实验21。
+实验25的37.19%参考仍只是带GT空间，尚无可部署策略兑现。
+近邻全文AutoFocus第4.1节已用小目标区域监督预测FocusPixels；
+ESOD第III节已用ObjSeeker/AdaSlicer及去重覆盖减少冗余计算。
+不能将普通动态切片或边际覆盖监督直接当原创。
+
+登记与数值记录：`docs/experiments/candidate26_marginal_view_policy_registration_20261014.json`、
+`docs/experiments/candidate26_marginal_view_policy_result_20261014.json`。
+完整结果：`output/analysis/marginal-view-policy-fixed-20261014/`。
