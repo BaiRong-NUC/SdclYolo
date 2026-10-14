@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-15",
+  "candidate": "candidate65_positive_to_positive_quality_rank_projection_gradient",
+  "scope": "Targeted primarypapers,newPaperSearchRankSortmetadataquery andexisting18pageexactversionPDF reused. Not exhaustive originalityaudit. Does not runfaithfulRS/GFLtraining.",
+  "papers": [
+    {
+      "title": "Rank & Sort Loss for Object Detection and Instance Segmentation",
+      "arxiv_version": "2107.11669v2",
+      "source": "https://arxiv.org/abs/2107.11669v2",
+      "pdf": "output/literature/papers/arxiv-2107.11669.pdf",
+      "text": "output/literature/text/arxiv-2107.11669.txt",
+      "preview": "output/literature/previews/2107.11669v2-positive-rank-p3.png",
+      "pages": 18,
+      "review": "Read actualPDFversionheader,abstract,3.1/3.2 and4 equations6-12,rendered/readpage3. Already sorts positive classificationlogits by localizationquality and implements promotion/demotion through identityupdates. Positive-positive qualityorder,scoregapgradient and avoiding auxiliaryqualityhead are not novel. Candidate65mass-preservingtargethistogramprojection differs narrowly fromRSerror-driven loss,not a faithfulRSimplementation or novelty proof.",
+      "zotero": {
+        "parent": "RI2S2NJV",
+        "attachment": "2H9EB7I9",
+        "collection": "6HT9SNK7",
+        "readback": "Existing incomplete document record repaired with4authors,exactversion URL/dateandprovenance; parent and identicalexistingPDFchild read back; no newduplicateupload."
+      },
+      "pdf_sha256": "b1b639736aa662810956da25742b6a2c1bffef2ce633d5a452f679b70719a7d1",
+      "text_sha256": "fed490b6555698d41541893c9cf317299846d860744637138b1b10eca034d740",
+      "preview_sha256": "13dcd40d74b4222b9cc8dee00fcd32e2248d3ff7535754404328e12fb9566058"
+    },
+    {
+      "title": "TOOD: Task-aligned One-stage Object Detection",
+      "pdf": "output/literature/papers/arxiv-2108.07755.pdf",
+      "text": "output/literature/text/arxiv-2108.07755.txt",
+      "review": "Reuse earlierTOODprimaryreadandexactversionhash. TAL confidence/localization alignment labels are established. Present installedTALusesCIoUclamped0andconfidence^.5; diagnostic rankharm alone establishes no innovation.",
+      "previous_audit": "docs/literature/native_peak_quality_prior_audit_20261015.json",
+      "arxiv_version": "2108.07755v3",
+      "pdf_sha256": "ede5d01fe07bba7e662ade68c9e88ad49868a1406bdff13c52f0dc4914eaf758",
+      "text_sha256": "695926c2b42b2b0ef71875c43ad06e3378fe17c773980c649e3061265451286d"
+    },
+    {
+      "title": "Generalized Focal Loss: Learning Qualified and Distributed Bounding Boxes for Dense Object Detection",
+      "pdf": "output/literature/papers/arxiv-2006.04388.pdf",
+      "text": "output/literature/text/arxiv-2006.04388.txt",
+      "review": "Reuse earlierGFLprimaryPDFhash. IoU-quality classificationlabels are established; candidate65massmatchedordinaryIoUcontrol is not faithfulQFL/GFLreproduction.",
+      "previous_audit": "docs/literature/native_distribution_prior_audit_20261014.json",
+      "arxiv": "2006.04388",
+      "pdf_sha256": "04a56cf0bd1c144ff940ad12a4134b75090843994bbfc22b84a04c1e5ed68a54",
+      "text_sha256": "c7d7e0d5e6a9af77ae69080ebfa4259e077e0ed7da66345c2b728738bd5d882d"
+    }
+  ],
+  "novelty_boundary": "TAL qualityalignment,GFL IoUlabels,RankSort positivequalitysorting,RankDetNet rankingconstraints arepriorart. AllGTmass/targethistogrampreservation is a narrow unprovenintervention not novelproblem. A mechanismpass needs actualboundedupdates,deployablegains andcloserpriorcontrols."
+}
