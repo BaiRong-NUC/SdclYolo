@@ -1,0 +1,30 @@
+{
+  "experiment": "candidate16_marginal_class_intervention",
+  "date": "2026-10-14",
+  "hypothesis": "A label intervention should optimize its change in one-to-one matched detections rather than isolated GT class ownership; local higher-score same-class competition may identify harmful redundant switches.",
+  "sample": "First 128 fitting images in candidate12's frozen order, all 128 candidate12 head-held-out images. Reuse candidate15 held-out native scores; obtain native scores for128 fitting images with exact saved raw-view replay.",
+  "features": "61 per-action channels:16 baseline,10 action class,1 keep,15 hard evidence,15 native soft evidence,4 local stronger-score class competition. Same architecture for all arms; blind gain zeros last4 channels. Prediction features require no annotation.",
+  "arms": ["class_ce", "marginal_blind", "marginal_local"],
+  "targets": "class_ce uses original class-agnostic GT ownership with unsupported labels kept. Marginal arms use exact change in total GT TP from changing one label alone under fixed score-ordered class-aware IoU0.5 matching atconfidence0.25; keep hasgain0. Per-row intervention target is not joint-policy gain.",
+  "training_rows": "All supported conflicting final rows withscore>=0.25 on128 fitting images. Shared initialization, ordering and feature normalization. No val/test fitting.",
+  "recipe": {
+    "seeds": [0, 1, 2],
+    "epochs": 8,
+    "batch": 512,
+    "learning_rate": 0.002,
+    "weight_decay": 0.0001,
+    "nonzero_gain_loss_weight": 5.0
+  },
+  "loss": "class_ce confidence-weighted maskedCE; marginal heads confidence-weighted smoothL1 of action utility minus keep utility, with fixed5x weight for nonzero gain. No checkpoint selection, only finalepoch8.",
+  "inference": "class_ce uses alternate probability minus original>.10. Marginal arms choose highest supported gain only when predicted action-minus-keep>.10. Equal score0.25 eligibility. All choices simultaneously applied, box/score/order/count remain fixed.",
+  "policy": {
+    "local_small_all_recall_vs_uniform_min_pp": 0.10,
+    "local_small_all_recall_vs_class_ce_min_exclusive_pp": 0.0,
+    "local_small_all_recall_vs_marginal_blind_min_exclusive_pp": 0.0,
+    "local_all_fppi_vs_uniform_max_increase": 0.10,
+    "repeat_positive_vs_both_matched_seeds_min": 2
+  },
+  "budget": "640 extra frozen detector view forwards for128 fitting images; cached128 held-out. At most three matched small heads8epochs atseed0, repeat seeds1/2 only after allseed0 gatespass. No full detector training or official eval.",
+  "novelty": "Research candidate only. Generic soft fusion, uncertainty, learned NMS and detection competition have prior art. Net marginal class intervention plus prediction-only competition is the specific hypothesis to test; success alone does not establish originality.",
+  "limits": "Small-head scene holdout shares historically trained detector and previously viewed images. Training counterfactuals change one label at a time; joint interactions are evaluated empirically. Fixed-confidence recall/FPPI is not official AP. All earlier STOP verdicts remain."
+}

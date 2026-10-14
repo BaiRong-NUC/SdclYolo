@@ -286,3 +286,38 @@ soft 参考比 hard 参考增加 small_all 召回 +1.665638 pp。
 `docs/experiments/candidate15_detection_soft_evidence_registration_20261014.json`、
 `docs/experiments/candidate15_detection_soft_evidence_result_20261014.json`。
 完整结果：`output/analysis/detection-soft-evidence-fixed-20261014/`。
+
+## 实验 16：类别替换的净匹配收益与局部竞争
+
+冻结实验 12 的前 128 张 fitting 图片和全部 128 张 holdout 图片。
+新增 fitting 原生完整类别分数，holdout 直接复用实验 15，均不改变强对照。
+每类动作 61 维特征，四维局部竞争信息只看已有更高分原框的重叠和类别；
+原框/分数/数量/顺序不变。三个同结构 8,193 参数头、相同初始化/批次/8 epoch：
+普通 ownership 类别 CE、局部信息置零的净收益头、包含局部信息的净收益头。
+后两者标签是单独改一个类后，原 score 顺序一对一匹配的全尺寸 TP 净变化，
+通过只重匹配受影响两类精确计算；这不是所有动作同时执行的净收益。
+推理仍评价全部动作同时执行的真实匹配结果。
+
+拟合有 2,118 个分歧原框，支持动作标签 +175 / -1,498 / 0 2,975。
+新增 640 次冻结视图前向（不含暖机）；准备 21.12 秒，总计 33.10 秒。
+
+| seed0 分支，confidence0.25 | small_all 召回 (%) | 全尺寸 FPPI | 类别变更数 |
+|---|---:|---:|---:|
+| uniform | 73.827884 | 12.046875 | 0 |
+| class_ce | 73.827884 | 12.046875 | 4 |
+| marginal_blind | 73.719926 | 12.101563 | 99 |
+| marginal_local | 73.827884 | 12.046875 | 2 |
+
+local 对 uniform 和 CE 均无召回收益；对 blind +0.107958 pp，
+全尺寸 FPPI 相对 uniform 不变。固定四项仅两项通过，
+判断 STOP_THIS_MARGINAL_INTERVENTION_PILOT。按登记不重复失败种子，
+不扩大 epoch、样本或跑官方评价。
+局部竞争可减少这次盲头的错误替换，是有限正向信号；它没有带来超越基线的
+有效修正，不能把避免退化宣传成净性能提升。
+实验 14/15 的完整类别证据信息空间保留，但当前监督/特征/动作模型未转化为空间收益。
+
+三个单步重复匹配、两类重匹配与全量等价、竞争特征及保留动作测试通过。
+登记与数值记录：
+`docs/experiments/candidate16_marginal_class_intervention_registration_20261014.json`、
+`docs/experiments/candidate16_marginal_class_intervention_result_20261014.json`。
+完整结果：`output/analysis/marginal-class-intervention-fixed-20261014/`。
