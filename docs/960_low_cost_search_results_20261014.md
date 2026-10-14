@@ -512,3 +512,40 @@ Soft-NMS、AdaptiveNMS和CLOCs已有相关先例，不能将“使用NMS前框�
 登记与数值记录：`docs/experiments/candidate21_native_censoring_registration_20261014.json`、
 `docs/experiments/candidate21_native_censoring_result_20261014.json`。
 完整结果：`output/analysis/native-censoring-fixed-20261014/`。
+
+## 实验 22：对比被压制框和压制它的框，能否安全补回实例
+
+只复用实验21的64张缓存，零前向、零训练，4.70秒。
+规则不读对象标注：寻找同视图NMS压制见证，再检查其他视图是否更支持
+被压制框的位置。差值固定0.10，最多每图4框，统一补框分数0.25。
+所有匹配排序对照请求完全相同的每图补框数量。
+缓存已做诊断ignore过滤，不能将此视为完整无标注部署审计。
+
+| 分支 | 补框数 | 新命中 | 新增误检 | small_all召回增量(pp) |
+|---|---:|---:|---:|---:|
+| 压制关系对比 | 202 | 38 | 164 | +1.226598 |
+| 同池原始分数 | 202 | 18 | 184 | +0.581020 |
+| 同池普通一致性 | 202 | 14 | 188 | +0.419626 |
+| 未截断NMS原始分数 | 202 | 20 | 182 | +0.613299 |
+
+普通NMS前Gaussian Soft-NMS重融合净增85个TP，
+但FPPI从10.90625增至18.515625，不能只看召回升级为强对照。
+对比规则的164个新增FP中81个重复、83个其他错误；新增框命中率18.811881%，
+FPPI增量2.5625，远超登记0.10预算。
+tiny召回+1.313814pp，十IoU阈值small_all平均召回+0.603615pp均为诊断指标。
+六项门槛四过两败，判断STOP_THIS_SUPPRESSOR_CONTRAST_RETRIEVAL_RULE。
+这不是召回门槛过高，而是误检代价不合格。
+
+同样202个名额下，对比规则比普通一致性多24个TP、少24个FP；
+保留为局部排序信号，不将它改称有效方法。
+38个新命中不全是实验21所述14个无保留池支持目标：
+本轮也能提升原池已有、但原uniform分数或选择不足的候选。
+不改变阈值、数量或主指标挽救此补框规则，也不扩大训练。
+若另开定位动作实验，须独立登记并明确其不撤销本轮STOP。
+
+首次启动在读图像尺寸时因缓存快照仅含哈希而中止，未评分第一张；
+改为读取已锁定的原图窗口，保留失败目录与源码，不改实验规则。
+两个跨视图与重复FP匹配测试通过。
+登记与数值记录：`docs/experiments/candidate22_censored_retrieval_registration_20261014.json`、
+`docs/experiments/candidate22_censored_retrieval_result_20261014.json`。
+完整结果：`output/analysis/censored-retrieval-fixed-20261014/`。

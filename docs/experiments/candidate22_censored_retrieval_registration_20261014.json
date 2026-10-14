@@ -1,0 +1,31 @@
+{
+  "experiment": "candidate22_censored_candidate_contrast_retrieval",
+  "date": "2026-10-14",
+  "prerequisite": "candidate21 CENSORING_RETRIEVAL_PILOT_ALLOWED, unchanged first64 head-held-out train scenes",
+  "question": "Can cross-view evidence prefer an NMS-censored candidate to its same-view suppressor, selecting actual additional targets rather than duplicate boxes?",
+  "budget": "Reuse candidate21 cached pools only. Zero detector forwards, zero fitting, zero official evaluation. One fixed rule, no threshold or count sweep.",
+  "cache_boundary": "Pools have already undergone shared diagnostic GT-ignore filtering in candidate21. All ranking and candidate decisions below read only these cached predictions, not object labels. This is a diagnostic precision screen, not a complete annotation-free deployment audit.",
+  "residual": "Dense native score>=0.05, exact (view,row) absent from uncapped NMS, same-view higher-score kept box at IoU>0.7, and maximum same-class IoU to baseline confidence>=0.25 strictly below0.7.",
+  "suppressor": "Highest-native-score same-class kept box from the source view at IoU>0.7. This is an observable suppression witness, not a claimed reconstruction of torchvision internal pair order.",
+  "evidence": "Other-view dense argmax candidates with native score>=0.05, same class and IoU>=0.5. Ordinary agreement ranks by candidate_score * max(peer_score * peer_iou). Contrast requires peer_iou(candidate)-peer_iou(suppressor)>=0.10 and uses candidate_score * max(peer_score * that_difference).",
+  "selection": "Select at most4 perimage greedily in descending contrast score; reject a further selected candidate at same-class IoU>=0.7. No qualifying contrast means no additions. Each accepted addition gets score exactly0.25; baseline scores/classes/coordinates preserved. Merge and stable sort, retain at most500 total. Binary score promotion is an intervention whose FP cost must be counted.",
+  "controls": {
+    "uniform": "Frozen candidate12 baseline",
+    "native_rank": "Same residual candidates, select by native score, same perimage addition count requested by contrast",
+    "ordinary_agreement": "Same residual candidates, select by ordinary cross-view agreement, same count requested by contrast",
+    "uncapped_native_rank": "Same count requested by contrast from uncapped NMS residuals, native score ranking; may supply fewer if pool lacks residuals",
+    "ordinary_dense_softnms": "All cached preNMS predictions merged using unchanged Gaussian Soft-NMS sigma0.5 and max500, native scores; no special resurrection. Scores>=0.25 evaluated. Inventory floor0.05 cannot remove predictions evaluated at0.25 because Soft-NMS only decreases scores."
+  },
+  "evaluation": "After every arm is fully constructed, greedy class-aware one-to-one matching over all GT and detections at confidence0.25 and IoU0.5. Report all/tiny/small_all recall, FPPI, changed matches, addition TP/duplicate/other FP, and secondary ten-IoU-threshold average recall. No AP claim.",
+  "policy": {
+    "tiny_recall_vs_uniform_min_pp": 0.10,
+    "small_all_recall_vs_uniform_min_pp": 0.10,
+    "small_all_recall_vs_native_rank_min_exclusive_pp": 0.0,
+    "small_all_recall_vs_ordinary_agreement_min_exclusive_pp": 0.0,
+    "all_fppi_vs_uniform_max_increase": 0.10,
+    "added_match_precision_min": 0.50
+  },
+  "pass_action": "Register separately a small fitting/scene-holdout learnability pilot and replay without ignore filtering before any official AP audit. A passing heuristic is not yet an innovation; CLOCs, Soft-NMS and learned suppression are prior art.",
+  "fail_action": "Stop this fixed suppressor-contrast retrieval rule. Do not change confidence, IoU, contrast gap, addition count or primary metric on this cache to rescue it.",
+  "limits": "Detector has trained on these scenes; head holdout is not new detector generalization. Only64 repeatedly examined images, proxy metrics, and no independent final confirmation. Missing NMS evidence is a limited problem, not an explanation for all small-object misses."
+}

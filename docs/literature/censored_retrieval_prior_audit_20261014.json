@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-14",
+  "scope": "Bounded nearest-prior check for experiments21/22; not an exhaustive novelty audit",
+  "paper": {
+    "title": "CLOCs: Camera-LiDAR Object Candidates Fusion for 3D Object Detection",
+    "authors": ["Su Pang", "Daniel Morris", "Hayder Radha"],
+    "doi": "10.1109/IROS45743.2020.9341791",
+    "arxiv": "2009.00784",
+    "year": 2020,
+    "metadata_provenance": "Paper Search Crossref exact title/DOI match; official arXiv record; Zotero DOI/Crossref import",
+    "source_url": "https://arxiv.org/pdf/2009.00784",
+    "local_pdf": "output/literature/papers/arxiv-2009.00784.pdf",
+    "pdf_sha256": "5f37cfc23bf49fece9fb8e16c0baeb2c43ec6ffa71942a03a8009006085575e5",
+    "bytes": 17869572,
+    "pages": 8,
+    "text": "output/literature/text/arxiv-2009.00784.txt",
+    "text_sha256": "a1ee16648a85305db23c70bac4089b2ad3b631feabf2fcd9131ae8c3d5917cfc",
+    "read_sections": ["III late fusion limitations and NMS omission", "IV.A geometric/semantic consistency", "IV.B.1 sparse pair representation"],
+    "method_observations": [
+      "Uses candidates before NMS and low confidence thresholds to avoid discarding correct detections.",
+      "Fuses same-category candidates using geometric IoU and native scores.",
+      "Learns a discriminative sparse pair fusion model for camera-LiDAR 3D detection."
+    ],
+    "overlap": "PreNMS inventories, low thresholds, cross-source geometric/semantic consistency and learned candidate fusion are prior art.",
+    "unproved_possible_difference": "A detector-shared multiview policy using observable suppression witnesses to distinguish suppression censoring from true absence could be a narrower question. Merely changing modality to views, adding a contrast term or renaming Soft-NMS is insufficient. Experiment22 fails FP budget.",
+    "zotero": {
+      "collection_key": "6HT9SNK7",
+      "item_key": "QHHZFP8L",
+      "attachment_key": "GBVRD3ZM",
+      "pdf_route": "Zotero DOI import attached Unpaywall PDF; local arXiv PDF is separately hashed and may be another version",
+      "children_readback": "application/pdf attachment confirmed",
+      "semantic_update_result": "Tool returned Total items0/Processed0/Errors0. Does not establish paper embedding or semantic indexing."
+    }
+  },
+  "historical_catalog_boundary": "This is a supplemental record; original archive/catalog snapshots and the user-authorized two field deletions are preserved."
+}

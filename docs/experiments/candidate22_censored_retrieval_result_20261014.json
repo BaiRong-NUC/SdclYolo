@@ -1,0 +1,250 @@
+{
+  "experiment": "candidate22_censored_candidate_contrast_retrieval",
+  "date": "2026-10-14",
+  "output": "output/analysis/censored-retrieval-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_SUPPRESSOR_CONTRAST_RETRIEVAL_RULE",
+    "checks": {
+      "tiny_gain": true,
+      "small_gain": true,
+      "native_rank_gain": true,
+      "agreement_gain": true,
+      "fp_budget": false,
+      "added_precision": false
+    },
+    "values": {
+      "tiny_recall_vs_uniform_pp": 1.3138138138138231,
+      "small_all_recall_vs_uniform_pp": 1.2265978050355102,
+      "small_all_recall_vs_native_rank_pp": 0.6455777921239587,
+      "small_all_recall_vs_ordinary_agreement_pp": 0.8069722401549484,
+      "all_fppi_vs_uniform": 2.5625,
+      "added_match_precision": 0.18811881188118812
+    },
+    "scope": "Reused train-head-holdout diagnostic after cached ignore filtering; not official AP."
+  },
+  "metrics": {
+    "uniform": {
+      "fp50": 698,
+      "additions": 0,
+      "added_tp50": 0,
+      "added_duplicate_fp50": 0,
+      "added_other_fp50": 0,
+      "recovered50": 0,
+      "lost50": 0,
+      "all_recall_percent": 76.62457653218355,
+      "tiny_recall_percent": 72.82282282282281,
+      "small_all_recall_percent": 75.69399612653325,
+      "all_ten_threshold_recall_percent": 51.17955035417309,
+      "tiny_ten_threshold_recall_percent": 45.232732732732735,
+      "small_all_ten_threshold_recall_percent": 49.548095545513235,
+      "all_fppi": 10.90625,
+      "counts": {
+        "all": {
+          "gt": 3247,
+          "tp50": 2488,
+          "tp_ten": 16618
+        },
+        "tiny": {
+          "gt": 2664,
+          "tp50": 1940,
+          "tp_ten": 12050
+        },
+        "small_all": {
+          "gt": 3098,
+          "tp50": 2345,
+          "tp_ten": 15350
+        }
+      }
+    },
+    "contrast": {
+      "fp50": 862,
+      "additions": 202,
+      "added_tp50": 38,
+      "added_duplicate_fp50": 81,
+      "added_other_fp50": 83,
+      "recovered50": 38,
+      "lost50": 0,
+      "all_recall_percent": 77.79488758854328,
+      "tiny_recall_percent": 74.13663663663664,
+      "small_all_recall_percent": 76.92059393156876,
+      "all_ten_threshold_recall_percent": 51.76470588235295,
+      "tiny_ten_threshold_recall_percent": 45.85585585585585,
+      "small_all_ten_threshold_recall_percent": 50.15171078114913,
+      "all_fppi": 13.46875,
+      "counts": {
+        "all": {
+          "gt": 3247,
+          "tp50": 2526,
+          "tp_ten": 16808
+        },
+        "tiny": {
+          "gt": 2664,
+          "tp50": 1975,
+          "tp_ten": 12216
+        },
+        "small_all": {
+          "gt": 3098,
+          "tp50": 2383,
+          "tp_ten": 15537
+        }
+      }
+    },
+    "native_rank": {
+      "fp50": 882,
+      "additions": 202,
+      "added_tp50": 18,
+      "added_duplicate_fp50": 116,
+      "added_other_fp50": 68,
+      "recovered50": 18,
+      "lost50": 0,
+      "all_recall_percent": 77.17893440098553,
+      "tiny_recall_percent": 73.46096096096096,
+      "small_all_recall_percent": 76.2750161394448,
+      "all_ten_threshold_recall_percent": 51.564521096396675,
+      "tiny_ten_threshold_recall_percent": 45.6493993993994,
+      "small_all_ten_threshold_recall_percent": 49.94512588766946,
+      "all_fppi": 13.78125,
+      "counts": {
+        "all": {
+          "gt": 3247,
+          "tp50": 2506,
+          "tp_ten": 16743
+        },
+        "tiny": {
+          "gt": 2664,
+          "tp50": 1957,
+          "tp_ten": 12161
+        },
+        "small_all": {
+          "gt": 3098,
+          "tp50": 2363,
+          "tp_ten": 15473
+        }
+      }
+    },
+    "ordinary_agreement": {
+      "fp50": 886,
+      "additions": 202,
+      "added_tp50": 14,
+      "added_duplicate_fp50": 138,
+      "added_other_fp50": 50,
+      "recovered50": 14,
+      "lost50": 0,
+      "all_recall_percent": 77.05574376347397,
+      "tiny_recall_percent": 73.27327327327328,
+      "small_all_recall_percent": 76.11362169141381,
+      "all_ten_threshold_recall_percent": 51.57068062827225,
+      "tiny_ten_threshold_recall_percent": 45.62687687687688,
+      "small_all_ten_threshold_recall_percent": 49.925758553905744,
+      "all_fppi": 13.84375,
+      "counts": {
+        "all": {
+          "gt": 3247,
+          "tp50": 2502,
+          "tp_ten": 16745
+        },
+        "tiny": {
+          "gt": 2664,
+          "tp50": 1952,
+          "tp_ten": 12155
+        },
+        "small_all": {
+          "gt": 3098,
+          "tp50": 2358,
+          "tp_ten": 15467
+        }
+      }
+    },
+    "uncapped_native_rank": {
+      "fp50": 880,
+      "additions": 202,
+      "added_tp50": 20,
+      "added_duplicate_fp50": 112,
+      "added_other_fp50": 70,
+      "recovered50": 20,
+      "lost50": 0,
+      "all_recall_percent": 77.2405297197413,
+      "tiny_recall_percent": 73.49849849849849,
+      "small_all_recall_percent": 76.307295029051,
+      "all_ten_threshold_recall_percent": 51.60455805358792,
+      "tiny_ten_threshold_recall_percent": 45.69069069069069,
+      "small_all_ten_threshold_recall_percent": 49.95803744351194,
+      "all_fppi": 13.75,
+      "counts": {
+        "all": {
+          "gt": 3247,
+          "tp50": 2508,
+          "tp_ten": 16756
+        },
+        "tiny": {
+          "gt": 2664,
+          "tp50": 1958,
+          "tp_ten": 12172
+        },
+        "small_all": {
+          "gt": 3098,
+          "tp50": 2364,
+          "tp_ten": 15477
+        }
+      }
+    },
+    "ordinary_dense_softnms": {
+      "fp50": 1185,
+      "additions": 0,
+      "added_tp50": 0,
+      "added_duplicate_fp50": 0,
+      "added_other_fp50": 0,
+      "recovered50": 88,
+      "lost50": 3,
+      "all_recall_percent": 79.24237757930396,
+      "tiny_recall_percent": 75.82582582582582,
+      "small_all_recall_percent": 78.43770174306005,
+      "all_ten_threshold_recall_percent": 51.90021558361565,
+      "tiny_ten_threshold_recall_percent": 46.18243243243243,
+      "small_all_ten_threshold_recall_percent": 50.34538411878632,
+      "all_fppi": 18.515625,
+      "counts": {
+        "all": {
+          "gt": 3247,
+          "tp50": 2573,
+          "tp_ten": 16852
+        },
+        "tiny": {
+          "gt": 2664,
+          "tp50": 2020,
+          "tp_ten": 12303
+        },
+        "small_all": {
+          "gt": 3098,
+          "tp50": 2430,
+          "tp_ten": 15597
+        }
+      }
+    }
+  },
+  "verification": {
+    "images": 64,
+    "detector_forwards": 0,
+    "fitting_steps": 0,
+    "no_val_no_testdev": true,
+    "no_threshold_search": true,
+    "cache_has_diagnostic_ignore_filter": true,
+    "prediction_construction_before_object_annotations": true,
+    "source_unchanged": true,
+    "stage_seconds": {
+      "retrieval": 0.7822709998581558,
+      "ordinary_dense_softnms": 1.3026429004967213
+    },
+    "elapsed_seconds": 4.675072000129148
+  },
+  "artifacts_sha256": {
+    "plan.json": "bfee971dfd16197a06f2476b189c01c6d66b46b9cd082708e4a30db476e0b1f0",
+    "source.zip": "204643e432bac24b099b81555031fda753dfecd4a5fa4a6fb64ea53be15f02b1",
+    "frames.json": "2a1dc34a1cc2041b9bb67a0a88578879b1899f9f5ed7c39bcebbc758e7899306",
+    "metrics.json": "87b88428b60de2c34803e550d96227c21dd6e0019370e638b4c1a097f0f1b265",
+    "decision.json": "e5658a6bf4398d7756254c818bca430f8336d8b2e74efece2221c52b376a3319",
+    "verification.json": "99d8c756a2a2e345e3d46afbd0ca3d0f252d646cd3c1cb895c316ff8324c68b8"
+  },
+  "tests": "2 passed: independent-view contrast and duplicate-vs-unique matching",
+  "implementation_preflight": "Initial run stopped before first scored image due missing size field in image hash snapshots. Fixed by using the pinned fullimage raw window; incomplete source archive retained at output/analysis/censored-retrieval-fixed-20261014-preflight-failed. No recipe or thresholds changed."
+}
