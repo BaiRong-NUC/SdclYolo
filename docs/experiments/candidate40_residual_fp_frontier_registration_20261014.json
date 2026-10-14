@@ -1,0 +1,23 @@
+{
+  "experiment": "candidate40_residual_fixed_fp_frontier_attribution",
+  "date": "2026-10-14",
+  "stage": "Cached causal bookkeeping diagnostic, not a deployable method",
+  "question": "Did the candidate39 fixed-FP recall losses arise from degrading the old matched coordinates, changing greedy matching competition, or moving the allowed global confidence cutoff?",
+  "protocol": "Use original64 headholdout images, candidate39 seed0/1/2 regret/geometry predictions and exact saved FPPI10 confidence cutoffs. Reproduce both budget curves, then match geometry at the baseline regret cutoff as a counterfactual common cutoff. No predictions, scores, coordinates or prior STOP decisions change.",
+  "exclusive_lost_categories": [
+    "same_row_geometry: baseline GT detected, actual new GT missed, common-cutoff new GT also missed, and old matched prediction's new coordinates have IoU<.5 to that GT",
+    "matching_competition: baseline GT detected, actual new GT missed, common-cutoff new GT also missed, but old matched prediction's new coordinates still have IoU>=.5",
+    "budget_cutoff_only: baseline GT detected, actual new GT missed, but common-cutoff new GT detected"
+  ],
+  "counterfactual": "For every size group, net actual TP change = geometry/greedy-match TP change at the same baseline cutoff + TP change due solely to switching to the geometry branch's allowed FP cutoff. The common-cutoff branch need not satisfy the FP budget and cannot replace the actual metric.",
+  "routing_gates": {
+    "primary_seed": "1",
+    "primary_group": "small_all",
+    "lost_gt_min": 5,
+    "dominant_lost_category_fraction_min": 0.6
+  },
+  "pass_action": "Only if>=5 actual losses and>=60% in one category, record that specific diagnostic route as a potential separate-mechanism literature/search lead. No training or official evaluation automatically authorized. Otherwise NO_DOMINANT_FIXED_FP_LOSS_ROUTE.",
+  "budget": "Zero detector forwards, images, fitting, new scoring rules or official evaluator. Cached greedy matching and budget replay only.",
+  "limits": "Counterfactual confidence cutoff is annotation-assisted diagnostic bookkeeping, not deployable postprocessing. Categories depend on original greedy matching; they do not identify a learned causal representation. Tiny counts and repeated train scenes do not establish generalization or innovation.",
+  "prior_stops": "Candidate38 native feature STOP and candidate39 full geometry recipe STOP remain unchanged. Do not lower their fixed-FP gate, select seed0 or infer no value from a one-GT net loss."
+}

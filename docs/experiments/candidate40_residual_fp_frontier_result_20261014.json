@@ -1,0 +1,207 @@
+{
+  "experiment": "candidate40_residual_fixed_fp_frontier_attribution",
+  "date": "2026-10-14",
+  "output": "output/analysis/residual-fp-frontier-fixed-20261014",
+  "decision": {
+    "decision": "NO_DOMINANT_FIXED_FP_LOSS_ROUTE",
+    "checks": {
+      "enough_actual_losses": false,
+      "dominant_category": true
+    },
+    "values": {
+      "actual_lost_GT": 1,
+      "largest_category": "same_row_geometry",
+      "fraction": 1.0
+    },
+    "scope": "Diagnostic lead only. No changed predictions, gate, STOP, training or official authorization."
+  },
+  "metrics": {
+    "0": {
+      "all": {
+        "gt": 3247,
+        "baseline_tp": 2470,
+        "common_cutoff_tp": 2471,
+        "actual_corrected_tp": 2471,
+        "lost": 2,
+        "recovered": 3,
+        "lost_categories": {
+          "same_row_geometry": 2,
+          "matching_competition": 0,
+          "budget_cutoff_only": 0
+        },
+        "geometry_net_tp_at_common_cutoff": 1,
+        "cutoff_only_net_tp": 0,
+        "actual_net_tp": 1
+      },
+      "tiny": {
+        "gt": 2664,
+        "baseline_tp": 1923,
+        "common_cutoff_tp": 1924,
+        "actual_corrected_tp": 1924,
+        "lost": 2,
+        "recovered": 3,
+        "lost_categories": {
+          "same_row_geometry": 2,
+          "matching_competition": 0,
+          "budget_cutoff_only": 0
+        },
+        "geometry_net_tp_at_common_cutoff": 1,
+        "cutoff_only_net_tp": 0,
+        "actual_net_tp": 1
+      },
+      "small_all": {
+        "gt": 3098,
+        "baseline_tp": 2327,
+        "common_cutoff_tp": 2328,
+        "actual_corrected_tp": 2328,
+        "lost": 2,
+        "recovered": 3,
+        "lost_categories": {
+          "same_row_geometry": 2,
+          "matching_competition": 0,
+          "budget_cutoff_only": 0
+        },
+        "geometry_net_tp_at_common_cutoff": 1,
+        "cutoff_only_net_tp": 0,
+        "actual_net_tp": 1
+      }
+    },
+    "1": {
+      "all": {
+        "gt": 3247,
+        "baseline_tp": 2470,
+        "common_cutoff_tp": 2469,
+        "actual_corrected_tp": 2469,
+        "lost": 1,
+        "recovered": 0,
+        "lost_categories": {
+          "same_row_geometry": 1,
+          "matching_competition": 0,
+          "budget_cutoff_only": 0
+        },
+        "geometry_net_tp_at_common_cutoff": -1,
+        "cutoff_only_net_tp": 0,
+        "actual_net_tp": -1
+      },
+      "tiny": {
+        "gt": 2664,
+        "baseline_tp": 1923,
+        "common_cutoff_tp": 1922,
+        "actual_corrected_tp": 1922,
+        "lost": 1,
+        "recovered": 0,
+        "lost_categories": {
+          "same_row_geometry": 1,
+          "matching_competition": 0,
+          "budget_cutoff_only": 0
+        },
+        "geometry_net_tp_at_common_cutoff": -1,
+        "cutoff_only_net_tp": 0,
+        "actual_net_tp": -1
+      },
+      "small_all": {
+        "gt": 3098,
+        "baseline_tp": 2327,
+        "common_cutoff_tp": 2326,
+        "actual_corrected_tp": 2326,
+        "lost": 1,
+        "recovered": 0,
+        "lost_categories": {
+          "same_row_geometry": 1,
+          "matching_competition": 0,
+          "budget_cutoff_only": 0
+        },
+        "geometry_net_tp_at_common_cutoff": -1,
+        "cutoff_only_net_tp": 0,
+        "actual_net_tp": -1
+      }
+    },
+    "2": {
+      "all": {
+        "gt": 3247,
+        "baseline_tp": 2470,
+        "common_cutoff_tp": 2472,
+        "actual_corrected_tp": 2472,
+        "lost": 1,
+        "recovered": 3,
+        "lost_categories": {
+          "same_row_geometry": 1,
+          "matching_competition": 0,
+          "budget_cutoff_only": 0
+        },
+        "geometry_net_tp_at_common_cutoff": 2,
+        "cutoff_only_net_tp": 0,
+        "actual_net_tp": 2
+      },
+      "tiny": {
+        "gt": 2664,
+        "baseline_tp": 1923,
+        "common_cutoff_tp": 1925,
+        "actual_corrected_tp": 1925,
+        "lost": 1,
+        "recovered": 3,
+        "lost_categories": {
+          "same_row_geometry": 1,
+          "matching_competition": 0,
+          "budget_cutoff_only": 0
+        },
+        "geometry_net_tp_at_common_cutoff": 2,
+        "cutoff_only_net_tp": 0,
+        "actual_net_tp": 2
+      },
+      "small_all": {
+        "gt": 3098,
+        "baseline_tp": 2327,
+        "common_cutoff_tp": 2329,
+        "actual_corrected_tp": 2329,
+        "lost": 1,
+        "recovered": 3,
+        "lost_categories": {
+          "same_row_geometry": 1,
+          "matching_competition": 0,
+          "budget_cutoff_only": 0
+        },
+        "geometry_net_tp_at_common_cutoff": 2,
+        "cutoff_only_net_tp": 0,
+        "actual_net_tp": 2
+      }
+    }
+  },
+  "cutoffs": {
+    "0": {
+      "baseline": 0.27151367039524593,
+      "corrected": 0.2704532157834179
+    },
+    "1": {
+      "baseline": 0.27151367039524593,
+      "corrected": 0.2718077724662432
+    },
+    "2": {
+      "baseline": 0.27151367039524593,
+      "corrected": 0.27035523913204845
+    }
+  },
+  "verification": {
+    "images": 64,
+    "seeds": 3,
+    "detector_forwards": 0,
+    "image_decodes": 0,
+    "fitting_steps": 0,
+    "all_saved_fixed_FP_budgets_replayed_exactly": true,
+    "lost_categories_exclusive_and_exhaustive": true,
+    "common_cutoff_counterfactual_not_substituted_for_actual_FP_metric": true,
+    "prior_STOPs_and_predictions_preserved": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 3.3275133999995887
+  },
+  "artifacts_sha256": {
+    "cutoffs.json": "288be29aa2c1391019ec2cfbf24e7e9e23d7c97d0dec858ed0db915c8534186a",
+    "decision.json": "c10132ac0e009a3ac42e976b9d86b603be235ec6e1864ccba0ebbdb082971948",
+    "frames.json": "5c10b5f8f6129a6da1b3e73ff2ff10816f7149617e356abebffd64e9f07b0b9b",
+    "metrics.json": "b3ebd5febb02e358bd59ea3a513bea703ed6b1169a787fe7759f94112ee0f0d9",
+    "plan.json": "9d865fd247f6f64443ec9629b4280f0dd25b954e233d58948c17ca62c369ef06",
+    "source.zip": "0b6db0d9ce06cb19d4232fa5f21648de1bfcc3f57d94657e520745e03c30a2ee",
+    "verification.json": "e0407eaa905cb60c4f7e04c9d515a43b27f849c332dbb4ccf720ef43b1debd54"
+  },
+  "tests": "2 passed: pure cutoff loss with identical coordinates; direct geometric loss versus changed greedy competition"
+}

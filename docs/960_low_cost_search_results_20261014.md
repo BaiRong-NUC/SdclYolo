@@ -1122,3 +1122,29 @@ STOP_THIS_NATIVE_REGRESSION_FEATURE_RESIDUAL_RECIPE，不补该分支种子。
 登记与结果：`docs/experiments/candidate39_geometry_residual_confirmation_registration_20261014.json`、
 `docs/experiments/candidate39_geometry_residual_confirmation_result_20261014.json`。
 完整结果：`output/analysis/geometry-residual-confirmation-fixed-20261014/`。
+
+## 实验 40：固定误报召回损失来自坐标还是分数截断
+
+只读实验39的三种子预测，完整重现每个FPPI10曲线及阈值。
+反事实分支把修正后的框放到原regret阈值下匹配，分解：
+实际净TP变化=共同阈值下几何/匹配净变化+切换允许置信度阈值的净变化。
+反事实可能超出误报预算，不能用它替代实际门槛或改判实验39。
+实际丢失GT互斥分为原匹配行几何退化、贪心竞争、仅阈值截断。
+
+| 种子 | small_all恢复GT | 丢失GT | 原匹配行IoU跌破0.5 | 匹配竞争 | 仅阈值截断 | 实际净TP |
+|---|---:|---:|---:|---:|---:|---:|
+| 0 | 3 | 2 | 2 | 0 | 0 | +1 |
+| 1 | 0 | 1 | 1 | 0 | 0 | -1 |
+| 2 | 3 | 1 | 1 | 0 | 0 | +2 |
+
+所有恢复/丢失都在tiny组。种子1丢失的确由坐标退化导致，
+三个种子共同阈值与实际阈值的净TP差均0，不能归咎于分数截断。
+但主种子1仅1个实际丢失GT，未达到预登记至少5例，
+NO_DOMINANT_FIXED_FP_LOSS_ROUTE；不凭1例启动新的损伤分类/安全头训练。
+这一结论不改实验39STOP，也不否定三个种子稳定的AP正向线索。
+
+3.33秒，无推理/图片解码/训练；两个截断损失与几何/竞争互斥测试通过。
+三个种子的192份逐GT跟踪及来源哈希已核验。
+登记与结果：`docs/experiments/candidate40_residual_fp_frontier_registration_20261014.json`、
+`docs/experiments/candidate40_residual_fp_frontier_result_20261014.json`。
+完整结果：`output/analysis/residual-fp-frontier-fixed-20261014/`。
