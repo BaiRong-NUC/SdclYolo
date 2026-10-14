@@ -1,0 +1,32 @@
+{
+  "experiment": "candidate12_observation_conditioned_class_choice",
+  "date": "2026-10-14",
+  "hypothesis": "Resolution, visibility and context completeness improve class evidence reliability beyond a matched ordinary evidence-only head.",
+  "stage": "Small train-scene-held-out pilot permitted by candidate11, not official efficacy or novelty.",
+  "sample": "Reuse exactly candidate9's256 fitting/128 head-held-out train images; no selection from candidate11 test-dev. Frozen detector historically trained on these train images.",
+  "inputs": "62 features per class action: original detection geometry/score, original/choice class, per-view class evidence,20 score-weighted observation context features. Context-blind head zeros last20 channels; same nominal architecture.",
+  "arms": ["evidence_only", "observation_context"],
+  "controls": ["uniform", "weighted_vote"],
+  "targets": "Class-agnostic score-ordered IoU>=0.5 one-to-one train GT ownership. Select its class only when already supported by the prediction-only action menu; otherwise keep. Ignore boxes define training/evaluation masks only after all evidence features are generated.",
+  "training_rows": "Every conflicting row(valid actions>=2) with frozen original score>=0.05; confidence-weighted masked cross entropy. No class balancing or result-dependent sampling.",
+  "recipe": {
+    "seeds": [0, 1, 2],
+    "epochs": 8,
+    "batch": 512,
+    "hidden": 64,
+    "learning_rate": 0.002,
+    "weight_decay": 0.0001,
+    "selection": "Final epoch only; seed1/2 only after seed0 passes."
+  },
+  "inference": "Only rows with original score>=0.05 may change class; best supported class probability must exceed original by>0.10. Same scores, coordinates, count and order. Frozen calibration is not refitted after label changes.",
+  "primary_point": 0.25,
+  "policy": {
+    "context_small_all_recall_vs_uniform_min_pp": 0.1,
+    "context_small_all_recall_vs_evidence_only_min_exclusive_pp": 0.0,
+    "context_all_fppi_vs_uniform_max_increase": 0.1,
+    "repeat_mean_small_all_recall_vs_uniform_min_pp": 0.1,
+    "repeat_positive_vs_evidence_only_seeds_min": 2
+  },
+  "limits": "Fixed confidence class-aware matching with diagnostic max individual ignored-box IoF>0.5 is not official AP/AR. Head seed repeats share one detector and the same scenes. Padding gives equal nominal parameters but inactive blind context weights. Existing detector/calibrator see train scenes historically.",
+  "budget": "At most1920 frozen detector view forwards on384 train images, once; two small heads at seed0, four more only after a positive gate. No full detector training, no official evaluator until repeatable pilot signal."
+}

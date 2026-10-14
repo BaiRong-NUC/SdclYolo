@@ -159,3 +159,39 @@ GT 辅助参考：原框按无类别的一对一 IoU>=0.5 归属确定，
 登记与数值记录：`docs/experiments/candidate11_class_conflict_registration_20261014.json`、
 `docs/experiments/candidate11_class_conflict_result_20261014.json`。
 完整结果：`output/analysis/class-conflict-headroom-fixed-20261014/`。
+
+## 实验 12：观察条件是否提升类别选择
+
+实验 11 的空间筛选通过后，执行预登记的小头训练，复用实验 9 的
+256/128 张 train 图片与场景划分，不使用 test-dev 拟合。
+检测器五视图输出、普通校准、uniform 坐标排序全部冻结。
+两个类别动作头分别使用普通类别证据，以及加入视图尺度、目标可见性、
+扩大上下文可见度的证据；名义结构相同，每头 8,257 参数。
+只训练 5,244 个 score>=0.05 的分歧原框，按原置信度加权 CE，固定 seed0/8 epoch。
+标签来自原框无类别一对一几何归属；若正确类没有现有预测支持则保留原类。
+该归属是诊断/监督代理，不是推理输入或实例真值。
+
+预测保持分数/坐标/数量/顺序，只在新类概率比原类高超过 0.10 时替换。
+观察条件与盲头均使用相同门槛，不能因为结果无效事后降低门槛。
+
+| 分支，confidence0.25 | small_all 召回 (%) | 全尺寸 FPPI | 全分数标签变更数 |
+|---|---:|---:|---:|
+| uniform | 73.827884 | 12.046875 | 0 |
+| weighted_vote | 71.822949 | 13.101563 | 2,834 |
+| evidence_only | 73.827884 | 12.046875 | 0 |
+| observation_context | 73.827884 | 12.046875 | 6 |
+
+观察条件头对原基线/匹配头的召回增量均为 0。
+判断 STOP_THIS_CONTEXT_CLASS_CHOICE_PILOT，不重复种子、不扩大数据、不跑官方评价。
+这个结果只停止当前几何类别证据/观察条件/训练及替换配方，不否定所有类别纠错。
+两头接近保留状态，不能把无动作直接解释成图像或多视图不存在可用信息。
+
+384 张图片共 1,920 次冻结检测器视图前向，不含暖机。
+数据准备约 64.17 秒，总计 76.61 秒；未训练检测器。
+当前 head holdout 有 6,807 个 GT，其中 small_all 6,484 个。
+这些是 train 图像内小头场景留出固定置信度统计，非官方 AP/AR。
+三个新增的上下文对齐、动作限制与匹配对照测试通过，连同实验 11 共六项。
+
+登记与数值记录：`docs/experiments/candidate12_class_choice_registration_20261014.json`、
+`docs/experiments/candidate12_class_choice_result_20261014.json`。
+完整结果：`output/analysis/class-choice-pilot-fixed-20261014/`。
