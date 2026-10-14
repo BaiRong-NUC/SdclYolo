@@ -46,7 +46,5 @@
   "records_with_pdf": 40,
   "records_without_pdf": 3,
   "counts_include_version_duplicates": true,
-  "metadata_limit": "The original38 file imports remain document records with title but missing authors/date. These5 DOI imports have structured citation metadata. Do not call the entire library citation-ready.",
-  "collection_readback_verified": true,
-  "semantic_incremental_update_report": "No newly processed records in explicit call; automatic startup index updates enabled. Do not infer an exact final indexed count from this response."
+  "metadata_limit": "The original38 file imports remain document records with title but missing authors/date. These5 DOI imports have structured citation metadata. Do not call the entire library citation-ready."
 }
