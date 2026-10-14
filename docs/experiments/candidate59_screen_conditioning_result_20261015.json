@@ -1,0 +1,71 @@
+{
+  "experiment": "candidate59_screen_conditioning_engineering_audit",
+  "date": "2026-10-15",
+  "output": "D:\\Python\\YOLO\\output\\analysis\\screen-conditioning-fixed-20261015",
+  "decision": "NUMERICAL_ENVELOPE_VERIFIED_FOR_FUTURE_OPT_IN_SCREENS",
+  "splits": {
+    "fit": {
+      "images": 64,
+      "rows": 666,
+      "eligible_rows": 605,
+      "old_abs_over1000_rows": 0,
+      "clipped_rows": 0,
+      "clipped_elements": 0,
+      "old_abs_over1000_images": 0,
+      "old_absmax": 24.57641145488895,
+      "new_absmax": 1.0
+    },
+    "screen": {
+      "images": 64,
+      "rows": 667,
+      "eligible_rows": 630,
+      "old_abs_over1000_rows": 0,
+      "clipped_rows": 55,
+      "clipped_elements": 80,
+      "old_abs_over1000_images": 0,
+      "old_absmax": 24.57641145488895,
+      "new_absmax": 1.0
+    },
+    "confirmation": {
+      "images": 64,
+      "rows": 674,
+      "eligible_rows": 615,
+      "old_abs_over1000_rows": 1,
+      "clipped_rows": 73,
+      "clipped_elements": 109,
+      "old_abs_over1000_images": 1,
+      "old_absmax": 17209.52549184634,
+      "new_absmax": 1.0
+    }
+  },
+  "inactive_columns": [],
+  "original_normalization_exactly_reproduced": true,
+  "fit_only_scalar_reconstruction_exact": true,
+  "all2007vectors_independently_scalar_checked": true,
+  "state_unchanged_and_JSON_roundtrip_exact": true,
+  "historical_recipe_and_STOP_unchanged": true,
+  "costs": {
+    "cached_frames": 192,
+    "JPEG_decodes": 0,
+    "model_forwards": 0,
+    "gradient_calls": 0,
+    "linear_refits": 0,
+    "parameter_updates": 0,
+    "AP_evaluations": 0,
+    "elapsed_seconds": 0.9301346000283957
+  },
+  "limits": "Engineering transform only. No old coefficients applied to new inputs, no NLL or deployment gain estimated. Fit-range clipping and zeroing inactive columns can remove useful information; no innovation or detector-training authorization.",
+  "artifacts_sha256": {
+    "columns.json": "f7c31d4e8858447ea2a2aa8a4d3e62517090a4779d4cedf55589310cca10b62f",
+    "envelope.json": "d63518be6107cb05c71f906e36c661ba5b697ed1a22f966c1aac5be2878e90ba",
+    "per_image.json": "537401bca071e0c168a89a7a747712411bba4183d669f4d1b7ecbb12d7c9d00f",
+    "plan.json": "982fa552a4696e1a1dd2d0264f550ea30896ae2ff05471eef718f1ffd9bf05af",
+    "source.zip": "2ee3599c38dc9ba9a9130c8a51d963d4aa5d6d2e2335adc317022b2f97cc4f7e",
+    "transformed_hashes.json": "b2019a44619b35230f6b1d88a7d235ecd77c97597ba9d6cf3fe31480a99a907f",
+    "result.json": "83d9802565b701cd92765ac28d58dd5024303a99e4da2d82e205b8769eb6ea8f"
+  },
+  "tests": "20passed exit0: python -m pytest tests/test_screen_scaling.py tests/test_external_content.py tests/test_texture_deletion.py tests/test_classifier_nullspace.py -q",
+  "predata_unit_test_repair": "First synthetic endpoint equality check exposed5.55e-11 rounding difference for near-constant range. Added explicit clipped-endpoint outputs before any research cache read; kept exact test assertion. Then20tests passed before main audit.",
+  "integration_scope": "Opt-in helper imported only by new audit/tests; no archived screen/training/deployment imports or mutations.",
+  "literature_scope": "No novelty or scaling-priority claim. A separate exploratory arXiv search through PaperSearch hit HTTP429 after3attempts; it is not evidence of absent work and did not affect numerical checks."
+}

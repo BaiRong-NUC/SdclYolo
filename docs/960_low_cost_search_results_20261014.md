@@ -2103,3 +2103,42 @@ Zotero，回读全部作者、版本、集合和PDF，语义增量索引2条无�
 事后归因：`scripts/evaluation/diagnose_external_content_tail.py`。
 论文核验：`docs/literature/external_content_prior_audit_20261015.json`。
 完整结果：`output/analysis/external-content-fixed-20261015/`。
+
+## 实验 59（2026-10-15）：筛选工具的输入外推与有界变换工程核验
+
+这是工具审计，不是新的检测算法或第58项的重跑。已知关联IoU尾部后
+预登记，读取58全部192缓存图和2007查询；不加载分类标签、输出logit
+或系数参与新变换，不重新拟合，不用新输入套用旧系数计算效果。
+58来源/存档/每图数组与输入哈希核对，92维公共输入与56逐位相同。
+从605条有效拟合行重建原均值/标准差，全部旧标准化输入逐位一致。
+
+| 有效查询的数值检查 | 拟合64图 | 筛选64图 | 确认64图 |
+|---|---:|---:|---:|
+| 有效查询数 | 605 | 630 | 615 |
+| 原标准化最大绝对值 | 24.5764 | 24.5764 | 17209.5255 |
+| 任一列绝对值超过1000的查询/图 | 0/0 | 0/0 | 1/1 |
+| 超出拟合范围的查询数 | 0 | 55 | 73 |
+| 新变换最大绝对值 | 1 | 1 | 1 |
+
+1000仅用于描述，不是效果门槛。这里极端放大集中于一图的一条查询，
+不能把整组损失都归为此原因，更不能据此推翻所有历史STOP。
+输入超出拟合范围也不自动等于错误；截断会丢失外推信息。
+
+新增可选FitEnvelope只保存拟合集每列最小/最大值，原值先限制在该
+范围内，再映射到[-1,1]；数值常量列输出零。空拟合、非有限值、
+错误维度与损坏状态拒绝。保留空应用集，JSON往返逐位一致；
+应用保留集不更新状态。对所有2007向量另用标量循环逐位重建验证，
+本次92列均非数值常量。它未接入任何历史实验或部署代码。
+结论NUMERICAL_ENVELOPE_VERIFIED_FOR_FUTURE_OPT_IN_SCREENS仅证实
+机械数值边界，不是NLL、AP、训练潜力或创新通过。
+
+主核验0.93秒；零JPEG解码、模型前向、求导、拟合、参数更新或AP。
+20项相关测试通过。最初合成端点测试发现近常数列端点舍入偏差
+5.55e-11，在读取研究缓存前增加精确端点处理，未改测试容差；
+随后全部测试通过才运行本审计。原实验56/58源码、结果和STOP不变。
+
+登记与结果：`docs/experiments/candidate59_screen_conditioning_registration_20261015.json`、
+`docs/experiments/candidate59_screen_conditioning_result_20261015.json`。
+工具：`sdcl/evaluation/screen_scaling.py`。
+核验：`scripts/evaluation/diagnose_screen_conditioning.py`。
+完整结果：`output/analysis/screen-conditioning-fixed-20261015/`。
