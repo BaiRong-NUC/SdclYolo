@@ -1,0 +1,34 @@
+{
+  "experiment": "candidate44_unowned_supervision_conventional_control",
+  "date": "2026-10-14",
+  "stage": "Low-cost conventional supervision controls after candidate43, not a new detector or novelty claim",
+  "question": "Can training-only near-miss supervision recover the zero-target headroom, and does excluding ambiguous ownership add more than naive or equal-count added labels?",
+  "authorization": "Candidate43 passed all four frozen information gates. This is the separately registered control it permits. Existing feature, fusion, geometry and spatial-field STOP decisions remain unchanged.",
+  "sample": "Original128fit/64headholdout detector-training images, original132geometry inputs/normalization/active masks, original calibrated owners, original regret reference and total.1 coordinate budget. All labels added ONLY to128fit; no holdout GT is used to build targets, choose rows or route inference.",
+  "training_label_selection": "First replay frozen candidate38 geometry seed0 on128fit features. Freeze its confidence.25/IoU.5 greedy matches. Eligible new labels are active original-unowned score>=.25 rows unused by those matches, with at least one currently missed same-class GT reachable atIoU.5 within ORIGINAL regret plus/minus.1 original calibrated width/height. Compute potential same-class ownership against ALL GTs, including detected ones. Among eligible missed GTs choose highest original-regret nominalIoU, ties first original metadata order. Original-owned targets never change.",
+  "arms": {
+    "original": "Exact candidate38/39 ordinary geometry recipe and targets, refit for replay; every heldout prediction must equal historical corresponding-seed geometry before metrics are reused",
+    "naive": "Every eligible unowned row gets its chosen missedGT target, regardless of competing reachable GTs",
+    "unique": "Same but only if precisely one same-class GT is reachable in total budget across ALL GTs",
+    "random_count": "Within each fit image uniformly select as many naive rows as unique rows using SHA256(stem:coverage-count) seed, keep their naive GTs; fixed labels reused across training seeds, exact per-image added-label count control"
+  },
+  "targets": "Original targets unchanged; added targets=(chosenGT-originalregret)/originalcalibratedscale clipped[-.1,.1], float32. Other original-unowned rows remain zero. Owned/unowned balance uses the ARM's supervised ownership after additions. Save complete training owners/targets/count-control selection, no GT input at deployment.",
+  "training": "Four4388parameter132->32SiLU->4 heads, shared initialization/batch order, last layer zero, bounded.1*tanh readout. Exact historical8epochs,batch512,AdamWlr.002wd.0001,SmoothL1beta.02, average available supervised/unowned group means. No new inputs, detector updates, decoder runs or image reads. Seed0 only unless ALL gates pass, then two repeats with same cached labels. No epoch/weight/threshold/seed rescue.",
+  "deployment": "All active rows use the learned geometry-only head without any GT/uniqueness/owner test. Add total bounded residual to original regret coordinates, original clipping/fallback. Scores/classes/count/order/inactive rows remain unchanged. Original score/association active mask is the only activity rule.",
+  "policy": {
+    "tiny_ap_vs_regret_min_pp": 0.05,
+    "small_all_ap_vs_regret_min_pp": 0.05,
+    "all_ap_vs_regret_min_pp": -0.05,
+    "tiny_ap_vs_original_min_pp": 0.0,
+    "small_all_ap_vs_original_min_pp": 0.03,
+    "all_ap_vs_original_min_pp": -0.05,
+    "small_all_ap_vs_naive_min_pp": 0.02,
+    "small_all_ap_vs_random_count_min_pp": 0.02,
+    "small_all_recall_fppi10_vs_regret_min_pp": 0.0,
+    "small_all_recall_fppi10_vs_original_min_pp": 0.0,
+    "repeat_min_fully_passing_seeds": 2
+  },
+  "confirmation": "Seed0 full pass before repeats. Require>=2/3 fully passing, mean allAP comparison gates, and everyseed allAP/FP guards vs regret and original. Only then allow bounded independent/official confirmation as a conventional strong-control candidate. Original loss-based sample assignment and uniqueness filtering remain prior art; success is not yet innovation.",
+  "fail_action": "STOP_THIS_UNOWNED_SUPERVISION_CONTROL_RECIPE. Do not promote a different arm after seeing results, add positive weights, change label or matching thresholds, budgets, sample counts, feature normalization, epochs, optimizer or seeds. Any positive secondary ordinary-control signal remains descriptive and needs its own future registered confirmation; it does not rescue the primary unique arm.",
+  "metrics_limits": "Historical COCO-style AP50:95 max500 atreference640, tiny/small_all/all, fixedFPPI10. Repeated detector-training imagery and inherited uniform ignore filtering, not official AP or independent generalization. Training label oracle knowledge never used to select inference actions."
+}

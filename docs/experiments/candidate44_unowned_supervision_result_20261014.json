@@ -1,0 +1,165 @@
+{
+  "experiment": "candidate44_unowned_supervision_conventional_control",
+  "date": "2026-10-14",
+  "output": "output/analysis/unowned-supervision-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_UNOWNED_SUPERVISION_CONTROL_RECIPE",
+    "per_seed": {
+      "0": {
+        "passed": false,
+        "checks": {
+          "tiny_vs_regret": true,
+          "small_all_vs_regret": true,
+          "all_vs_regret": true,
+          "tiny_vs_original": false,
+          "small_all_vs_original": false,
+          "all_vs_original": true,
+          "small_all_vs_naive": false,
+          "small_all_vs_random_count": false,
+          "fppi10_vs_regret": true,
+          "fppi10_vs_original": true
+        },
+        "values": {
+          "AP_gains_pp": {
+            "regret": {
+              "tiny": 0.3557261150844593,
+              "small_all": 0.3453863029611981,
+              "all": 0.2918795542749486
+            },
+            "original": {
+              "tiny": -0.021014769951299694,
+              "small_all": 0.015608099049901902,
+              "all": 0.0075020144023774105
+            },
+            "naive": {
+              "tiny": 0.01331752460928537,
+              "small_all": 0.010719362071159866,
+              "all": 0.010745500632469707
+            },
+            "random_count": {
+              "tiny": 0.006662028873988257,
+              "small_all": 0.005407102240839734,
+              "all": 0.005173551468462545
+            }
+          },
+          "FPPI10_recall_gains_pp": {
+            "regret": 0.032278889606196515,
+            "original": 0.0
+          }
+        }
+      }
+    },
+    "mean_AP_gains_pp": {
+      "regret": {
+        "tiny": 0.3557261150844593,
+        "small_all": 0.3453863029611981,
+        "all": 0.2918795542749486
+      },
+      "original": {
+        "tiny": -0.021014769951299694,
+        "small_all": 0.015608099049901902,
+        "all": 0.0075020144023774105
+      },
+      "naive": {
+        "tiny": 0.01331752460928537,
+        "small_all": 0.010719362071159866,
+        "all": 0.010745500632469707
+      },
+      "random_count": {
+        "tiny": 0.006662028873988257,
+        "small_all": 0.005407102240839734,
+        "all": 0.005173551468462545
+      }
+    },
+    "scope": "Conventional coverage control only; not official AP, independent evidence or innovation."
+  },
+  "AP50_95_percent": {
+    "0": {
+      "regret": {
+        "tiny": 37.834862966304755,
+        "small_all": 43.57157954813455,
+        "all": 45.97587374673244
+      },
+      "original": {
+        "tiny": 38.21160385134051,
+        "small_all": 43.90135775204585,
+        "all": 46.26025128660501
+      },
+      "naive": {
+        "tiny": 38.17727155677993,
+        "small_all": 43.90624648902459,
+        "all": 46.257007800374915
+      },
+      "unique": {
+        "tiny": 38.19058908138921,
+        "small_all": 43.91696585109575,
+        "all": 46.26775330100739
+      },
+      "random_count": {
+        "tiny": 38.18392705251522,
+        "small_all": 43.911558748854915,
+        "all": 46.26257974953892
+      }
+    }
+  },
+  "training": {
+    "0": {
+      "checkpoint": "heads-seed0.pt",
+      "sha256": "34979af926cd961d32af37dcb566287d42e34483336a1c80c33b03f9b3f79dd9",
+      "training_rows": 15001,
+      "parameters_each": 4388
+    }
+  },
+  "verification": {
+    "detector_forwards": 0,
+    "image_decodes": 0,
+    "detector_updates": 0,
+    "training_label_images": 128,
+    "head_holdout_images": 64,
+    "added_fit_labels": {
+      "original": 0,
+      "naive": 186,
+      "unique": 169,
+      "random_count": 169
+    },
+    "per_image_unique_random_positive_count_matched": true,
+    "all_original_geometry_predictions_exact_replay": true,
+    "holdout_GT_not_used_for_targets_or_inference_routing": true,
+    "scores_classes_count_order_inactive_preserved": true,
+    "unchanged_original132inputs_normalization_active_mask": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 32.38462989986874
+  },
+  "independent_verification": {
+    "all_source_archive_and_current_hashes_verified": true,
+    "training_label_trace_count": 128,
+    "heldout_prediction_trace_count": 64,
+    "added_labels_recomputed": {
+      "original": 0,
+      "naive": 186,
+      "unique": 169,
+      "random_count": 169
+    },
+    "new_labels_only_on_original_train_split": true,
+    "all_training_owners_targets_masks_and_per_image_random_counts_verified": true,
+    "all64_original_refit_predictions_equal_historical_geometry": true,
+    "both_fixed_FP_budgets_recomputed_exactly": true,
+    "scope_clarification": "Historical frame loader computes unused holdout owners/targets for diagnostics. Only128fit coverage targets enter fit. Raw verification flag holdout_GT_not_used_for_targets_or_inference_routing refers to consumed training targets and GT-free inference; it does not mean the historical loader never computes holdout diagnostic fields."
+  },
+  "prior_audit": "docs/literature/unowned_supervision_prior_audit_20261014.json",
+  "artifacts_sha256": {
+    "decision.json": "405a8f391deb34a27d0a15824ea9fb3073df5ed27d72c14052b81ea53e9e4971",
+    "fixed-fp-budgets-seed0.json": "98e8575d0db5d27f15975e4981dbe944922ae61e8794c09e364118aa0801ef17",
+    "frames-seed0.json": "77d6192b2f4bbf57e47287a0b2d283d14d1424307843cd8e0bd63a9010256ce8",
+    "heads-seed0.pt": "34979af926cd961d32af37dcb566287d42e34483336a1c80c33b03f9b3f79dd9",
+    "independent_verification.json": "bdea3c7ca2e4404fa789e61f9fdd9ff4ffc6c798348776fbb606e5ab567b05e1",
+    "labels.json": "83662945c7d4cc21f88d890a1fbd7db1a4d693bfb9bf20f09acca174e5666095",
+    "losses-seed0.json": "06f9ff86740cae014df2ff638ff151953a67a599527db06de98ae486f691b76e",
+    "metrics.json": "00d94181cd46c16bb97a59312d344efacc88c16fd28229a1214e89efb09f8bd7",
+    "plan.json": "671134ec2a39d3784f76953a470bedf9af7cb07e4d580bb7d564891b180a0779",
+    "source.zip": "a9a6c15c64be21137a59f4fabccbb70fe9f128957555ecd1824387c5ccaed1a9",
+    "training.json": "02870d327769d65a3e2eb66aa3c50f53b38f4a9082fcbfc0ff3428925c2e71db",
+    "verification.json": "72eb72ab7bba6349a2a2fad5f199df45f5662a3d6994bdbcdb1d89123f716a89"
+  },
+  "tests": "16 passed: three conventional supervision tests, four reachability tests, three existing native residual tests, four native spatial field tests and two shared bias tests"
+}
