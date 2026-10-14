@@ -1642,3 +1642,59 @@ RFLA已有tiny点先验异常和分配修复，不能把这些概念本身当创
 独立复核：`scripts/evaluation/verify_assignment_reachability.py`。
 论文核验：`docs/literature/assignment_reachability_prior_audit_20261014.json`。
 完整结果：`output/analysis/assignment-reachability-fixed-20261014/`。
+
+## 实验 51：tiny学习信号是否被共享参数上的其他监督抵消
+
+另立训练机制，不扩大实验50的停止配方。固定同64张无增广训练图，
+实际基线960及原TAL归属、质量标签、全部GT和ignore规则。
+只对model.16.cv2.conv.weight这个24576参数的共享P3输出投影求导，
+不更新任何参数/缓冲，不推广到所有网络层或历史训练阶段。
+
+tiny损失包含该GT所属有效正样本行的十类完整BCE、原CIoU和DFL，
+保持全部原质量权重分母及7.5/0.5/1.5增益，其余监督归入remainder。
+对照在同图同GT类别内固定种子打乱tiny布尔成员，保留类别内tiny个数，
+并不精确保持质量权重或梯度模长。主效果是真实与打乱分组的配对余弦差，
+另要求真实tiny梯度与总梯度内积负的比例达到10%。
+负的tiny/rest余弦不等于总下降方向会提高tiny损失。
+
+| 机制统计 | 数值 |
+|---|---:|
+| 图数 / 四个梯度分量有效图 | 64 / 61 |
+| 变更有效GT成员的对照图 / GT | 51 / 818 |
+| 真实tiny与rest的平均余弦 | -0.063181 |
+| 打乱tiny与rest的平均余弦 | -0.038541 |
+| 打乱减真实的平均余弦差 | +0.024639 |
+| 400次按图bootstrap的95%区间 | [-0.011778, +0.061161] |
+| 真实 / 打乱tiny被总梯度阻碍比例 | 0 / 0 |
+
+六项门槛四过两败：无实际总梯度阻碍，配对差异区间跨零。
+结论STOP_THIS_SCALE_SPECIFIC_P3_GRADIENT_ROUTE。
+不切换层、GT分组、损失、权重、随机排列或检查点救结果，
+不进入SGD/PCGrad更新实验、不授权训练或创新。
+
+主实验5.51秒，64次模型前向、192次选定参数块求导，零参数更新。
+原图64份GT/分配、原生概率/坐标/质量权重精确重放，完整损失重建
+最大差2.38e-7；模型参数和缓冲的前后SHA256一致。
+四项针对性测试通过，测试不是CUDA全模型梯度复现证明。
+
+独立核验64份存档、类别内随机成员和有效GT、梯度范数/余弦/阻碍判断、
+400次bootstrap与全部六门槛均复现。另抽取预定前3张有效图直接对
+complement损失求导，而不是由total减tiny推算。三图总梯度满足初始
+逐元素核验容差，但complement梯度超出3e-6+5e-4相对的初始容差，
+最大绝对差0.0001621、相对L2差0.0006250；来源未完全定位。
+不事后扩大容差，不称独立梯度重放全部通过，保留诊断记录。
+复核最终一次增加3次前向和15次求导；此前两个未通过复核尝试也有
+额外小规模前向/求导，不把主实验预算当成整个排查总计算量。
+数值核验限制进一步削弱正向主张，不挽救已有STOP。
+
+新增PCGrad2001.06782v4的27页PDF/文本，核查2.2/2.3和算法1，
+元数据及指定PDF补入Zotero并回读，语义索引更新1条无错误。
+原文明确指出梯度冲突本身未必有害；已有投影方法不能当创新。
+重读UGS的小目标梯度曲率/分类式定位和不确定性机制，复用已有PDF。
+Semantic Scholar搜索返回429，不据空缺搜索推论无近似先例。
+
+登记与结果：`docs/experiments/candidate51_scale_gradient_conflict_registration_20261014.json`、
+`docs/experiments/candidate51_scale_gradient_conflict_result_20261014.json`。
+独立复核：`scripts/evaluation/verify_scale_gradient_conflict.py`。
+论文核验：`docs/literature/scale_gradient_conflict_prior_audit_20261014.json`。
+完整结果：`output/analysis/scale-gradient-conflict-fixed-20261014/`。

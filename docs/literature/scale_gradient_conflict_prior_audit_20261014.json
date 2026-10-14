@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-14",
+  "scope": "Targeted prior-source audit, not exhaustive novelty verification.",
+  "papers": [
+    {
+      "title": "Gradient Surgery for Multi-Task Learning",
+      "authors": [
+        "Tianhe Yu",
+        "Saurabh Kumar",
+        "Abhishek Gupta",
+        "Sergey Levine",
+        "Karol Hausman",
+        "Chelsea Finn"
+      ],
+      "arxiv_version": "2001.06782v4",
+      "initial_submission": "2020-01-19",
+      "version_date": "2020-12-22",
+      "source": "https://arxiv.org/abs/2001.06782v4",
+      "pdf": "output/literature/papers/2001.06782v4.pdf",
+      "text": "output/literature/text/2001.06782v4.txt",
+      "pages": 27,
+      "reviewed": "Sections2.2/2.3 and Algorithm1 on PDF pages3/4. Complete rendered page3 inspected; page4 algorithm/text extracted and read.",
+      "overlap": "Negative cosine and projecting conflicting task gradients are established. Paper explicitly explains that conflicting gradients are not detrimental on their own; dominating gradients and curvature matter.",
+      "difference_and_limit": "Candidate51 is an image/class-shuffled scale-group mechanism audit on one block, not a new gradient surgery method or PCGrad efficacy experiment.",
+      "zotero": {
+        "collection_key": "6HT9SNK7",
+        "item_key": "C8D3QQK9",
+        "attachment_key": "9RSRX8NW",
+        "readback": "Exact version URL, all creators/date/collection and PDF MIME/filename confirmed; semantic index1added,0errors."
+      },
+      "pdf_sha256": "4b960b81a001f376e8cb551c61c5578129dd99a9d1ff147be5ea56b9e578cbdf",
+      "text_sha256": "5a5646a495735394569d6a5cecca0b91aed9b51b61de9081a0e46e58c96a1b5c"
+    },
+    {
+      "title": "Uncertainty-Aware Gradient Stabilization for Small Object Detection",
+      "authors": [
+        "Huixin Sun",
+        "Yanjing Li",
+        "Linlin Yang",
+        "Xianbin Cao",
+        "Baochang Zhang"
+      ],
+      "venue": "ICCV2025",
+      "source": "https://openaccess.thecvf.com/content/ICCV2025/html/Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.html",
+      "pdf": "output/literature/papers/cvf-Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.pdf",
+      "text": "output/literature/text/cvf-Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.txt",
+      "reviewed": "Abstract and introduction gradient/Hessian/curvature argument, classification-based nonuniform interval localization, uncertainty minimization and perturbation refinement.",
+      "overlap": "Small-object localization gradient instability and classification-style stabilization are already investigated. Generic gradient stabilization, uncertainty regularization or size grouping must not be called innovative.",
+      "difference_and_limit": "Candidate51 measures directional interference with a random-partition control; it does not reproduce UGS Hessian/curvature experiment or compare detection AP.",
+      "zotero": {
+        "existing_item_key": "BZJI4ZL7",
+        "provenance": "Original38 import manifest; not newly refreshed or enriched here."
+      },
+      "pdf_sha256": "2d8c9d0ca49784b31ade4a5183a6e4f95160aa182031dadb20f21e4d0fb3f268",
+      "text_sha256": "2b11eb84b4fda6d4209ea723bf6f1fade184c017eb6b8e8ae476741d1f39a59c",
+      "pages": 11
+    }
+  ],
+  "search_boundary": "Paper Search exact-title PCGrad query returned exact version; arXiv object-detection/gradient-conflict query returned related multi-task/KD/attack papers, not an exact method match. Semantic Scholar query was rate-limitedHTTP429 and contributed no usable evidence. No inference that no closer methods exist.",
+  "candidate_result": "61validimages, zero actual total-gradient blocking; real-vs-shuffle cosine gap.02463946 with95%CI[-.01177778,.06116085]. Fixed STOP, no projected updates or training.",
+  "technical_audit_limit": "All saved metrics/labels/shuffles/bootstrap gates verified. Independent complement-loss gradient replay on3images exceeds initial elementwise numerical tolerance; record diagnostics without changing tolerance or claiming full replay success."
+}

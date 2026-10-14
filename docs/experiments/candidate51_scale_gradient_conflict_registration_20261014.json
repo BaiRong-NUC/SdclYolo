@@ -1,0 +1,26 @@
+{
+  "experiment": "candidate51_scale_specific_shared_gradient_conflict",
+  "date": "2026-10-14",
+  "question": "Is gradient opposition to tiny-positive supervision in a shared neck projection stronger than an image/class-preserving random partition of the same objects?",
+  "difference": "Candidate50's nonnegative-support recipe stays STOP; no representation change or restriction to its failures. SDCL weighted losses without measuring directional interference. This tests a different necessary condition for a scale-specific training hypothesis, not efficacy of PCGrad or another optimizer.",
+  "sample": "Exactly all64 unaugmented train images and preprocessing fixed by candidate50. These are previously viewed detector-training scenes, not a fresh efficacy set. Preserve all GT, native positions and original quality labels.",
+  "shared_parameter": "Only model.16.cv2.conv.weight, shape128x192x1x1, is marked requires_grad for derivative queries. It is the shared P3 C3k2 output projection feeding Detect's first level and the lower-resolution neck path. All model parameters/buffers remain unchanged; no optimizer or parameter update. Results do not describe all backbone layers or every training epoch.",
+  "loss": "Actual SDCLLoss with SDCL/coverage/phase off and ignore regions on. Standard box7.5, cls0.5, DFL1.5 gains and full original target-score denominator. Tiny component includes full10class BCE entries at productive foreground rows owned by GT with area*(640/960)^2<256, plus those rows' ordinary CIoU/DFL regression. All background, zero-mass foreground and other-size rows belong to the remainder. Full loss is reconstructed and compared against the unchanged criterion.",
+  "control": "Within each image and true GT class, shuffle the Boolean tiny-GT membership with NumPy default_rng seeded by first8bytes little-endian SHA256('candidate51-scale-control-v1:'+stem+':'+class). Preserve per-class tiny counts, all losses/quality labels and the total loss. This does not preserve exact quality-mass or gradient norm; report both norms and label changes. Same seed/policy for every image; no alternative permutation selection.",
+  "derivatives": "Three torch.autograd.grad calls per image obtain total, actual-tiny and shuffled-tiny gradients on the fixed24576parameter block. Remaining gradients are total minus the corresponding tiny gradient. Store all three vectors and full/tiny/control scalar losses; no clipping or projection is deployed.",
+  "statistics": "For each image with all four component norms>1e-12, measure actual/control cos(tiny,rest), opposition ratio=max(0,-dot)/norm(tiny)^2, and blocked flag dot(tiny,total)<0. Primary paired effect=control cosine-actual cosine, equally weighted by image. Fixed400 image bootstrap draws, default_rng0, 2.5/97.5 percentiles. Report all invalid/unchanged-control images, not only conflicting images.",
+  "policy": {
+    "valid_images_min": 24,
+    "changed_control_images_min": 20,
+    "changed_productive_gt_min": 50,
+    "actual_blocked_fraction_min": 0.10,
+    "mean_control_minus_actual_cosine_min": 0.02,
+    "bootstrap_lower_control_minus_actual_cosine_min": 0.0
+  },
+  "technical_checks": "Actual owner/foreground and transformedGT equal candidate50. FP32 gradient-enabled forward may differ from no-grad kernels: require max probability difference<=2e-6, decoded coordinate difference<=0.002inputpixel, target-mass difference<=5e-6. Reconstructed full loss agrees within absolute1e-5+relative5e-5. Any failure is a technical failure, not efficacy evidence or permission to retune.",
+  "pass": "SCALE_CONFLICT_SUPPORTS_SEPARATE_BOUNDED_UPDATE_SCREEN. Requires a new preregistered update experiment against ordinary SGD, scalar reweighting, generic PCGrad and shuffled-group projection. No formal training or innovation claim from this screen.",
+  "fail": "STOP_THIS_SCALE_SPECIFIC_P3_GRADIENT_ROUTE. Do not change layer, partition, losses, normalization, permutation, image count, threshold or checkpoint to rescue the result. Does not rule out other gradient mechanisms.",
+  "budget": "64 image decodes,64 frozen full-model forwards and192 derivative queries through the selected parameter block. Zero fitting/optimizer steps, checkpoint writes, AP evaluations or official evaluator calls.",
+  "prior_boundary": "PCGrad already uses conflicting-gradient projections; domain-gradient surgery and detector gradient methods exist. UGS studies small-object regression curvature/stability and classification-style localization. A negative cosine or treating size groups as tasks alone is not a new method. Explicit differences and matched controls are still required.",
+  "limits": "Derivative opposition at one converged checkpoint is first-order training-proxy evidence, not harmful finite updates, AP gain, independent generalization, causality or novelty. Class-preserving membership shuffling does not perfectly match scale-dependent sample mass."
+}
