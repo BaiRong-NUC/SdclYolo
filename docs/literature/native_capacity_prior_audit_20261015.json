@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-15",
+  "candidate": "candidate57 native simultaneous capacity",
+  "scope": "Two targeted primary-paper exact-version PDFs,text and rendered pages; not exhaustive novelty search or independent replication of publication claims.",
+  "papers": [
+    {
+      "title": "Detection in Crowded Scenes: One Proposal, Multiple Predictions",
+      "authors": [
+        "Xuangeng Chu",
+        "Anlin Zheng",
+        "Xiangyu Zhang",
+        "Jian Sun"
+      ],
+      "arxiv_version": "2003.09163v2",
+      "version_date": "2020-06-24",
+      "initial_submission": "2020-03-20",
+      "pages": 12,
+      "review": "Abstract,introduction and rendered pages3/4 read. Each proposal predicts correlated instance set; EMD loss matches permutations; SetNMS avoids suppressing predictions from the same proposal. The paper explicitly says multiple-instance prediction has earlier precedents.",
+      "overlap_and_limit": "One proposal/multiple predictions and set matching are established; adding output branches is not novel. Candidate57 checks whether one frozen native position is a shared capacity bottleneck,not a reproduction of CrowdDet or a training efficacy result.",
+      "source": "https://arxiv.org/abs/2003.09163v2",
+      "pdf": "output/literature/papers/2003.09163v2.pdf",
+      "pdf_sha256": "167a2740191872ecff094ed7e73ec3417670f69838da3876b25c843c608f64f5",
+      "text": "output/literature/text/2003.09163v2.txt",
+      "text_sha256": "48d826d44fc67064abb2c171bb777e77b74a1a6fad08801a4635d7ebd8eb4655",
+      "zotero": {
+        "collection": "6HT9SNK7",
+        "parent": "C3E6PQEW",
+        "attachment": "XZVCJAFL",
+        "readback": "Title,authors,exact-versionURL,date andcollection verified. ExactPDFfilename,application/pdf andimported_file child confirmed."
+      }
+    },
+    {
+      "title": "End-to-End Object Detection with Transformers",
+      "authors": [
+        "Nicolas Carion",
+        "Francisco Massa",
+        "Gabriel Synnaeve",
+        "Nicolas Usunier",
+        "Alexander Kirillov",
+        "Sergey Zagoruyko"
+      ],
+      "arxiv_version": "2005.12872v3",
+      "version_date": "2020-05-28",
+      "initial_submission": "2020-05-26",
+      "pages": 26,
+      "review": "Abstract,introduction and rendered pages3/4 read. Set prediction requires permutation-invariant loss and global unique bipartite assignment; prior matching detectors and learned NMS/relations are reviewed.",
+      "overlap_and_limit": "Unique bipartite matching and simultaneous set capacity are not new. Candidate57 is an unweighted oracle inventory diagnostic,not Hungarian training loss,DETR replication or a deployable method.",
+      "source": "https://arxiv.org/abs/2005.12872v3",
+      "pdf": "output/literature/papers/2005.12872v3.pdf",
+      "pdf_sha256": "d4b846bd44896e1d21527f48eddc422c263c9a4f8a3fa4be249750956882698d",
+      "text": "output/literature/text/2005.12872v3.txt",
+      "text_sha256": "35a8f105fc006a29c13e451986f481308c2f1267c55f412adc9186186a6dc43b",
+      "zotero": {
+        "collection": "6HT9SNK7",
+        "parent": "HXKC9VPN",
+        "attachment": "HLFESNKP",
+        "readback": "Title,authors,exact-versionURL,date andcollection verified. ExactPDFfilename,application/pdf andimported_file child confirmed."
+      }
+    }
+  ],
+  "collection_work": "Paper Search downloaded2exact PDFs. Parsed,extracted,rendered/read; Zotero parents andPDFs added and readback verified. Incremental semantic update2added0errors.",
+  "search_boundary": "One-proposal/multiple-predictions title query found2003.09163v2 and related-object matching paper2104.12574v1. The latter was not downloaded or used as read evidence. A separate crowded-detection query returned no papers; this does not establish absence of closer prior work.",
+  "candidate_result": "Screen tiny union capacity deficit1/3593GT andconfirmation0/3090GT; geometry-only union deficits both0. STOP_THIS_NATIVE_SHARED_CAPACITY_ROUTE_ON_FIXED_INVENTORY. No detector forwards,training,AP orinnovation authorization."
+}

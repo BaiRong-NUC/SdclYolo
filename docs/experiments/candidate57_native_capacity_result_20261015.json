@@ -1,0 +1,795 @@
+{
+  "experiment": "candidate57_native_one_position_capacity",
+  "date": "2026-10-15",
+  "output": "D:\\Python\\YOLO\\output\\analysis\\native-capacity-fixed-20261015",
+  "metrics": {
+    "screen": {
+      "geometry": {
+        "union": {
+          "all": {
+            "gt": 4833,
+            "independently_supported_gt": 4724,
+            "matching_capacity": 4724,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "tiny": {
+            "gt": 3593,
+            "independently_supported_gt": 3484,
+            "matching_capacity": 3484,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "small_all": {
+            "gt": 4602,
+            "independently_supported_gt": 4493,
+            "matching_capacity": 4493,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          }
+        },
+        "view0": {
+          "all": {
+            "gt": 4833,
+            "independently_supported_gt": 4376,
+            "matching_capacity": 4370,
+            "capacity_deficit": 6,
+            "deficit_images": 5,
+            "capacity_deficit_fraction_all_GT": 0.0012414649286157666
+          },
+          "tiny": {
+            "gt": 3593,
+            "independently_supported_gt": 3138,
+            "matching_capacity": 3132,
+            "capacity_deficit": 6,
+            "deficit_images": 5,
+            "capacity_deficit_fraction_all_GT": 0.0016699137211244085
+          },
+          "small_all": {
+            "gt": 4602,
+            "independently_supported_gt": 4145,
+            "matching_capacity": 4139,
+            "capacity_deficit": 6,
+            "deficit_images": 5,
+            "capacity_deficit_fraction_all_GT": 0.001303780964797914
+          }
+        },
+        "view1": {
+          "all": {
+            "gt": 4833,
+            "independently_supported_gt": 2186,
+            "matching_capacity": 2185,
+            "capacity_deficit": 1,
+            "deficit_images": 1,
+            "capacity_deficit_fraction_all_GT": 0.0002069108214359611
+          },
+          "tiny": {
+            "gt": 3593,
+            "independently_supported_gt": 1814,
+            "matching_capacity": 1813,
+            "capacity_deficit": 1,
+            "deficit_images": 1,
+            "capacity_deficit_fraction_all_GT": 0.00027831895352073476
+          },
+          "small_all": {
+            "gt": 4602,
+            "independently_supported_gt": 2141,
+            "matching_capacity": 2140,
+            "capacity_deficit": 1,
+            "deficit_images": 1,
+            "capacity_deficit_fraction_all_GT": 0.000217296827466319
+          }
+        },
+        "view2": {
+          "all": {
+            "gt": 4833,
+            "independently_supported_gt": 1903,
+            "matching_capacity": 1903,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "tiny": {
+            "gt": 3593,
+            "independently_supported_gt": 1565,
+            "matching_capacity": 1565,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "small_all": {
+            "gt": 4602,
+            "independently_supported_gt": 1861,
+            "matching_capacity": 1861,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          }
+        },
+        "view3": {
+          "all": {
+            "gt": 4833,
+            "independently_supported_gt": 1175,
+            "matching_capacity": 1175,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "tiny": {
+            "gt": 3593,
+            "independently_supported_gt": 722,
+            "matching_capacity": 722,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "small_all": {
+            "gt": 4602,
+            "independently_supported_gt": 1056,
+            "matching_capacity": 1056,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          }
+        },
+        "view4": {
+          "all": {
+            "gt": 4833,
+            "independently_supported_gt": 1143,
+            "matching_capacity": 1143,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "tiny": {
+            "gt": 3593,
+            "independently_supported_gt": 722,
+            "matching_capacity": 722,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "small_all": {
+            "gt": 4602,
+            "independently_supported_gt": 1055,
+            "matching_capacity": 1055,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          }
+        }
+      },
+      "argmax005": {
+        "union": {
+          "all": {
+            "gt": 4833,
+            "independently_supported_gt": 4382,
+            "matching_capacity": 4381,
+            "capacity_deficit": 1,
+            "deficit_images": 1,
+            "capacity_deficit_fraction_all_GT": 0.0002069108214359611
+          },
+          "tiny": {
+            "gt": 3593,
+            "independently_supported_gt": 3171,
+            "matching_capacity": 3170,
+            "capacity_deficit": 1,
+            "deficit_images": 1,
+            "capacity_deficit_fraction_all_GT": 0.00027831895352073476
+          },
+          "small_all": {
+            "gt": 4602,
+            "independently_supported_gt": 4153,
+            "matching_capacity": 4152,
+            "capacity_deficit": 1,
+            "deficit_images": 1,
+            "capacity_deficit_fraction_all_GT": 0.000217296827466319
+          }
+        },
+        "view0": {
+          "all": {
+            "gt": 4833,
+            "independently_supported_gt": 3953,
+            "matching_capacity": 3951,
+            "capacity_deficit": 2,
+            "deficit_images": 2,
+            "capacity_deficit_fraction_all_GT": 0.0004138216428719222
+          },
+          "tiny": {
+            "gt": 3593,
+            "independently_supported_gt": 2762,
+            "matching_capacity": 2760,
+            "capacity_deficit": 2,
+            "deficit_images": 2,
+            "capacity_deficit_fraction_all_GT": 0.0005566379070414695
+          },
+          "small_all": {
+            "gt": 4602,
+            "independently_supported_gt": 3724,
+            "matching_capacity": 3722,
+            "capacity_deficit": 2,
+            "deficit_images": 2,
+            "capacity_deficit_fraction_all_GT": 0.000434593654932638
+          }
+        },
+        "view1": {
+          "all": {
+            "gt": 4833,
+            "independently_supported_gt": 1911,
+            "matching_capacity": 1909,
+            "capacity_deficit": 2,
+            "deficit_images": 2,
+            "capacity_deficit_fraction_all_GT": 0.0004138216428719222
+          },
+          "tiny": {
+            "gt": 3593,
+            "independently_supported_gt": 1566,
+            "matching_capacity": 1564,
+            "capacity_deficit": 2,
+            "deficit_images": 2,
+            "capacity_deficit_fraction_all_GT": 0.0005566379070414695
+          },
+          "small_all": {
+            "gt": 4602,
+            "independently_supported_gt": 1867,
+            "matching_capacity": 1865,
+            "capacity_deficit": 2,
+            "deficit_images": 2,
+            "capacity_deficit_fraction_all_GT": 0.000434593654932638
+          }
+        },
+        "view2": {
+          "all": {
+            "gt": 4833,
+            "independently_supported_gt": 1649,
+            "matching_capacity": 1649,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "tiny": {
+            "gt": 3593,
+            "independently_supported_gt": 1343,
+            "matching_capacity": 1343,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "small_all": {
+            "gt": 4602,
+            "independently_supported_gt": 1607,
+            "matching_capacity": 1607,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          }
+        },
+        "view3": {
+          "all": {
+            "gt": 4833,
+            "independently_supported_gt": 1015,
+            "matching_capacity": 1014,
+            "capacity_deficit": 1,
+            "deficit_images": 1,
+            "capacity_deficit_fraction_all_GT": 0.0002069108214359611
+          },
+          "tiny": {
+            "gt": 3593,
+            "independently_supported_gt": 593,
+            "matching_capacity": 592,
+            "capacity_deficit": 1,
+            "deficit_images": 1,
+            "capacity_deficit_fraction_all_GT": 0.00027831895352073476
+          },
+          "small_all": {
+            "gt": 4602,
+            "independently_supported_gt": 903,
+            "matching_capacity": 902,
+            "capacity_deficit": 1,
+            "deficit_images": 1,
+            "capacity_deficit_fraction_all_GT": 0.000217296827466319
+          }
+        },
+        "view4": {
+          "all": {
+            "gt": 4833,
+            "independently_supported_gt": 1012,
+            "matching_capacity": 1012,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "tiny": {
+            "gt": 3593,
+            "independently_supported_gt": 622,
+            "matching_capacity": 622,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "small_all": {
+            "gt": 4602,
+            "independently_supported_gt": 926,
+            "matching_capacity": 926,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          }
+        }
+      },
+      "primary_tiny_union_deficit_fraction_bootstrap95ci": [
+        0.0,
+        0.0010059716002791372
+      ],
+      "ordinary_calibration_matches": {
+        "all": 3672,
+        "tiny": 2548,
+        "small_all": 3443
+      },
+      "exact_duplicate_GT_annotations": 0
+    },
+    "confirmation": {
+      "geometry": {
+        "union": {
+          "all": {
+            "gt": 4435,
+            "independently_supported_gt": 4264,
+            "matching_capacity": 4264,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "tiny": {
+            "gt": 3090,
+            "independently_supported_gt": 2919,
+            "matching_capacity": 2919,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "small_all": {
+            "gt": 4132,
+            "independently_supported_gt": 3961,
+            "matching_capacity": 3961,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          }
+        },
+        "view0": {
+          "all": {
+            "gt": 4435,
+            "independently_supported_gt": 3905,
+            "matching_capacity": 3899,
+            "capacity_deficit": 6,
+            "deficit_images": 5,
+            "capacity_deficit_fraction_all_GT": 0.0013528748590755355
+          },
+          "tiny": {
+            "gt": 3090,
+            "independently_supported_gt": 2561,
+            "matching_capacity": 2555,
+            "capacity_deficit": 6,
+            "deficit_images": 5,
+            "capacity_deficit_fraction_all_GT": 0.001941747572815534
+          },
+          "small_all": {
+            "gt": 4132,
+            "independently_supported_gt": 3602,
+            "matching_capacity": 3596,
+            "capacity_deficit": 6,
+            "deficit_images": 5,
+            "capacity_deficit_fraction_all_GT": 0.001452081316553727
+          }
+        },
+        "view1": {
+          "all": {
+            "gt": 4435,
+            "independently_supported_gt": 1948,
+            "matching_capacity": 1947,
+            "capacity_deficit": 1,
+            "deficit_images": 1,
+            "capacity_deficit_fraction_all_GT": 0.00022547914317925591
+          },
+          "tiny": {
+            "gt": 3090,
+            "independently_supported_gt": 1530,
+            "matching_capacity": 1529,
+            "capacity_deficit": 1,
+            "deficit_images": 1,
+            "capacity_deficit_fraction_all_GT": 0.00032362459546925567
+          },
+          "small_all": {
+            "gt": 4132,
+            "independently_supported_gt": 1879,
+            "matching_capacity": 1878,
+            "capacity_deficit": 1,
+            "deficit_images": 1,
+            "capacity_deficit_fraction_all_GT": 0.0002420135527589545
+          }
+        },
+        "view2": {
+          "all": {
+            "gt": 4435,
+            "independently_supported_gt": 1825,
+            "matching_capacity": 1825,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "tiny": {
+            "gt": 3090,
+            "independently_supported_gt": 1365,
+            "matching_capacity": 1365,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "small_all": {
+            "gt": 4132,
+            "independently_supported_gt": 1737,
+            "matching_capacity": 1737,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          }
+        },
+        "view3": {
+          "all": {
+            "gt": 4435,
+            "independently_supported_gt": 1204,
+            "matching_capacity": 1204,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "tiny": {
+            "gt": 3090,
+            "independently_supported_gt": 754,
+            "matching_capacity": 754,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "small_all": {
+            "gt": 4132,
+            "independently_supported_gt": 1090,
+            "matching_capacity": 1090,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          }
+        },
+        "view4": {
+          "all": {
+            "gt": 4435,
+            "independently_supported_gt": 1157,
+            "matching_capacity": 1157,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "tiny": {
+            "gt": 3090,
+            "independently_supported_gt": 712,
+            "matching_capacity": 712,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "small_all": {
+            "gt": 4132,
+            "independently_supported_gt": 1048,
+            "matching_capacity": 1048,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          }
+        }
+      },
+      "argmax005": {
+        "union": {
+          "all": {
+            "gt": 4435,
+            "independently_supported_gt": 3849,
+            "matching_capacity": 3849,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "tiny": {
+            "gt": 3090,
+            "independently_supported_gt": 2559,
+            "matching_capacity": 2559,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "small_all": {
+            "gt": 4132,
+            "independently_supported_gt": 3554,
+            "matching_capacity": 3554,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          }
+        },
+        "view0": {
+          "all": {
+            "gt": 4435,
+            "independently_supported_gt": 3427,
+            "matching_capacity": 3424,
+            "capacity_deficit": 3,
+            "deficit_images": 3,
+            "capacity_deficit_fraction_all_GT": 0.0006764374295377678
+          },
+          "tiny": {
+            "gt": 3090,
+            "independently_supported_gt": 2159,
+            "matching_capacity": 2156,
+            "capacity_deficit": 3,
+            "deficit_images": 3,
+            "capacity_deficit_fraction_all_GT": 0.000970873786407767
+          },
+          "small_all": {
+            "gt": 4132,
+            "independently_supported_gt": 3134,
+            "matching_capacity": 3131,
+            "capacity_deficit": 3,
+            "deficit_images": 3,
+            "capacity_deficit_fraction_all_GT": 0.0007260406582768635
+          }
+        },
+        "view1": {
+          "all": {
+            "gt": 4435,
+            "independently_supported_gt": 1640,
+            "matching_capacity": 1640,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "tiny": {
+            "gt": 3090,
+            "independently_supported_gt": 1267,
+            "matching_capacity": 1267,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "small_all": {
+            "gt": 4132,
+            "independently_supported_gt": 1574,
+            "matching_capacity": 1574,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          }
+        },
+        "view2": {
+          "all": {
+            "gt": 4435,
+            "independently_supported_gt": 1551,
+            "matching_capacity": 1551,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "tiny": {
+            "gt": 3090,
+            "independently_supported_gt": 1149,
+            "matching_capacity": 1149,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "small_all": {
+            "gt": 4132,
+            "independently_supported_gt": 1468,
+            "matching_capacity": 1468,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          }
+        },
+        "view3": {
+          "all": {
+            "gt": 4435,
+            "independently_supported_gt": 1019,
+            "matching_capacity": 1019,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "tiny": {
+            "gt": 3090,
+            "independently_supported_gt": 619,
+            "matching_capacity": 619,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "small_all": {
+            "gt": 4132,
+            "independently_supported_gt": 913,
+            "matching_capacity": 913,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          }
+        },
+        "view4": {
+          "all": {
+            "gt": 4435,
+            "independently_supported_gt": 1005,
+            "matching_capacity": 1005,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "tiny": {
+            "gt": 3090,
+            "independently_supported_gt": 608,
+            "matching_capacity": 608,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          },
+          "small_all": {
+            "gt": 4132,
+            "independently_supported_gt": 904,
+            "matching_capacity": 904,
+            "capacity_deficit": 0,
+            "deficit_images": 0,
+            "capacity_deficit_fraction_all_GT": 0.0
+          }
+        }
+      },
+      "primary_tiny_union_deficit_fraction_bootstrap95ci": [
+        0.0,
+        0.0
+      ],
+      "ordinary_calibration_matches": {
+        "all": 3283,
+        "tiny": 2095,
+        "small_all": 3000
+      },
+      "exact_duplicate_GT_annotations": 0
+    }
+  },
+  "decision": {
+    "checks": {
+      "screen": {
+        "gt": true,
+        "supported": true,
+        "deficit": false,
+        "images": false,
+        "fraction": false,
+        "interval": false
+      },
+      "confirmation": {
+        "gt": true,
+        "supported": true,
+        "deficit": false,
+        "images": false,
+        "fraction": false,
+        "interval": false
+      }
+    },
+    "decision": "STOP_THIS_NATIVE_SHARED_CAPACITY_ROUTE_ON_FIXED_INVENTORY",
+    "scope": "Annotation-assisted optimistic native capacity only; no deployment, training, detection AP or novelty authorization."
+  },
+  "verification": {
+    "cached_frames_read": 128,
+    "JPEG_decodes": 0,
+    "detector_forwards": 0,
+    "fitting_steps": 0,
+    "parameter_updates": 0,
+    "AP_evaluations": 0,
+    "sparse_matching_problems": 4608,
+    "all_matching_vertex_cover_certificates_checked": true,
+    "source_unchanged": true,
+    "installed_matching_binary_unchanged": true,
+    "elapsed_seconds": 42.54036580002867
+  },
+  "artifacts_sha256": {
+    "decision.json": "d268500c3ed9dfe34b23e78b5353370a156f4a16eeda27ac0fecbee6c2e0dfe7",
+    "frames.json": "8b0d98c85f1bead972aa84228a9b2d30fc00153854d23540491bc6c631c32bdb",
+    "metrics.json": "a91b2f952332b616693e6b233bc5829f73bad258272097f288ff19f02f0b8cbe",
+    "per_image.json": "2a8ed851496982118326ec8f12af5a0136ca77d7280e3d6852e611ddc2c92bf9",
+    "plan.json": "7ef463658b89d32fcfec1f54ff4db181efed9b440b6ed0c22b76276d3e7069ce",
+    "source.zip": "5cfb20638ce1abf128328a70bfa26a586dac20e54ca0baf7c6cbe73884995eec",
+    "verification.json": "b106d9444bfcfe31ae70555a144d91c8010f20ad24f1133c7b242ef3c4b7a514",
+    "independent_verification.json": "41baa605470bbcd99322d9ac5111af2f59d6e8d95d52c5b0a3751b08b6448ccb"
+  },
+  "independent_verification": {
+    "all_source_archive_matching_binary_prior_data_frames_image_metadata_hashes_verified": true,
+    "fixed128image_selection_and_disjoint_sequence_prefixes_verified": true,
+    "all_native_coordinates_probability_conditions_and_edges_independently_reconstructed": 497700,
+    "all_feasible_matchings_and_equal_size_cover_certificates_independently_proved": 4608,
+    "all_GT_groups_control_matching_perimage_aggregates_bootstrap_and_twelve_gates_rebuilt": true,
+    "added_JPEG_decodes": 0,
+    "added_detector_forwards": 0,
+    "added_matching_solver_calls": 0,
+    "verifier_sha256": "48ae3aab4a94937800c41ee9b3f815e342b98f114f69204ac3271ee0b403e524",
+    "limits": "Capacity uses same saved original detector tensors, not new detector evidence. Certificates prove graph optimality but not AP, distinct physical hypotheses after NMS, learning potential or novelty. Tiny-only graph omits larger-GT competition. Cached float32 local box mapping and float64 sigmoid conventions differ from raw rounded FP16 probability evaluation. Prior scene diagnostics may contain other frames; detector/calibrator trained on these images. Historical individual-ignore diagnostic is not official VisDrone."
+  },
+  "prior_audit": "docs/literature/native_capacity_prior_audit_20261015.json",
+  "prior_audit_sha256": "4df4b7aa193e7eb05fd548057fa406b29d1a6d2d10e3ca2a8fa0ad51fdb9b532",
+  "tests": "7passed: python -m pytest tests/test_native_capacity.py tests/test_verify_native_capacity.py -q. Full independent edge/certificate/data/statistic verification passed.",
+  "diagnostic_summary": {
+    "screen": {
+      "primary_tiny_union": {
+        "gt": 3593,
+        "independently_supported_gt": 3171,
+        "matching_capacity": 3170,
+        "capacity_deficit": 1,
+        "deficit_images": 1,
+        "capacity_deficit_fraction_all_GT": 0.00027831895352073476
+      },
+      "primary_CI": [
+        0.0,
+        0.0010059716002791372
+      ],
+      "geometry_tiny_union": {
+        "gt": 3593,
+        "independently_supported_gt": 3484,
+        "matching_capacity": 3484,
+        "capacity_deficit": 0,
+        "deficit_images": 0,
+        "capacity_deficit_fraction_all_GT": 0.0
+      },
+      "native_single_view_tiny_deficits": [
+        2,
+        2,
+        0,
+        1,
+        0
+      ],
+      "ordinary_calibration_matches": {
+        "all": 3672,
+        "tiny": 2548,
+        "small_all": 3443
+      },
+      "exact_duplicate_GT_annotations": 0
+    },
+    "confirmation": {
+      "primary_tiny_union": {
+        "gt": 3090,
+        "independently_supported_gt": 2559,
+        "matching_capacity": 2559,
+        "capacity_deficit": 0,
+        "deficit_images": 0,
+        "capacity_deficit_fraction_all_GT": 0.0
+      },
+      "primary_CI": [
+        0.0,
+        0.0
+      ],
+      "geometry_tiny_union": {
+        "gt": 3090,
+        "independently_supported_gt": 2919,
+        "matching_capacity": 2919,
+        "capacity_deficit": 0,
+        "deficit_images": 0,
+        "capacity_deficit_fraction_all_GT": 0.0
+      },
+      "native_single_view_tiny_deficits": [
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ordinary_calibration_matches": {
+        "all": 3283,
+        "tiny": 2095,
+        "small_all": 3000
+      },
+      "exact_duplicate_GT_annotations": 0
+    }
+  }
+}
