@@ -1,0 +1,40 @@
+{
+  "experiment": "candidate10_frozen_local_feature_preflight",
+  "date": "2026-10-14",
+  "hypothesis": "Frozen detector local features provide useful boundary/context evidence that the fixed grayscale descriptors did not capture.",
+  "stage": "Small-head learnability screen only; not official AP or novelty.",
+  "sample": "Exactly the same 256 fitting and 128 head-held-out train images, rows and targets as candidate9; never select images using its results.",
+  "visual_input": {
+    "detector": "output/runs/baseline_yolo11s_960_100ep_seed0/weights/best.pt",
+    "detector_sha256": "eac88f7e348134d3bdaf8b8d3c93845002b634b66a4fa28bd6246abbbeba1a25",
+    "feature": "First Detect input, stride8 P3,128 channels; same frozen detector in every arm.",
+    "preprocessing": "Original BGR image, centered 960 square letterbox,color114; RGB/255 FP16. This extraction does not regenerate or modify cached detections.",
+    "projection": "Fixed CPU-seeded Gaussian 128->16, seed20261014, scale1/sqrt128, never fitted to targets.",
+    "pool": "3x3 samples at fractions0,0.5,1 on each action box, plus 3x3 on its1.25x center expansion; bilinear feature sampling. 288 dimensions.",
+    "normalization": "Fit moments on the selected fitting scenes only."
+  },
+  "arms": ["geometry_absolute", "geometry_ranking", "visual_absolute", "visual_ranking"],
+  "recipe": {
+    "seeds": [0, 1, 2],
+    "epochs": 8,
+    "batch": 512,
+    "hidden": 64,
+    "learning_rate": 0.002,
+    "weight_decay": 0.0001,
+    "selection_margin": 0.01,
+    "ranking_temperature": 0.05,
+    "absolute_smooth_l1_beta": 0.1,
+    "selection": "Final epoch only; seed1/2 only if seed0 passes. Same initialization and order across four arms per seed."
+  },
+  "policy": {
+    "visual_ranking_vs_geometry_ranking_owned_ten_threshold_min_pp": 0.05,
+    "visual_ranking_vs_geometry_ranking_owned_mean_iou_min_exclusive_pp": 0.0,
+    "visual_ranking_vs_geometry_ranking_harm_rate_max_increase_pp": 0.5,
+    "repeat_mean_threshold_min_pp": 0.05,
+    "repeat_positive_seeds_min": 2
+  },
+  "secondary": "Report paired comparisons on geometry-ranking top-two valid utility gap<=0.05, with at least two valid actions. Subset definition is prediction-only and is descriptive, not an alternate gate.",
+  "scope": "Same weighted sampled fixed-owner ten-threshold/IoU/harm metrics as candidate9, plus existing frozen uniform. No AP/AR claim. Visual ranking versus ordinary visual regression must be reported separately.",
+  "limits": "Head-held-out scenes were included in historical detector training; this only holds out new-head labels. Equal nominal padded architecture has inactive visual channels in geometry arms. Compression and 8-epoch small-data budget do not test all representations.",
+  "budget": "384 single-view frozen detector forwards; no five-view detector replay, detector training or official evaluation. Four small heads at seed0; repeat only after a positive gate. If this representation also fails, stop this local visual-feature screening round rather than tune projection,scale or epochs."
+}

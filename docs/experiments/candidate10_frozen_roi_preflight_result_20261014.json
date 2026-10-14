@@ -1,0 +1,175 @@
+{
+  "experiment": "candidate10_frozen_roi_preflight",
+  "date": "2026-10-14",
+  "decision": {
+    "decision": "STOP_THIS_VISUAL_FEATURE_PILOT",
+    "per_seed": {
+      "0": {
+        "decision": "STOP_THIS_VISUAL_FEATURE_PILOT",
+        "checks": {
+          "threshold_gain": false,
+          "mean_iou_gain": false,
+          "harm_budget": false
+        },
+        "comparisons": {
+          "visual_ranking_vs_geometry_ranking": {
+            "owned_mean_iou_percent_pp": -0.08502602577209473,
+            "owned_ten_threshold_percent_pp": -0.140843262119958,
+            "owned_harm_rate_percent_pp": 3.9929132908582687,
+            "owned_move_rate_percent_pp": 6.580731272697449,
+            "unowned_move_rate_percent_pp": 0.32326964288949966,
+            "owned_oracle_regret_iou_pp_pp": 0.08502062410116196
+          },
+          "visual_absolute_vs_geometry_absolute": {
+            "owned_mean_iou_percent_pp": -0.02906322479248047,
+            "owned_ten_threshold_percent_pp": -0.030556696795393634,
+            "owned_harm_rate_percent_pp": 2.4514690041542053,
+            "owned_move_rate_percent_pp": 1.609233021736145,
+            "unowned_move_rate_percent_pp": 0.7626698017120361,
+            "owned_oracle_regret_iou_pp_pp": 0.029065832495689392
+          },
+          "visual_ranking_vs_visual_absolute": {
+            "owned_mean_iou_percent_pp": 0.06990432739257812,
+            "owned_ten_threshold_percent_pp": 0.10907970419062707,
+            "owned_harm_rate_percent_pp": -3.335045278072357,
+            "owned_move_rate_percent_pp": -7.8279048204422,
+            "unowned_move_rate_percent_pp": -3.7485797703266144,
+            "owned_oracle_regret_iou_pp_pp": -0.06990451365709305
+          },
+          "visual_ranking_vs_frozen_uniform": {
+            "owned_mean_iou_percent_pp": -0.14800429344177246,
+            "owned_ten_threshold_percent_pp": -0.275600862777317,
+            "owned_harm_rate_percent_pp": 2.8297044336795807,
+            "owned_move_rate_percent_pp": 1.827239990234375,
+            "unowned_move_rate_percent_pp": 0.4203694835305214,
+            "owned_oracle_regret_iou_pp_pp": 0.14800671488046646
+          }
+        },
+        "scope": "Sampled train-scene holdout only; not detection AP or novelty."
+      }
+    },
+    "head_seeds_completed": [
+      "0"
+    ],
+    "official_evaluation_ran": false,
+    "detector_training_ran": false
+  },
+  "metrics": {
+    "0": {
+      "geometry_absolute": {
+        "owned_mean_iou_percent": 78.18726897239685,
+        "owned_ten_threshold_percent": 61.46446179129006,
+        "owned_harm_rate_percent": 10.500462353229523,
+        "owned_move_rate_percent": 37.52105534076691,
+        "unowned_move_rate_percent": 3.433311700820923,
+        "owned_oracle_regret_iou_pp": 2.5504207238554955
+      },
+      "geometry_ranking": {
+        "owned_mean_iou_percent": 78.31313610076904,
+        "owned_ten_threshold_percent": 61.683828060805254,
+        "owned_harm_rate_percent": 5.623972788453102,
+        "owned_move_rate_percent": 24.721652269363403,
+        "unowned_move_rate_percent": 0.12413208931684494,
+        "owned_oracle_regret_iou_pp": 2.42456141859293
+      },
+      "visual_absolute": {
+        "owned_mean_iou_percent": 78.15820574760437,
+        "owned_ten_threshold_percent": 61.43390509449467,
+        "owned_harm_rate_percent": 12.951931357383728,
+        "owned_move_rate_percent": 39.13028836250305,
+        "unowned_move_rate_percent": 4.195981502532959,
+        "owned_oracle_regret_iou_pp": 2.579486556351185
+      },
+      "visual_ranking": {
+        "owned_mean_iou_percent": 78.22811007499695,
+        "owned_ten_threshold_percent": 61.542984798685296,
+        "owned_harm_rate_percent": 9.61688607931137,
+        "owned_move_rate_percent": 31.302383542060852,
+        "unowned_move_rate_percent": 0.4474017322063446,
+        "owned_oracle_regret_iou_pp": 2.509582042694092
+      },
+      "frozen_uniform": {
+        "owned_mean_iou_percent": 78.37611436843872,
+        "owned_ten_threshold_percent": 61.81858566146261,
+        "owned_harm_rate_percent": 6.78718164563179,
+        "owned_move_rate_percent": 29.475143551826477,
+        "unowned_move_rate_percent": 0.02703224867582321,
+        "owned_oracle_regret_iou_pp": 2.3615753278136253
+      }
+    }
+  },
+  "ambiguity_subset": {
+    "rows": 4062,
+    "definition": "Geometry top-two gap<=0.05.",
+    "metrics": {
+      "geometry_absolute": {
+        "owned_mean_iou_percent": 81.70276284217834,
+        "owned_ten_threshold_percent": 68.4451830748127,
+        "owned_harm_rate_percent": 13.402624428272247,
+        "owned_move_rate_percent": 49.24343228340149,
+        "unowned_move_rate_percent": 56.592159271240234,
+        "owned_oracle_regret_iou_pp": 2.8000053018331528
+      },
+      "geometry_ranking": {
+        "owned_mean_iou_percent": 81.82989954948425,
+        "owned_ten_threshold_percent": 68.69797052513103,
+        "owned_harm_rate_percent": 7.703562825918198,
+        "owned_move_rate_percent": 33.86303782463074,
+        "unowned_move_rate_percent": 9.422450065612793,
+        "owned_oracle_regret_iou_pp": 2.672867104411125
+      },
+      "visual_absolute": {
+        "owned_mean_iou_percent": 81.70528411865234,
+        "owned_ten_threshold_percent": 68.48510428757344,
+        "owned_harm_rate_percent": 14.838381111621857,
+        "owned_move_rate_percent": 47.02613353729248,
+        "unowned_move_rate_percent": 57.68104934692383,
+        "owned_oracle_regret_iou_pp": 2.797483280301094
+      },
+      "visual_ranking": {
+        "owned_mean_iou_percent": 81.7341685295105,
+        "owned_ten_threshold_percent": 68.52808554043122,
+        "owned_harm_rate_percent": 12.793077528476715,
+        "owned_move_rate_percent": 41.924306750297546,
+        "unowned_move_rate_percent": 23.925474166870117,
+        "owned_oracle_regret_iou_pp": 2.7686042711138725
+      },
+      "frozen_uniform": {
+        "owned_mean_iou_percent": 81.9150984287262,
+        "owned_ten_threshold_percent": 68.8803067074672,
+        "owned_harm_rate_percent": 9.296894073486328,
+        "owned_move_rate_percent": 40.35172760486603,
+        "unowned_move_rate_percent": 2.0519275665283203,
+        "owned_oracle_regret_iou_pp": 2.5876732543110847
+      }
+    }
+  },
+  "verification": {
+    "detector_forwards": 384,
+    "feature_extraction_seconds": 15.418770699994639,
+    "source_unchanged": true,
+    "scene_overlap": 0,
+    "selected_train_images": 256,
+    "selected_holdout_images": 128,
+    "train_rows": 26388,
+    "holdout_rows": 13616,
+    "nominal_parameters_per_head": 27073,
+    "total_seconds": 21.36430580005981,
+    "scope": "Head-held-out training scenes; frozen detector trained on these images historically."
+  },
+  "artifacts_sha256": {
+    "decision.json": "34bf6368902b8bee977edaabb1f310202965bde8c5f66c68caf4fb232fc101e1",
+    "holdout_features.npz": "b274d2a991c63cbf861490e6aaedf1af8e72c49716526790df69b98ac02e9bb6",
+    "metrics.json": "7fce666fcf47b32c92d8006b5502b214c9930db1774052fef4efb15899da7cb7",
+    "plan.json": "c4fbdc5f73391f1067ffd453d3ba122cf32b842afaaf6a2f6086db1d78dc913a",
+    "source.zip": "60609d303b3dbb72d52ad700fe74fcfe62d2b9cb0069df153df00a7f4070e31e",
+    "train_features.npz": "433ade56a4de35ae4b25d10853b4f253d4bb33878ed0b55828cb7852b58da23c",
+    "verification.json": "fd345ebefe6e19e513bdf50b08c8f43986da0cfa715ae452e339bd61c368543d",
+    "visual_normalization.json": "782618abd11dd0602a9860471d8960d10bf272501e6c766a2a86734bfbc9bb3a",
+    "seed0/ambiguity_subset.json": "32ed61cddae329111ea104dd60748bfe0308a8e35d5ed55baa1d31c161a1fc8b",
+    "seed0/decision.json": "39926bfaceadbd763e94e83a04637be1e04ce31bdaa19ecb82288bba921cdc87",
+    "seed0/last.pt": "1cbf5ab640bcc626fb52effa4ceba7a6b50e64598ce73b74fa6a276006bc2993",
+    "seed0/losses.csv": "819303d801b7845d62c19075e4939e8d1a3bfe85a1909056650db7b4732ded22",
+    "seed0/metrics.json": "2bb4648ed740c37621d68a5bf251a84b3ce5be082c2f9fa882be096f73d89e17"
+  }
+}
