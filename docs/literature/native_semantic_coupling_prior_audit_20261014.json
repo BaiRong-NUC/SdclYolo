@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-14",
+  "scope": "Primary-source overlap audit for candidate45, not exhaustive novelty verification",
+  "papers": [
+    {
+      "title": "TOOD: Task-aligned One-stage Object Detection",
+      "arxiv_version": "2108.07755v3",
+      "version_evidence": "Existing local extracted page contains arXiv:2108.07755v3,28Aug2021; exact metadata reconfirmed with Paper Search",
+      "pdf": "output/literature/papers/arxiv-2108.07755.pdf",
+      "pdf_sha256": "ede5d01fe07bba7e662ade68c9e88ad49868a1406bdff13c52f0dc4914eaf758",
+      "text": "output/literature/text/arxiv-2108.07755.txt",
+      "text_sha256": "695926c2b42b2b0ef71875c43ad06e3378fe17c773980c649e3061265451286d",
+      "reviewed": "Abstract and3.2.1/3.2.2: task alignment metric s^alpha*GT_IoU^beta, assignment and aligned loss",
+      "overlap": "Spatial classification/localization misalignment and encouraging alignment are already explicit prior art. YOLO's TAL is not a novel starting point.",
+      "difference_and_limit": "Candidate45 measures covariance across neighboring predictions between query-class probability and agreement to a central PREDICTED box, not GT-IoU TAL or a new alignment head. That implementation distinction is not proof of novelty."
+    },
+    {
+      "title": "Spatial Self-Distillation for Object Detection with Inaccurate Bounding Boxes",
+      "arxiv_version": "2307.12101v2",
+      "source": "Paper Search exact arXiv metadata and download, version dated2023-08-15",
+      "pdf_url": "https://arxiv.org/pdf/2307.12101v2",
+      "pdf": "output/literature/papers/2307.12101v2.pdf",
+      "pdf_sha256": "308c45a422cafd0188abb59a3be429fc110d5cbe237a3bd8a5305e3b28fc5aa8",
+      "pages": 14,
+      "text": "output/literature/text/2307.12101v2.txt",
+      "text_sha256": "a8e44fee6f480620ec93acc49b951de46e4bf2f2398bd8cc912f49874dc98d65",
+      "reviewed": "Abstract, introduction,3.2 spatial position self-distillation and spatial identity/ORE prediction description",
+      "overlap": "Combining category/spatial information and object-conditioned IoU for selecting proposals is established. Self-distillation, identity/spatial confidence and nearby proposal bags are not new by themselves.",
+      "difference_and_limit": "Candidate45 uses fixed native eight-neighbor pairing and matched marginal controls to test foreground discrimination; it does not refine noisy annotations or replicate SSD-Det. Insufficient conditional sample count cannot establish an advantage over this prior."
+    },
+    {
+      "title": "Automated Model Evaluation for Object Detection via Prediction Consistency and Reliability",
+      "arxiv_version": "2508.12082v2",
+      "existing_provenance": "docs/literature/native_spatial_field_prior_audit_20261014.json",
+      "newly_reviewed": "3.1 and beginning3.2: enclosing pre-NMS box, IoU+center-closeness and overlapping-box confidence reliability",
+      "overlap": "The same detector's redundant predictions already provide spatial consistency and confidence evidence. Depending on confidence regime, stronger box consistency may describe repeated background focus; its sign is not universally foreground-positive.",
+      "difference_and_limit": "Candidate45 holds marginal means approximately matched and shuffles semantic values relative to geometric agreement, testing coupling rather than raw consistency. It is not PCR AutoEval, and no novelty from covariance or a shuffle ablation is claimed."
+    }
+  ],
+  "result_boundary": "Candidate45 has only31 tiny pairs/28queries/19images. Its coupling point estimate exceeds shuffled/product references but the image bootstrap interval crosses.5 and confidence itself has a higher point estimate. No training or innovation authorized. This is insufficient evidence, not proof that all semantic-geometry relationships are useless.",
+  "zotero_status": "One new exact-version SSD-Det PDF/text stored locally. Latest attempted Zotero call was unavailable; no new item/attachment creation claimed."
+}

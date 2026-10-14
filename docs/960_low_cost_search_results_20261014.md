@@ -1319,3 +1319,49 @@ PAA/ATSS对正负监督选择的先例已在实验43核对，本轮没有发现�
 登记与结果：`docs/experiments/candidate44_unowned_supervision_registration_20261014.json`、
 `docs/experiments/candidate44_unowned_supervision_result_20261014.json`。
 完整结果：`output/analysis/unowned-supervision-fixed-20261014/`。
+
+## 实验 45：原生类别证据与框一致性的同位置耦合是否有增量信息
+
+复用实验42的八邻域缓存，但检验不同问题：固定regret行的TP/FP判别，
+不再预测坐标或重试邻域方向回归。每个有效邻居提供查询类别概率p和
+与关联中心原生框的IoU g，耦合为mean(p*g)-mean(p)*mean(g)。
+只打乱p与g的对应，保留两者各自的值及有效位置；实验42打乱整块时
+仍保留p/g对应，因此不是同一个消融。
+TOOD已有任务对齐，PCR已有邻框一致性/置信度，SSD-Det已有类别/空间交互，
+本轮不以协方差、邻域或打乱本身主张创新。
+
+64张旧留出训练图中，在全部行完成confidence0.25/IoU0.5贪心GT匹配后，
+筛选活动且至少4个有效邻居的行。TP/FP均按预测面积分组，不给FP伪造GT尺寸。
+每个TP只配同图/同预测类/同尺寸组的FP，并要求置信度差<=0.03、
+类别概率均值差<=0.05、几何IoU均值差<=0.05；按这三个预测量距离取最多4个。
+每个TP总比较权重1，不能因为它有更多FP邻居而权重更高。
+配对选择不读取耦合或打乱得分。该有限容差条件比较不等于因果或条件互信息证明。
+
+tiny原有1958个合格TP、579个FP，最终仅28个TP有条件可比的FP，
+形成31对、覆盖19张图。不能把稀疏的条件子样本代表整个tiny集合。
+
+| 分数 | tiny配对排序正确率 |
+|---|---:|
+| 同位置类别/几何耦合 | 55.357143% |
+| 语义与几何配对打乱 | 44.642857% |
+| 两个均值的乘积 | 37.500000% |
+| 原校准置信度 | 58.928571% |
+
+耦合点估计高于打乱及均值乘积，但原置信度仍更高；
+按图bootstrap400次的95%区间为[40.383065%,71.448413%]，跨过随机水平。
+七项门槛三过四败，STOP_THIS_NATIVE_SEMANTIC_GEOMETRY_COUPLING_RECIPE。
+这是条件比较样本不足/证据不确定，而不是已经证明不存在耦合信息。
+不放宽配对容差、不翻转符号、不换组或均值形式，不启动评分头训练挽救。
+
+执行1.75秒，无检测器前向、图片解码、拟合或预测改变；四个针对性测试通过。
+新下载SSD-Det2307.12101v2并核查SPSD/SISD方法；
+复核TOOD2108.07755v3的3.2.1--3.2.2节及PCR的3.1--3.2节。
+新PDF/文本及版本哈希保留，Zotero暂不声称成功导入。
+源归档、64份特征与得分、全部GT标签、有效槽置换、192个组/图的条件配对
+及所有配对分数分子独立复算。历史诊断ignore过滤和反复查看训练图的限制不变。
+本次没有官方AP、可部署收益或创新结论。
+
+登记与结果：`docs/experiments/candidate45_native_semantic_coupling_registration_20261014.json`、
+`docs/experiments/candidate45_native_semantic_coupling_result_20261014.json`。
+论文核验：`docs/literature/native_semantic_coupling_prior_audit_20261014.json`。
+完整结果：`output/analysis/native-semantic-coupling-fixed-20261014/`。

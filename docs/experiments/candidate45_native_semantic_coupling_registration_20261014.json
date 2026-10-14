@@ -1,0 +1,27 @@
+{
+  "experiment": "candidate45_native_semantic_geometry_coupling",
+  "date": "2026-10-14",
+  "stage": "Cache-only conditional discrimination screen, no fitting or deployment",
+  "question": "Within a native eight-neighbor grid, does semantic evidence being colocated with coordinate agreement distinguish true and false detections beyond confidence and separate mean semantic/geometric strength?",
+  "basis": "Candidate42 stopped ordered neighboring features for continuous coordinate regression. This tests a different outcome and dependency: same-class foreground correctness of fixed regret detections, with semantic values shuffled RELATIVE to geometric agreement. It neither changes nor retries candidate42 spatial-order/coordinate target. Candidate35 stopped geometry-only absolute-quality fitting; this information test introduces native semantic-geometry coupling, not new hyperparameters for that head.",
+  "prior_boundary": "TOOD already addresses classification/localization alignment; PCR already uses pre/post-NMS consistency and surrounding-box confidence; SSD-Det combines spatial and category information. Agreement, joint classification/localization quality, covariance and shuffling controls are not innovation claims. This is a prerequisite signal screen only.",
+  "sample": "Exactly original64 headheldout detector-training images and candidate42 feature cache. Pin all64 feature hashes, frozen native associations, masks and original candidate18 frames/metadata. No training images used for fitting, no val/testdev, new detector forward, image decode, normalization fitting or head training.",
+  "reference_and_labels": "Fixed original regret coordinates and unchanged calibrated score/class/count/order. Score>=.25 greedy class-aware IoU.5 matching over ALL originalGT and all final rows determines row TP/FP labels. No historical owner labels used. Labels never enter feature generation or conditional matching distances.",
+  "features": "Use valid neighbor channels4(query-class probability p),6(IoU of neighbor box with associated central native box g),7(validity). At least4 valid neighbors. Score coupling=mean(p*g)-mean(p)*mean(g), population covariance. Marginal controls: meanp, meang, meanp*meang, original calibrated score. No new distribution/association threshold or nonlinear sign choice.",
+  "shuffle_control": "For each original row permute p ONLY among valid neighbor slots using SHA256(stem:row:semantic-coupling) seed, keep g and validity fixed. Marginal p/g multisets and product of their means remain exact; only pairing is destroyed. Compute shuffled covariance identically. This differs from candidate42 shuffling whole feature blocks, which preserved semantic/geometric pairing.",
+  "eligibility": "Original candidate42 active row, confidence>=.25, at least4 valid neighbors. Size group uses CURRENT PREDICTED regret area scaled to640reference, so FP rows have a label-free group; report all/tiny/small_all. This is not GT-area AP stratification.",
+  "conditional_pairs": "Within each image, predicted class and prediction-size group, pair each eligible TP row with eligible FP rows satisfying absolute differences: calibrated score<=.03, meanp<=.05, meang<=.05. Select up to4 closest FP rows by sum of squared differences normalized by those three tolerances; ties earlier original row index. Each TP's total comparison weight1 split equally among selected FP rows. FP rows may be reused across queries; no iid-pair assumption. No pair selection uses coupling/shuffle or their outcomes.",
+  "metric": "For each score, weighted fraction of selected pairs ranking TP above FP, ties.5. This is matched-pair concordance, NOT global AUROC, AP, recall or efficacy. Pool each query with equal total weight. Bootstrap all64 images400 draws with np.default_rng(0), use paired source-image totals for95% interval. Report selected/unpaired TP/FP counts and represented images.",
+  "policy": {
+    "tiny_pair_count_min": 200,
+    "tiny_paired_tp_queries_min": 50,
+    "tiny_represented_images_min": 20,
+    "tiny_coupling_concordance_min": 0.55,
+    "tiny_coupling_minus_marginal_product_min": 0.02,
+    "tiny_coupling_minus_shuffle_min": 0.02,
+    "tiny_image_bootstrap_coupling_lower95_min_exclusive": 0.5
+  },
+  "pass_action": "Only allow a newly registered low-cost scoring/learnability pilot with confidence, full geometric/marginal and semantically-shuffled controls. No innovation or full-training conclusion; closer conditional-dependence and quality-estimation prior work must be checked.",
+  "fail_action": "STOP_THIS_NATIVE_SEMANTIC_GEOMETRY_COUPLING_RECIPE. No sign flip, absolute covariance, altered formula, tolerance, minimum neighbor count, group, pairing rule, confidence or shuffle seed to rescue the result.",
+  "limits": "Finite-tolerance pairing does not prove conditional mutual information or causality. Other features, object scale/class and selection may confound scores. One chosen native location may serve multiple final detections. Headholdout has been repeatedly examined and belongs to detector training scenes. Historical uniform diagnostic ignore filtering is inherited. Failed formula does not prove all native semantic fields uninformative."
+}

@@ -1,0 +1,114 @@
+{
+  "experiment": "candidate45_native_semantic_geometry_coupling",
+  "date": "2026-10-14",
+  "output": "output/analysis/native-semantic-coupling-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_NATIVE_SEMANTIC_GEOMETRY_COUPLING_RECIPE",
+    "checks": {
+      "pairs": false,
+      "tp_queries": false,
+      "images": false,
+      "concordance": true,
+      "vs_marginal_product": true,
+      "vs_shuffle": true,
+      "image_interval": false
+    },
+    "coupling_minus_marginal_product": 0.1785714285714286,
+    "coupling_minus_shuffle": 0.10714285714285715,
+    "scope": "Matched-pair discrimination only, not globalAUROC/AP, conditional information proof or innovation."
+  },
+  "metrics": {
+    "all": {
+      "eligible_tp_queries": 2494,
+      "eligible_fp_rows": 692,
+      "paired_tp_queries": 38,
+      "pair_count": 41,
+      "represented_images": 21,
+      "concordance": {
+        "coupling": 0.5921052631578947,
+        "shuffled": 0.4605263157894737,
+        "marginal_product": 0.3815789473684211,
+        "semantic_mean": 0.4868421052631579,
+        "geometry_mean": 0.32894736842105265,
+        "confidence": 0.5921052631578947
+      },
+      "image_bootstrap_coupling_95ci": [
+        0.41657608695652176,
+        0.7387049373040752
+      ]
+    },
+    "tiny": {
+      "eligible_tp_queries": 1958,
+      "eligible_fp_rows": 579,
+      "paired_tp_queries": 28,
+      "pair_count": 31,
+      "represented_images": 19,
+      "concordance": {
+        "coupling": 0.5535714285714286,
+        "shuffled": 0.44642857142857145,
+        "marginal_product": 0.375,
+        "semantic_mean": 0.48214285714285715,
+        "geometry_mean": 0.44642857142857145,
+        "confidence": 0.5892857142857143
+      },
+      "image_bootstrap_coupling_95ci": [
+        0.40383064516129036,
+        0.7144841269841268
+      ]
+    },
+    "small_all": {
+      "eligible_tp_queries": 2349,
+      "eligible_fp_rows": 668,
+      "paired_tp_queries": 33,
+      "pair_count": 36,
+      "represented_images": 19,
+      "concordance": {
+        "coupling": 0.6212121212121212,
+        "shuffled": 0.4393939393939394,
+        "marginal_product": 0.3484848484848485,
+        "semantic_mean": 0.4696969696969697,
+        "geometry_mean": 0.3787878787878788,
+        "confidence": 0.5909090909090909
+      },
+      "image_bootstrap_coupling_95ci": [
+        0.45443181818181816,
+        0.7667567567567567
+      ]
+    }
+  },
+  "verification": {
+    "images": 64,
+    "detector_forwards": 0,
+    "image_decodes": 0,
+    "fitting_steps": 0,
+    "GT_only_in_TP_FP_labels_not_features_or_pairing_distances": true,
+    "all_GT_matching_before_native_eligibility_filter": true,
+    "original_regret_predictions_not_changed": true,
+    "predicted_area_groups_include_FP_rows": true,
+    "shuffle_preserves_marginal_semantic_geometric_multisets": true,
+    "fixed_three_marginal_tolerance_pairs_without_coupling_selection": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 1.7519452997948974
+  },
+  "independent_verification": {
+    "source_archive_and_current_hashes_verified": true,
+    "all64_source_features_and_score_traces_verified": true,
+    "all_TP_FP_labels_recomputed_from_fixed_regret": true,
+    "all_valid_slot_marginals_and_permutations_recomputed": true,
+    "all192_group_pair_selections_independently_rebuilt_with_scalar_sort": true,
+    "all_pair_concordance_numerators_independently_recomputed": true,
+    "limits": "Native cache inherits historical diagnostic ignore filtering. This verifier confirms this conditional sample, not official inference or a general dependence claim."
+  },
+  "prior_audit": "docs/literature/native_semantic_coupling_prior_audit_20261014.json",
+  "artifacts_sha256": {
+    "decision.json": "0c3f525c3a0fc8ee4e457a3caa99ca8a5986b47b27e09a0b4979738206f2fb9a",
+    "frames.json": "d65971450933ab885842bb2e72350bfdd4af6b05fb2cbde3a5743608ddaba4ad",
+    "independent_verification.json": "5ef8451f978db09f2bd18ef826a39f6d4b827f6d7fc17482e5127cc0a68aaedb",
+    "metrics.json": "01c02a505053f158a4cd225f0ba23be81553912586ec475fd49d54d0da97b4a2",
+    "per_image.json": "d324405712b5b07a57177e23369f36c53477f9291ddba7480bceaa4fc4282f2b",
+    "plan.json": "6cdb552d1b635279171984333b5e27f13cb4d8fdd935d45ab7ef88e4303eecdb",
+    "source.zip": "b1afdba70ce614369bd186bce7be659c9ca826b281cb9fc0cb7694360258b7a6",
+    "verification.json": "0a98f4cf652b235ba7ee2df43af511b8b3016765d61b675ce03bda5324fa3223"
+  },
+  "tests": "20 passed: four native semantic coupling, three conventional supervision, four reachability, three existing bounded residual, four spatial field and two shared bias tests"
+}
