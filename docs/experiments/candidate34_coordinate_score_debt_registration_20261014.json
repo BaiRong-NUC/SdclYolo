@@ -1,0 +1,29 @@
+{
+  "experiment": "candidate34_coordinate_repair_score_debt",
+  "date": "2026-10-14",
+  "stage": "GT-assisted score perturbation diagnostic, no fitting and no deployment claim",
+  "question": "Can the localization-quality CHANGE caused by the frozen coordinate repair improve ranking if the original calibrated score is corrected by that change?",
+  "motivation": "Previous coordinate selectors keep scores fixed. This screen changes ranking ONLY, leaves frozen regret coordinates fixed and tests the action-induced quality delta, not a new coordinate menu or retry of stopped context heads.",
+  "sample": "Exactly original candidate18 head-held-out64 TRAIN images, all anchors. Existing detector-training scenes already viewed, not independent validation. No val/test-dev use.",
+  "ownership": "Unchanged original candidate18 scoreordered classaware greedyIoU.5/conf.001 GT ownership. Owned action quality is mean of nominal same-owned IoU>=.50:.05:.95. Unowned qualities are0 for both original and repaired action, so differential oracle cannot claim an unmatched-GT rescue label.",
+  "arms": {
+    "calibration": "Original calibrated candidates/coordinates/scores.",
+    "regret": "Frozen repaired coordinates with unchanged calibrated scores.",
+    "oracle_delta": "Regret boxes and score sigmoid(logit(original score)+quality(selected)-quality(slot0)). Delta in[-1,1], fixed coefficient1; never truncate/reorder arrays or alter box/class/count.",
+    "oracle_absolute": "Diagnostic comparator sigmoid(logit(original score)+quality(selected)-original score), all anchors. Ordinary quality-guided residual; label-assisted and not an implementable trained baseline."
+  },
+  "mechanism": "At fixed original score>=.05, report owned changed-box counts, positive/negative/nonzero quality changes by GT size, and same-owner nominal quality deltas. Cross-threshold changes are not annotation-noise estimates.",
+  "evaluation": "Reuse COCO-style reference640 sizeAP50:95/max500 with historical uniform diagnostic ignore-filtered arrays. Also exact scoreordered one-to-one FPPI.5/10 operating budgets atIoU.5 using pooled64 images. Not official VisDrone AP, not a deployable AP bound.",
+  "policy": {
+    "tiny_changed_owned_anchors_min": 100,
+    "tiny_nonzero_quality_delta_anchors_min": 50,
+    "oracle_delta_tiny_ap_vs_regret_min_pp": 0.10,
+    "oracle_delta_small_all_ap_vs_regret_min_pp": 0.10,
+    "oracle_delta_small_all_recall_fppi10_vs_regret_min_pp": -0.10
+  },
+  "pass_action": "Only permit separately registered tiny residual score-head pilot. Match ordinary absolute-quality supervision, differential supervision and correction masked to zero for unchanged actions; preserve all frozen coordinates and compare actual AP/FP budgets. Must outperform regret and ordinary quality control before any expansion.",
+  "fail_action": "Stop this fixed coordinate-quality-delta score-correction recipe; do not adjust score multiplier, quality thresholds, ownership or image subset after results.",
+  "prior_art": "IoU-Net, Rank&Sort, AP-Loss and GFL already establish localization-aware score ranking. Action-induced score correction is not inherently novel. Any positive pilot still needs closest refinement/recalibration method review.",
+  "budget": "64 cached frames, zero detector forward/training and image decoding,4 cached COCO evaluations and fixed-budget recall curves; no fitting or parameter sweep.",
+  "limits": "Changing scores changes greedy ownership and score thresholds. Fixed original ownership can omit useful previously-unowned rows; quality delta is GT-assisted and need not be predictable from geometry. Existing ignore filtering was based on historical uniform boxes, not changed scores. A diagnostic positive does not establish innovation."
+}

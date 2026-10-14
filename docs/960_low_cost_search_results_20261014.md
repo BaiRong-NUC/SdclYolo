@@ -918,3 +918,35 @@ STOP_THIS_LOCAL_SCALE_MEDIAN_RESIDUAL，不追加seed1/2、不调邻居/训练�
 登记与数值记录：`docs/experiments/candidate33_neighbor_scale_residual_registration_20261014.json`、
 `docs/experiments/candidate33_neighbor_scale_residual_result_20261014.json`。
 完整结果：`output/analysis/neighbor-scale-residual-fixed-20261014/`。
+
+## 实验 34：替换坐标后仍保留原分数，是否存在可修复的排序欠账
+
+固定regret坐标、类别、数量和原数组顺序，仅用标注辅助改分数做空间诊断。
+所有动作保持原校准框拥有的GT；质量是同归属IoU达到十个阈值的比例。
+未归属原框两种质量均0，不伪造未归属目标标签。
+主参考按logit原分数加质量变化修正，固定系数1、零变化分数逐元素不变；
+普通绝对质量参考按logit原分数加(新质量-原分数)修正。
+两个参考均不可部署，且不构成AP理论上界。
+
+| 分支 | COCO-style tiny AP(%) | small_all AP(%) | all AP(%) |
+|---|---:|---:|---:|
+| 原校准坐标 | 37.392097 | 43.070551 | 45.574136 |
+| 原regret | 37.834863 | 43.571580 | 45.975874 |
+| 标注辅助质量变化 | 37.837659 | 43.606354 | 46.023402 |
+| 标注辅助绝对质量 | 41.170157 | 46.693555 | 48.818623 |
+
+主参考对regret tiny+0.002796pp、small_all+0.034775pp，
+FPPI10下small_all召回增量0，三项机制/误报门槛通过、两项AP门槛失败。
+STOP_THIS_ACTION_QUALITY_DELTA_SCORE_RECIPE，不调系数/阈值/归属挽救。
+tiny共960个已归属原框被改坐标，其中478个跨阈值质量改变，
+323个改善、155个损伤；这些改变没有在该固定分数修正上兑现足够AP空间。
+
+普通绝对质量参考small_all对regret+3.121975pp，作为下一步常规质量头
+是否可学习的线索保留，不视为创新、更不是已实现的可部署增益。
+IoU-Net原文第2.1、2.2、3.2节已核对，定位质量评分与排序错配均有先例。
+64张已查看训练图头留出，27.40秒，零检测器前向、训练或图像解码；
+两个分数修正属性保持与同归属十阈值质量测试通过。
+这里采用历史uniform框的诊断ignore过滤和COCO面积匹配，非官方VisDrone AP。
+登记与数值记录：`docs/experiments/candidate34_coordinate_score_debt_registration_20261014.json`、
+`docs/experiments/candidate34_coordinate_score_debt_result_20261014.json`。
+完整结果：`output/analysis/coordinate-score-debt-fixed-20261014/`。

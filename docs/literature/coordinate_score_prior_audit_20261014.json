@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-14",
+  "scope": "Cached primary-source overlap review for score/coordinate mismatch; not exhaustive novelty certification",
+  "primary_paper": {
+    "title": "Acquisition of Localization Confidence for Accurate Object Detection",
+    "arxiv": "1807.11590",
+    "source_url": "https://arxiv.org/pdf/1807.11590",
+    "pdf": "output/literature/papers/arxiv-1807.11590.pdf",
+    "pdf_sha256": "81d09db1dd1a63dc5eae00bf32a5e6a4c2ffa902c5086b59412b4e61420b62ba",
+    "text": "output/literature/text/arxiv-1807.11590.txt",
+    "text_sha256": "f2631f1e2d975caf5f2259a8d153dc55c71f51c424e456e8b5110565bfc3966e",
+    "read_sections": ["2.1 misaligned classification and localization accuracy", "2.2 nonmonotonic box regression", "3.2 IoU-guided NMS"],
+    "overlap": "Localization confidence, score-localization misalignment, quality-guided ranking and optimization-based box refinement are established. Neither quality scoring nor correction after refinement alone is novel.",
+    "zotero_existing_item": "TZLDY4U5",
+    "zotero_metadata_limit": "Existing file-import snapshot has incomplete author/date fields; source PDF provides bibliography. No duplicate item imported."
+  },
+  "paper_search_metadata_only": [
+    {"title": "Multiclass Confidence and Localization Calibration for Object Detection", "arxiv": "2306.08271v1", "status": "Paper Search abstract only, not full method review"},
+    {"title": "ProCal: Inference-Time Proposal Calibration for Open-Vocabulary Object Detection", "arxiv": "2607.01759v1", "status": "Paper Search abstract only, not a matched closed-set baseline or fulltext novelty evidence"}
+  ],
+  "candidate34_result": "Action-quality-change oracle misses both AP gates. Its STOP remains fixed. Ordinary absolute-quality oracle has larger ranking headroom but is GT-assisted, not a deployed baseline or an AP bound.",
+  "next_scope_if_pursued": "An ordinary absolute-quality tiny-head control may be screened before proposing a new method. It cannot count as innovation even if useful."
+}
