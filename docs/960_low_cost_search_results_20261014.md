@@ -950,3 +950,34 @@ IoU-Net原文第2.1、2.2、3.2节已核对，定位质量评分与排序错配�
 登记与数值记录：`docs/experiments/candidate34_coordinate_score_debt_registration_20261014.json`、
 `docs/experiments/candidate34_coordinate_score_debt_result_20261014.json`。
 完整结果：`output/analysis/coordinate-score-debt-fixed-20261014/`。
+
+## 实验 35：常规绝对质量重评分能否成为更强对照
+
+只把实验34绝对质量参考的空间作为可学习性线索，不主张新方法。
+同128/64图、冻结regret坐标，用选中动作的68维几何训练两个2241参数MLP：
+十阈值同归属质量软BCE与普通IoU0.5前景二元BCE，未归属目标均0。
+两头同初始化、15001个score>=0.05训练原框、批次、8epoch、lr0.002。
+质量估计在原logit分数上加小头输出，部署仍按(估计质量-原分数)
+修正原logit，系数1固定；零输出初始预测逐元素复现regret。
+
+| 分支 | tiny诊断AP(%) | small_all诊断AP(%) | all诊断AP(%) |
+|---|---:|---:|---:|
+| 原regret | 37.834863 | 43.571580 | 45.975874 |
+| 常规质量重评分 | 37.874370 | 43.604757 | 46.015154 |
+| 常规二元重评分 | 37.901581 | 43.660331 | 46.075932 |
+
+质量头tiny对regret+0.039507pp、small_all+0.033177pp、all+0.039281pp；
+small_all比二元头低0.055574pp。
+固定FPPI5/10的small_all召回对regret分别+0.161394/+0.225952pp。
+六项通过三项，tiny/small_allAP与相对二元头优势失败。
+STOP_THIS_ORDINARY_ABSOLUTE_QUALITY_CONTROL_RECIPE，不补种子、不调系数或训练。
+有微小正向点估计，但不升级为新的强对照，也不将常规技术称创新。
+实验34差量重评分STOP保持不变，本轮没有训练差量标签来挽救它。
+
+耗时31.30秒，零图像解码、检测器前向或训练；
+两个初始分数保持与极端logit有界性测试通过。
+AP来自已反复查看训练图、历史uniform诊断ignore过滤与COCO面积协议，
+不是官方VisDroneAP，也没有独立数据或大模型训练收益证明。
+登记与数值记录：`docs/experiments/candidate35_absolute_quality_control_registration_20261014.json`、
+`docs/experiments/candidate35_absolute_quality_control_result_20261014.json`。
+完整结果：`output/analysis/absolute-quality-control-fixed-20261014/`。

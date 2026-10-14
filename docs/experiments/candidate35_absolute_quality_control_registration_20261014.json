@@ -1,0 +1,31 @@
+{
+  "experiment": "candidate35_ordinary_absolute_quality_score_control",
+  "date": "2026-10-14",
+  "purpose": "Screen an established localization-quality scorer as a stronger ordinary control, NOT as an innovation candidate.",
+  "evidence": "Candidate34 GT-assisted absolute-quality score comparator showed+3.121975pp small_all diagnosticAP space. Differential action-quality score recipeSTOP remains unchanged; no differential target is fitted here.",
+  "sample": "Exactly candidate18 train128/head-held-out64 images, original all anchors. Both arms train/update rows atoriginal calibrated score>=.05, with no GT-derived sampling or ownership-dependent weights. No detector fitting or fresh data.",
+  "prediction_inputs": "Historical68 normalized geometry features of the FROZEN regret-selected action, unchanged calibrated score used as offset. No pixels, action-quality labels, owner, metadata or scene identifiers enter score prediction.",
+  "arms": {
+    "ordinary_quality": "Mean of ten same-owned nominal IoU>=.50:.05:.95 hits, unowned0, soft-label BCEwithlogits.",
+    "ordinary_binary": "Same-owned nominal selected IoU>=.5, unowned0, BCEwithlogits; same data/features/architecture/batches/init.",
+    "regret": "Untouched frozen regret boxes and calibrated scores."
+  },
+  "model": "Each2241-parameter68->32->1 SiLU MLP predicts residual r over logit(original score) for estimated quality. Last layer zero initialization;8epoch/batch512/AdamWlr.002 weight_decay.0001. Initial quality equals original score and correction is exactly zero.",
+  "score_rule": "qhat=sigmoid(logit(original score)+r). Deployed corrected score=sigmoid(logit(original score)+(qhat-original score)), matching candidate34 absolute oracle formula. Fixed coefficient1 and bounded correction[-1,1]. Exact-zero r returns original score bit-for-bit; all coordinates/classes/count/order preserved. No per-model threshold or truncation.",
+  "policy": {
+    "tiny_ap_vs_regret_min_pp": 0.10,
+    "small_all_ap_vs_regret_min_pp": 0.10,
+    "small_all_ap_vs_binary_min_exclusive_pp": 0.0,
+    "all_ap_vs_regret_min_pp": -0.10,
+    "small_all_recall_fppi5_vs_regret_min_pp": -0.10,
+    "small_all_recall_fppi10_vs_regret_min_pp": -0.10,
+    "repeat_min_positive_seeds": 2
+  },
+  "repetition": "Seed0 first. Only after all six gates pass, run1/2 with same recipe/data but new common random initial hidden weights and batch order. Require>=2/3positive, mean tiny/small_all gain>=.10pp and every FPPI budget. No epoch/seed/model selection from heldout results.",
+  "evaluation": "COCO-style reference640 sizeAP50:95/max500 on cached64 train-head-heldout images; scoreordered greedyIoU.5 recall atpooledFPPI5/10. Historical uniform diagnostic ignore filter inherited. Not official VisDroneAP, not independent detector generalization.",
+  "pass_action": "Only allows separately registered annotation-free official and fresh-scene feasibility audit of this ORDINARY stronger control. A useful control cannot fulfill the innovation goal by itself.",
+  "fail_action": "Stop this fixed ordinary absolute-quality head/control recipe without changing score scaling, labels, input dimensions, epochs or learning rate. Preserve34STOP.",
+  "budget": "Cached192 frames, zero detector forward/training, no image decoding;2 small heads or6ifseed0passes plus3COCO evaluations perseed.",
+  "priors": "IoU-Net and GFL/quality ranking already establish absolute localization-quality scoring. This is a lightweight cached implementation control, not a full reproduction of any cited paper.",
+  "limits": "FixedoriginalGTowners are biased to initialIoU>=.5, and unowned negatives can contain recoverable objects. Tiny-head labels/data are small. Oracle headroom may not be learnable fromgeometry. The diagnostic split has been repeatedly viewed."
+}
