@@ -1,0 +1,34 @@
+{
+  "experiment": "candidate56_paired_texture_deletion_information",
+  "date": "2026-10-15",
+  "question": "Does mean-filling a predicted tiny box provide TP/nonduplicate-FP information beyond frozen ordinary calibration, native logits, simple patch texture and equal-area nearby mean-filling?",
+  "difference": "Candidate17 removed distant context in zoomed patches to change labels. This screen deletes within-box texture at the original source-view scale, keeps the original native query and class fixed, and learns only diagnostic binary readouts. It does not reopen candidate17 or any stopped deployment recipe.",
+  "selection": "Before any decoding, hash and scan existing output/analysis/*/plan.json image stems. Exclude those exact diagnostic images. Group remaining train images by first7-character sequence prefix. Sort groups by SHA256('candidate56-scene-v1:'+prefix), use first192groups, one image per group chosen by SHA256('candidate56-image-v1:'+stem). First64fit,next64screen,last64confirmation. Splits share no sequence prefix; other frames of these sequences may have appeared in historical diagnostics, and the detector/calibrator saw training data. No unseen-detector-data claim.",
+  "reference": "Actual frozen FP16 square960 global+four-tile predictor, existing fixed NMS and ordinary calibration with ignores=[]. No GT enters predictions, query selection, patches or features. Repeated original global-view prediction/logit replay per image must be exact.",
+  "queries": "From complete ordinary calibration reference, consider score>=0.25 and predicted area*(640/max(original_size))^2<256. Sort rows by SHA256('candidate56-query-v1:'+stem+':'+row_index), take at most12 before GT filtering and patch/query availability. Use source view from calibration origins. Within that view select the native row maximizing IoU*sigmoid(predicted_class_logit), among rows with IoU>=0.5 to reference coordinates mapped to local view; stable first-index ties. Save full original native logits/decoded boxes and local kept predictions, avoiding inverse-mapping ambiguity.",
+  "patches": "Own rectangle is floor lower/ceil upper reference box in original source-view pixels, clipped to view. Sham has identical integer width/height and is shifted by +2width,-2width,+2height,-2height in that priority, first fully in-view choice. No GT-based avoidance: sham may contain another object. Missing nonempty rectangle, valid sham or native query means unavailable for all arms. Replace each patch by np.rint(per-channel patch mean).astype(uint8); other pixels bit-identical. This deletes texture, not a plausible target-absent counterfactual or guaranteed object removal.",
+  "features": "Common base: original raw calibration features,10class-onehot,5source-view-onehot,10original fixed-query native logits,query IoU,and own/sham per-channel mean and std (12texture features). Extra vectors are original minus perturbed ten-class logits at the same saved native row. No GT or perturbed query rematching.",
+  "arms": {
+    "base": "Base features, zero20extra columns.",
+    "sham": "Base plus10sham-deletion deltas, zero10own columns.",
+    "own": "Base plus10sham-deletion and10own-deletion deltas.",
+    "shuffled": "Base plus10sham-deletion and10own deltas from another image of the same predicted class in the same split. Donor is first row from a different image after query in cyclic SHA256('candidate56-donor-v1:'+stem+':'+reference_index) order; may reuse donors, is not necessarily a permutation. If no different-image donor exists for a class, own/shuffled extra columns are both zero for that class. Batch-transductive negative control, not a deployable arm."
+  },
+  "labels": "Greedy class-aware IoU0.5 matching of the entire unmodified reference in original score order at0.25. Historical individual-ignore-IoF>0.5 and unmatched same-class-IoU>=0.5 duplicate exclusion apply only to supervised/diagnostic population, equally to every arm. Fit and evaluate only selected available nonignored nonduplicate rows.",
+  "fit": "Four CPUfloat64 convex logistic residual fits with offset=logit(original calibrated score). Fit-only shared per-column mean/std, floor1e-6. Own and donor vectors share normalization estimated from own fit vectors; sham uses its own fit statistics. Ordinary BCE+.005*sum(theta^2), unpenalized intercept; zero initialization,L-BFGS-B maxiter200,ftol1e-12,gtol1e-6. Require solver success and gradient_inf<=1e-5. No detector updates, fit/feature/threshold/sample tuning or holdout normalization.",
+  "metrics": "Separately report screen64 and confirmation64 NLL/AUROC on identical selected fixed queries. Paired pooled-NLL bootstrap400draws of all64images per split, default_rng0. Keep empty images in resampling. Confirmation uses identical saved fit coefficients, no refit or rule choice after screen.",
+  "policy_per_half": {
+    "tp_min": 100,
+    "nonduplicate_fp_min": 50,
+    "images_min": 24,
+    "NLL_gain_vs_base_min": 0.002,
+    "NLL_gain_vs_sham_min": 0.001,
+    "NLL_gain_vs_shuffled_min": 0.001,
+    "AUROC_gain_vs_sham_min": 0.003,
+    "NLL_gain_vs_sham_bootstrap_lower_min_exclusive": 0.0
+  },
+  "pass": "REPLICATED_TEXTURE_DELETION_INFORMATION_SUPPORTS_SEPARATE_DEPLOYMENT_AND_COST_PILOT. A pass is not official AP, detector-training or novelty authorization; require fixed deployment gains, acceptable measured cost or amortization evidence, and closer prior differentiation.",
+  "fail": "STOP_THIS_PAIRED_MEAN_FILL_TEXTURE_DELETION_RECIPE. Do not change fill, patch size/location, selected scene/query counts, native association, model, features, regularization or gates to rescue this result.",
+  "budget": "192JPEG decodes;960original frozen forwards+192global identity replays+at most4608perturbed forwards, plus existing one predictor warmup. Four small convex fits;zero detector updates/AP. Both halves may be extracted in the one registered run regardless of screen outcome; no adaptive extra images.",
+  "prior_boundary": "D-RISE2006.03204v2 already uses masking for detector explanations and context biases. FACTOR2605.03294v1 already recalibrates detection from paired non-causal attribute perturbations. CQTR2609.06581v1 already uses counterfactual scale and internal query evidence for small objects. Mean filling, sensitivity or frozen inference alone is not new. This matched within-box versus nearby diagnostic must show new useful evidence before considering a differentiated method."
+}

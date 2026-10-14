@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-15",
+  "candidate": "candidate56 paired texture deletion information",
+  "scope": "Targeted primary-paper search,exact-version PDFs,text and rendered pages; not exhaustive novelty search or independent replication of paper claims.",
+  "papers": [
+    {
+      "title": "Black-box Explanation of Object Detectors via Saliency Maps",
+      "arxiv_version": "2006.03204v2",
+      "version_date": "2021-06-10",
+      "initial_submission": "2020-06-05",
+      "authors": [
+        "Vitali Petsiuk",
+        "Rajiv Jain",
+        "Varun Manjunatha",
+        "Vlad I. Morariu",
+        "Ashutosh Mehra",
+        "Vicente Ordonez",
+        "Kate Saenko"
+      ],
+      "pages": 15,
+      "review": "Abstract,introduction and rendered page3 read. D-RISE uses input masking and localization/category similarity; prior perturbation explanations include occlusion,noise,inpainting and blur. Context outside boxes can be important.",
+      "overlap": "Input deletion and confidence-drop explanations for YOLO/object detectors are established. Candidate56 is not D-RISE reproduction or a new attribution method.",
+      "source": "https://arxiv.org/abs/2006.03204v2",
+      "pdf": "output/literature/papers/2006.03204v2.pdf",
+      "pdf_sha256": "906543b9aaf14d63791ab4d5611596f003e0e08be5430e3569e6d416820f246a",
+      "text": "output/literature/text/2006.03204v2.txt",
+      "text_sha256": "72e66c04cdf0fc23f6dd76888d50ce5d9875675112944b35e47bbb5284fd1db4",
+      "zotero": {
+        "collection": "6HT9SNK7",
+        "parent": "A8K36FUV",
+        "attachment": "ZNWCVVZH",
+        "readback": "Authors,title,version URL,date and collection confirmed; exact PDF filename,application/pdf and imported_file child confirmed."
+      }
+    },
+    {
+      "title": "FACTOR: Counterfactual Training-Free Test-Time Adaptation for Open-Vocabulary Object Detection",
+      "arxiv_version": "2605.03294v1",
+      "version_date": "2026-05-05",
+      "authors": [
+        "Kaixiang Zhao",
+        "Mao Ye",
+        "Lihua Zhou",
+        "Hu Wang",
+        "Luping Ji",
+        "Song Tang",
+        "Xiatian Zhu"
+      ],
+      "pages": 16,
+      "review": "Abstract,introduction and rendered page3 read. Paired attribute perturbations, spatial prediction alignment and region sensitivity support training-free logit calibration in open-vocabulary detection.",
+      "overlap": "Paired perturbation reliability and score recalibration are established; within-box texture deletion versus equal-area nearby control is only a diagnostic distinction, not sufficient novelty.",
+      "source": "https://arxiv.org/abs/2605.03294v1",
+      "pdf": "output/literature/papers/2605.03294v1.pdf",
+      "pdf_sha256": "012f321df3637976817aca5881221ece5a6bad6218198fdac559ab6e9c6f90fd",
+      "text": "output/literature/text/2605.03294v1.txt",
+      "text_sha256": "a187553b7f1ef3a36ef57492fdaf988528d3b08eecce47a52518dc8461d8e7a1",
+      "zotero": {
+        "collection": "6HT9SNK7",
+        "parent": "YNCP37IU",
+        "attachment": "UHT3JSXB",
+        "readback": "Authors,title,version URL,date and collection confirmed; exact PDF filename,application/pdf and imported_file child confirmed."
+      }
+    },
+    {
+      "title": "Reading Decoder Trajectories: Training-Free Counterfactual Query-Trajectory Reliability for Small-Object Detection",
+      "arxiv_version": "2609.06581v1",
+      "version_date": "2026-09-06",
+      "authors": [
+        "Zhaoning Shi",
+        "Bo Ma"
+      ],
+      "pages": 11,
+      "review": "Abstract,introduction and rendered page3 read. Counterfactual scale branch reads intermediate decoder spatial/semantic trajectories and cross-scale conflicts before reliability routing and NMS.",
+      "overlap": "Frozen small-object scale activation and internal-query reliability already have a close prior. YOLO fixed-anchor own/sham deletion is not a decoder-trajectory implementation; difference alone does not establish novelty.",
+      "source": "https://arxiv.org/abs/2609.06581v1",
+      "pdf": "output/literature/papers/2609.06581v1.pdf",
+      "pdf_sha256": "be2653525b63b237b1f1b9572120f45e269db00f438e3c83b3753278dd06b648",
+      "text": "output/literature/text/2609.06581v1.txt",
+      "text_sha256": "78f42ae3bfb6d77156d9bc7d17db3483d659a337b28bdea2111696e0ebd82b60",
+      "zotero": {
+        "collection": "6HT9SNK7",
+        "parent": "IGIFBA5F",
+        "attachment": "7F3TBAXX",
+        "readback": "Authors,title,version URL,date and collection confirmed; exact PDF filename,application/pdf and imported_file child confirmed."
+      }
+    }
+  ],
+  "collection_work": "All3exact-version PDFs downloaded via Paper Search,parsed,extracted,rendered/read and attached in Zotero. Incremental semantic index3added0errors.",
+  "search_boundary": "Initial title query did not retrieve D-RISE; corrected identifier/title query found2006.03204v2. CFCamo metadata was seen but not downloaded or used as read evidence. FACTOR/CQTR are versioned preprints; their reported efficacy is not independently verified here.",
+  "candidate_result": "Both screen and disjoint-sequence confirmation are worse than base,sham and shuffled controls on NLL. AUROC also worsens. STOP_THIS_PAIRED_MEAN_FILL_TEXTURE_DELETION_RECIPE; no detector training,AP or deployment trial."
+}

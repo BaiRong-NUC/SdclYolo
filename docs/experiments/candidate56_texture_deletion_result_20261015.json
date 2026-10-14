@@ -1,0 +1,191 @@
+{
+  "experiment": "candidate56_paired_texture_deletion_information",
+  "date": "2026-10-15",
+  "output": "D:\\Python\\YOLO\\output\\analysis\\texture-deletion-fixed-20261015",
+  "metrics": {
+    "screen": {
+      "rows": 630,
+      "tp": 471,
+      "fp": 159,
+      "images": 60,
+      "NLL": {
+        "base": 0.5002975738530593,
+        "sham": 0.5281428797084419,
+        "own": 0.5441093858681809,
+        "shuffled": 0.5347825681480569
+      },
+      "AUROC": {
+        "base": 0.7657466383581033,
+        "sham": 0.7491086808476544,
+        "own": 0.7358624096996889,
+        "shuffled": 0.7425790169450787
+      },
+      "sham_minus_own_NLL_bootstrap95ci": [
+        -0.025257533055038243,
+        -0.006533868689756164
+      ]
+    },
+    "confirmation": {
+      "rows": 615,
+      "tp": 439,
+      "fp": 176,
+      "images": 63,
+      "NLL": {
+        "base": 0.46664595419862503,
+        "sham": 0.4906164533927731,
+        "own": 0.4970131952206356,
+        "shuffled": 0.4909187723436331
+      },
+      "AUROC": {
+        "base": 0.8115940153240837,
+        "sham": 0.7975512528473804,
+        "own": 0.7946003313315386,
+        "shuffled": 0.8006186581072687
+      },
+      "sham_minus_own_NLL_bootstrap95ci": [
+        -0.01374923626103783,
+        0.0010001117475537777
+      ]
+    }
+  },
+  "decision": {
+    "numerical": true,
+    "checks": {
+      "screen": {
+        "tp": true,
+        "fp": true,
+        "images": true,
+        "vs_base": false,
+        "vs_sham": false,
+        "vs_shuffled": false,
+        "AUROC": false,
+        "interval": false
+      },
+      "confirmation": {
+        "tp": true,
+        "fp": true,
+        "images": true,
+        "vs_base": false,
+        "vs_sham": false,
+        "vs_shuffled": false,
+        "AUROC": false,
+        "interval": false
+      }
+    },
+    "decision": "STOP_THIS_PAIRED_MEAN_FILL_TEXTURE_DELETION_RECIPE",
+    "scope": "Fixed-query diagnostic on fresh images from detector-training data; no AP, deployed gain, efficient amortization or novelty proof."
+  },
+  "training": {
+    "base": {
+      "success": true,
+      "solver_success": true,
+      "iterations": 59,
+      "objective": 0.3922587313573369,
+      "gradient_inf": 5.683757625615272e-07,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+    },
+    "sham": {
+      "success": true,
+      "solver_success": true,
+      "iterations": 56,
+      "objective": 0.3801980646248836,
+      "gradient_inf": 9.945472780205746e-07,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+    },
+    "own": {
+      "success": true,
+      "solver_success": true,
+      "iterations": 59,
+      "objective": 0.3762140736029136,
+      "gradient_inf": 8.941448679993056e-07,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+    },
+    "shuffled": {
+      "success": true,
+      "solver_success": true,
+      "iterations": 59,
+      "objective": 0.37759801375652735,
+      "gradient_inf": 8.807117807129068e-07,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+    }
+  },
+  "verification": {
+    "JPEG_decodes": 192,
+    "original_and_identity_forwards": 1152,
+    "perturbed_forwards": 4014,
+    "existing_predictor_warmup": 1,
+    "exact_global_identity_replays": 192,
+    "detector_updates": 0,
+    "linear_models_fit": 4,
+    "AP_evaluations": 0,
+    "sequence_prefixes_disjoint_across_all192_images": true,
+    "fresh_exact_images_against_recorded_prior_plans": true,
+    "source_unchanged": true,
+    "installed_sources_unchanged": true,
+    "elapsed_seconds": 100.57125309994444
+  },
+  "artifacts_sha256": {
+    "coefficients.npz": "f93e4e171127594e0262d0584e410b50088c07f6b5155901b5750124730b83ea",
+    "decision.json": "fa614f9ac06fe5876fd3b9524f45a8fafb6be79b5ddaf7e58c2b210b2528e859",
+    "frames.json": "729e0552861c4c1eaf8417b70b187b227f64e4a65c2a4b672b6179cdcc3a0fb3",
+    "metrics.json": "381e0e1bcfd853402d4391aface98a200a63671440e6a0d50c265186034f4b1f",
+    "normalization.json": "03efafb965323a85689bccaabeab2ee1a907164b71eb4c06d1543fdbd80cbfcc",
+    "per_image.json": "e40544209c1d0b2abcfdee7f62357e355030800ab85338384bbbb36c1d605317",
+    "plan.json": "423e4c08aaa0fd5730b1287f9e1fdefe8b1ace7d3b790de6820f96d2461c35ee",
+    "source.zip": "8b2f9cc64767023f0dcd9844a334c799c6624284eeeb52da89ceacc3891fd718",
+    "training.json": "dfdafbf93f58c7d46efadcb12a3e35c2cf98433b65056152129ea5667fa7a06b",
+    "verification.json": "43b1ab48e838e0abef4c0353bce7bc48d554f470dc645a0a08c1e07f500ef221",
+    "independent_verification.json": "0671d844555dd0360f1767ef3dc6e3a8ddfe32e542720f960dd342f31e59f1e8"
+  },
+  "independent_verification": {
+    "all_sources_archive_installed_code_frames_inputs192image_metadata_hashes_verified": true,
+    "all_exclusions_fresh_selection_disjoint_sequence_prefixes_and_windows_rebuilt": true,
+    "full_reference_and_features_rebuilt_with_shared_frozen_calibration": true,
+    "query_candidates_independent_IoU_association_and_patch_availability_rebuilt": 2007,
+    "unavailable_queries": 0,
+    "pixel_variants_recreated_and_hashed": 4014,
+    "all_texture_deltas_labels_duplicates_ignores_inputs_normalization_and_donors_rebuilt": true,
+    "all_four_saved_fit_objectives_stationarity_and_both_halves_NLL_rank_AUROC_bootstrap_gates_rebuilt": true,
+    "four_fit_gradient_inf": {
+      "base": 5.683757625615272e-07,
+      "sham": 9.945472780205746e-07,
+      "own": 8.941448679993056e-07,
+      "shuffled": 8.807117807129068e-07
+    },
+    "additional_JPEG_decodes": 192,
+    "additional_detector_forwards": 0,
+    "verifier_sha256": "973a4d64bfc1e9ac907d00b97d3395173a9013b7139cd13c4e273cd485b64153",
+    "limits": "Native original tensors and perturbed queried logits are hashed/stored, not independently re-forwarded. Full calibration shares frozen implementation. Diagnostic scenes are new exact images but detector/calibrator training data; prior diagnostics may contain other frames from these sequences. Mean fill deletes texture, not a plausible absent object. Sham can affect other objects. No detection AP, deployable gain, cost amortization or novelty proof."
+  },
+  "prior_audit": "docs/literature/texture_deletion_prior_audit_20261015.json",
+  "prior_audit_sha256": "032790e6924bbea713a43080e13d66b599090cce2f3aefa00d6bad5d1569f078",
+  "tests": "3 passed: python -m pytest tests/test_texture_deletion.py -q. Full independent cached/pixel audit passed.",
+  "preoutcome_repair": {
+    "archive": "output/analysis/texture-deletion-fixed-20261015-preoutcome-attempt/run",
+    "source_archive_sha256": "57e1586c71a48df9478b67fe587071065a97234ccb506d232cc65c0e2177fcd7",
+    "plan_sha256": "9f185ecfcdb96c9a07d5bdcb50c52cdcd7ca30c2f52842ca53f6119fd463fb67",
+    "description": "Initial run failed at five-variable initialization with sixemptylists after first image decode,5original view forwards and1identity replay plus predictor warmup. No query,perturbation,fit or metric outcome existed. Preserved failed run directory and source archive. Corrected only list arity; identical preregistration and192image selection verified."
+  },
+  "total_execution_scope": {
+    "completed_main": {
+      "JPEG_decodes": 192,
+      "original_and_identity_forwards": 1152,
+      "perturbed_forwards": 4014,
+      "existing_predictor_warmup": 1,
+      "exact_global_identity_replays": 192,
+      "detector_updates": 0,
+      "linear_models_fit": 4,
+      "AP_evaluations": 0,
+      "sequence_prefixes_disjoint_across_all192_images": true,
+      "fresh_exact_images_against_recorded_prior_plans": true,
+      "source_unchanged": true,
+      "installed_sources_unchanged": true,
+      "elapsed_seconds": 100.57125309994444
+    },
+    "failed_preoutcome_attempt_JPEG_decodes": 1,
+    "failed_preoutcome_attempt_detector_forwards_excluding_warmup": 6,
+    "failed_preoutcome_attempt_existing_predictor_warmup": 1,
+    "audit_JPEG_decodes": 192,
+    "audit_detector_forwards": 0
+  }
+}
