@@ -1,0 +1,31 @@
+{
+  "experiment": "candidate36_uncensored_native_deficit_attribution",
+  "date": "2026-10-14",
+  "stage": "Annotation-assisted bottleneck routing diagnostic, not an efficacy experiment",
+  "question": "For GTs missed by frozen regret, are matching coordinates absent even before thresholds/NMS, is true-class evidence weak/nonargmax, or is native support not realized downstream?",
+  "difference": "Experiment21 considered argmax detections above.001 and censored candidate recovery. This inspects ALL valid decoded coordinates even with near-zero scores and complete10class probabilities, for ALL GT rather than only originally owned final boxes. Does not modify prior retrieval or classifier STOPs.",
+  "sample": "Original candidate18 first64 head-held-out train frames and candidate12 five-view windows/raw predictions, exact hashes. No val/test-dev or fresh-data claims.",
+  "budget": "Exactly64x5=320 frozen960FP16 detector forwards plus one existing extractor warmup. No detector/head fitting, image crop changes, confidence sweep or official evaluator. ChunkGT64 for bounded GPU IoU memory.",
+  "prediction_inventory": "All decoded native18900-anchor boxes and10class probabilities per square960view, before ANY confidence/argmax/NMS selection. Undo original letterbox, clip to crop, map to original image and exclude zero/negative extent or nonfinite boxes. Every ordinary capped raw prediction must exactly replay its historical array. No GT changes native inventories.",
+  "analysis": "AtIoU.50 and.75, compare class-aware scoreordered frozenregret matches atconfidence.25. For each missed GT inspect OR support across all5views and retain perview traces.",
+  "exclusive_categories_in_priority_order": [
+    "native_support_not_realized: any geometrically matching native row has correctargmax andmaxprob>=.05",
+    "nonargmax_class_suppression: no previous category, but geometrically matching row has trueclassprob>=.05",
+    "low_true_class_confidence: neither previous, but matching row trueclassprob>=.001",
+    "class_evidence_almost_absent: matching geometry exists but no trueclassprob>=.001",
+    "geometry_absent: no valid decoded row of anyclass hasIoU>=threshold"
+  ],
+  "policy": {
+    "primary_threshold": "0.5",
+    "geometry_absent_tiny_min_count": 30,
+    "geometry_absent_tiny_miss_fraction_min": 0.20,
+    "geometry_absent_tiny_miss_fraction_at075_min": 0.20,
+    "classification_deficit_tiny_min_count": 50,
+    "classification_deficit_tiny_miss_fraction_min": 0.40,
+    "downstream_native_support_tiny_min_count": 100,
+    "downstream_native_support_tiny_miss_fraction_min": 0.50
+  },
+  "routing": "If geometry gates pass, register small localization-representation feasibility probe. If combined classification categories pass, register a genuinely different classifier/feature feasibility probe, not stopped projection/class-choice retuning. If both pass, choose larger primary missedGT fraction as first route. Downstream support gate is descriptive and cannot override stopped retrieval rules without a different mechanism. No route automatically authorizes detector training.",
+  "pass_action": "Record a bottleneck-specific bounded next-screen recommendation. Need new pre-registration and actual learnability/mechanism controls; no innovation claim from deficit proportions.",
+  "limits": "GT-assisted best-native support is optimistic, can use arbitrary sameimage anchors and ignores matching capacity. Geometry below.75 is not absent at.5. Empty/background low-score boxes can supply geometry by chance. Diagnostic ignores inherited from historicaluniform final cache; native inventory has no ignore filtering, so comparability to21is limited. Detector has seen these train scenes."
+}

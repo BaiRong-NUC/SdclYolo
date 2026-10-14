@@ -1,0 +1,120 @@
+{
+  "experiment": "candidate36_uncensored_native_deficit_attribution",
+  "date": "2026-10-14",
+  "output": "output/analysis/native-deficit-fixed-20261014",
+  "decision": {
+    "decision": "NO_DOMINANT_NATIVE_REPRESENTATION_ROUTE",
+    "checks": {
+      "geometry": false,
+      "classification": false,
+      "downstream": true
+    },
+    "values": {
+      "tiny_misses050": 718,
+      "geometry_absent": 86,
+      "classification_deficit": 244,
+      "downstream_support": 388,
+      "primary_fractions": {
+        "geometry": 0.11977715877437325,
+        "classification": 0.3398328690807799,
+        "downstream": 0.5403899721448467
+      }
+    },
+    "scope": "Annotation-assisted bottleneck routing, not AP, deployment, novelty or full training authorization."
+  },
+  "metrics": {
+    "0.5": {
+      "all": {
+        "gt": 3247,
+        "missed_gt": 753,
+        "categories": {
+          "native_support_not_realized": 407,
+          "nonargmax_class_suppression": 90,
+          "low_true_class_confidence": 142,
+          "class_evidence_almost_absent": 28,
+          "geometry_absent": 86
+        }
+      },
+      "tiny": {
+        "gt": 2664,
+        "missed_gt": 718,
+        "categories": {
+          "native_support_not_realized": 388,
+          "nonargmax_class_suppression": 81,
+          "low_true_class_confidence": 135,
+          "class_evidence_almost_absent": 28,
+          "geometry_absent": 86
+        }
+      },
+      "small_all": {
+        "gt": 3098,
+        "missed_gt": 747,
+        "categories": {
+          "native_support_not_realized": 404,
+          "nonargmax_class_suppression": 88,
+          "low_true_class_confidence": 141,
+          "class_evidence_almost_absent": 28,
+          "geometry_absent": 86
+        }
+      }
+    },
+    "0.75": {
+      "all": {
+        "gt": 3247,
+        "missed_gt": 1435,
+        "categories": {
+          "native_support_not_realized": 538,
+          "nonargmax_class_suppression": 69,
+          "low_true_class_confidence": 114,
+          "class_evidence_almost_absent": 35,
+          "geometry_absent": 679
+        }
+      },
+      "tiny": {
+        "gt": 2664,
+        "missed_gt": 1368,
+        "categories": {
+          "native_support_not_realized": 500,
+          "nonargmax_class_suppression": 60,
+          "low_true_class_confidence": 104,
+          "class_evidence_almost_absent": 31,
+          "geometry_absent": 673
+        }
+      },
+      "small_all": {
+        "gt": 3098,
+        "missed_gt": 1426,
+        "categories": {
+          "native_support_not_realized": 532,
+          "nonargmax_class_suppression": 67,
+          "low_true_class_confidence": 113,
+          "class_evidence_almost_absent": 35,
+          "geometry_absent": 679
+        }
+      }
+    }
+  },
+  "verification": {
+    "head_holdout_train_images": 64,
+    "detector_forwards_excluding_warmup": 320,
+    "fitting_steps": 0,
+    "raw_all_five_view_kept_replay_exact": true,
+    "uncensored18900_native_anchors_before_confidence": true,
+    "all_ten_native_probabilities": true,
+    "native_inventory_not_modified_using_GT": true,
+    "categories_partition_all_regret_misses_exactly": true,
+    "no_val_no_testdev_no_threshold_or_hyperparameter_search": true,
+    "source_unchanged": true,
+    "installed_sources_unchanged": true,
+    "elapsed_seconds": 10.5292648000177
+  },
+  "artifacts_sha256": {
+    "decision.json": "4b77ea50a2d76157fdc14f88c529496996f3b5eee8c34e204ce95444c032a57a",
+    "frames.json": "af17a1b55d49b7a4dc2184241df8985fff6ede22249366cee49a951fd6a067b9",
+    "metrics.json": "bc6a73e8237d2863a0842a5ffb9b0c854e1478688bdf6e94185f9648ab606c23",
+    "plan.json": "9fe732eeadd20c625703cda4ece43f578f1eb4256ff88a0fd78b9a981e6c02d3",
+    "source.zip": "1b8b81b084e5146c86bf3e798906057484d03dc80e27519cf9a36cf6b7ead0c6",
+    "verification.json": "4fef5e61461eaaddee8dfc68978edb728b2701523b072198f8e63025b143488e"
+  },
+  "tests": "2 passed: nonargmax and near-zero-score geometry remain visible and categories exhaustive; IoU.50/.75 are separate and weak true scores correctly isolated"
+}

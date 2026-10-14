@@ -981,3 +981,38 @@ AP来自已反复查看训练图、历史uniform诊断ignore过滤与COCO面积�
 登记与数值记录：`docs/experiments/candidate35_absolute_quality_control_registration_20261014.json`、
 `docs/experiments/candidate35_absolute_quality_control_result_20261014.json`。
 完整结果：`output/analysis/absolute-quality-control-fixed-20261014/`。
+
+## 实验 36：不经过置信度或最高类别筛选的原生漏检瓶颈
+
+固定64张头留出训练图及原五视图，检查每视图全部18900原生位置，
+保留十类概率，不先筛置信度、argmax或NMS；只去掉非有限/零面积框。
+缩放后坐标先转FP32再加切片偏移，保持历史映射顺序。
+320次前向的原始保留框逐元素复现历史缓存。
+分析所有GT而非仅原校准框拥有的目标，IoU0.5/0.75分别重匹配regret，
+将漏检按固定优先次序归因，各类互斥且恰好覆盖全部漏检。
+
+| tiny漏检类别 | IoU0.5 | IoU0.75 |
+|---|---:|---:|
+| 正确argmax且原生分数>=0.05，但下游未兑现 | 388 | 500 |
+| 真类分数>=0.05，但非最高类别 | 81 | 60 |
+| 真类分数在0.001--0.05之间 | 135 | 104 |
+| 有合适几何框，但真类分数均<0.001 | 28 | 31 |
+| 所有原生位置都没有合适几何框 | 86 | 673 |
+| tiny漏检总数 | 718 | 1368 |
+
+IoU0.5下几何缺失占11.977716%，分类三类合计33.983287%，
+下游未兑现54.038997%。几何/分类路由未过预登记20%/40%主门槛，
+下游描述性门槛通过，NO_DOMINANT_NATIVE_REPRESENTATION_ROUTE。
+不能据此推翻实验22--23候选补回/交换或既有分类头的STOP，
+也不因比例接近门槛而降低门槛启动训练。
+高IoU下几何缺失占49.195906%，提示高精度定位与低IoU召回的瓶颈不同，
+但这只是描述性线索，未替换主门槛，也未授权原生回归训练。
+
+本轮10.53秒，320次冻结前向加既有提取器热身，无任何训练。
+两个未阈值原生支持/分类互斥与双IoU独立性测试通过。
+GT辅助任意原生框支持很乐观，未计一对一容量；低分背景框也能偶然提供几何。
+原生库存没有ignore过滤，最终regret则沿用历史uniform诊断过滤，
+因此不能当作官方VisDrone漏检比例、可部署召回或创新证明。
+登记与数值记录：`docs/experiments/candidate36_native_deficit_registration_20261014.json`、
+`docs/experiments/candidate36_native_deficit_result_20261014.json`。
+完整结果：`output/analysis/native-deficit-fixed-20261014/`。
