@@ -1186,3 +1186,52 @@ CVPR2019《Exploring the Bounds of the Utility of Context for Object Detection�
 `docs/experiments/candidate41_shared_residual_bias_result_20261014.json`。
 论文核验：`docs/literature/shared_residual_context_prior_audit_20261014.json`。
 完整结果：`output/analysis/shared-residual-bias-fixed-20261014/`。
+
+## 实验 42：相邻原生网格坐标场的方向顺序是否有额外信息
+
+旧实验38使用单个关联位置的回归特征，实验24/37使用该位置的分布。
+本次不改变这些STOP，固定实验38已保存的view/native index，读取同层八邻域。
+八个方向各含四边相对中心原生框的坐标差、查询类别概率、同argmax类别、
+与中心框的IoU和有效位，共64维；没有GT或重新关联，没有跨层/跨行环绕。
+对照保留普通几何修正，另设无序邻域均值及每个原框独立打乱八方向的分支。
+打乱分支保留每个原框的全部八组值，仅删除稳定的方向顺序。
+
+固定原128fit/64headholdout训练图、归属、目标、4388参数结构及8epoch配方。
+三新头完全共享初始化、批次及优化器设置，额外归一化仅在128fit图拟合。
+普通几何头及预测复用实验39，seed0在CUDA上逐数组复现64图后才比较。
+960次冻结前向加原暖机，五视图保留预测全部精确复现；没有检测器更新。
+
+| 分支 | tiny AP50–95(%) | small_all AP50–95(%) | all AP50–95(%) |
+|---|---:|---:|---:|
+| 冻结regret | 37.834863 | 43.571580 | 45.975874 |
+| 普通几何连续修正 | 38.211604 | 43.901358 | 46.260251 |
+| 有序原生邻域 | 38.108749 | 43.773497 | 46.151979 |
+| 无序邻域均值 | 38.125076 | 43.891787 | 46.257167 |
+| 每原框打乱邻域方向 | 38.114781 | 43.822534 | 46.199475 |
+
+有序邻域对regret的tiny/small_all增量为+0.273886/+0.201917pp，
+固定FPPI10 small_all召回+0.096837pp，但并未超过普通残差对照：
+small_all对几何-0.127861pp、对邻域均值-0.118291pp、对打乱-0.049038pp。
+八项门槛四过四败，STOP_THIS_ORDERED_NATIVE_SPATIAL_FIELD_RECIPE。
+不运行另两个种子，不调整邻域半径/顺序/归一化/目标/关联或训练参数挽救。
+均值分支接近几何，不将其事后升级为新方法，也不凭其单种子点估计扩大训练。
+这个失败仅停止固定邻域场/小头配方，不等于所有空间信息均无用。
+
+总执行93.10秒左右，其中特征36.10秒左右。四个新测试及三个旧残差测试通过，
+连同实验41的两个测试，本轮回归检查共九项通过。
+另核验源归档及当前源、192份特征和64份预测、每个网格边界和打乱索引，
+从128fit原始缓存精确重算归一化统计，分数/类别/数量/顺序/非活动行保持。
+AP仍为反复查看的检测器训练图上的历史诊断口径，不是官方VisDrone AP。
+
+通过Paper Search下载并阅读《Localization Distillation for Object Detection》
+2204.05957v2的摘要/引言及3.5-3.6节，以及《Automated Model Evaluation for
+Object Detection via Prediction Consistency and Reliability》2508.12082v2的
+摘要/引言及3.1节开头。稠密定位信息、邻框一致性和可靠性均有先例，
+本次没有建立方向顺序的独立效果，更没有确立创新。PDF、文本和版本哈希保留。
+Zotero工具短暂恢复后尝试按URL归档，但调用返回不可用，新两篇仍暂待导入，
+不声称已创建条目/附件。
+
+登记与结果：`docs/experiments/candidate42_native_spatial_field_registration_20261014.json`、
+`docs/experiments/candidate42_native_spatial_field_result_20261014.json`。
+论文核验：`docs/literature/native_spatial_field_prior_audit_20261014.json`。
+完整结果：`output/analysis/native-spatial-field-fixed-20261014/`。

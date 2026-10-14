@@ -1,0 +1,34 @@
+{
+  "experiment": "candidate42_ordered_native_spatial_coordinate_field",
+  "date": "2026-10-14",
+  "stage": "Matched frozen-detector information/learnability screen, not innovation or official AP",
+  "question": "Do the ordered local variations of native decoded boxes predict continuous coordinate error beyond geometry, an unordered local mean and within-query shuffled spatial slots?",
+  "basis": "Candidate38 used ONE penultimate regression vector, and candidate24/37 used distributions at associated positions without adjacent-grid order. All those STOP decisions remain intact. Candidate39 ordinary continuous geometry has repeated AP gains but fails its fixed-FP guard; retain it as an additional demanding conventional comparison, not a newly accepted strong control.",
+  "prior_boundary": "Variance voting, border features and localization information at surrounding detection locations already exist. A small residual MLP or neighboring-box averaging is not an innovation. This is a prerequisite test of spatial order before proposing any distinct mechanism; no novelty claim is registered.",
+  "sample": "Original candidate18 128fit/64headholdout detector-training images and fixed candidate12 five views. No val/testdev fitting/evaluation. Repeatedly examined training imagery does not establish independent generalization.",
+  "association": "Load EXACT candidate38 chosen_native view/index and active mask, pin its trace hashes. Do not reselect native positions. All five historical FP16 kept predictions must replay exactly. Decode adjacent boxes at the same feature level (120x120,60x60,30x30); grid edges do not wrap or cross levels.",
+  "neighbors": "Eight immediate grid neighbors in row-major 3x3 order excluding center. No new threshold, class argmax or IoU selection on neighbors. Outside-grid or invalid-extent neighbors have eight zeros. For each valid neighbor: four (neighbor box minus associated central native box) coordinates normalized by original calibrated width/height and clipped[-1,1], query-class probability, same-argmax-class flag, IoU with central native box, availability flag. Only feature-slot position encodes grid direction. No donor GT, spatial offsets or selected-neighbor class labels.",
+  "arms": {
+    "geometry": "Reuse all three frozen candidate39 ordinary geometry heads/predictions, exact seed0 GPU replay required; 4388 parameters",
+    "ordered": "Historical selected68 geometry plus flattened eight ordered eight-channel neighbor slots; 132 inputs and4388 parameters",
+    "mean": "Same selected68 geometry plus unweighted mean of valid neighbor eight-channel slots repeated eight times; 132 inputs and4388 parameters, lower information rank disclosed",
+    "shuffled": "Same selected68 geometry plus all eight neighbor slots permuted separately for each image/query by SHA256(stem:row:spatial), no labels; order removed but every feature value retained"
+  },
+  "normalization": "Extra64 means/stds fitted on128fit active rows separately per arm, std floor1e-6. Original68 geometry unchanged. No GT in inputs/association/normalization. Save raw slots, permutations and normalization.",
+  "training": "Identical candidate38 ordinary recipe, not an objective change: same4388parameter132->32SiLU->4 model, zero final layer, .1*tanh bounded correction, same owner and normalized/clipped targets, unowned0. Balanced available owned/unowned group mean SmoothL1 beta.02, AdamW lr.002 wd.0001,8epochs,batch512, seed0. All three new heads share initialization/order. Only if seed0 passes EVERY gate run seeds1/2 with fixed cache. Scores/classes/count/order preserved; invalid coordinates fall back.",
+  "budget": "192*5=960 frozen detector forwards plus existing warmup; three tiny heads in seed0, zero detector updates. Reuse cached geometry heads. Two repeats only on seed0 full pass. No hyperparameter/threshold/order/radius/feature search.",
+  "policy": {
+    "tiny_ap_vs_regret_min_pp": 0.05,
+    "small_all_ap_vs_regret_min_pp": 0.05,
+    "all_ap_vs_regret_min_pp": -0.05,
+    "tiny_ap_vs_geometry_min_pp": 0.02,
+    "small_all_ap_vs_geometry_min_pp": 0.03,
+    "small_all_ap_vs_mean_min_pp": 0.02,
+    "small_all_ap_vs_shuffled_min_pp": 0.02,
+    "small_all_recall_fppi10_vs_regret_min_pp": 0.0,
+    "repeat_min_fully_passing_seeds": 2
+  },
+  "confirmation": "Require seed0 full pass to repeat. Then at least2/3 fully passing seeds, mean tiny/small/all AP and comparison gains meet all respective gates, and everyseed allAP and FP guard. A pass permits a bounded independent/official audit and closer prior review, not full detector training or an innovation conclusion.",
+  "fail_action": "STOP_THIS_ORDERED_NATIVE_SPATIAL_FIELD_RECIPE. No changed neighborhood radius, ordering, association, normalization, objective, bounds, learning rate, epochs or chosen seeds to rescue this recipe.",
+  "metrics": "Historical COCO-style cached AP50:95 max500 reference640, all/tiny/small_all, fixedFPPI10 recall. Original diagnostic ignore filtering inherited, not official VisDrone AP. Neighbor order ablation tests only information use, not a causal image intervention or instance-identity certificate. Costs distinguish new preparation and existing multi-view detector cost."
+}

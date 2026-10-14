@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-14",
+  "scope": "Pre-run primary-source overlap check for candidate42, not exhaustive novelty verification",
+  "papers": [
+    {
+      "title": "Localization Distillation for Object Detection",
+      "arxiv_version": "2204.05957v2",
+      "source": "Paper Search arXiv metadata and download tools, version dated2022-12-08",
+      "pdf_url": "https://arxiv.org/pdf/2204.05957v2",
+      "pdf": "output/literature/papers/2204.05957v2.pdf",
+      "pdf_sha256": "41ec89525a8f6daff4670e28da4d71629ff1c30e188e7119e5b743207524a0ca",
+      "pages": 15,
+      "text": "output/literature/text/2204.05957v2.txt",
+      "text_sha256": "d98972dbe37fa11f4bba7626c6e160e430f4c4d2b5417554049df1f7a2e728ff",
+      "reviewed": "Abstract, introduction and sections3.5-3.6: GT-based main/valuable localization regions and selective logit distillation",
+      "overlap": "Native localization outputs contain useful information outside ordinary positive/classification locations. This principle and dense localization supervision are not new.",
+      "difference_and_limit": "Candidate42 uses no teacher/student training: fixed immediate-grid box differences and a spatial-slot shuffle test for continuous coordinate error. This implementation difference alone does not establish novelty. No faithful LD reproduction or superiority claim."
+    },
+    {
+      "title": "Automated Model Evaluation for Object Detection via Prediction Consistency and Reliability",
+      "arxiv_version": "2508.12082v2",
+      "source": "Paper Search arXiv metadata and download tools, version dated2025-10-02",
+      "pdf_url": "https://arxiv.org/pdf/2508.12082v2",
+      "pdf": "output/literature/papers/2508.12082v2.pdf",
+      "pdf_sha256": "93ee4c178877893194bcae8ce55c7c4012da7ff992da239eec1e779c395c979e",
+      "pages": 20,
+      "text": "output/literature/text/2508.12082v2.txt",
+      "text_sha256": "70bd030f7049d5fb23414a262ef0eb559199bbff9de4d44384cf0f4423ae1742",
+      "reviewed": "Abstract, introduction and beginning of3.1: merged pre-NMS predictions, spatial consistency and confidence-based reliability for unlabeled AutoEval",
+      "overlap": "Obtaining localization reliability from many already-computed overlapping pre-NMS boxes is established. It is not novel to reuse discarded predictions or compare box agreement.",
+      "difference_and_limit": "PCR estimates detector performance rather than refining boxes. Candidate42 checks fixed native-grid direction order against ordinary unordered controls; no claim that an ordered field is absent from all earlier work."
+    }
+  ],
+  "previous_primary_audits_consulted": [
+    "docs/literature/stable_order_prior_audit_20261014.json",
+    "docs/literature/boundary_coordinate_prior_audit_20261014.json"
+  ],
+  "known_overlap": "KL-Loss variance voting, BorderDet boundary features and SABL side-specific localization already cover neighboring-box fusion and border-specific information. Neither an MLP nor a spatial tensor can be claimed as a contribution.",
+  "zotero_status": "Pending import: Zotero tools were briefly discoverable, but zotero_add_item returned MCP tool is not available to the model and the namespace was removed again. No item/attachment creation claimed. Two exact-version PDFs and texts are stored locally. Attempted URLs2204.05957v2 and2508.12082v2, destination6HT9SNK7, if_exists=file.",
+  "claim": "Only a fixed low-cost information/learnability screen is authorized. Need matched-control and repeatable deployment evidence plus a closer method-level prior audit before an innovation candidate."
+}

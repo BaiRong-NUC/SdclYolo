@@ -1,0 +1,151 @@
+{
+  "experiment": "candidate42_ordered_native_spatial_coordinate_field",
+  "date": "2026-10-14",
+  "output": "output/analysis/native-spatial-field-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_ORDERED_NATIVE_SPATIAL_FIELD_RECIPE",
+    "per_seed": {
+      "0": {
+        "passed": false,
+        "checks": {
+          "tiny_vs_regret": true,
+          "small_all_vs_regret": true,
+          "all_vs_regret": true,
+          "tiny_vs_geometry": false,
+          "small_all_vs_geometry": false,
+          "small_all_vs_mean": false,
+          "small_all_vs_shuffled": false,
+          "fppi10": true
+        },
+        "values": {
+          "AP_gains_pp": {
+            "regret": {
+              "tiny": 0.27388584840471464,
+              "small_all": 0.20191720145159575,
+              "all": 0.17610566992794507
+            },
+            "geometry": {
+              "tiny": -0.10285503663104434,
+              "small_all": -0.12786100245970045,
+              "all": -0.10827186994462612
+            },
+            "mean": {
+              "tiny": -0.016326712004022248,
+              "small_all": -0.11829067402363003,
+              "all": -0.10518758922170579
+            },
+            "shuffled": {
+              "tiny": -0.006032569539299315,
+              "small_all": -0.049037645976712785,
+              "all": -0.04749588849488062
+            }
+          },
+          "small_all_recall_fppi10_vs_regret_pp": 0.09683666881860065
+        }
+      }
+    },
+    "mean_AP_gains_pp": {
+      "regret": {
+        "tiny": 0.27388584840471464,
+        "small_all": 0.20191720145159575,
+        "all": 0.17610566992794507
+      },
+      "geometry": {
+        "tiny": -0.10285503663104434,
+        "small_all": -0.12786100245970045,
+        "all": -0.10827186994462612
+      },
+      "mean": {
+        "tiny": -0.016326712004022248,
+        "small_all": -0.11829067402363003,
+        "all": -0.10518758922170579
+      },
+      "shuffled": {
+        "tiny": -0.006032569539299315,
+        "small_all": -0.049037645976712785,
+        "all": -0.04749588849488062
+      }
+    },
+    "scope": "Repeated detector-training imagery and ordinary residual heads; no official AP or innovation claim."
+  },
+  "AP50_95_percent": {
+    "0": {
+      "regret": {
+        "tiny": 37.834862966304755,
+        "small_all": 43.57157954813455,
+        "all": 45.97587374673244
+      },
+      "geometry": {
+        "tiny": 38.21160385134051,
+        "small_all": 43.90135775204585,
+        "all": 46.26025128660501
+      },
+      "ordered": {
+        "tiny": 38.10874881470947,
+        "small_all": 43.77349674958615,
+        "all": 46.15197941666038
+      },
+      "mean": {
+        "tiny": 38.125075526713495,
+        "small_all": 43.89178742360978,
+        "all": 46.25716700588209
+      },
+      "shuffled": {
+        "tiny": 38.11478138424877,
+        "small_all": 43.82253439556286,
+        "all": 46.19947530515526
+      }
+    }
+  },
+  "training": {
+    "0": {
+      "checkpoint": "heads-seed0.pt",
+      "sha256": "37d3eb503e4b47345a9e5b82308a3708b4c3f3eb79db3f4baad1322b9748b370",
+      "active_training_rows": 15001,
+      "owned_training_rows": 6139,
+      "parameters_each": 4388
+    }
+  },
+  "verification": {
+    "features": {
+      "images": 192,
+      "forwards_excluding_warmup": 960,
+      "raw_five_view_replay_exact": true,
+      "feature_seconds": 36.09715300006792,
+      "raw_views_sha256": "9faa1bc87ca0adf873a485e5b485a22d78d60dfee2ad542a206820c28cffd7ef"
+    },
+    "detector_training_steps": 0,
+    "heads_per_seed": 3,
+    "geometry_seed0_all64_GPU_replay_exact": true,
+    "geometry39_STOP_preserved": "STOP_THIS_ORDINARY_GEOMETRY_RESIDUAL_CONFIRMATION",
+    "scores_classes_count_order_inactive_preserved": true,
+    "train_only_normalization_and_original_owners": true,
+    "neighbors_and_associations_without_GT": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 93.10464340006001
+  },
+  "independent_verification": {
+    "source_archive_and_current_sources_verified": true,
+    "feature_trace_count": 192,
+    "prediction_trace_count": 64,
+    "train_only_extra_normalization_recomputed_exactly": true,
+    "all_grid_indices_and_shuffle_permutations_verified": true,
+    "score_class_order_count_and_inactive_rows_verified": true
+  },
+  "artifacts_sha256": {
+    "decision.json": "7264b0dcbc4bb5df2b7c7c115a2d71f7be5baf1a3b0525acee0bfab8ee5d688e",
+    "features.json": "ee0f111f5f12a6a9be06672be990da5e34b1a2c5799fae51e6aadca3891034dc",
+    "fixed-fp-budgets-seed0.json": "b102d5c8c9dc2061f18678864f1b3d2636b742aceed2cb4dbde1ab4acc7e8022",
+    "frames-seed0.json": "8ff922e2d440b26e370e7925510e956410798a4aea80107b24e692eea7d3df89",
+    "heads-seed0.pt": "37d3eb503e4b47345a9e5b82308a3708b4c3f3eb79db3f4baad1322b9748b370",
+    "independent_verification.json": "42e0518d9a4b83808ba4875c8c443b0c82136004ca4ff3114fa29506d7a4ed0f",
+    "losses-seed0.json": "377f0ac1fd3408f6fb94db6c7d681814fb0c6cad02348ef101949fdde74aadd7",
+    "metrics.json": "61e19e42a9786ec13a1f712f0af87c397d49f496101b124817d6859856f7a17e",
+    "normalization.json": "e48b599968885df4db85c133a50d1c66a2c7dbc9a1b49d6db4c8ed84e3d087e9",
+    "plan.json": "e8336e5708a60e86af72ec96544e4de50464f799f2e59f212f4c050d8b3bff3a",
+    "source.zip": "5136bfd6f26c17552a5c956f85051250fa0ba82afb10d0457dae65e199d93bd9",
+    "training.json": "74d4d4759842ec8537023192e3f93cb3a1c5fcc2276b1bb9107eec7ebd138127",
+    "verification.json": "2b3aec0df4a47019daf2c330f80c9ba7135f381e8760f94b8e8164dc480b31b9"
+  },
+  "tests": "9 passed: four native spatial field tests, three existing bounded native residual tests and two shared residual bias tests"
+}
