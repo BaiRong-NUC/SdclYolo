@@ -1,0 +1,18 @@
+{
+  "experiment": "candidate14_frozen_soft_class_information",
+  "date": "2026-10-14",
+  "question": "When the frozen classifier's top class is wrong on sampled tiny TAL positives, is the target often retained in its top three classes, and can its prediction-only top-two gap separate correct from wrong rows?",
+  "cache": "output/class_margin/train_visual_seed0",
+  "manifest_sha256": "c73511cffe5c97b520068d1a9cc4f4aa093cefaa4fbea39212bc0c3ad5d0a0c9",
+  "data": "All previously fixed 512 fitting and 128 head-monitor train images. Report separately. Main subset: tiny TAL positives with reconstructed maximum sigmoid score>=0.25.",
+  "reconstruction": "Read archived FP16 penultimate features and initial FP16 detector weights stored as FP32. Compute level-specific FP32 linear logits on CPU. This is an approximate diagnostic, not exact live detector replay.",
+  "metrics": "Correct target class rank, top-three coverage among wrong rows, top1-vs-top2 logit-gap AUROC for correct-vs-wrong rows, counts and TAL-quality-weighted variants.",
+  "policy": {
+    "holdout_tiny_wrong_count_min": 20,
+    "holdout_tiny_wrong_top3_coverage_min": 0.60,
+    "holdout_tiny_gap_auc_min": 0.65
+  },
+  "budget": "Cache reads plus 3870-parameter frozen projections only. No images, detector forward, fitting, threshold search, new action execution or official evaluator.",
+  "pass_action": "Only permits a separately registered detection-level raw-posterior audit. TAL samples are biased and have no final detection ownership, so this result alone never permits large training.",
+  "limits": "Repeatedly viewed train scenes; detector trained on all of them. TAL quality is not GT IoU accuracy. No object/view IDs retained. Top-k availability is not deployable correction or AP. Soft classification fusion is established prior art, not a novelty claim. Original class-margin STOP remains."
+}

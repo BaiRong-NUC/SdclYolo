@@ -1,0 +1,75 @@
+{
+  "experiment": "candidate14_frozen_soft_class_information",
+  "date": "2026-10-14",
+  "decision": {
+    "decision": "RAW_POSTERIOR_AUDIT_ONLY",
+    "checks": {
+      "wrong_sample_count": true,
+      "top3_information": true,
+      "gap_discrimination": true
+    },
+    "scope": "Biased sampled TAL-anchor information, not detection correction, AP, or originality.",
+    "prior_class_margin_stop_unchanged": true
+  },
+  "metrics": {
+    "train": {
+      "tiny_positive_rows_at_score025": 41203,
+      "correct_rows": 37863,
+      "wrong_rows": 3340,
+      "wrong_target_rank_histogram": [
+        2586,
+        438,
+        166,
+        84,
+        26,
+        20,
+        8,
+        9,
+        3
+      ],
+      "wrong_top3_coverage": 0.9053892215568863,
+      "wrong_top3_quality_weighted_coverage": 0.9471419372693064,
+      "top2_gap_correctness_auc": 0.8419857377393221,
+      "top2_gap_quality_weighted_correctness_auc": 0.8676344145864149
+    },
+    "holdout": {
+      "tiny_positive_rows_at_score025": 14617,
+      "correct_rows": 13319,
+      "wrong_rows": 1298,
+      "wrong_target_rank_histogram": [
+        1098,
+        128,
+        35,
+        19,
+        8,
+        6,
+        2,
+        2,
+        0
+      ],
+      "wrong_top3_coverage": 0.9445300462249615,
+      "wrong_top3_quality_weighted_coverage": 0.9744532928623421,
+      "top2_gap_correctness_auc": 0.840697181673689,
+      "top2_gap_quality_weighted_correctness_auc": 0.8670310568970431
+    }
+  },
+  "verification": {
+    "all_640_cache_chunks_verified": true,
+    "fitting_images": 512,
+    "head_holdout_images": 128,
+    "scene_overlap": 0,
+    "no_training": true,
+    "no_detector_forward": true,
+    "no_policy_execution": true,
+    "approximate_fp32_reconstruction_only": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 1.5297789999749511
+  },
+  "artifacts_sha256": {
+    "decision.json": "eae2a20c3de4399808da6c021fca323fb79f1705526d76868d70d11b59611217",
+    "plan.json": "6cde46c845856a244e4e17f61fc2098dbcb6af055e1c132b04411328fc326bb6",
+    "source.zip": "83ba7ed3951d4aaa05df1322c2c9b2f87ac3c6fc3ea6c34ed5bfb50edf974d21",
+    "summary.json": "5f453aac7898d4bca0cecc373ee3577fbc6001b1ea197f03cd62964c17913248",
+    "verification.json": "66b309d6286fe4242cd665cbafe78ee8e8d117d63d06386b49640354c8882286"
+  }
+}

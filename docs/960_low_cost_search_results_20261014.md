@@ -223,3 +223,29 @@ GT 辅助参考：原框按无类别的一对一 IoU>=0.5 归属确定，
 `docs/experiments/candidate13_class_signal_registration_20261014.json`、
 `docs/experiments/candidate13_class_signal_result_20261014.json`。
 完整结果：`output/analysis/class-choice-signal-fixed-20261014/`。
+
+## 实验 14：冻结完整类别分数的信息空间
+
+读取原有 640 张图片缓存，核验 manifest、全部 chunk、初始投影与旧源码 ZIP，
+用保存的 FP16 特征和初始投影作 FP32 线性重建。无需推理或训练检测器。
+这不是精确 FP16 回放；原 class-margin 的 STOP 不变。
+数据是原有 TAL 选出的正负 anchor，主子集为 tiny 正例且最大分数>=0.25。
+512 fitting / 128 head holdout 场景分离，但检测器曾训练所有这些图片。
+
+| 划分 | 主子集行数 | 最高分类别错误行数 | 错误行正确类在前三比例 | 前两类 logit 差的正确性 AUROC |
+|---|---:|---:|---:|---:|
+| fitting | 41,203 | 3,340 | 90.538922% | 0.841986 |
+| head holdout | 14,617 | 1,298 | 94.453005% | 0.840697 |
+
+登记要求 holdout 错误行至少 20、前三覆盖至少 60%、AUROC 至少 0.65；
+三项通过，判断 RAW_POSTERIOR_AUDIT_ONLY。耗时 1.529779 秒。
+这是明确的正向信息信号：最高分标签丢掉了不少目标类别证据，分数差也携带
+可靠性信息。但 TAL 样本有选择偏差、没有保留跨视图/对象身份，
+不能转述成 94% 的检测错误可被修复或 AP 会提高。
+仅允许另行登记真实最终框的完整分数诊断，不扩大训练。
+普通 soft-score 分类融合已有先例，本次不是原创性证明。
+
+两个类别排序、过滤与缺少错误样本的门槛测试通过。登记与数值记录：
+`docs/experiments/candidate14_soft_class_information_registration_20261014.json`、
+`docs/experiments/candidate14_soft_class_information_result_20261014.json`。
+完整结果：`output/analysis/soft-class-information-fixed-20261014/`。
