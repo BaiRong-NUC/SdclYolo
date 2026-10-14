@@ -1,0 +1,211 @@
+{
+  "experiment": "candidate21_native_view_censoring_inventory",
+  "date": "2026-10-14",
+  "decision": {
+    "decision": "CENSORING_RETRIEVAL_PILOT_ALLOWED",
+    "checks": {
+      "new_missed_target_support": true,
+      "unique_tiny_capacity": true,
+      "unique_small_all_capacity": true
+    },
+    "values": {
+      "tiny_baseline_missed_new_dense_support_count": 14,
+      "tiny_max_matching_gain_pp": 0.5630630630630631,
+      "small_all_max_matching_gain_pp": 0.5164622336991607
+    },
+    "scope": "GT-assisted candidate inventory only; not AP/AR or evidence of a new fusion method."
+  },
+  "metrics": {
+    "conf0.05_iou0.5": {
+      "all": {
+        "gt": 3247,
+        "baseline_missed": 759,
+        "baseline_missed_new_dense_support": 15,
+        "dense_supported_gt": 2897,
+        "uncapped_supported_gt": 2882,
+        "kept_supported_gt": 2882,
+        "dense_max_matches": 2897,
+        "uncapped_max_matches": 2881,
+        "kept_max_matches": 2881
+      },
+      "tiny": {
+        "gt": 2664,
+        "baseline_missed": 724,
+        "baseline_missed_new_dense_support": 14,
+        "dense_supported_gt": 2330,
+        "uncapped_supported_gt": 2316,
+        "kept_supported_gt": 2316,
+        "dense_max_matches": 2330,
+        "uncapped_max_matches": 2315,
+        "kept_max_matches": 2315
+      },
+      "small_all": {
+        "gt": 3098,
+        "baseline_missed": 753,
+        "baseline_missed_new_dense_support": 15,
+        "dense_supported_gt": 2751,
+        "uncapped_supported_gt": 2736,
+        "kept_supported_gt": 2736,
+        "dense_max_matches": 2751,
+        "uncapped_max_matches": 2735,
+        "kept_max_matches": 2735
+      }
+    },
+    "conf0.25_iou0.5": {
+      "all": {
+        "gt": 3247,
+        "baseline_missed": 759,
+        "baseline_missed_new_dense_support": 9,
+        "dense_supported_gt": 2683,
+        "uncapped_supported_gt": 2674,
+        "kept_supported_gt": 2674,
+        "dense_max_matches": 2682,
+        "uncapped_max_matches": 2672,
+        "kept_max_matches": 2672
+      },
+      "tiny": {
+        "gt": 2664,
+        "baseline_missed": 724,
+        "baseline_missed_new_dense_support": 9,
+        "dense_supported_gt": 2124,
+        "uncapped_supported_gt": 2115,
+        "kept_supported_gt": 2115,
+        "dense_max_matches": 2123,
+        "uncapped_max_matches": 2113,
+        "kept_max_matches": 2113
+      },
+      "small_all": {
+        "gt": 3098,
+        "baseline_missed": 753,
+        "baseline_missed_new_dense_support": 9,
+        "dense_supported_gt": 2537,
+        "uncapped_supported_gt": 2528,
+        "kept_supported_gt": 2528,
+        "dense_max_matches": 2536,
+        "uncapped_max_matches": 2526,
+        "kept_max_matches": 2526
+      }
+    },
+    "conf0.05_iou0.75": {
+      "all": {
+        "gt": 3247,
+        "baseline_missed": 759,
+        "baseline_missed_new_dense_support": 24,
+        "dense_supported_gt": 2348,
+        "uncapped_supported_gt": 2166,
+        "kept_supported_gt": 2166,
+        "dense_max_matches": 2347,
+        "uncapped_max_matches": 2165,
+        "kept_max_matches": 2165
+      },
+      "tiny": {
+        "gt": 2664,
+        "baseline_missed": 724,
+        "baseline_missed_new_dense_support": 21,
+        "dense_supported_gt": 1795,
+        "uncapped_supported_gt": 1622,
+        "kept_supported_gt": 1622,
+        "dense_max_matches": 1794,
+        "uncapped_max_matches": 1621,
+        "kept_max_matches": 1621
+      },
+      "small_all": {
+        "gt": 3098,
+        "baseline_missed": 753,
+        "baseline_missed_new_dense_support": 24,
+        "dense_supported_gt": 2202,
+        "uncapped_supported_gt": 2020,
+        "kept_supported_gt": 2020,
+        "dense_max_matches": 2201,
+        "uncapped_max_matches": 2019,
+        "kept_max_matches": 2019
+      }
+    },
+    "conf0.25_iou0.75": {
+      "all": {
+        "gt": 3247,
+        "baseline_missed": 759,
+        "baseline_missed_new_dense_support": 10,
+        "dense_supported_gt": 2178,
+        "uncapped_supported_gt": 2030,
+        "kept_supported_gt": 2030,
+        "dense_max_matches": 2177,
+        "uncapped_max_matches": 2029,
+        "kept_max_matches": 2029
+      },
+      "tiny": {
+        "gt": 2664,
+        "baseline_missed": 724,
+        "baseline_missed_new_dense_support": 9,
+        "dense_supported_gt": 1634,
+        "uncapped_supported_gt": 1496,
+        "kept_supported_gt": 1496,
+        "dense_max_matches": 1633,
+        "uncapped_max_matches": 1495,
+        "kept_max_matches": 1495
+      },
+      "small_all": {
+        "gt": 3098,
+        "baseline_missed": 753,
+        "baseline_missed_new_dense_support": 10,
+        "dense_supported_gt": 2033,
+        "uncapped_supported_gt": 1885,
+        "kept_supported_gt": 1885,
+        "dense_max_matches": 2032,
+        "uncapped_max_matches": 1884,
+        "kept_max_matches": 1884
+      }
+    }
+  },
+  "view_missingness": {
+    "all": {
+      "fully_visible_opportunities": 7490,
+      "missing_kept": 1344,
+      "explained_by_nms": 57,
+      "explained_by_cap": 0,
+      "no_qualifying_dense_argmax": 1287
+    },
+    "tiny": {
+      "fully_visible_opportunities": 6218,
+      "missing_kept": 1256,
+      "explained_by_nms": 55,
+      "explained_by_cap": 0,
+      "no_qualifying_dense_argmax": 1201
+    },
+    "small_all": {
+      "fully_visible_opportunities": 7184,
+      "missing_kept": 1322,
+      "explained_by_nms": 56,
+      "explained_by_cap": 0,
+      "no_qualifying_dense_argmax": 1266
+    }
+  },
+  "verification": {
+    "images": 64,
+    "detector_forwards_excluding_warmup": 320,
+    "views_exceeding500_after_nms": 41,
+    "stored_pool_rows_at_native_conf005_after_diagnostic_ignore": {
+      "dense": 65463,
+      "uncapped": 15089,
+      "kept": 15089
+    },
+    "kept_original_and_uncapped_prefix_replay_exact": true,
+    "kept_anchor_coordinates_match_decoded_exact": true,
+    "no_fitting_no_threshold_search": true,
+    "no_val_no_testdev": true,
+    "source_unchanged": true,
+    "installed_nms_unchanged": true,
+    "elapsed_seconds": 9.784117300063372
+  },
+  "output": "output/analysis/native-censoring-fixed-20261014",
+  "artifacts_sha256": {
+    "plan.json": "0a915d8e7fdd4d802670017e8f294507566c9111c98a51232580ff223b4251fc",
+    "source.zip": "d422a2980defad4759f3a8220359a491d50f44cf508b3a82a83d031ce2c00a21",
+    "frames.json": "64449ce76ef60e555bcd8bda38645d46bde1360f653fab966ada4545ec5d394b",
+    "metrics.json": "5a75990abca318a3c7acd92698624a92ba9fc1c48e858a7fdafe3138c96e29a9",
+    "view_missingness.json": "12d9056d25e4672259df5ace372fa233dfa9a758a2da9fd4a156456517a5b6d9",
+    "decision.json": "32566c3d04f3cdbcf81b41babcc2fca0099fa6feb8a1dc7acf1f0d83072f73ca",
+    "verification.json": "be7d0075314ab105c95f9d775e8162a84d3bfac8c1eaf82f46ecb2b908ace629"
+  },
+  "tests": "3 passed: native geometry/prefix, unique matching capacity, empty native output"
+}

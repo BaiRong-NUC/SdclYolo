@@ -1,0 +1,22 @@
+{
+  "experiment": "candidate21_native_view_censoring_inventory",
+  "date": "2026-10-14",
+  "hypothesis": "Some apparent missing view evidence is selection censoring by per-view NMS or max500, and recovering that evidence has measurable tiny-object coverage headroom beyond the existing kept five-view pool.",
+  "selection": "Exactly first64 candidate12 head-held-out train images in its original order. Historically trained and repeatedly viewed scenes, not fresh confirmation.",
+  "budget": "64x5=320 frozen960 detector forwards plus the existing extractor warmup. No fitting, detector retraining, crop changes, confidence tuning or official evaluator.",
+  "inventory": "For each unchanged view collect decoded pre-NMS boxes with their single argmax class, postNMS boxes without the500 cap, and original postNMS capped500 boxes. Same native confidence floor0.001 and NMS IoU0.7. Use current installedNMS for all; uncapped means max_det30000, with18900 anchors below max_nms30000.",
+  "identity_check": "Uncapped NMS first500 must exactly equal current original predictions. Current original predictions mapped to fullimage must exactly equal candidate12 raw captures at every view. Decoded coordinates of uncapped kept anchors must exactly equal NMS output after original-image scaling.",
+  "annotation_boundary": "Construct all three prediction inventories without annotations. Only then apply shared diagnostic clean_views/ignoreIoF filtering and read GT to analyze coverage. No deployed candidate generation from GT.",
+  "primary_point": {"native_confidence": 0.05, "iou": 0.5, "baseline_confidence": 0.25},
+  "metrics": "Same-class candidate-GT support and exact maximum bipartite matches perimage, for all/tiny/small_all. Also count baseline-missed GT lacking kept-pool support but having preNMS support. A support edge is not a unique recovered detection; report exact matching capacity separately.",
+  "secondary": "Repeat inventory reporting only at native confidence0.25 and IoU0.75, no alternative gate. Count fully-visible GT-view opportunities with missing kept support that are explained byNMS versus the500 cap versus no qualifying decoded argmax candidate.",
+  "policy": {
+    "tiny_baseline_missed_new_dense_support_count_min": 10,
+    "tiny_dense_vs_kept_max_matching_gain_min_pp": 0.10,
+    "small_all_dense_vs_kept_max_matching_gain_min_pp": 0.10
+  },
+  "pass_action": "Only permits registering a prediction-only retrieval precision/learnability pilot with matched uncapped NMS and ordinary preNMS fusion controls. Not authorization for full detector training.",
+  "fail_action": "Stop this native-censoring recovery recipe; do not raiseNMS IoU, lowerconfidence, change views or expand samples to rescue it.",
+  "prior_art": "Soft-NMS/AdaptiveNMS already soften suppression; CLOCs fuses candidates before NMS. Collecting preNMS candidates is not an innovation. Potential future distinction must concern learning from the selection reason and measured unique recovery, and remains unproved.",
+  "limits": "GT-assisted inventory/matching capacity is not deployable recall or AP. Argmax-only inventory excludes suppressed nonargmax class hypotheses; candidate15 already studied full class scores. Group matching capacity is an optimistic group-restricted graph reference. Existing ignore filtering is diagnostic, not official VisDrone evaluation."
+}

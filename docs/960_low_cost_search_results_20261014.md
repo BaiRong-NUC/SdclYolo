@@ -480,3 +480,35 @@ AR500对uniform平均-0.092176pp，在登记的0.10pp预算内。
 登记与数值记录：`docs/experiments/candidate20_stable_order_official_registration_20261014.json`、
 `docs/experiments/candidate20_stable_order_official_result_20261014.json`。
 完整结果：`output/analysis/stable-order-official-val-fixed-20261014/`。
+
+## 实验 21：单视图 NMS 与数量截断造成的候选证据缺失
+
+固定实验12原留出列表前64张训练图，320次冻结960前向，耗时9.78秒。
+不训练、不访问val/test-dev。提取相同argmax类别的NMS前候选、
+取消500上限后的NMS结果，以及原500上限结果。
+原输出与历史五视图缓存逐数组相等，未截断NMS的前500项也完全相等，
+保留原框与解码坐标完全相等；安装的NMS和冻结依赖未改动。
+构造预测时不读标注；随后使用统一诊断ignore规则分析覆盖。
+
+主点为native confidence>=0.05、同类IoU>=0.5，
+基线漏检仍以uniform confidence>=0.25定义。
+tiny共2664个GT，原基线漏724个；其中14个没有保留池支持、但有NMS前支持。
+tiny最大一对一匹配容量由2315增至2330，+0.563063pp；
+small_all由2735增至2751，+0.516462pp。
+三项预登记门槛均通过，判断CENSORING_RETRIEVAL_PILOT_ALLOWED。
+这只是带GT的候选容量诊断，不是实际召回/AP改善，更不是创新证明。
+
+tiny完全可见的6218个GT-视图机会中，1256个缺保留证据：
+55个能用NMS解释，0个能用500截断解释，1201个在该阈值没有解码argmax支持。
+尽管41个视图的NMS结果超过500，主点保留池与未截断池均为15089行，
+所以不能用本轮结果支持全局增加max_det。
+NMS前池65463行；额外候选中的重复框和误检代价尚未验证。
+次要IoU0.75的容量差更大，但不替代主门槛。
+
+只允许另行预登记预测驱动的找回精度/可学习性实验，
+必须包含普通NMS前融合与未截断NMS对照。
+Soft-NMS、AdaptiveNMS和CLOCs已有相关先例，不能将“使用NMS前框”命名为创新。
+3个原生几何、唯一匹配与空输出测试通过。
+登记与数值记录：`docs/experiments/candidate21_native_censoring_registration_20261014.json`、
+`docs/experiments/candidate21_native_censoring_result_20261014.json`。
+完整结果：`output/analysis/native-censoring-fixed-20261014/`。
