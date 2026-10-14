@@ -1,0 +1,168 @@
+{
+  "experiment": "candidate63_quality_rank_assignment_feedback",
+  "decision": {
+    "checks": {
+      "screen": {
+        "gt": true,
+        "harmful": false,
+        "images": false,
+        "fraction": false,
+        "reduction": false,
+        "interval": false
+      },
+      "confirmation": {
+        "gt": true,
+        "harmful": false,
+        "images": false,
+        "fraction": false,
+        "reduction": false,
+        "interval": false
+      }
+    },
+    "decision": "STOP_THIS_ACTIVE_BACKGROUND_BETTER_BOX_ASSIGNMENT_FEEDBACK_ROUTE_ON_FIXED_PROXY",
+    "scope": "GTconditioned cached labeling and independent-logit BCEdescent; not actual shared-parameter harm,AP,deployability orinnovation."
+  },
+  "output": "D:\\Python\\YOLO\\output\\analysis\\assignment-quality-conflict-fixed-20261015",
+  "metrics": {
+    "screen": {
+      "all": {
+        "gt": 1738,
+        "covered": 1655,
+        "high_quality_supported": 921,
+        "peak_gap": 105,
+        "eligible_pairs": 78,
+        "best_background_actual": 0,
+        "best_background_geometryonly": 0,
+        "harmful_actual": 0,
+        "harmful_geometryonly": 0,
+        "harmful_actual_images": 0,
+        "harmful_actual_fraction_allGT": 0.0,
+        "harmful_reduction_fraction_allGT": 0.0
+      },
+      "tiny": {
+        "gt": 1233,
+        "covered": 1150,
+        "high_quality_supported": 447,
+        "peak_gap": 81,
+        "eligible_pairs": 54,
+        "best_background_actual": 0,
+        "best_background_geometryonly": 0,
+        "harmful_actual": 0,
+        "harmful_geometryonly": 0,
+        "harmful_actual_images": 0,
+        "harmful_actual_fraction_allGT": 0.0,
+        "harmful_reduction_fraction_allGT": 0.0
+      },
+      "small_all": {
+        "gt": 1586,
+        "covered": 1503,
+        "high_quality_supported": 769,
+        "peak_gap": 101,
+        "eligible_pairs": 74,
+        "best_background_actual": 0,
+        "best_background_geometryonly": 0,
+        "harmful_actual": 0,
+        "harmful_geometryonly": 0,
+        "harmful_actual_images": 0,
+        "harmful_actual_fraction_allGT": 0.0,
+        "harmful_reduction_fraction_allGT": 0.0
+      },
+      "sequence_units": 17,
+      "tiny_sequence_bootstrap_reduction95ci": [
+        0.0,
+        0.0
+      ]
+    },
+    "confirmation": {
+      "all": {
+        "gt": 2210,
+        "covered": 2125,
+        "high_quality_supported": 1365,
+        "peak_gap": 170,
+        "eligible_pairs": 144,
+        "best_background_actual": 0,
+        "best_background_geometryonly": 0,
+        "harmful_actual": 0,
+        "harmful_geometryonly": 0,
+        "harmful_actual_images": 0,
+        "harmful_actual_fraction_allGT": 0.0,
+        "harmful_reduction_fraction_allGT": 0.0
+      },
+      "tiny": {
+        "gt": 1495,
+        "covered": 1411,
+        "high_quality_supported": 701,
+        "peak_gap": 117,
+        "eligible_pairs": 91,
+        "best_background_actual": 0,
+        "best_background_geometryonly": 0,
+        "harmful_actual": 0,
+        "harmful_geometryonly": 0,
+        "harmful_actual_images": 0,
+        "harmful_actual_fraction_allGT": 0.0,
+        "harmful_reduction_fraction_allGT": 0.0
+      },
+      "small_all": {
+        "gt": 2023,
+        "covered": 1938,
+        "high_quality_supported": 1181,
+        "peak_gap": 166,
+        "eligible_pairs": 140,
+        "best_background_actual": 0,
+        "best_background_geometryonly": 0,
+        "harmful_actual": 0,
+        "harmful_geometryonly": 0,
+        "harmful_actual_images": 0,
+        "harmful_actual_fraction_allGT": 0.0,
+        "harmful_reduction_fraction_allGT": 0.0
+      },
+      "sequence_units": 17,
+      "tiny_sequence_bootstrap_reduction95ci": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "costs": {
+    "cached_frames": 64,
+    "TAL_calls": 128,
+    "blank_geometry_samples": 64,
+    "JPEG_decodes": 0,
+    "detector_forwards": 0,
+    "fits": 0,
+    "gradients": 0,
+    "parameter_updates": 0,
+    "AP_evaluations": 0,
+    "elapsed_seconds": 5.51803130004555
+  },
+  "artifacts_sha256": {
+    "decision.json": "5af1aa128d49771a0dc14be39b93e666a5dad4ccdbf69f16fe5763108351233f",
+    "frames.json": "a086d1370b46997a4b89c955bdf1d474a30a7d6e673fccc6e1405e7caf8da644",
+    "metrics.json": "bb199208b5ddaf0322b8ebe6d499399266c94b31aa4e9067007086cab3fee013",
+    "per_image.json": "bc5f37cb5e57f18327f85337f6246e4b89d274efc78b7b2226d9a62adc442680",
+    "plan.json": "7b59833d8ec1fd4424df884fb259f7ec5793cb7cf8729cdc75f7b62af324abcc",
+    "source.zip": "000535e3ed8ca85b2993e896eafe51202206b60c988ef24e069e98a5f3758d66",
+    "result.json": "8f918d93cb8ddeb3ddb256b0251d3f093d29e3d1676c24f173244de49b97c579",
+    "independent_verification.json": "afb922f2ddf041013fd2ab65971057d6454d21b145c3f6b4f5b30f91f36e140c"
+  },
+  "independent_verification": {
+    "original_cache_source_archive_installed_sources_images_metadata_labels_and_paper_hashes_verified": true,
+    "original_GT_classes_and_ignore_geometry_reconstructed_for_all64": true,
+    "original_and_geometryonly_TAL_replays": 128,
+    "independently_recomputed_GT_native_IoU_queries": 74617200,
+    "all_pairs_targets_independent_logit_directions_groups_sequence_bootstrap_and_gates_rebuilt": true,
+    "decision": "STOP_THIS_ACTIVE_BACKGROUND_BETTER_BOX_ASSIGNMENT_FEEDBACK_ROUTE_ON_FIXED_PROXY",
+    "added_detector_forwards": 0,
+    "added_JPEG_decodes": 0,
+    "added_parameter_updates": 0,
+    "verifier_sha256": "493bc499fba26aa7bba878383fec1874ff451b8b48a125bb5103bb47ba6aa7b9",
+    "limits": "Reuses blank-image dataset geometry, original SDCL criterion preprocess and TAL engines, not independent implementations of those. IoUs, pair selection, ignore mask, targets, descent, counts, bootstrap and gates independently calculated. Repeatedly inspected detector-training proxy; not optimizer harm, AP or novelty."
+  },
+  "independent_verifier_exit_code_observed": 0,
+  "tests": "5 passed, exit0: python -m pytest tests/test_assignment_quality_conflict.py -q",
+  "prior_audit": "docs/literature/assignment_quality_conflict_prior_audit_20261015.json",
+  "prior_audit_sha256": "f473f7e706e7f873e00db89cfdabff7999030fa7529c2fa42589f6100f98c95f",
+  "interpretation": "Both halves have zero eligible best candidates treated as background, and zero prespecified opposing-label pairs. Stop this precise active-background/confidence-feedback hypothesis. Do not retune pair,coverage,IoU,probability,alpha or gates to rescue it. Cached score-peak gaps persist but are not evidence for this proposed cause. This does not rule out all assignment methods or all small-object research.",
+  "innovation_status": "No validated innovation or worthwhile full-detector-training candidate yet; active research goal remains unachieved.",
+  "next_scope": "No complete detector training justified by63. Preserve62and63STOP. A distinct next intervention must establish a targeted failure mechanism and demonstrate actual deployable gains against ordinary matched controls in a bounded pilot before further investment; repeatedly inspected train data cannot serve as fresh generalization evidence."
+}

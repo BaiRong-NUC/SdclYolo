@@ -2332,3 +2332,65 @@ GFLV2已用分布top-k/mean预测定位质量。共同坐标完整DFL的窄差�
 论文审计及清单：`docs/literature/transport_quality_prior_audit_20261015.json`、
 `docs/literature/paper_archive_inventory_20261015.json`。
 完整结果：`output/analysis/transport-quality-fixed-20261015/`。
+
+## 实验 63：已覆盖目标的好框是否被标签主动当作背景压低（2026-10-15）
+
+问题限定为：对于已经获得有效监督的GT，定位更准的原生位置是否被
+当前TAL分成背景，而定位更差的分数峰却获得正向分类更新；去掉TAL
+中的分类置信度因素能否减少这种情况。不重开零正例修补、坐标可达性、
+跨尺度梯度或实验62质量评分，也不把普通几何分配当成创新。
+
+复用实验50的64张未增强、单视图960 FP32预测缓存，34个序列按固定
+文件名前缀哈希划为17/17两组。两组都是反复检查过的检测器训练数据，
+不能称未见样本或独立泛化。原标签缓存保持原哈希，图像加载器只生成
+元数据尺寸的空白数组，经原LetterBox/Format重建GT和忽略区域；
+缓存失效直接报错，不允许退回扫描真实图像。重建GT/类别及原TAL的
+前景、归属、目标质量、分配框均逐项精确重放。
+
+匹配对照仅将TAL的alpha从0.5改为0，其余topk10、topk2=10、
+beta6、stride16和冲突消解保持相同。报告实际正例数和目标质量变化，
+不宣称最终正例数量或质量必然相等。配对和统计定义在结果前固定：
+正确最高分类、真类分数至少0.05、IoU至少0.5的候选池，最优框IoU
+至少0.75，分数峰IoU低于0.75，好框原生位置严格在GT内，配对均不在
+忽略区域，原GT有有效正例。分数并列时优先更高IoU，避免夸大差距。
+
+| tiny统计 | 筛选组 | 确认组 |
+|---|---:|---:|
+| 全部GT | 1233 | 1495 |
+| 原分配有有效正例GT | 1150 | 1411 |
+| 存在高IoU候选 | 447 | 701 |
+| 高IoU候选被分数峰错过 | 81 | 117 |
+| 符合固定配对条件 | 54 | 91 |
+| 好框被当前分配当作背景 | 0 | 0 |
+| 好框背景且差框被正向抬高 | 0 | 0 |
+| 几何分配对照同类冲突 | 0 | 0 |
+| 冲突减少比例的序列bootstrap95%区间 | [0,0] | [0,0] |
+
+每组冻结门槛：至少200个tiny GT、10个冲突、5张受影响图，
+冲突占全部tiny至少0.5%，相对普通几何分配减少至少0.2%，
+400次序列bootstrap区间下界大于0。两组均只有样本量门槛通过。
+结论为STOP_THIS_ACTIVE_BACKGROUND_BETTER_BOX_ASSIGNMENT_FEEDBACK_ROUTE_ON_FIXED_PROXY。
+不改配对、GT覆盖、IoU、分数、alpha或门槛救结果，不据此推荐短训
+或完整训练。分数峰定位差距存在，但本次预设的背景标签机制没有成立。
+这个结论只针对固定假设，不推广为全部标签分配或小目标方向无价值。
+
+主实验5.52秒，64份缓存、128次TAL、64份空白几何样本，零真实图像
+解码、检测器前向、梯度、拟合、参数更新或AP评估。五项测试通过。
+独立复核重建全部64份标签/忽略区域，重放128次TAL，独立计算
+74,617,200个GT与原生框IoU查询，复算全部配对、分类目标、独立logit
+BCE下降方向、统计、序列区间和门槛，退出0。复核仍共用原数据几何、
+criterion预处理和TAL引擎；不是独立实现这些引擎，也未测参数更新。
+
+补入Mutual Guidance 2009.14085v1，原PDF/文本/渲染页已阅读；
+它已经用回归IoU确定分类正例、用分类置信度调整回归匹配。
+TOOD和LD的原有论文证据一并复用，普通几何分配、任务对齐、
+常规正例外的定位信息均不能直接作为创新。新论文Zotero父条目
+4MRRZYI5、PDF附件Q7EPB2HA及集合归属已回读，未验证语义索引。
+
+登记/结果：`docs/experiments/candidate63_assignment_quality_conflict_registration_20261015.json`、
+`docs/experiments/candidate63_assignment_quality_conflict_result_20261015.json`。
+入口/复核：`scripts/evaluation/diagnose_assignment_quality_conflict.py`、
+`scripts/evaluation/verify_assignment_quality_conflict.py`。
+论文审计：`docs/literature/assignment_quality_conflict_prior_audit_20261015.json`。
+完整结果：`output/analysis/assignment-quality-conflict-fixed-20261015/`。
+截至本次，仍无经过验证、值得投入完整检测器训练的创新候选。
