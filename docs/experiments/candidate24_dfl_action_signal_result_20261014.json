@@ -1,0 +1,65 @@
+{
+  "experiment": "candidate24_native_dfl_action_discrimination",
+  "date": "2026-10-14",
+  "output": "output/analysis/dfl-action-signal-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_INTERPOLATED_DFL_EVIDENCE_RECIPE",
+    "checks": {
+      "positive_actions": true,
+      "negative_actions": true,
+      "distribution_discrimination": false,
+      "beyond_mean": false,
+      "beyond_gaussian": false
+    },
+    "tiny_distribution_auc": 0.5381965005326671,
+    "tiny_auc_gains": {
+      "mean_distance": -0.07896439005597877,
+      "gaussian": -0.08123786136270772
+    },
+    "scope": "Conditional same-owned action discrimination only; no AP or deployment result."
+  },
+  "metrics": {
+    "all": {
+      "positive_actions": 1731,
+      "negative_actions": 2640,
+      "distribution_weighted_auc": 0.5483057405631809,
+      "mean_distance_weighted_auc": 0.6065413109524518,
+      "gaussian_weighted_auc": 0.614752801587767
+    },
+    "tiny": {
+      "positive_actions": 1472,
+      "negative_actions": 2091,
+      "distribution_weighted_auc": 0.5381965005326671,
+      "mean_distance_weighted_auc": 0.6171608905886459,
+      "gaussian_weighted_auc": 0.6194343618953748
+    },
+    "small_all": {
+      "positive_actions": 1685,
+      "negative_actions": 2522,
+      "distribution_weighted_auc": 0.5467183232655884,
+      "mean_distance_weighted_auc": 0.6112420494027303,
+      "gaussian_weighted_auc": 0.6184151397233767
+    }
+  },
+  "verification": {
+    "images": 64,
+    "detector_forwards_excluding_warmup": 320,
+    "training_steps": 0,
+    "raw_kept_replay_exact": true,
+    "native_dfl_decode_exact": true,
+    "prediction_only_association_fixed_across_actions": true,
+    "no_val_no_testdev_no_threshold_search": true,
+    "source_unchanged": true,
+    "installed_sources_unchanged": true,
+    "elapsed_seconds": 15.5878715000581
+  },
+  "artifacts_sha256": {
+    "plan.json": "3d3f9c2073f6d41705513df0cd303fd4526c4456c3847520e79bb570ead85ca9",
+    "source.zip": "9fbc81e769737fe1d63fce33f234f91ffaff661b639da59cb4a77b3d3a37c8a6",
+    "frames.json": "9697bb7572d887dc76ff647f04ebb8707d480c64e04e58967b63cf9a36b1a180",
+    "metrics.json": "f41d9500af69595a4a129f1754b41b977045ab7e7ffff2c26e6eb52a1845995c",
+    "decision.json": "61675fda4d68dfa1ac3e0fa0d1407f4844884a6e5413a5a175d9809d48eb4fc9",
+    "verification.json": "ca3820e4fc66848ede0a3ea675746c8bfe1068aa2db638c4a78f8cb63f9fc3be"
+  },
+  "tests": "2 passed: distinct distribution shapes with identical moments, crop/letterbox/stride/side coordinate order"
+}

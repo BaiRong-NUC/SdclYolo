@@ -1,0 +1,28 @@
+{
+  "experiment": "candidate24_native_dfl_action_discrimination",
+  "date": "2026-10-14",
+  "question": "Do native boundary distributions contain action-conditioned localization evidence beyond expected boxes and Gaussian mean/variance?",
+  "prior_art_boundary": "GFL and GFLV2 already use box distributions and their statistics for localization quality estimation. This screen is not an invention of DFL uncertainty or quality prediction. A possible later question is action-relative cross-view likelihood, which still needs closer prior review.",
+  "sample": "Unchanged first64 head-held-out train images from candidate12/candidate18. Previously trained and repeatedly viewed data; not independent detector generalization.",
+  "budget": "320 frozen960 forwards plus extractor warmup, no training, no official evaluator, no sweep. Preserve five original crops and FP16 prediction path.",
+  "replay": "Every kept view exactly equals original candidate12 raw capture; decoding raw DFL through installed native decoder must exactly equal captured decoded boxes. Save installed head/block/ops hashes and do not change them.",
+  "association": "For each frozen uniform baseline row, in each view choose the same-argmax-class decoded native anchor at confidence>=0.05 and IoU>=0.5 maximizing IoU times native score. This association depends on predictions only, and is FIXED across all six coordinate actions.",
+  "representation": "Read the native FP16 softmax probabilities of the four16-bin DFL sides. Map each proposed action edge into that fixed anchor's view/stride coordinates with exact letterbox scale/padding and full-image crop offset. Use linear interpolation between adjacent bin masses, floor1e-9 outside [0,15] or at zero. This is an uncalibrated mass score, not a true boundary probability.",
+  "scores": {
+    "distribution": "Mean over four sides and available views of log interpolated native bin mass",
+    "mean_distance": "Negative mean absolute side distance to the DFL expected distance in bin units, same anchors/views",
+    "gaussian": "Mean Gaussian log density at side distance from the native mean and variance, variance floored1e-6, same anchors/views"
+  },
+  "labels": "Only after feature construction, use candidate18 nominal same-owned-GT IoUs. Valid nonuniform actions on owned rows, calibrated score>=0.25, and at least two available views. Positive IoU gain>0.01 over uniform, negative gain<-0.01; omit near ties. Weight each retained action by inverse count of retained actions on its anchor.",
+  "primary": "tiny weighted AUROC for beneficial versus harmful actions, scored as each action minus its uniform reference. Report small_all/all too. AUROC is a discrimination proxy, not actual localization gain, AP or AR.",
+  "policy": {
+    "tiny_positive_actions_min": 100,
+    "tiny_negative_actions_min": 100,
+    "tiny_distribution_auc_min": 0.55,
+    "tiny_distribution_auc_vs_mean_min": 0.02,
+    "tiny_distribution_auc_vs_gaussian_min": 0.02
+  },
+  "pass_action": "Only permits separately registering a small matched scene-split learning pilot with ordinary geometry and GFLV2-style statistics controls. No full detector training.",
+  "fail_action": "Stop this fixed interpolated-DFL likelihood evidence recipe. Do not change density floor, association, interpolation, aggregation, label margin or primary subgroup on these images.",
+  "limits": "DFL targets encode discretized supervised offsets, not calibrated aleatoric uncertainty. Conditional owned-row discrimination excludes unowned misses. View predictions share weights and image content. Uniform diagnostic ignore filtering is inherited from cached action rows."
+}

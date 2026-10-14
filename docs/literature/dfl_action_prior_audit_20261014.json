@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-14",
+  "scope": "Nearest-prior method check for candidate24; not exhaustive novelty proof",
+  "paper": {
+    "title": "Generalized Focal Loss V2: Learning Reliable Localization Quality Estimation for Dense Object Detection",
+    "authors": ["Xiang Li", "Wenhai Wang", "Xiaolin Hu", "Jun Li", "Jinhui Tang", "Jian Yang"],
+    "doi": "10.1109/CVPR46437.2021.01146",
+    "year": 2021,
+    "arxiv": "2011.12885",
+    "metadata_provenance": "Paper Search Crossref exact title/DOI record and Zotero DOI/Crossref",
+    "pdf_url": "https://arxiv.org/pdf/2011.12885",
+    "local_pdf": "output/literature/papers/arxiv-2011.12885.pdf",
+    "pdf_sha256": "425129b9ecb9bb3d246d7145d3872ea6e684ad0795a3a84cd2a03068f6d41931",
+    "pages": 10,
+    "text": "output/literature/text/arxiv-2011.12885.txt",
+    "text_sha256": "5ce9f0273e9926d990c6e9a4064d82659630a99b2259d212d270fc077e39a636",
+    "read_sections": ["2 related localization quality estimators", "3.1 general distributions", "3.2 DGQP top-k and mean statistics", "Table1 mean/variance ablation"],
+    "observations": [
+      "DFL distribution statistics as predictors of localization quality are established prior art.",
+      "DGQP uses four-edge Top-k values and their mean followed by a small learned predictor.",
+      "Candidate24 uses fixed action-relative likelihood across shared-weight views, but this difference alone does not establish novelty and its registered signal screen failed."
+    ],
+    "zotero": {
+      "collection_key": "6HT9SNK7",
+      "item_key": "VD2XAY4Z",
+      "attachment_key": "ESIQV6JW",
+      "children_readback": "application/pdf confirmed",
+      "pdf_route": "Zotero attached Unpaywall PDF; local arXiv PDF separately archived",
+      "incremental_update_report": {"total": 1, "processed": 1, "added": 1, "errors": 0},
+      "semantic_limit": "Incremental tool result does not verify which earlier zero-item imports were embedded."
+    }
+  },
+  "decision": "No demonstrated native distribution-shape advantage; do not expand this fixed likelihood recipe."
+}

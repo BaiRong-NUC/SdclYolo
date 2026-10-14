@@ -579,3 +579,37 @@ tiny十阈值平均召回-0.255255pp，small_all对regret-0.619755pp。
 登记与数值记录：`docs/experiments/candidate23_censored_coordinates_registration_20261014.json`、
 `docs/experiments/candidate23_censored_coordinates_result_20261014.json`。
 完整结果：`output/analysis/censored-coordinates-fixed-20261014/`。
+
+## 实验 24：原生DFL边界分布是否提供额外的动作质量信息
+
+不是重新测试旧P3特征或像素边界。固定原六动作菜单、uniform参照，
+读取冻结960检测头原生四边16bin分布。每个原框每视图仅按预测选择一次
+原生anchor，所有动作共用这个anchor，避免每个动作重选最有利的证据。
+DFL通过原生解码器还原的坐标、五视图NMS输出均逐数组精确复现。
+
+在64张旧留出训练图上，320次冻结前向，零训练，耗时15.59秒。
+比较线性插值bin质量的对数、均值距离、均值方差高斯近似；
+动作分数均减去原uniform动作分数。
+只在已有GT归属、score>=0.25、至少两个视图支持的原框上，
+判断名义IoU相对uniform增加>0.01或减少>0.01，原框内动作反数量加权。
+这是条件判别AUROC，不是部署效果或AP。
+
+| 子集 | 改善动作 | 损伤动作 | 完整DFL AUROC | 均值距离 | 高斯近似 |
+|---|---:|---:|---:|---:|---:|
+| tiny | 1472 | 2091 | 0.538197 | 0.617161 | 0.619434 |
+| small_all | 1685 | 2522 | 0.546718 | 0.611242 | 0.618415 |
+| all | 1731 | 2640 | 0.548306 | 0.606541 | 0.614753 |
+
+完整分布相对两个普通参照更差，tiny未达预登记0.55，
+五项门槛只通过样本量两项，判断STOP_THIS_INTERPOLATED_DFL_EVIDENCE_RECIPE。
+不改变插值、聚合、分布下限、关联规则或标签差值重试此配方，
+不因均值/高斯有0.62左右AUROC就声称发现了新的分布形状贡献。
+DFL并非校准过的边界不确定性，单个bin值还混合了离散监督及回归步长。
+
+两个测试验证同均值方差的不同分布确实能影响完整分布分数，
+以及裁剪、letterbox、stride与左右上下边的坐标转换。
+补充下载和导入GFLV2全文；其第3.2节已利用Top-k及均值统计学习定位质量，
+因此“用DFL估质量”本身不构成创新。
+登记与数值记录：`docs/experiments/candidate24_dfl_action_signal_registration_20261014.json`、
+`docs/experiments/candidate24_dfl_action_signal_result_20261014.json`。
+完整结果：`output/analysis/dfl-action-signal-fixed-20261014/`。
