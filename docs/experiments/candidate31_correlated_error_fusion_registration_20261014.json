@@ -1,0 +1,35 @@
+{
+  "experiment": "candidate31_cross_view_error_second_moment_fusion",
+  "date": "2026-10-14",
+  "question": "Do correlated coordinate errors cause ordinary confidence voting or independent-error weighting to overcount redundant views?",
+  "motivation": "Test train-fitted cross-view error dependence with a fixed convex whole-box fusion, independent of stopped side-action selection and view-omission recipes. No neural head, image input or detector update.",
+  "sample": "Exactly candidate18 train128/head-held-out64 with original same-owned GT references. Prediction grouping uses ORIGINAL calibrated box size at640 reference: tiny<16^2, small16^2..32^2, other. GT size is never an input.",
+  "observations": "Only original five native action slots0..4, mapped to actual source view0..4 by exact normalized one-hot templates. Exclude synthetic vote slot5 from fitting/fusion inputs. Each source appears at most once. Preserve scores/classes/count/order and process rows score>=.05 with at least2 valid native views.",
+  "fit": "Owned fitting anchors only. Normalize each of four coordinate errors by original anchor width/height, and estimate one5x5 matrix of mean coordinate-error inner products per predicted-size group. A diagonal entry needs32 rows, otherwise pooled entry; an offdiagonal needs32 paired rows, otherwise zero. Shrink offdiagonals by0.90 and project symmetric matrix to PSD with eigenvalue floor0.01 times mean diagonal. This estimates uncentered error second moments, NOT calibrated probabilistic covariance or uncertainty.",
+  "decision_rule": "For each size group and available-view mask, minimize w^T M w over simplex w>=0,sum(w)=1 with deterministic enumeration of all nonempty supports. Use one scalar weight per view for all four coordinates, ensuring a convex WHOLE box and valid extent. No per-side choice, extrapolation, mean-bias correction, utility threshold or model selector.",
+  "arms": {
+    "full_second_moment": "Full fitted PSD second-moment matrix.",
+    "diagonal_second_moment": "Same fitted matrix, zero offdiagonal at prediction. Same observations and loss scale, isolates dependence information.",
+    "equal_native_vote": "Equal weights over available original native slots.",
+    "confidence_native_vote": "Existing historical action5 weighted box vote, same native observations.",
+    "uniform": "Frozen historical uniform choice.",
+    "regret": "Frozen historical regret choice."
+  },
+  "policy": {
+    "tiny_ten_threshold_vs_uniform_min_pp": 0.10,
+    "small_all_ten_threshold_vs_uniform_min_pp": 0.10,
+    "small_all_ten_threshold_vs_regret_min_exclusive_pp": 0.0,
+    "small_all_ten_threshold_vs_diagonal_min_exclusive_pp": 0.0,
+    "small_all_ten_threshold_vs_equal_min_exclusive_pp": 0.0,
+    "small_all_ten_threshold_vs_confidence_min_exclusive_pp": 0.0,
+    "all_fppi50_vs_uniform_max_increase": 0.10,
+    "mean_abs_supported_offdiagonal_alignment_min": 0.10,
+    "repeat_min_positive_fits": 2
+  },
+  "repetition": "Fit0 uses all128 fitting images once. Only after ALL fit0 gates pass, fits1,2 resample128 images with replacement using np.default_rng(1/2). These test sensitivity to fitting-image sampling, not detector seeds or independent datasets. Require2/3 positive fits, mean small_all gain>=.10pp and every FP budget.",
+  "evaluation": "Confidence.25 greedy class-aware one-to-one matching overIoU.50:.05:.95, tiny/small_all mean recall andFPPI50. Diagnostic ignore filtering inherited from historical uniform cache, not official AP or AR.",
+  "budget": "Zero detector forward/training or image decoding,192 cached frames, small second-moment tables and finite simplex solves.",
+  "pass_action": "Only allow separately registered official replay and mechanism audit. Correlation-aware linear estimation and uncertainty/variance box voting are prior art. Positive efficacy does not establish innovation; closest correlated detector-fusion papers must be checked.",
+  "fail_action": "Stop this pooled second-moment convex fusion. Do not change grouping, shrinkage, sample support, fitting weights or prediction thresholds after results.",
+  "limits": "Pooled co-observation statistics are selection-biased; duplicate anchors can weight objects multiple times; pairwise missingness requires PSD projection. Scores may be poorly ranked for fused boxes. Reused train-scene head holdout is not independent detector generalization."
+}

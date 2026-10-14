@@ -818,3 +818,40 @@ Dynamic Zoom-in原文已下载并导入Zotero，论文第3.1--3.3节
 登记与数值记录：`docs/experiments/candidate30_observed_view_policy_registration_20261014.json`、
 `docs/experiments/candidate30_observed_view_policy_result_20261014.json`。
 完整结果：`output/analysis/observed-view-policy-fixed-20261014/`。
+
+## 实验 31：跨视图误差二阶矩与忽略相关项的匹配融合
+
+检验原有投票可能重复计算相关误差的新机制，不训练神经网络。
+复用原128/64图，只用五个原生动作，按精确one-hot模板恢复源视图身份。
+训练原框按预测尺寸分组，以同一拥有GT计算四坐标归一化误差的内积，
+估计各源视图之间的5x5非中心二阶矩；它不是校准过的概率协方差。
+固定32样本支持、0.90非对角收缩与PSD投影，推理枚举有效源子集，
+求非负且和为1的整框权重，四条边共用同一权重，不生成交叉框。
+匹配对角对照保留同一矩阵的对角项，仅移除非对角项。
+
+| 分支 | small_all十阈值平均召回(%) | 对uniform(pp) |
+|---|---:|---:|
+| uniform | 49.548096 | 0 |
+| regret | 49.899935 | +0.351840 |
+| 等权原生投票 | 49.586830 | +0.038735 |
+| 置信度原生投票 | 49.848289 | +0.300194 |
+| 对角误差二阶矩 | 49.667527 | +0.119432 |
+| 完整误差二阶矩 | 49.686895 | +0.138799 |
+
+主分支tiny对uniform+0.240240pp，FPPI增量-0.218750。
+训练有支持非对角项的绝对归一化误差对齐均值0.643156，
+反映非中心误差依赖，不能解释成Pearson相关系数。
+完整矩阵比对角+0.019367pp，比等权+0.100065pp；
+但比置信度投票-0.161394pp，比regret-0.213041pp。
+八项通过六项，STOP_THIS_POOLED_SECOND_MOMENT_FUSION。
+保留小幅正向信号，不因未过强对照而说零效果；
+也不追加拟合图bootstrap、条件分组、收缩调参或官方评价挽救。
+
+总耗时4.50秒，零图像解码、零检测器前向、零梯度训练；
+两个相关源降权与整框属性保持测试通过。
+BayesOD原文第III.C节已核对并导入Zotero，它的观测条件独立假设与本轮
+跨源二阶矩不同，但融合/不确定性估计及二次规划本身都不是原创。
+当前没有足够证据升级为有效创新；所有召回仍为已查看训练图的头留出诊断。
+登记与数值记录：`docs/experiments/candidate31_correlated_error_fusion_registration_20261014.json`、
+`docs/experiments/candidate31_correlated_error_fusion_result_20261014.json`。
+完整结果：`output/analysis/correlated-error-fusion-fixed-20261014/`。

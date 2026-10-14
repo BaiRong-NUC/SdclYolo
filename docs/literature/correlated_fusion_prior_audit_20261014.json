@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-14",
+  "scope": "Primary-source overlap check for candidate31; not exhaustive originality verification",
+  "papers": [
+    {
+      "title": "BayesOD: A Bayesian Approach for Uncertainty Estimation in Deep Object Detectors",
+      "authors": ["Ali Harakeh", "Michael Smart", "Steven L. Waslander"],
+      "arxiv": "1903.03838v2",
+      "metadata_source": "Paper Search arXiv and downloaded PDF first page",
+      "source_url": "https://arxiv.org/pdf/1903.03838v2",
+      "pdf": "output/literature/papers/arxiv-1903.03838v2.pdf",
+      "pdf_sha256": "eb7630acf20286149d7bb488a65e808f8516e6e7d22bc1d0a7d9cd6a63cd9a11",
+      "text": "output/literature/text/arxiv-1903.03838v2.txt",
+      "text_sha256": "e2014980d19d077de7fcc03aac2ba60b684ecab74c87120b01d1f7ca86a95519",
+      "pages": 7,
+      "read_sections": ["II.B uncertainty estimation and related clustering", "III.A per-anchor Gaussian posterior and covariance", "III.C Bayesian replacement for NMS"],
+      "overlap": "Box uncertainty, full within-box covariance, spatial clustering and posterior box fusion are established.",
+      "distinction": "BayesOD III.C explicitly uses conditional independence between cluster observations. Candidate31 estimates pooled cross-SOURCE uncentered error inner products, not a probabilistic within-box covariance or BayesOD reproduction. This distinction alone does not establish novelty.",
+      "zotero": {"collection_key": "6HT9SNK7", "item_key": "UZ7XRJVV", "attachment_key": "X4UCTWNB", "attachment_readback": true}
+    }
+  ],
+  "other_established_priors": "Weighted Boxes Fusion and variance voting already archived. Generalized least-squares and nonnegative quadratic fusion are classical estimation, not claimed original.",
+  "semantic_update_result": {"total": 1, "processed": 1, "added": 1, "errors": 0},
+  "current_claim": "Candidate31 has small diagnostic improvements over uniform/diagonal/equal voting but loses to ordinary confidence voting and regret; no effective innovative method is established."
+}

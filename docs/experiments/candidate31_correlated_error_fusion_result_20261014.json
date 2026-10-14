@@ -1,0 +1,228 @@
+{
+  "experiment": "candidate31_cross_view_error_second_moment_fusion",
+  "date": "2026-10-14",
+  "output": "output/analysis/correlated-error-fusion-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_POOLED_SECOND_MOMENT_FUSION",
+    "per_fit": {
+      "0": {
+        "passed": false,
+        "checks": {
+          "tiny_gain": true,
+          "small_gain": true,
+          "regret": false,
+          "diagonal_second_moment": true,
+          "equal_native_vote": true,
+          "confidence_native_vote": false,
+          "fp_budget": true,
+          "error_alignment": true
+        },
+        "values": {
+          "small_all_gains_pp": {
+            "diagonal_second_moment": 0.01936733376371791,
+            "equal_native_vote": 0.10006455777921275,
+            "confidence_native_vote": -0.16139444803098968,
+            "uniform": 0.13879922530664857,
+            "regret": -0.2130406714009041
+          },
+          "tiny_vs_uniform_pp": 0.24024024024024015,
+          "fppi50_increase": -0.21875,
+          "mean_abs_supported_offdiagonal_alignment": 0.643156345890125
+        }
+      }
+    },
+    "fits_executed": 1,
+    "positive_fits": 0,
+    "scope": "Reused train-head-holdout detection proxy, not AP or novelty."
+  },
+  "metrics": {
+    "0": {
+      "full_second_moment": {
+        "all_ten_threshold_recall_percent": 51.29042192793347,
+        "tiny_ten_threshold_recall_percent": 45.472972972972975,
+        "small_all_ten_threshold_recall_percent": 49.68689477081988,
+        "all_fppi50": 10.6875,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2502,
+              "tp_ten": 16654
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1953,
+              "tp_ten": 12114
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2359,
+              "tp_ten": 15393
+            }
+          },
+          "fp50": 684,
+          "moves": 5145
+        }
+      },
+      "diagonal_second_moment": {
+        "all_ten_threshold_recall_percent": 51.24422543886664,
+        "tiny_ten_threshold_recall_percent": 45.46921921921922,
+        "small_all_ten_threshold_recall_percent": 49.667527437056165,
+        "all_fppi50": 10.734375,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2499,
+              "tp_ten": 16639
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1950,
+              "tp_ten": 12113
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2356,
+              "tp_ten": 15387
+            }
+          },
+          "fp50": 687,
+          "moves": 5145
+        }
+      },
+      "equal_native_vote": {
+        "all_ten_threshold_recall_percent": 51.08407761010163,
+        "tiny_ten_threshold_recall_percent": 45.41291291291291,
+        "small_all_ten_threshold_recall_percent": 49.58683021304067,
+        "all_fppi50": 10.71875,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2500,
+              "tp_ten": 16587
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1951,
+              "tp_ten": 12098
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2357,
+              "tp_ten": 15362
+            }
+          },
+          "fp50": 686,
+          "moves": 5141
+        }
+      },
+      "confidence_native_vote": {
+        "all_ten_threshold_recall_percent": 51.35201724668925,
+        "tiny_ten_threshold_recall_percent": 45.69069069069069,
+        "small_all_ten_threshold_recall_percent": 49.84828921885087,
+        "all_fppi50": 10.671875,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2503,
+              "tp_ten": 16674
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1954,
+              "tp_ten": 12172
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2360,
+              "tp_ten": 15443
+            }
+          },
+          "fp50": 683,
+          "moves": 4306
+        }
+      },
+      "uniform": {
+        "all_ten_threshold_recall_percent": 51.17955035417309,
+        "tiny_ten_threshold_recall_percent": 45.232732732732735,
+        "small_all_ten_threshold_recall_percent": 49.548095545513235,
+        "all_fppi50": 10.90625,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2488,
+              "tp_ten": 16618
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1940,
+              "tp_ten": 12050
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2345,
+              "tp_ten": 15350
+            }
+          },
+          "fp50": 698,
+          "moves": 0
+        }
+      },
+      "regret": {
+        "all_ten_threshold_recall_percent": 51.51524484139205,
+        "tiny_ten_threshold_recall_percent": 45.67942942942943,
+        "small_all_ten_threshold_recall_percent": 49.89993544222079,
+        "all_fppi50": 10.8125,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2494,
+              "tp_ten": 16727
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1946,
+              "tp_ten": 12169
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2351,
+              "tp_ten": 15459
+            }
+          },
+          "fp50": 692,
+          "moves": 585
+        }
+      }
+    }
+  },
+  "verification": {
+    "fit_images": 128,
+    "head_holdout_images": 64,
+    "detector_forwards": 0,
+    "image_decodes": 0,
+    "gradient_training_steps": 0,
+    "source_view_identity_replay_exact": true,
+    "no_GT_in_holdout_features_selection_or_grouping": true,
+    "same_convex_weights_for_all_four_sides": true,
+    "no_val_no_testdev_no_threshold_or_hyperparameter_search": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 4.496680099982768
+  },
+  "artifacts_sha256": {
+    "decision.json": "628312f08d8b9e744973ea168dfa3272df5f6d4dfb8ea70b25644ce71f2e903a",
+    "frames-fit0.json": "715889faab9945264c30e8cdecf1d223a58ccbc558bca2f940240499e8d17868",
+    "metrics.json": "af7bf7c14aa95e84229bc9651681f2ee48c503625606b858cc8a9431483bca59",
+    "plan.json": "4cda9312cf45430118ffd044d526dc84b084660516c25fbb4741ad5284d436d6",
+    "second-moments-fit0.json": "a52ea0063ef597124d48696cbe37a864e60d10c01fff60dbb4ffdf389e429d60",
+    "source.zip": "84308975d9af0e20c572e11070f6c43afaea2c591bdccf97e281ebb92bcc44d1",
+    "verification.json": "0480554124df92aa03eac25eb4a46c604337011ff5452a5a3b8dd90343e4dffa",
+    "weights-fit0.json": "de2ffd5800fa508838e59e30caa23fc395d2971005ba032e8ee043d33a373327"
+  },
+  "tests": "2 passed: cross-source dependence reduces redundant view weight and quadratic risk; convex whole box keeps validity and preserves score/class/low-score rows"
+}
