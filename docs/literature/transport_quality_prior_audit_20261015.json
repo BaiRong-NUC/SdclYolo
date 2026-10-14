@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-15",
+  "candidate": "candidate62_preNMS_common_coordinate_boundary_quality",
+  "scope": "Targeted prior audit, not exhaustive originality proof. PaperSearch arXiv searches returned primary records; exact-version PDF downloads viaPaperSearch; direct arXiv records confirmed versions. Primary PDFs locally read/rendered.",
+  "papers": [
+    {
+      "title": "A Normalized Gaussian Wasserstein Distance for Tiny Object Detection",
+      "arxiv_version": "2110.13389v2",
+      "pdf": "output/literature/papers/2110.13389v2.pdf",
+      "pdf_sha256": "72c4c930e44b1839469d59a9c4a64511455c69dcc1bef883f479f66a660fe8e1",
+      "text": "output/literature/text/2110.13389v2.txt",
+      "text_sha256": "60b530c6fbfc9d9ce1c3709681890029e90dc2d19e88cf5752b5da7771694749",
+      "preview": "output/literature/previews/2110.13389v2-p3.png",
+      "preview_sha256": "efefa6688f546e11f8cf5c8a8a714267882048052406ee81d7c771401259f1dd",
+      "review": "Read introduction/related work and section3.2 equations4-5; rendered page3. NWD models complete boxes as2DGaussians and uses normalizedW2 similarity in assignment,NMS,loss. Wasserstein similarity for tiny objects and alteringNMS are not new; proposed full native1Dboundary distributions are a different,unproven representation.",
+      "zotero": {
+        "parent": "Z8FC6KJQ",
+        "attachment": "HGB6ST29",
+        "collection": "6HT9SNK7",
+        "child_readback": "application/pdf imported_file filename confirmed"
+      }
+    },
+    {
+      "title": "CLSC DETR: Reliable Candidate Ranking via Cross Layer Geometric Support for UAV Small Object Detection",
+      "arxiv_version": "2608.21457v1",
+      "pdf": "output/literature/papers/2608.21457v1.pdf",
+      "pdf_sha256": "fa870ff106ad68bbc53db159e0dac87ae0d9246f319f1a727c0fbd5c36cb7241",
+      "text": "output/literature/text/2608.21457v1.txt",
+      "text_sha256": "6d52767289c3b5cae00bbc813a36fbea87e701f3fa5fedc6b8d117f936274ec7",
+      "preview": "output/literature/previews/2608.21457v1-p3.png",
+      "preview_sha256": "6ffbe38e141157528837c787637318481d57c9c2984a136642f6e66b96d54bd2",
+      "review": "Read full5pagepaper, especially2.1/2.2 equations1-5 and renderedpage3. Searches local neighborhoods across intermediate layers, pools topKIoU*quality support, combines intrinsic quality and classification reliability. Neighbor support forUAVranking/calibration is explicit prior art. Proposed same-level fullDFLdiscrete physical-supportW1 versus DGQP/centered-shape differs narrowly; no novelty claim or faithfulCLSCreproduction.",
+      "zotero": {
+        "parent": "4DAXR2KU",
+        "attachment": "BLCJRXET",
+        "collection": "6HT9SNK7",
+        "child_readback": "application/pdf imported_file filename confirmed"
+      }
+    }
+  ],
+  "previous_audits": [
+    {
+      "path": "docs/literature/native_peak_quality_prior_audit_20261015.json",
+      "sha256": "6271a8a8bb4135600518ef9b7e964c736e64aea2043842675d0e21161a1417ed"
+    },
+    {
+      "path": "docs/literature/native_spatial_field_prior_audit_20261014.json",
+      "sha256": "6e7e08fd3771bd8dc87590b5b5530cdfc33e3974cc99fe46283eb0270a729bed"
+    },
+    {
+      "path": "docs/literature/native_distribution_prior_audit_20261014.json",
+      "sha256": "e0fddd4b9b3779b8f5d8ba6ec96cb7aec7857fdb562b38327cad0e3505612061"
+    }
+  ],
+  "previous_import_cleanup": [
+    {
+      "arxiv_version": "2204.05957v2",
+      "parent": "8NQ9KSMZ",
+      "attachment": "EN6NNKUQ",
+      "status": "Existing paper and identical PDF reused; child readback confirmed"
+    },
+    {
+      "arxiv_version": "2508.12082v2",
+      "parent": "CB869LEJ",
+      "attachment": "NG4YVS8B",
+      "status": "Earlier localPDF attached to new version-specific parent; child readback confirmed"
+    }
+  ],
+  "novelty_boundary": "Only candidate62fullDFLsupporttransport versus centered-shape and ordinaryDGQPcontrol is tested. Generic neighboring geometry, qualityMLP, IoUranking,Wasserstein,NMSrescoring already exist. No claim of first,novelty,priority or AP benefit before the fixed deployment pilot and wider audit.",
+  "semantic_index_status": "Not yet updated in this audit; attached PDFs and parent presence do not prove semantic indexing."
+}

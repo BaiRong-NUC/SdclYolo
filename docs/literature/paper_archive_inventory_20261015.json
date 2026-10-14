@@ -1,0 +1,452 @@
+{
+  "date": "2026-10-15",
+  "scope": "Every explicit output/literature/*.pdf path in structured docs/literature JSON audits existing at scan time. Does not cover every unstructured paper mention,external reference section or inaccessible publisher PDF. File presence/hash is not proof of correct bibliographic identity or legal license.",
+  "recorded_local_PDF_paths": 51,
+  "existing": 51,
+  "missing": [],
+  "files": [
+    {
+      "path": "output/literature/papers/1312.6229v4.pdf",
+      "exists": true,
+      "sha256": "8033a6a41884f5c3743fdee82dd9425e64b32cb8eb1d3e4c334384ee09bdfe80",
+      "cited_by": [
+        "docs/literature/shared_prefix_lattice_prior_audit_20261014.json",
+        "docs/literature/zotero_catchup_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/1711.08189v2.pdf",
+      "exists": true,
+      "sha256": "989daed87b8e82e86ff9172c44ce6dae0d6fb2133ea94b30fd905bbc0275820b",
+      "cited_by": [
+        "docs/literature/augmentation_censoring_prior_audit_20261015.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/1904.01355v5.pdf",
+      "exists": true,
+      "sha256": "371091dbe8d3d9e990eecd9a435d350ce24a0602c0ceec327d0a48eddbf95ec4",
+      "cited_by": [
+        "docs/literature/assignment_reachability_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/1911.04432v1.pdf",
+      "exists": true,
+      "sha256": "12971fd6828c845eef5af128e55af3cd61d9fa51601ca9c6ef0a8d3884f287fe",
+      "cited_by": [
+        "docs/literature/shared_prefix_lattice_prior_audit_20261014.json",
+        "docs/literature/zotero_catchup_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/1912.02424v4.pdf",
+      "exists": true,
+      "sha256": "9f7d69ca06c3a763aabddc820749962e14e58859d008f9b62fa5e4ff7b1ac9d0",
+      "cited_by": [
+        "docs/literature/unowned_supervision_prior_audit_20261014.json",
+        "docs/literature/zotero_catchup_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2001.06782v4.pdf",
+      "exists": true,
+      "sha256": "4b960b81a001f376e8cb551c61c5578129dd99a9d1ff147be5ea56b9e578cbdf",
+      "cited_by": [
+        "docs/literature/scale_gradient_conflict_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2003.09163v2.pdf",
+      "exists": true,
+      "sha256": "167a2740191872ecff094ed7e73ec3417670f69838da3876b25c843c608f64f5",
+      "cited_by": [
+        "docs/literature/native_capacity_prior_audit_20261015.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2004.13546v1.pdf",
+      "exists": true,
+      "sha256": "c845f74d7a0aa7605832a64b9e4b74f02b2c4e85c119bdae7ca72209089f9759",
+      "cited_by": [
+        "docs/literature/scene_background_prior_audit_20261015.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2005.12872v3.pdf",
+      "exists": true,
+      "sha256": "d4b846bd44896e1d21527f48eddc422c263c9a4f8a3fa4be249750956882698d",
+      "cited_by": [
+        "docs/literature/native_capacity_prior_audit_20261015.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2006.03204v2.pdf",
+      "exists": true,
+      "sha256": "906543b9aaf14d63791ab4d5611596f003e0e08be5430e3569e6d416820f246a",
+      "cited_by": [
+        "docs/literature/texture_deletion_prior_audit_20261015.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2007.01263v1.pdf",
+      "exists": true,
+      "sha256": "7b863745054d5f80a5bcdcc122e67a1053180946421c1cc4bfaad80b295e7903",
+      "cited_by": [
+        "docs/literature/classifier_nullspace_prior_audit_20261014.json",
+        "docs/literature/zotero_catchup_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2007.08103v2.pdf",
+      "exists": true,
+      "sha256": "21e27f3f05a03a97c9f71e04e5291202dad554485ab1fa9e625b6d69f26fa389",
+      "cited_by": [
+        "docs/literature/unowned_supervision_prior_audit_20261014.json",
+        "docs/literature/zotero_catchup_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2011.12871v1.pdf",
+      "exists": true,
+      "sha256": "33c4dd0803f68f5dc51260d77f6fd2d11da3cec045e52ad0aa5ce0a3f08157b2",
+      "cited_by": [
+        "docs/literature/native_peak_quality_prior_audit_20261015.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2011.12885v1.pdf",
+      "exists": true,
+      "sha256": "425129b9ecb9bb3d246d7145d3872ea6e684ad0795a3a84cd2a03068f6d41931",
+      "cited_by": [
+        "docs/literature/native_peak_quality_prior_audit_20261015.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2012.01950v2.pdf",
+      "exists": true,
+      "sha256": "f8a21276bcbab28d2bfea4f15aaf5068364cd6a27e24133a03395d8af4657142",
+      "cited_by": [
+        "docs/literature/augmentation_censoring_prior_audit_20261015.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2109.06875v1.pdf",
+      "exists": true,
+      "sha256": "b6771b1b9093a3586e553ad69830c68a65bf0096f90714407c806d282c619d5b",
+      "cited_by": [
+        "docs/literature/crop_teacher_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2109.14279v1.pdf",
+      "exists": true,
+      "sha256": "3f61f31796720db4cd4a6e8d6083c29c93d98813c5e04ae18f7b60cb7e33734a",
+      "cited_by": [
+        "docs/literature/external_content_prior_audit_20261015.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2110.13389v2.pdf",
+      "exists": true,
+      "sha256": "72c4c930e44b1839469d59a9c4a64511455c69dcc1bef883f479f66a660fe8e1",
+      "cited_by": [
+        "docs/literature/transport_quality_prior_audit_20261015.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2203.10807v1.pdf",
+      "exists": true,
+      "sha256": "9bed6efe13123d85e3b6e01d510ef59d9846d46f54f6df7defeb598cb5077e5d",
+      "cited_by": [
+        "docs/literature/classifier_nullspace_prior_audit_20261014.json",
+        "docs/literature/zotero_catchup_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2203.12244v2.pdf",
+      "exists": true,
+      "sha256": "33d5f21e2d9992dbc2cf105a8cda6a27c6830f50951de2178bf8abe279607820",
+      "cited_by": [
+        "docs/literature/crop_teacher_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2204.05957v2.pdf",
+      "exists": true,
+      "sha256": "41ec89525a8f6daff4670e28da4d71629ff1c30e188e7119e5b743207524a0ca",
+      "cited_by": [
+        "docs/literature/native_spatial_field_prior_audit_20261014.json",
+        "docs/literature/zotero_catchup_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2304.07193v1.pdf",
+      "exists": true,
+      "sha256": "ba47279a742327b613f213dfa057bd3715c88142f2fd88437e318a51544cb176",
+      "cited_by": [
+        "docs/literature/external_content_prior_audit_20261015.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2306.11369v2.pdf",
+      "exists": true,
+      "sha256": "2c012d41f4a43f58f22e1adf7d6863ee6d906c495a019a794f7019af00bfbe5a",
+      "cited_by": [
+        "docs/literature/crop_teacher_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2307.12101v2.pdf",
+      "exists": true,
+      "sha256": "308c45a422cafd0188abb59a3be429fc110d5cbe237a3bd8a5305e3b28fc5aa8",
+      "cited_by": [
+        "docs/literature/native_semantic_coupling_prior_audit_20261014.json",
+        "docs/literature/zotero_catchup_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2405.20459v1.pdf",
+      "exists": true,
+      "sha256": "0fc33fd164511ad6ef2f2459d2ffc772f32823c570d7fe6425eb457ebf293edf",
+      "cited_by": [
+        "docs/literature/scene_background_prior_audit_20261015.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2410.13842.pdf",
+      "exists": true,
+      "sha256": "284f73d46f92f9de3b4dcd06aa1c68bae7cb5dd2dd4b4a551d9d99177802e716",
+      "cited_by": [
+        "docs/literature/native_distribution_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2508.12082v2.pdf",
+      "exists": true,
+      "sha256": "93ee4c178877893194bcae8ce55c7c4012da7ff992da239eec1e779c395c979e",
+      "cited_by": [
+        "docs/literature/native_spatial_field_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2605.03294v1.pdf",
+      "exists": true,
+      "sha256": "012f321df3637976817aca5881221ece5a6bad6218198fdac559ab6e9c6f90fd",
+      "cited_by": [
+        "docs/literature/texture_deletion_prior_audit_20261015.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2606.03568v1.pdf",
+      "exists": true,
+      "sha256": "b209832bc947799c05701ad336c27254502fbc4c7389de1ae4007fc457d10d72",
+      "cited_by": [
+        "docs/literature/exclusive_peer_support_prior_audit_20261014.json",
+        "docs/literature/zotero_catchup_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2608.21457v1.pdf",
+      "exists": true,
+      "sha256": "fa870ff106ad68bbc53db159e0dac87ae0d9246f319f1a727c0fbd5c36cb7241",
+      "cited_by": [
+        "docs/literature/transport_quality_prior_audit_20261015.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2609.06581v1.pdf",
+      "exists": true,
+      "sha256": "be2653525b63b237b1f1b9572120f45e269db00f438e3c83b3753278dd06b648",
+      "cited_by": [
+        "docs/literature/texture_deletion_prior_audit_20261015.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/2609.30395v1.pdf",
+      "exists": true,
+      "sha256": "e05a7ac8bc9a0c01c92f02b920e63a3e6cd0af2e7dbe566c72911fe0327737d2",
+      "cited_by": [
+        "docs/literature/crop_teacher_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/arxiv-1705.02950.pdf",
+      "exists": true,
+      "sha256": "4b66a439f14cd2ef813ec33ac3f920bbd00f1826872c80d61865889811a62b07",
+      "cited_by": [
+        "docs/literature/exclusive_peer_support_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/arxiv-1711.05187v2.pdf",
+      "exists": true,
+      "sha256": "9c6dc01a79a4e1803f4c34afcebea041fd28951b29e12638483afbe4139a626a",
+      "cited_by": [
+        "docs/literature/observed_view_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/arxiv-1807.11590.pdf",
+      "exists": true,
+      "sha256": "81d09db1dd1a63dc5eae00bf32a5e6a4c2ffa902c5086b59412b4e61420b62ba",
+      "cited_by": [
+        "docs/literature/coordinate_score_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/arxiv-1903.03838v2.pdf",
+      "exists": true,
+      "sha256": "eb7630acf20286149d7bb488a65e808f8516e6e7d22bc1d0a7d9cd6a63cd9a11",
+      "cited_by": [
+        "docs/literature/correlated_fusion_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/arxiv-1912.04260.pdf",
+      "exists": true,
+      "sha256": "b44e1a2ab46007c41e64689bd171b77bf577cee3b2cd1b552c692bedad90f199",
+      "cited_by": [
+        "docs/literature/boundary_coordinate_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/arxiv-2006.04388.pdf",
+      "exists": true,
+      "sha256": "04a56cf0bd1c144ff940ad12a4134b75090843994bbfc22b84a04c1e5ed68a54",
+      "cited_by": [
+        "docs/literature/assignment_reachability_prior_audit_20261014.json",
+        "docs/literature/native_distribution_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/arxiv-2007.11056.pdf",
+      "exists": true,
+      "sha256": "23c58af2fca42ea401be4366f85fe91f3501d761537736d051526548c44394a7",
+      "cited_by": [
+        "docs/literature/boundary_coordinate_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/arxiv-2009.00784.pdf",
+      "exists": true,
+      "sha256": "5f37cfc23bf49fece9fb8e16c0baeb2c43ec6ffa71942a03a8009006085575e5",
+      "cited_by": [
+        "docs/literature/censored_retrieval_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/arxiv-2011.12885.pdf",
+      "exists": true,
+      "sha256": "425129b9ecb9bb3d246d7145d3872ea6e684ad0795a3a84cd2a03068f6d41931",
+      "cited_by": [
+        "docs/literature/dfl_action_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/arxiv-2108.07755.pdf",
+      "exists": true,
+      "sha256": "ede5d01fe07bba7e662ade68c9e88ad49868a1406bdff13c52f0dc4914eaf758",
+      "cited_by": [
+        "docs/literature/native_peak_quality_prior_audit_20261015.json",
+        "docs/literature/native_semantic_coupling_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/arxiv-2202.06934.pdf",
+      "exists": true,
+      "sha256": "66c9c5df29fa4c3ea3b410283bcb7aabd82255f096e551508ed929edda41dc49",
+      "cited_by": [
+        "docs/literature/crop_censored_sides_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/arxiv-2208.08738.pdf",
+      "exists": true,
+      "sha256": "ad3fe3acd4d586b60251c1f7d6e7916570559a80c61adfe9d03478b4d0df5770",
+      "cited_by": [
+        "docs/literature/assignment_reachability_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/arxiv-2407.16424.pdf",
+      "exists": true,
+      "sha256": "9deae95958cefdde0552351c294d1cba8f2d435f6dbfdf300b552c89fff6c29c",
+      "cited_by": [
+        "docs/literature/shared_prefix_lattice_prior_supplement_20261014.json",
+        "docs/literature/view_budget_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/arxiv-2601.00617.pdf",
+      "exists": true,
+      "sha256": "faf8335a60112a75247ed7fc624b20bd8294ce95f1a33d2d1bbe4efabc2206ef",
+      "cited_by": [
+        "docs/literature/label_gradient_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/arxiv-2610.02799v1.pdf",
+      "exists": true,
+      "sha256": "a1127e41972bf0e0ff16a6383a1d72c2de6b3a71e53c635e6ff539e1c6a3d24c",
+      "cited_by": [
+        "docs/literature/exclusive_peer_support_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/cvf-Barnea_Exploring_the_Bounds_of_the_Utility_of_Context_for_Object_CVPR_2019_paper.pdf",
+      "exists": true,
+      "sha256": "22782bf31886414c059514fb2ea6aaeb43ae1f5ebce2284dddad6f6ed26cdc5b",
+      "cited_by": [
+        "docs/literature/shared_residual_context_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/cvf-Hu_Relation_Networks_for_CVPR_2018_paper.pdf",
+      "exists": true,
+      "sha256": "fc3598cecb2e909c371490ecbed10ad137df9f19e8ab21591d3665a3a0e591da",
+      "cited_by": [
+        "docs/literature/neighbor_scale_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/cvf-Najibi_AutoFocus_Efficient_Multi-Scale_Inference_ICCV_2019_paper.pdf",
+      "exists": true,
+      "sha256": "2e5622cd8776cb8e2531176205cd77d21b730da7072bd20022130902fb4a6f7a",
+      "cited_by": [
+        "docs/literature/crop_censored_sides_prior_audit_20261014.json",
+        "docs/literature/view_budget_prior_audit_20261014.json"
+      ]
+    },
+    {
+      "path": "output/literature/papers/cvf-Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.pdf",
+      "exists": true,
+      "sha256": "2d8c9d0ca49784b31ade4a5183a6e4f95160aa182031dadb20f21e4d0fb3f268",
+      "cited_by": [
+        "docs/literature/label_gradient_prior_audit_20261014.json",
+        "docs/literature/scale_gradient_conflict_prior_audit_20261014.json"
+      ]
+    }
+  ],
+  "current_MCP_followup": {
+    "collection": "6HT9SNK7",
+    "new_exact_version_PDFs": [
+      "2110.13389v2",
+      "2608.21457v1"
+    ],
+    "prior_attachment_cleanup": [
+      "2204.05957v2",
+      "2508.12082v2"
+    ],
+    "attachment_children_readback_confirmed": true,
+    "new_paper_metadata_readback_confirmed": true,
+    "semantic_update": {
+      "total": 3,
+      "processed": 3,
+      "added": 3,
+      "errors": 0
+    },
+    "semantic_limit": "Tool reports3added; no per-paper semantic retrieval test performed."
+  },
+  "warning": "Known rejected unrelated physics PDF2011.12871v1 remains archived for erratum provenance and is not a detector reference. File-level inventory does not overturn that correction."
+}
