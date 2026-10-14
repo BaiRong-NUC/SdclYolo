@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-14",
+  "candidate": "candidate19 stable partial coordinate-action order",
+  "stage": "Preliminary distinction audit while candidate20 official metrics are still pending; no novelty conclusion.",
+  "related_work": [
+    {
+      "title": "Noise-Robust Tiny Object Localization with Flows",
+      "local_id": "arxiv-2601.00617",
+      "review_scope": "Abstract, introduction, noise-injection protocol, contributions and page3 visual inspection.",
+      "overlap": "Tiny-object annotation sensitivity and uncertainty-guided robust training.",
+      "difference_to_test": "Candidate19 drops pairwise order labels that reverse under fixed finite corner perturbations; it does not fit flow error distributions or modify the detector.",
+      "not_established": "No evidence yet that partial orders are a new contribution or better than TOLF-related uncertainty supervision."
+    },
+    {
+      "title": "Bounding Box Regression With Uncertainty for Accurate Object Detection",
+      "doi": "10.1109/CVPR.2019.00300",
+      "pdf_url": "https://openaccess.thecvf.com/content_CVPR_2019/papers/He_Bounding_Box_Regression_With_Uncertainty_for_Accurate_Object_Detection_CVPR_2019_paper.pdf",
+      "local_id": "cvf-He_Bounding_Box_Regression_With_Uncertainty_for_Accurate_Object_Detection_CVPR_2019_paper",
+      "review_scope": "Abstract, introduction, KL-loss and variance-voting description in extracted text.",
+      "overlap": "Ambiguous bounding boxes receive uncertainty-aware treatment; neighboring predictions help localization.",
+      "difference_to_test": "Candidate19 predicts scalar action preference using fixed geometry, not a coordinate variance or a variance-weighted vote.",
+      "not_established": "Different implementation alone is insufficient; calibrated uncertainty and variance-voting controls have not been evaluated for this candidate."
+    },
+    {
+      "title": "Relaxed Bounding Boxes for Object Detection",
+      "doi": "10.62762/JIAP.2025.507329",
+      "pdf_url": "https://www.icck.org/article/epdf/jiap/423",
+      "local_id": "icck-relaxed-boxes-2025-507329",
+      "review_scope": "Abstract, introduction, range-based ground truth and RIoU definitions; page3 rendered and visually inspected.",
+      "overlap": "A range of possible annotation boxes and relaxed localization losses already exist.",
+      "difference_to_test": "Candidate19 retains only a stable subset of within-owner action comparisons, rather than defining a loss to a relaxed box set.",
+      "not_established": "Finite sampled corners are neither exact continuous bounds nor a new general uncertainty-set concept. This paper's table-detection application does not by itself make a tiny-object adaptation novel."
+    },
+    {
+      "title": "RankDetNet / Rank & Sort / Learning to Rank Proposals",
+      "local_ids": [
+        "cvf-Liu_RankDetNet_Delving_Into_Ranking_Constraints_for_Object_Detection_CVPR_2021_paper",
+        "arxiv-2107.11669",
+        "cvf-Tan_Learning_to_Rank_Proposals_for_Object_Detection_ICCV_2019_paper"
+      ],
+      "review_scope": "Prior project audits and downloaded PDFs; no new exhaustive re-review claimed.",
+      "overlap": "Learning ranks of detections/proposals and localization quality is established.",
+      "difference_to_test": "Only comparison stability supervision may differ; a small head or ranking objective is not a contribution on its own."
+    }
+  ],
+  "required_before_any_innovation_claim": [
+    "Official AP/AR benefit over frozen uniform, historical regret and both matched candidate19 controls",
+    "A same-count largest-nominal-gap comparison control: stable pair selection may merely select easier or larger-gap comparisons",
+    "An expected-perturbed-quality or ordinary jitter-augmentation control to distinguish consistency from generic noise averaging",
+    "Mechanism analysis on harms, stable pair coverage and object sizes without oracle deployment",
+    "Closer robust ranking and noisy preference learning review; this audit is not an exhaustive novelty search",
+    "Independent data or another detection seed before claims of generality"
+  ],
+  "stop_policy": "Preserve candidate20 registered official gate. Missing a primary gate is not rescued by these future ablations, another radius, or a different secondary metric."
+}

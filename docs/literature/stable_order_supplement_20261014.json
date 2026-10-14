@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-14",
+  "scope": "Additional nearest work for candidate19; separate from original41-reference archive snapshot",
+  "papers": [
+    {
+      "id": "cvf-He_Bounding_Box_Regression_With_Uncertainty_for_Accurate_Object_Detection_CVPR_2019_paper",
+      "pdf_url": "https://openaccess.thecvf.com/content_CVPR_2019/papers/He_Bounding_Box_Regression_With_Uncertainty_for_Accurate_Object_Detection_CVPR_2019_paper.pdf",
+      "title": "Bounding Box Regression With Uncertainty for Accurate Object Detection",
+      "doi": "10.1109/CVPR.2019.00300",
+      "source": "Paper Search Crossref and CVF primary paper",
+      "source_url": "https://openaccess.thecvf.com/content_CVPR_2019/papers/He_Bounding_Box_Regression_With_Uncertainty_for_Accurate_Object_Detection_CVPR_2019_paper.pdf",
+      "checked_at_utc": "2026-10-14T03:51:05.648869+00:00",
+      "resolved_url": "https://openaccess.thecvf.com/content_CVPR_2019/papers/He_Bounding_Box_Regression_With_Uncertainty_for_Accurate_Object_Detection_CVPR_2019_paper.pdf",
+      "status": "downloaded_and_readable",
+      "route": "public_primary_pdf_http",
+      "path": "D:\\Python\\YOLO\\output\\literature\\papers\\cvf-He_Bounding_Box_Regression_With_Uncertainty_for_Accurate_Object_Detection_CVPR_2019_paper.pdf",
+      "bytes": 2036914,
+      "sha256": "8b29c73c2ace4b812bf6c2c58feee3a92129bca6bb4c7a5d05a6632ff8509b28",
+      "pages": 10,
+      "metadata_title": "Bounding Box Regression With Uncertainty for Accurate Object Detection",
+      "metadata_author": "Yihui He,  Chenchen Zhu,  Jianren Wang,  Marios Savvides,  Xiangyu Zhang",
+      "unmapped_surrogate_glyphs_replaced_in_text_only": 0,
+      "text_path": "D:\\Python\\YOLO\\output\\literature\\text\\cvf-He_Bounding_Box_Regression_With_Uncertainty_for_Accurate_Object_Detection_CVPR_2019_paper.txt",
+      "text_sha256": "c48fef32aa5a4aae970b6d11c58ade83a3e2220a1a7779ff2a322e9eccd72218",
+      "review_status": "text extracted, method review not inferred"
+    },
+    {
+      "id": "icck-relaxed-boxes-2025-507329",
+      "pdf_url": "https://www.icck.org/article/epdf/jiap/423",
+      "title": "Relaxed Bounding Boxes for Object Detection",
+      "doi": "10.62762/JIAP.2025.507329",
+      "source": "Paper Search Crossref and publisher open-access article",
+      "source_url": "https://www.icck.org/article/epdf/jiap/423",
+      "checked_at_utc": "2026-10-14T03:51:08.423733+00:00",
+      "resolved_url": "https://www.icck.org/article/epdf/jiap/423",
+      "status": "downloaded_and_readable",
+      "route": "public_primary_pdf_http",
+      "path": "D:\\Python\\YOLO\\output\\literature\\papers\\icck-relaxed-boxes-2025-507329.pdf",
+      "bytes": 12068878,
+      "sha256": "367380a2a6a4f35a9edaaef69211a14d3c9192087752f09a622b3dddfc0b1d8c",
+      "pages": 18,
+      "metadata_title": "Relaxed Bounding Boxes for Object Detection",
+      "metadata_author": "Aioanei, D.",
+      "unmapped_surrogate_glyphs_replaced_in_text_only": 0,
+      "text_path": "D:\\Python\\YOLO\\output\\literature\\text\\icck-relaxed-boxes-2025-507329.txt",
+      "text_sha256": "852937f70bebefe267b240ea42d227561293c41144edf8a5ccd683050b79c5d7",
+      "review_status": "text extracted, method review not inferred"
+    }
+  ]
+}

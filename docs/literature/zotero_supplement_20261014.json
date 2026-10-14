@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-14",
+  "collection_key": "6HT9SNK7",
+  "collection_name": "YOLO-VisDrone Research",
+  "original_import_snapshot": "docs/literature/zotero_import_20261014.json",
+  "additional_items": [
+    {
+      "key": "LQW56FX5",
+      "doi": "10.1145/3447548.3467121",
+      "title": "Robust Object Detection Fusion Against Deception",
+      "pdf": false,
+      "metadata_route": "Zotero MCP DOI/Crossref"
+    },
+    {
+      "key": "G6PBBZGM",
+      "doi": "10.1109/TGRS.2024.3430071",
+      "title": "Label Assignment Matters: A Gaussian Assignment Strategy for Tiny Object Detection",
+      "pdf": false,
+      "metadata_route": "Zotero MCP DOI/Crossref"
+    },
+    {
+      "key": "WGPAY5YD",
+      "doi": "10.1049/cit2.70083",
+      "title": "Dynamic Adaptive Label Assignment for Tiny Object Detection in Remote Sensing Images",
+      "pdf": false,
+      "metadata_route": "Zotero MCP DOI/Crossref"
+    },
+    {
+      "key": "YCQECS3D",
+      "doi": "10.1109/CVPR.2019.00300",
+      "title": "Bounding Box Regression With Uncertainty for Accurate Object Detection",
+      "pdf": true,
+      "attachment_key": "FIAN75Q7",
+      "metadata_route": "Zotero MCP DOI/Crossref, attach_file"
+    },
+    {
+      "key": "7VLB3SCK",
+      "doi": "10.62762/JIAP.2025.507329",
+      "title": "Relaxed Bounding Boxes for Object Detection",
+      "pdf": true,
+      "attachment_key": "2RQC2AT3",
+      "metadata_route": "Zotero MCP DOI/Crossref, attach_file"
+    }
+  ],
+  "expected_collection_records": 43,
+  "records_with_pdf": 40,
+  "records_without_pdf": 3,
+  "counts_include_version_duplicates": true,
+  "metadata_limit": "The original38 file imports remain document records with title but missing authors/date. These5 DOI imports have structured citation metadata. Do not call the entire library citation-ready.",
+  "collection_readback_verified": true,
+  "semantic_incremental_update_report": "No newly processed records in explicit call; automatic startup index updates enabled. Do not infer an exact final indexed count from this response."
+}
