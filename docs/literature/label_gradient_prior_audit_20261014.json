@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-14",
+  "scope": "Targeted primary-source overlap check for candidate53; not an exhaustive novelty search.",
+  "papers": [
+    {
+      "title": "Noise-Robust Tiny Object Localization with Flows",
+      "arxiv_version": "2601.00617v1",
+      "source": "https://arxiv.org/abs/2601.00617v1",
+      "metadata_check": "Paper Search exact-title query returned version2601.00617v1, seven authors and2026-01-02 submission date.",
+      "pdf": "output/literature/papers/arxiv-2601.00617.pdf",
+      "pdf_sha256": "faf8335a60112a75247ed7fc624b20bd8294ce95f1a33d2d1bbe4efabc2206ef",
+      "text": "output/literature/text/arxiv-2601.00617.txt",
+      "text_sha256": "78d53bdd424b452552e5040d80ac9aec5b0b02dab4f26ed2a8a8f11aaf2a0bd6",
+      "review": "Re-read local first-page abstract/introduction; reuse prior focused reading audit for noise protocol. This turn does not claim a fresh full-paper or PDF-version-byte audit.",
+      "overlap": "Tiny annotation-noise sensitivity, flow-based error modeling and uncertainty-aware gradient modulation are established here.",
+      "boundary": "Our synthetic corner derivative audit does not measure actual VisDrone annotation noise or reproduce TOLF.",
+      "zotero": "Existing parent B5ISP8XP from import manifest; no new item or attachment created and no fresh metadata readback claimed."
+    },
+    {
+      "title": "Uncertainty-Aware Gradient Stabilization for Small Object Detection",
+      "venue": "ICCV2025",
+      "source": "https://openaccess.thecvf.com/content/ICCV2025/html/Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.html",
+      "pdf": "output/literature/papers/cvf-Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.pdf",
+      "pdf_sha256": "2d8c9d0ca49784b31ade4a5183a6e4f95160aa182031dadb20f21e4d0fb3f268",
+      "text": "output/literature/text/cvf-Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.txt",
+      "text_sha256": "2b11eb84b4fda6d4209ea723bf6f1fade184c017eb6b8e8ae476741d1f39a59c",
+      "review": "Re-read local abstract/introduction; hashes match candidate51 audit.",
+      "overlap": "Sharp curvature, small-object gradient instability, nonuniform classification localization and uncertainty refinement are established.",
+      "boundary": "An isolated CIoU coordinate derivative is neither UGS reproduction nor total-gradient instability.",
+      "zotero": "Existing parent BZJI4ZL7 from import manifest; no new item or attachment created and no fresh metadata readback claimed."
+    }
+  ],
+  "candidate_result": "Five gates: three pass, excess-over-relative and interval fail. Fixed STOP. No training or innovation claim.",
+  "control_limit": "Both arms share sixteen corner signs and eligible rows, but perturbation amplitudes are not matched per object. A negative difference does not disprove annotation noise, all robust losses or the entire small-object field.",
+  "search_limit": "Exact-title metadata check and two previously archived primary sources; no absence-of-prior-work claim."
+}

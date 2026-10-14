@@ -1,0 +1,109 @@
+{
+  "experiment": "candidate53_pixel_label_gradient_sensitivity",
+  "date": "2026-10-14",
+  "output": "D:\\Python\\YOLO\\output\\analysis\\label-gradient-fixed-20261014",
+  "metrics": {
+    "all": {
+      "gt": 3948,
+      "guard_gt": 3809,
+      "productive_rows": 22214,
+      "productive_covered_gt": 3641,
+      "productive_images": 64,
+      "zero_nominal_rows": 0,
+      "zero_nominal_mass": 0.0,
+      "mass": 13196.894455404265,
+      "affected_gt": 1133,
+      "affected_images": 64,
+      "absolute_flip_mass": 621.2604409445776,
+      "relative_flip_mass": 2625.888796058367,
+      "absolute_flip_rate": 0.04707626048264446,
+      "relative_flip_rate": 0.19897778260877416,
+      "absolute_minus_relative_flip_rate": -0.1519015221261297
+    },
+    "tiny": {
+      "gt": 2728,
+      "guard_gt": 2705,
+      "productive_rows": 11506,
+      "productive_covered_gt": 2538,
+      "productive_images": 61,
+      "zero_nominal_rows": 0,
+      "zero_nominal_mass": 0.0,
+      "mass": 5448.520744452879,
+      "affected_gt": 729,
+      "affected_images": 60,
+      "absolute_flip_mass": 302.34641141758766,
+      "relative_flip_mass": 611.9155584798427,
+      "absolute_flip_rate": 0.055491467427265566,
+      "relative_flip_rate": 0.11230856725705449,
+      "absolute_minus_relative_flip_rate": -0.05681709982978892,
+      "absolute_minus_relative_image_bootstrap95ci": [
+        -0.07004495346093906,
+        -0.04336424188490907
+      ]
+    },
+    "small_all": {
+      "gt": 3609,
+      "guard_gt": 3519,
+      "productive_rows": 19316,
+      "productive_covered_gt": 3351,
+      "productive_images": 64,
+      "zero_nominal_rows": 0,
+      "zero_nominal_mass": 0.0,
+      "mass": 10864.475598787201,
+      "affected_gt": 1046,
+      "affected_images": 63,
+      "absolute_flip_mass": 543.3379993838025,
+      "relative_flip_mass": 1892.6814247713191,
+      "absolute_flip_rate": 0.050010513111599715,
+      "relative_flip_rate": 0.17420826321176502,
+      "absolute_minus_relative_flip_rate": -0.12419775010016532
+    }
+  },
+  "decision": {
+    "decision": "STOP_THIS_HALF_PIXEL_SPECIFIC_CIOU_ROUTE",
+    "checks": {
+      "covered_gt": true,
+      "images": true,
+      "absolute_flip": true,
+      "excess": false,
+      "interval": false
+    },
+    "scope": "Synthetic noise, isolated coordinate-loss derivative only; no actual annotation-error, model-update, detection efficacy or novelty evidence."
+  },
+  "verification": {
+    "image_decodes": 0,
+    "detector_forwards": 0,
+    "coordinate_gradient_batches": 2112,
+    "detector_updates": 0,
+    "AP_evaluations": 0,
+    "complete64_cached_frames": true,
+    "source_unchanged": true,
+    "installed_source_unchanged": true,
+    "elapsed_seconds": 2.7154021998867393
+  },
+  "artifacts_sha256": {
+    "decision.json": "c3b4858b27521941dd8c31177922f359c46baaf1b2e4c8176bec57c7536820fa",
+    "frames.json": "cdb7fff2e16446eebcad1484de8b0f78478559b61ffe2fe2ee8e37f6a7710aed",
+    "metrics.json": "ef8d81357af1471760c7183b82f8bc0340eef80ada02028de6973decfd4ab837",
+    "per_image.json": "0140f96f0d749c1eedd985c1abd6edd99a3806b8bacadb4dd3925b1dcd7657e4",
+    "plan.json": "4869b2c738724bb7b00c96a24ad200fdd80b99c5d34df751febb8b076ce9ad55",
+    "source.zip": "b8f23f79cfa645e3184dac3e4a168febd15d21c10846b749ed11f5ddc2744f18",
+    "verification.json": "a7706467c3398ef0a12ddb20a0abbd1325eae6e13f306b4ea7286484c2f8a3ac",
+    "independent_verification.json": "51e1a6f5d42541df76eea68305605b032e06c9276d63519aefe033b2deb93354"
+  },
+  "independent_verification": {
+    "all64_sources_archives_prior_frames_metadata_images_labels_checkpoint_hashed": true,
+    "all_rows_guards_amplitudes_and_metrics_rebuilt": true,
+    "numpy_forward_derivative_vectors_checked": 733062,
+    "maximum_gradient_absolute_error": 1.3877787807814457e-16,
+    "all_sign_flips_400_bootstrap_draws_and_five_gates_recomputed": true,
+    "extra_detector_forwards": 0,
+    "extra_image_decodes": 0,
+    "extra_model_updates": 0,
+    "verifier_sha256": "d1ebbfab0720492efde9fda19a1632bb6f7eeca47056a27c675b6a425b448964",
+    "limits": "Same cached checkpoint tensors; independent NumPy derivative with detached alpha. Relative noise is not amplitude matched. No detector training, annotation-error measurement, AP or novelty proof."
+  },
+  "prior_audit": "docs/literature/label_gradient_prior_audit_20261014.json",
+  "prior_audit_sha256": "f09eb31e1eff5b3c010e721f3902a758b9caa43460bf0bd8e19685542003b67f",
+  "tests": "4 passed: python -m pytest tests/test_label_gradient_sensitivity.py -q. Full cached derivative verification additionally passed independently with NumPy."
+}

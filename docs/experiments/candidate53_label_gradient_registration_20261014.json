@@ -1,0 +1,29 @@
+{
+  "experiment": "candidate53_pixel_label_gradient_sensitivity",
+  "date": "2026-10-14",
+  "question": "Does half-original-pixel edge perturbation reverse actual productive-positive CIoU coordinate gradients more than a matched16corner box-relative perturbation?",
+  "difference": "Candidate18 perturbed owned postprocessed GT to inspect action ranking. Candidate51 inspected actual shared-parameter interference. This uses all productive native training positives cached in50 and isolates the CIoU coordinate derivative. Neither earlier STOP is modified or rescued.",
+  "sample": "Exactly all64 candidate50 unaugmented960 train frames, saved decoded native boxes, fullGT, actualTAL owner and quality mass. No confidence/NMS sampling. Detector saw these training scenes, so no independent generalization claim.",
+  "loss": "Float64 CPU isolated loss1-CIoU(predicted_pixelbox/stride, assigned_GT_pixelbox/stride), fixedeps1e-7 and detached CIoUalpha matching current ultralytics primitive. Differentiate w.r.t predicted pixelbox coordinates. Original owner, mass and denominator remain fixed for every perturbation. No DFL, classifier, feature/backbone gradient, target reassignment or optimizer update.",
+  "arms": {
+    "nominal": "Original unperturbedGT.",
+    "absolute": "Each original GT edge independently offset by plus/minus0.5originalpixel. Transport exact resized-width/original-width and resized-height/original-height from candidate50 deterministic preprocessing. Enumerate all16sign combinations, uniform weights.",
+    "relative": "Same16sign vectors and GT population, each horizontal edge offset by plus/minusGTwidth/32 and vertical edge by plus/minusGTheight/32. This matches relative3.125% coordinate perturbation and equals0.5pixel for a16pixel side; it is NOT amplitude-matched to each absolute perturbation. Report this limitation."
+  },
+  "shared_guard": "For eachGT compute maximum per-edge amplitude over BOTHarms. Require every corner in BOTHarms to have strict positive extent and stay within actual resized image content. No clipping, asymmetric intervals, discarding individual corners or changing margin after results. Preserve allGT totals/exclusions and use identical eligible productive rows in both arms.",
+  "gradient_population": "Productive means actualforeground and original target_mass>0. Require unweighted nominal pixel-coordinate gradientL2>1e-12 for angular interpretation; exclude only zero-nominal-gradient rows from botharms and report their count/mass. All perturbation gradients must be finite; zeros contribute no negative dot. Direction reversal is STRICT dot(nominal_gradient,perturbed_gradient)<0. Each row probability=number of reversing corners/16.",
+  "metrics": "For all/tiny/small_all by transformed area*(640/960)^2, report allGT, shared-guardGT, productive coveredGT/rows, zero-nominal rows/mass, denominator mass, affectedGT/images, and original-quality-mass-weighted absolute/relative flip probabilities. Primary paired difference=absolute_flip_rate-relative_flip_rate. Count all eligible rows, not only failures.",
+  "bootstrap": "400 multinomial image draws with default_rng0 over all64images, including zero-mass images. Ratio of sampled weighted flip difference sums to sampled eligible quality mass. Percentiles2.5/97.5. Require all sampled denominators>0, otherwise interval unavailable and screen fails.",
+  "policy": {
+    "tiny_productive_covered_gt_min": 100,
+    "tiny_productive_images_min": 24,
+    "tiny_absolute_flip_rate_min": 0.03,
+    "tiny_absolute_minus_relative_flip_rate_min": 0.005,
+    "tiny_difference_bootstrap_lower_min": 0.0
+  },
+  "pass": "PIXEL_SPECIFIC_GRADIENT_SIGNAL_SUPPORTS_SEPARATE_LOSS_PILOT. Only permits a separately preregistered constrained loss/update feasibility comparison against ordinary relative jitter, generic robust loss and appropriate TOLF/UGS-related controls. No full training, AP or innovation authorization.",
+  "fail": "STOP_THIS_HALF_PIXEL_SPECIFIC_CIOU_ROUTE. No changing amplitude, relative fraction, corner set, eligible population, loss, checkpoint, layer, sample count or primary group to rescue. Does not rule out actual annotation errors or all robust localization.",
+  "budget": "Cached tensors only:0image decodes,0detector forwards,0model updates,0AP. At most64x33 CPU coordinate-gradient batches for nominal plus2x16perturbations. Save every coordinate-gradient and sign probability for independent audit.",
+  "prior_boundary": "TOLF already demonstrates tiny annotation-noise sensitivity and uncertainty-guided gradient suppression; UGS studies small-object loss curvature/gradient instability. Corner enumeration and relative-coordinate noise are established analyses. This prerequisite cannot establish original research by itself.",
+  "limits": "Specified synthetic corner noise is not observed annotation error. Coordinate gradients are not full training updates; DFL/quality/classification and learned feature coupling may counteract them. Sixteen corners do not certify a continuous interval. Final-checkpoint/no-augmentation analysis does not reconstruct historical training."
+}
