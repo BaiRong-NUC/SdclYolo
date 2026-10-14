@@ -1235,3 +1235,43 @@ Zotero工具短暂恢复后尝试按URL归档，但调用返回不可用，新�
 `docs/experiments/candidate42_native_spatial_field_result_20261014.json`。
 论文核验：`docs/literature/native_spatial_field_prior_audit_20261014.json`。
 完整结果：`output/analysis/native-spatial-field-fixed-20261014/`。
+
+## 实验 43：零修正监督是否遗漏了有界可补回的近失框
+
+检验不同的监督覆盖问题，不改变实验38/39/42的已停止配方。
+原连续头把原校准一对一IoU0.5未归属行训练为零修正；
+64张留出图中3925个活动未归属行的目标确实全零。
+冻结普通几何seed0为当前预测，原regret加减0.1原校准宽高仍是总位移预算，
+不是在几何修正之后再加一次位移。所有当前几何坐标均位于原预算内。
+对每个GT把四边独立投影到严格有序的允许区间，计算区间闭包最大IoU。
+
+每个IoU阈值固定当前confidence0.25的既有匹配，只允许未用预测行补未检GT。
+同类二分图按预测行容量1做最大匹配；组和阈值各自优化，不代表同一组实际框。
+严格唯一未归属池还要求该行在原预算内只能达到一个同类GT的IoU0.5，
+检查包括已检出的全部GT，不只检查漏检GT。
+
+| 池，IoU0.5 | tiny最多新增GT | small_all最多新增GT |
+|---|---:|---:|
+| 全部未使用活动高分行 | 62 | 64 |
+| 原未归属、零目标行 | 60 | 62 |
+| 严格唯一未归属行 | 54 | 56 |
+
+tiny严格唯一空间分布于30张图，占全部未使用池的87.10%；
+十阈值独立最大匹配的平均召回空间为0.743243pp。
+四项预登记门槛全部通过，BOUNDED_UNOWNED_SUPERVISION_CONTROL_ALLOWED。
+这是真实的监督覆盖线索，不是可部署收益、AP上界或新方法成立。
+只允许另行登记常规监督对照及普通放宽归属对照的小成本可学习性实验，
+不能降低原STOP门槛、扩大位移或直接启动检测器训练。
+
+执行3.52秒，无检测器前向、图片解码或训练；四个针对性测试通过。
+源归档和64份跟踪核验通过；另用Hungarian求解器独立复算5760个
+池/组/阈值匹配数量，并精确重算全部当前贪心匹配与唯一性条件。
+PAA2007.08103v2与ATSS1912.02424v4已通过Paper Search下载，
+核查正负样本定义、GMM分配、mean+std门槛与多GT冲突处理相关章节。
+正负监督选择早有先例，不能把补近失正样本或唯一性过滤直接称为创新。
+确切版本PDF/文本/哈希保留；新两篇尚不声称Zotero导入成功。
+
+登记与结果：`docs/experiments/candidate43_unowned_reachability_registration_20261014.json`、
+`docs/experiments/candidate43_unowned_reachability_result_20261014.json`。
+论文核验：`docs/literature/unowned_supervision_prior_audit_20261014.json`。
+完整结果：`output/analysis/unowned-reachability-fixed-20261014/`。

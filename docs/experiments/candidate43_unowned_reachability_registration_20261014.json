@@ -1,0 +1,27 @@
+{
+  "experiment": "candidate43_bounded_unowned_supervision_headroom",
+  "date": "2026-10-14",
+  "stage": "Annotation-assisted supervision coverage audit; no training or deployable improvement",
+  "question": "After the frozen ordinary geometry corrector, are enough tiny missed GTs reachable by originally unowned rows whose existing regression target is exactly zero, without leaving the original coordinate budget or introducing ambiguous same-class ownership?",
+  "basis": "Candidate38/39/42 used original calibrated one-to-one IoU.5 owners and zero residual targets for unowned rows. This audits an untested target-coverage dead zone, not another representation, loss, association-threshold or hyperparameter choice for those stopped heads. Their STOPs stay unchanged.",
+  "prior_boundary": "ATSS, PAA and existing dynamic assignment methods already establish that defining positives/negatives matters. Relaxing IoU thresholds, adding near-miss positives, using bipartite matching or continuous regression is not an innovation. This audit can at most justify a NEW conventional supervision control before searching for a distinct mechanism.",
+  "sample": "Original64 candidate18 head-held-out detector-training images only. Load exact candidate38 association/active masks, original calibrated GT owners, original regret coordinates and original calibrated width/height. Compare fixed candidate39 seed0 geometry arrays, verify all trace hashes and exact agreement with candidate38 seed0. No val/testdev, detector forward, image decode or head fitting.",
+  "reference": "Current predictions are frozen ordinary geometry seed0, confidence>=.25. For each IoU threshold.50:.05:.95, compute ordinary score-ordered one-to-one class-aware matches, then freeze these matches. Only currently unused active prediction rows at confidence>=.25 and currently unmatched GTs can participate in the extra-matching graph.",
+  "budget": "TOTAL residual bounds remain original regret coordinates plus/minus original float32(.1)*original calibrated width/height, clipped to image and rounded to storedfloat32. This is NOT another .1 step after geometry. Rectangular edge intervals must be strictly ordered for all endpoints; fail if not. Independently clamping each GT edge into these intervals gives maximal IoU in the interval closure. Compute class-matched pair IoUs and verify with targeted exhaustive endpoint/GT-clamp tests.",
+  "pools": {
+    "all_unused": "All currently unused active high-score rows, including originally owned rows; groupwise/thresholdwise maximum additional cardinality reference",
+    "unowned": "Same but original owner==-1; their existing target must be exactly zero",
+    "unique_unowned": "Same unowned pool, and the row can reach IoU>=.5 with EXACTLY ONE same-class GT across ALL original GTs, including currently detected ones, within the total budget. Fixed IoU.5 uniqueness reused at every evaluation threshold"
+  },
+  "matching": "For each group(all/tiny/small_all) and threshold separately, maximum-cardinality bipartite matching between eligible rows and group-filtered missed GTs with class-matched maximalIoU>=threshold. A row cannot count twice. Baseline matched GTs are never candidate endpoints but still affect uniqueness. Each group/threshold solves independently, so results need not correspond to one common corrected prediction array. No AP/AR or greedy-deployment gain claim.",
+  "primary": "tiny unique_unowned additionalGT atIoU.5, its spread over images, its fraction of all_unused additionalGT atIoU.5 and mean of threshold-specific additionalGT/tinyGT in percentage points. The oracle is a restricted graph headroom reference, NOT an AP bound or achievable learned result.",
+  "policy": {
+    "tiny_unique_additional_gt050_min": 20,
+    "tiny_unique_images050_min": 8,
+    "tiny_unique_mean_ten_threshold_headroom_min_pp": 0.10,
+    "tiny_unique_fraction_of_all_unused050_min": 0.20
+  },
+  "pass_action": "Only authorize a separately registered low-cost ordinary unowned-supervision CONTROL with matched original-owner and naive relaxed-owner controls. No detector training, official upgrade, innovation conclusion or choice among threshold/bounds variants from this oracle.",
+  "fail_action": "STOP_THIS_BOUNDED_UNOWNED_SUPERVISION_ROUTE. No larger displacement, lower confidence, different owner threshold, removal of uniqueness, chosen group/IoU or changed gate to rescue this route.",
+  "limits": "GT determines interval projection, edges and uniqueness, so none is a deployment feature. Freezing baseline matches and per-threshold graph choices may not reproduce greedy matching after real correction. Repeated detector-training imagery and original diagnostic ignore filtering remain. Existing association misses and low-confidence rows are outside this fixed screen. A failed screen only stops this bounded unambiguous high-score route."
+}

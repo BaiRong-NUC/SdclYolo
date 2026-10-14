@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-14",
+  "scope": "Primary-source prior check for candidate43 supervision coverage, not novelty verification",
+  "papers": [
+    {
+      "title": "Probabilistic Anchor Assignment with IoU Prediction for Object Detection",
+      "arxiv_version": "2007.08103v2",
+      "source": "Paper Search arXiv metadata and download, version dated2020-09-05",
+      "pdf_url": "https://arxiv.org/pdf/2007.08103v2",
+      "pdf": "output/literature/papers/2007.08103v2.pdf",
+      "pdf_sha256": "21e27f3f05a03a97c9f71e04e5291202dad554485ab1fa9e625b6d69f26fa389",
+      "pages": 22,
+      "text": "output/literature/text/2007.08103v2.txt",
+      "text_sha256": "d74d273ca043cc1c8ba681e1a031fd7769023dd4391ac09fdad451b903267796",
+      "reviewed": "Abstract, section2.2 and section3.1 anchor score/GMM/GT assignment description",
+      "overlap": "Model-dependent positive/negative assignment and replacing a fixed-IoU rule are established. PAA combines classification and localization loss scores and separates anchors by a two-component Gaussian mixture.",
+      "difference_and_limit": "Candidate43 audits already-emitted rows and the total reachable coordinate interval of a frozen postprocessor, not PAA or detector training. Reachability/uniqueness alone is not a demonstrated new assignment method; no superiority claim."
+    },
+    {
+      "title": "Bridging the Gap Between Anchor-based and Anchor-free Detection via Adaptive Training Sample Selection",
+      "arxiv_version": "1912.02424v4",
+      "source": "Paper Search arXiv metadata and download, version dated2020-06-20",
+      "pdf_url": "https://arxiv.org/pdf/1912.02424v4",
+      "pdf": "output/literature/papers/1912.02424v4.pdf",
+      "pdf_sha256": "9f7d69ca06c3a763aabddc820749962e14e58859d008f9b62fa5e4ff7b1ac9d0",
+      "pages": 10,
+      "text": "output/literature/text/1912.02424v4.txt",
+      "text_sha256": "9754ccc029031716a711bf37a1d2ee1be1f47d38bc3d3cc06282a6c8eeb5d115",
+      "reviewed": "Abstract, section3.3 and section4.1/Algorithm1: candidate centers, IoU mean+std threshold and multiple-GT conflict selection",
+      "overlap": "Positive/negative sample definition can dominate parameterization differences. Adaptive per-GT thresholds and resolving multiple-GT assignments are established, not innovation opportunities merely from applying them to tiny objects.",
+      "difference_and_limit": "Candidate43 is an annotation-assisted count of missed GTs reachable by zero-target rows within an unchanged residual interval. It neither reproduces ATSS nor proves deployable learning from those rows."
+    }
+  ],
+  "claim": "A positive oracle only permits a low-cost ordinary supervision control. A distinct mechanism and matched-control evidence are still required before an innovation candidate.",
+  "zotero_status": "New exact-version PDFs/texts stored locally. Zotero was unavailable on the latest attempted call; no item or attachment import claimed."
+}

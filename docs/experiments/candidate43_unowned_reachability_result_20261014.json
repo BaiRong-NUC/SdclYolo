@@ -1,0 +1,295 @@
+{
+  "experiment": "candidate43_bounded_unowned_supervision_headroom",
+  "date": "2026-10-14",
+  "output": "output/analysis/unowned-reachability-fixed-20261014",
+  "decision": {
+    "decision": "BOUNDED_UNOWNED_SUPERVISION_CONTROL_ALLOWED",
+    "checks": {
+      "tiny_unique_count": true,
+      "image_spread": true,
+      "ten_threshold_headroom": true,
+      "fraction_of_all_reachable": true
+    },
+    "scope": "GT-assisted target coverage lead only, not a feasible gain, AP bound or innovation."
+  },
+  "metrics": {
+    "all": {
+      "gt": 3247,
+      "thresholds": [
+        {
+          "iou": 0.5,
+          "baseline_tp": 2495,
+          "all_unused": 64,
+          "unowned": 62,
+          "unique_unowned": 56
+        },
+        {
+          "iou": 0.55,
+          "baseline_tp": 2442,
+          "all_unused": 106,
+          "unowned": 58,
+          "unique_unowned": 51
+        },
+        {
+          "iou": 0.6,
+          "baseline_tp": 2359,
+          "all_unused": 178,
+          "unowned": 48,
+          "unique_unowned": 41
+        },
+        {
+          "iou": 0.65,
+          "baseline_tp": 2228,
+          "all_unused": 289,
+          "unowned": 30,
+          "unique_unowned": 24
+        },
+        {
+          "iou": 0.7,
+          "baseline_tp": 2050,
+          "all_unused": 435,
+          "unowned": 15,
+          "unique_unowned": 13
+        },
+        {
+          "iou": 0.75,
+          "baseline_tp": 1822,
+          "all_unused": 613,
+          "unowned": 6,
+          "unique_unowned": 6
+        },
+        {
+          "iou": 0.8,
+          "baseline_tp": 1497,
+          "all_unused": 859,
+          "unowned": 8,
+          "unique_unowned": 8
+        },
+        {
+          "iou": 0.85,
+          "baseline_tp": 1106,
+          "all_unused": 1133,
+          "unowned": 7,
+          "unique_unowned": 6
+        },
+        {
+          "iou": 0.8999999999999999,
+          "baseline_tp": 616,
+          "all_unused": 1440,
+          "unowned": 5,
+          "unique_unowned": 4
+        },
+        {
+          "iou": 0.95,
+          "baseline_tp": 149,
+          "all_unused": 1631,
+          "unowned": 3,
+          "unique_unowned": 2
+        }
+      ],
+      "mean_ten_threshold_headroom_pp": {
+        "all_unused": 20.782260548198337,
+        "unowned": 0.7453033569448722,
+        "unique_unowned": 0.6498306128734217
+      },
+      "unique_unowned_images050": 31,
+      "unique_unowned_fraction_of_all_unused050": 0.875
+    },
+    "tiny": {
+      "gt": 2664,
+      "thresholds": [
+        {
+          "iou": 0.5,
+          "baseline_tp": 1947,
+          "all_unused": 62,
+          "unowned": 60,
+          "unique_unowned": 54
+        },
+        {
+          "iou": 0.55,
+          "baseline_tp": 1895,
+          "all_unused": 104,
+          "unowned": 57,
+          "unique_unowned": 50
+        },
+        {
+          "iou": 0.6,
+          "baseline_tp": 1815,
+          "all_unused": 173,
+          "unowned": 47,
+          "unique_unowned": 40
+        },
+        {
+          "iou": 0.65,
+          "baseline_tp": 1687,
+          "all_unused": 282,
+          "unowned": 30,
+          "unique_unowned": 24
+        },
+        {
+          "iou": 0.7,
+          "baseline_tp": 1520,
+          "all_unused": 417,
+          "unowned": 14,
+          "unique_unowned": 12
+        },
+        {
+          "iou": 0.75,
+          "baseline_tp": 1305,
+          "all_unused": 584,
+          "unowned": 4,
+          "unique_unowned": 4
+        },
+        {
+          "iou": 0.8,
+          "baseline_tp": 1014,
+          "all_unused": 799,
+          "unowned": 5,
+          "unique_unowned": 5
+        },
+        {
+          "iou": 0.85,
+          "baseline_tp": 676,
+          "all_unused": 1026,
+          "unowned": 5,
+          "unique_unowned": 4
+        },
+        {
+          "iou": 0.8999999999999999,
+          "baseline_tp": 308,
+          "all_unused": 1219,
+          "unowned": 4,
+          "unique_unowned": 3
+        },
+        {
+          "iou": 0.95,
+          "baseline_tp": 38,
+          "all_unused": 1238,
+          "unowned": 3,
+          "unique_unowned": 2
+        }
+      ],
+      "mean_ten_threshold_headroom_pp": {
+        "all_unused": 22.16216216216216,
+        "unowned": 0.8596096096096095,
+        "unique_unowned": 0.7432432432432433
+      },
+      "unique_unowned_images050": 30,
+      "unique_unowned_fraction_of_all_unused050": 0.8709677419354839
+    },
+    "small_all": {
+      "gt": 3098,
+      "thresholds": [
+        {
+          "iou": 0.5,
+          "baseline_tp": 2352,
+          "all_unused": 64,
+          "unowned": 62,
+          "unique_unowned": 56
+        },
+        {
+          "iou": 0.55,
+          "baseline_tp": 2299,
+          "all_unused": 106,
+          "unowned": 58,
+          "unique_unowned": 51
+        },
+        {
+          "iou": 0.6,
+          "baseline_tp": 2217,
+          "all_unused": 177,
+          "unowned": 48,
+          "unique_unowned": 41
+        },
+        {
+          "iou": 0.65,
+          "baseline_tp": 2087,
+          "all_unused": 287,
+          "unowned": 30,
+          "unique_unowned": 24
+        },
+        {
+          "iou": 0.7,
+          "baseline_tp": 1909,
+          "all_unused": 433,
+          "unowned": 15,
+          "unique_unowned": 13
+        },
+        {
+          "iou": 0.75,
+          "baseline_tp": 1683,
+          "all_unused": 610,
+          "unowned": 6,
+          "unique_unowned": 6
+        },
+        {
+          "iou": 0.8,
+          "baseline_tp": 1365,
+          "all_unused": 850,
+          "unowned": 8,
+          "unique_unowned": 8
+        },
+        {
+          "iou": 0.85,
+          "baseline_tp": 982,
+          "all_unused": 1116,
+          "unowned": 7,
+          "unique_unowned": 6
+        },
+        {
+          "iou": 0.8999999999999999,
+          "baseline_tp": 513,
+          "all_unused": 1402,
+          "unowned": 5,
+          "unique_unowned": 4
+        },
+        {
+          "iou": 0.95,
+          "baseline_tp": 98,
+          "all_unused": 1545,
+          "unowned": 3,
+          "unique_unowned": 2
+        }
+      ],
+      "mean_ten_threshold_headroom_pp": {
+        "all_unused": 21.27178825048418,
+        "unowned": 0.7811491284699805,
+        "unique_unowned": 0.6810845706907683
+      },
+      "unique_unowned_images050": 31,
+      "unique_unowned_fraction_of_all_unused050": 0.875
+    }
+  },
+  "verification": {
+    "images": 64,
+    "detector_forwards": 0,
+    "image_decodes": 0,
+    "fitting_steps": 0,
+    "active_unowned_zero_target_rows": 3925,
+    "all64_geometry38_and39_predictions_identical": true,
+    "budget_total_relative_to_original_regret_not_an_extra_step": true,
+    "all_existing_geometry_coordinates_inside_budget": true,
+    "current_matching_and_row_capacity_respected_in_oracle_graph": true,
+    "all_GT_used_for_uniqueness_including_already_matched": true,
+    "prior_STOP_preserved": "STOP_THIS_ORDINARY_GEOMETRY_RESIDUAL_CONFIRMATION",
+    "source_unchanged": true,
+    "elapsed_seconds": 3.515174299944192
+  },
+  "independent_verification": {
+    "all64_traces_and_source_hashes_verified": true,
+    "all64_baseline_greedy_matchings_recomputed_exactly": true,
+    "all5760_pool_group_threshold_matching_counts_recomputed_with_independent_Hungarian_solver": true,
+    "uniqueness_includes_detected_GT": true
+  },
+  "artifacts_sha256": {
+    "decision.json": "cfd77aff3691e997b85d35856cf6a20d93314393721461e2f9075613e53f4731",
+    "frames.json": "c93ccb351f89578ae95efbd19013c9d9456c9eba765b091787cf875f0df748cc",
+    "independent_verification.json": "1f1437867c56ac946d1d0d93a87f39d0eb0cc9f44a01e655bde9f3b0314a0c83",
+    "metrics.json": "13dd4a4d16872d1894c6c74f3d202b4b06045a4105aea441c9eb5d3c5133cf11",
+    "per_image.json": "31d518958b11fce5d04acd0af7cbdc9567a2cd3379031f4cd36318ffae36b4bc",
+    "plan.json": "0904bc8773933b7967ca9f3d718d259ab1d486fbded5b5eb708b4bcb25336af5",
+    "source.zip": "d9a5b353e1ffb5bffc7a5ee0af3b69ac9e0fe8a70ff1e4cc11c663a0586e0ab8",
+    "verification.json": "0c24270936ab78f4e642b7deeef5aa36650e6245cc6cfa4650e4250fc5894556"
+  },
+  "tests": "4 passed: maximal interval projection via exhaustive endpoint/GT-clamp candidates; bipartite row capacity; detected-GT uniqueness and used-row exclusion; class isolation and noncumulative budget"
+}
