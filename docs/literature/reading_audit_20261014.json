@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-14",
+  "archive": {
+    "catalog": "docs/literature/reference_catalog_20261014.json",
+    "status": "docs/literature/download_status_20261014.json",
+    "pdf_directory": "output/literature/papers",
+    "extracted_text_directory": "output/literature/text",
+    "readable_pdf_files": 38,
+    "reference_records": 41,
+    "count_is_not_unique_papers": true,
+    "policy": "Only public primary PDFs, with source URLs and SHA256. PDF bytes stay outside Git. Text extraction does not establish a full method review.",
+    "mcp_usage": "Paper Search downloaded Soft-NMS, WBF and FUSEye; Crossref metadata search worked. arXiv/Semantic search hit HTTP429, so remaining public primary PDFs used an HTTP fallback. Zotero MCP imported 38 files and collection readback verified 38 PDF-bearing records.",
+    "metadata_limit": "Zotero file imports are document records with verified titles but missing structured authors/date; not citation-ready."
+  },
+  "unresolved_fulltext": [
+    {
+      "doi": "10.1145/3447548.3467121",
+      "title": "Robust Object Detection Fusion Against Deception",
+      "evidence": "Crossref exact DOI/title; publisher PDF HTTP403, old author PDF HTTP404; OpenAlex returned no public repository location."
+    },
+    {
+      "doi": "10.1109/TGRS.2024.3430071",
+      "title": "Label Assignment Matters: A Gaussian Assignment Strategy for Tiny Object Detection",
+      "evidence": "Crossref title; author repository citation; no verified public PDF location. Similarity-checking link is not treated as an OA route."
+    },
+    {
+      "doi": "10.1049/cit2.70083",
+      "title": "Dynamic Adaptive Label Assignment for Tiny Object Detection in Remote Sensing Images",
+      "evidence": "Author repository citation; publisher public-pdf attempt failed. Metadata retained without a fulltext claim."
+    }
+  ],
+  "focused_reading": [
+    {
+      "id": "arxiv-2601.00617",
+      "title": "Noise-Robust Tiny Object Localization with Flows",
+      "reviewed": "Abstract, introduction, noise injection protocol, contributions, related work. Page3 rendered with Poppler and visually inspected.",
+      "prior_mechanism": "Flexible normalizing-flow error distributions and uncertainty-aware gradient modulation for tiny-object annotation noise.",
+      "specific_evidence": "The paper reports manually auditing 532 AI-TOD boxes, and training-time center Gaussian perturbations. Its annotation-noise rates are not measurements on our VisDrone data.",
+      "consequence": "Tiny-object annotation sensitivity, noise robustness, and uncertainty weighting are established prior concepts. A candidate based on action-order stability must show a separate failure signal and matched benefit; perturbation sensitivity alone is not novelty."
+    },
+    {
+      "id": "arxiv-2505.18446",
+      "title": "Mitigating Context Bias in Domain Adaptation for Object Detection using Mask Pooling",
+      "reviewed": "Abstract, causal motivation and foreground/background pooling description in extracted text.",
+      "prior_mechanism": "Foreground masks separate foreground/background pooling; random-background benchmark probes domain context bias.",
+      "consequence": "Generic masking, context suppression, and causal language do not establish originality for candidate17, which also failed its efficacy gate."
+    },
+    {
+      "id": "arxiv-2610.02799v1",
+      "title": "FUSEye: Training-Light Fisheye Detection with Overlapping Views and Zero-Initialized Adapters",
+      "reviewed": "Abstract and method-description excerpts; fisheye domain differs from VisDrone.",
+      "prior_mechanism": "Overlapping views, lightweight adaptation and learned fusion/rescoring.",
+      "consequence": "Multi-view fusion and a small learned head alone are insufficient as an innovation claim."
+    },
+    {
+      "id": "arxiv-2108.07755",
+      "title": "TOOD: Task-aligned One-stage Object Detection",
+      "reviewed": "First-page identity and abstract verified.",
+      "consequence": "Task alignment is a prior baseline concept, not a new contribution of a coverage or localization variant."
+    }
+  ],
+  "research_boundary": {
+    "candidate17": "STOP_THIS_CONTEXT_INTERVENTION preserved.",
+    "next_possible_question": "Do original-pixel corner perturbations reverse within-owned-GT coordinate-action ordering, and is there still nontrivial stable action headroom?",
+    "not_yet_shown": [
+      "Actual VisDrone annotation errors or inter-annotator variation",
+      "Certified bounds over continuous annotation uncertainty",
+      "A learned action policy with gains over the frozen uniform control",
+      "Distinctness from all robust ranking, localization uncertainty and abstention methods",
+      "Official AP improvement or independent-data generalization"
+    ]
+  }
+}

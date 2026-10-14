@@ -1,0 +1,447 @@
+{
+  "date": "2026-10-14",
+  "scope": "Cited primary papers plus current-context nearest work; downloading does not mean full method review or originality confirmation.",
+  "papers": [
+    {
+      "id": "arxiv-1704.04503",
+      "pdf_url": "https://arxiv.org/pdf/1704.04503",
+      "sources": [
+        "https://arxiv.org/abs/1704.04503"
+      ],
+      "cited_by": [
+        "additional prior-art screen"
+      ]
+    },
+    {
+      "id": "arxiv-1705.02950",
+      "pdf_url": "https://arxiv.org/pdf/1705.02950",
+      "sources": [
+        "https://arxiv.org/abs/1705.02950"
+      ],
+      "cited_by": [
+        "additional prior-art screen"
+      ]
+    },
+    {
+      "id": "arxiv-1708.02002",
+      "pdf_url": "https://arxiv.org/pdf/1708.02002",
+      "sources": [
+        "https://arxiv.org/abs/1708.02002"
+      ],
+      "cited_by": [
+        "docs/\u53c2\u8003\u8bba\u6587_\u76f8\u5173\u6027\u4e0e\u7814\u7a76\u5224\u65ad.md",
+        "docs/\u5c3a\u5ea6\u4e0e\u96be\u5ea6\u534f\u540c\u5b66\u4e60_\u5b9e\u73b0\u65b9\u6848.md"
+      ]
+    },
+    {
+      "id": "arxiv-1711.11575",
+      "pdf_url": "https://arxiv.org/pdf/1711.11575",
+      "sources": [
+        "https://arxiv.org/abs/1711.11575"
+      ],
+      "cited_by": [
+        "additional prior-art screen"
+      ]
+    },
+    {
+      "id": "arxiv-1807.11590",
+      "pdf_url": "https://arxiv.org/pdf/1807.11590",
+      "sources": [
+        "https://arxiv.org/abs/1807.11590",
+        "https://arxiv.org/pdf/1807.11590"
+      ],
+      "cited_by": [
+        "docs/960_ranking_nearest_prior_and_next_screen_20261013.md",
+        "docs/experiments/innovation_prior_art_20261013.json",
+        "docs/experiments/ranking_nearest_prior_20261013.json"
+      ]
+    },
+    {
+      "id": "arxiv-1811.05181",
+      "pdf_url": "https://arxiv.org/pdf/1811.05181",
+      "sources": [
+        "https://arxiv.org/abs/1811.05181"
+      ],
+      "cited_by": [
+        "docs/\u53c2\u8003\u8bba\u6587_\u76f8\u5173\u6027\u4e0e\u7814\u7a76\u5224\u65ad.md",
+        "docs/\u5c3a\u5ea6\u4e0e\u96be\u5ea6\u534f\u540c\u5b66\u4e60_\u5b9e\u73b0\u65b9\u6848.md"
+      ]
+    },
+    {
+      "id": "arxiv-1904.03629",
+      "pdf_url": "https://arxiv.org/pdf/1904.03629",
+      "sources": [
+        "https://arxiv.org/abs/1904.03629"
+      ],
+      "cited_by": [
+        "additional prior-art screen"
+      ]
+    },
+    {
+      "id": "arxiv-1904.06373",
+      "pdf_url": "https://arxiv.org/pdf/1904.06373",
+      "sources": [
+        "https://arxiv.org/abs/1904.06373"
+      ],
+      "cited_by": [
+        "docs/experiments/innovation_prior_art_20261013.json"
+      ]
+    },
+    {
+      "id": "arxiv-1910.13302",
+      "pdf_url": "https://arxiv.org/pdf/1910.13302",
+      "sources": [
+        "https://arxiv.org/abs/1910.13302"
+      ],
+      "cited_by": [
+        "docs/experiments/innovation_prior_art_20261013.json"
+      ]
+    },
+    {
+      "id": "arxiv-2006.04388",
+      "pdf_url": "https://arxiv.org/pdf/2006.04388",
+      "sources": [
+        "https://arxiv.org/abs/2006.04388"
+      ],
+      "cited_by": [
+        "docs/\u53c2\u8003\u8bba\u6587_\u76f8\u5173\u6027\u4e0e\u7814\u7a76\u5224\u65ad.md",
+        "docs/\u5c3a\u5ea6\u4e0e\u96be\u5ea6\u534f\u540c\u5b66\u4e60_\u5b9e\u73b0\u65b9\u6848.md",
+        "docs/experiments/innovation_prior_art_20261013.json"
+      ]
+    },
+    {
+      "id": "arxiv-2008.05787",
+      "pdf_url": "https://arxiv.org/pdf/2008.05787",
+      "sources": [
+        "https://arxiv.org/abs/2008.05787"
+      ],
+      "cited_by": [
+        "docs/960\u5b9e\u4f8b\u76f8\u4f4d\u4e00\u81f4\u6027\u4e00\u6b21\u7b5b\u9009.md"
+      ]
+    },
+    {
+      "id": "arxiv-2103.14259",
+      "pdf_url": "https://arxiv.org/pdf/2103.14259",
+      "sources": [
+        "https://arxiv.org/abs/2103.14259"
+      ],
+      "cited_by": [
+        "docs/960\u8986\u76d6\u4fdd\u62a4\u6807\u7b7e\u5206\u914d\u4e00\u6b21\u7b5b\u9009.md"
+      ]
+    },
+    {
+      "id": "arxiv-2107.11669",
+      "pdf_url": "https://arxiv.org/pdf/2107.11669",
+      "sources": [
+        "https://arxiv.org/abs/2107.11669"
+      ],
+      "cited_by": [
+        "docs/experiments/innovation_prior_art_20261013.json"
+      ]
+    },
+    {
+      "id": "arxiv-2108.07755",
+      "pdf_url": "https://arxiv.org/pdf/2108.07755",
+      "sources": [
+        "https://arxiv.org/abs/2108.07755"
+      ],
+      "cited_by": [
+        "additional prior-art screen"
+      ]
+    },
+    {
+      "id": "arxiv-2202.06934",
+      "pdf_url": "https://arxiv.org/pdf/2202.06934",
+      "sources": [
+        "https://arxiv.org/abs/2202.06934"
+      ],
+      "cited_by": [
+        "additional prior-art screen"
+      ]
+    },
+    {
+      "id": "arxiv-2208.08738",
+      "pdf_url": "https://arxiv.org/pdf/2208.08738",
+      "sources": [
+        "https://arxiv.org/abs/2208.08738"
+      ],
+      "cited_by": [
+        "docs/960\u8986\u76d6\u4fdd\u62a4\u6807\u7b7e\u5206\u914d\u4e00\u6b21\u7b5b\u9009.md",
+        "docs/\u53c2\u8003\u8bba\u6587_\u76f8\u5173\u6027\u4e0e\u7814\u7a76\u5224\u65ad.md"
+      ]
+    },
+    {
+      "id": "arxiv-2211.11426",
+      "pdf_url": "https://arxiv.org/pdf/2211.11426",
+      "sources": [
+        "https://arxiv.org/abs/2211.11426"
+      ],
+      "cited_by": [
+        "additional prior-art screen"
+      ]
+    },
+    {
+      "id": "arxiv-2301.10051",
+      "pdf_url": "https://arxiv.org/pdf/2301.10051",
+      "sources": [
+        "https://arxiv.org/abs/2301.10051"
+      ],
+      "cited_by": [
+        "docs/\u53c2\u8003\u8bba\u6587_\u76f8\u5173\u6027\u4e0e\u7814\u7a76\u5224\u65ad.md"
+      ]
+    },
+    {
+      "id": "arxiv-2305.15354",
+      "pdf_url": "https://arxiv.org/pdf/2305.15354",
+      "sources": [
+        "https://arxiv.org/abs/2305.15354"
+      ],
+      "cited_by": [
+        "additional prior-art screen"
+      ]
+    },
+    {
+      "id": "arxiv-2407.16424",
+      "pdf_url": "https://arxiv.org/pdf/2407.16424",
+      "sources": [
+        "https://arxiv.org/abs/2407.16424"
+      ],
+      "cited_by": [
+        "docs/960_testdev_transfer_and_research_decision.md"
+      ]
+    },
+    {
+      "id": "arxiv-2409.14679",
+      "pdf_url": "https://arxiv.org/pdf/2409.14679",
+      "sources": [
+        "https://arxiv.org/abs/2409.14679"
+      ],
+      "cited_by": [
+        "additional prior-art screen"
+      ]
+    },
+    {
+      "id": "arxiv-2505.18446",
+      "pdf_url": "https://arxiv.org/pdf/2505.18446",
+      "sources": [
+        "https://arxiv.org/abs/2505.18446"
+      ],
+      "cited_by": [
+        "additional prior-art screen"
+      ]
+    },
+    {
+      "id": "arxiv-2601.00617",
+      "pdf_url": "https://arxiv.org/pdf/2601.00617",
+      "sources": [
+        "https://arxiv.org/abs/2601.00617"
+      ],
+      "cited_by": [
+        "docs/\u53c2\u8003\u8bba\u6587_\u76f8\u5173\u6027\u4e0e\u7814\u7a76\u5224\u65ad.md"
+      ]
+    },
+    {
+      "id": "arxiv-2610.02799v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.02799v1",
+      "sources": [
+        "https://arxiv.org/html/2610.02799v1"
+      ],
+      "cited_by": [
+        "docs/960_class_conflict_prior_audit_20261014.md",
+        "docs/experiments/candidate11_class_conflict_result_20261014.json"
+      ]
+    },
+    {
+      "id": "cvf-Bian_Feature_Information_Driven_Position_Gaussian_Distribution_Estimation_for_Tiny_Object_CVPR_2025_paper",
+      "pdf_url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Bian_Feature_Information_Driven_Position_Gaussian_Distribution_Estimation_for_Tiny_Object_CVPR_2025_paper.pdf",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2025/html/Bian_Feature_Information_Driven_Position_Gaussian_Distribution_Estimation_for_Tiny_Object_CVPR_2025_paper.html"
+      ],
+      "cited_by": [
+        "docs/\u53c2\u8003\u8bba\u6587_\u76f8\u5173\u6027\u4e0e\u7814\u7a76\u5224\u65ad.md"
+      ]
+    },
+    {
+      "id": "cvf-Hosang_Learning_Non-Maximum_Suppression_CVPR_2017_paper",
+      "pdf_url": "https://openaccess.thecvf.com/content_cvpr_2017/papers/Hosang_Learning_Non-Maximum_Suppression_CVPR_2017_paper.pdf",
+      "sources": [
+        "https://openaccess.thecvf.com/content_cvpr_2017/html/Hosang_Learning_Non-Maximum_Suppression_CVPR_2017_paper.html"
+      ],
+      "cited_by": [
+        "docs/experiments/innovation_prior_art_20261013.json"
+      ]
+    },
+    {
+      "id": "cvf-Hu_Relation_Networks_for_CVPR_2018_paper",
+      "pdf_url": "https://openaccess.thecvf.com/content_cvpr_2018/papers/Hu_Relation_Networks_for_CVPR_2018_paper.pdf",
+      "sources": [
+        "https://openaccess.thecvf.com/content_cvpr_2018/html/Hu_Relation_Networks_for_CVPR_2018_paper.html"
+      ],
+      "cited_by": [
+        "docs/experiments/innovation_prior_art_20261013.json"
+      ]
+    },
+    {
+      "id": "cvf-Li_Transformation_Invariant_Few-Shot_Object_Detection_CVPR_2021_paper",
+      "pdf_url": "https://openaccess.thecvf.com/content/CVPR2021/papers/Li_Transformation_Invariant_Few-Shot_Object_Detection_CVPR_2021_paper.pdf",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2021/html/Li_Transformation_Invariant_Few-Shot_Object_Detection_CVPR_2021_paper.html"
+      ],
+      "cited_by": [
+        "docs/960\u5b9e\u4f8b\u76f8\u4f4d\u4e00\u81f4\u6027\u4e00\u6b21\u7b5b\u9009.md"
+      ]
+    },
+    {
+      "id": "cvf-Liu_Contextual_Debiasing_for_Visual_Recognition_With_Causal_Mechanisms_CVPR_2022_paper",
+      "pdf_url": "https://openaccess.thecvf.com/content/CVPR2022/papers/Liu_Contextual_Debiasing_for_Visual_Recognition_With_Causal_Mechanisms_CVPR_2022_paper.pdf",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2022/papers/Liu_Contextual_Debiasing_for_Visual_Recognition_With_Causal_Mechanisms_CVPR_2022_paper.pdf"
+      ],
+      "cited_by": [
+        "context intervention prior-art screen"
+      ]
+    },
+    {
+      "id": "cvf-Liu_RankDetNet_Delving_Into_Ranking_Constraints_for_Object_Detection_CVPR_2021_paper",
+      "pdf_url": "https://openaccess.thecvf.com/content/CVPR2021/papers/Liu_RankDetNet_Delving_Into_Ranking_Constraints_for_Object_Detection_CVPR_2021_paper.pdf",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2021/html/Liu_RankDetNet_Delving_Into_Ranking_Constraints_for_Object_Detection_CVPR_2021_paper.html",
+        "https://openaccess.thecvf.com/content/CVPR2021/papers/Liu_RankDetNet_Delving_Into_Ranking_Constraints_for_Object_Detection_CVPR_2021_paper.pdf"
+      ],
+      "cited_by": [
+        "docs/960_ranking_nearest_prior_and_next_screen_20261013.md",
+        "docs/experiments/ranking_nearest_prior_20261013.json"
+      ]
+    },
+    {
+      "id": "cvf-Saha_Improving_Shift_Invariance_in_Convolutional_Neural_Networks_with_Translation_Invariant_WACV_2025_paper",
+      "pdf_url": "https://openaccess.thecvf.com/content/WACV2025/papers/Saha_Improving_Shift_Invariance_in_Convolutional_Neural_Networks_with_Translation_Invariant_WACV_2025_paper.pdf",
+      "sources": [
+        "https://openaccess.thecvf.com/content/WACV2025/html/Saha_Improving_Shift_Invariance_in_Convolutional_Neural_Networks_with_Translation_Invariant_WACV_2025_paper.html"
+      ],
+      "cited_by": [
+        "docs/960\u5b9e\u4f8b\u76f8\u4f4d\u4e00\u81f4\u6027\u4e00\u6b21\u7b5b\u9009.md"
+      ]
+    },
+    {
+      "id": "cvf-Singh_Dont_Judge_an_Object_by_Its_Context_Learning_to_Overcome_CVPR_2020_paper",
+      "pdf_url": "https://openaccess.thecvf.com/content_CVPR_2020/papers/Singh_Dont_Judge_an_Object_by_Its_Context_Learning_to_Overcome_CVPR_2020_paper.pdf",
+      "sources": [
+        "https://openaccess.thecvf.com/content_CVPR_2020/papers/Singh_Dont_Judge_an_Object_by_Its_Context_Learning_to_Overcome_CVPR_2020_paper.pdf"
+      ],
+      "cited_by": [
+        "context intervention prior-art screen"
+      ]
+    },
+    {
+      "id": "cvf-Sun_SET_Spectral_Enhancement_for_Tiny_Object_Detection_CVPR_2025_paper",
+      "pdf_url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Sun_SET_Spectral_Enhancement_for_Tiny_Object_Detection_CVPR_2025_paper.pdf",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2025/papers/Sun_SET_Spectral_Enhancement_for_Tiny_Object_Detection_CVPR_2025_paper.pdf",
+        "https://openaccess.thecvf.com/content/CVPR2025/html/Sun_SET_Spectral_Enhancement_for_Tiny_Object_Detection_CVPR_2025_paper.html"
+      ],
+      "cited_by": [
+        "docs/960_testdev_transfer_and_research_decision.md",
+        "docs/\u53c2\u8003\u8bba\u6587_\u76f8\u5173\u6027\u4e0e\u7814\u7a76\u5224\u65ad.md",
+        "docs/\u5c3a\u5ea6\u4e0e\u96be\u5ea6\u534f\u540c\u5b66\u4e60_\u5b9e\u73b0\u65b9\u6848.md",
+        "docs/experiments/innovation_prior_art_20261013.json"
+      ]
+    },
+    {
+      "id": "cvf-Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper",
+      "pdf_url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.pdf",
+      "sources": [
+        "https://openaccess.thecvf.com/content/ICCV2025/papers/Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.pdf",
+        "https://openaccess.thecvf.com/content/ICCV2025/html/Sun_Uncertainty-Aware_Gradient_Stabilization_for_Small_Object_Detection_ICCV_2025_paper.html"
+      ],
+      "cited_by": [
+        "docs/960_testdev_transfer_and_research_decision.md",
+        "docs/\u53c2\u8003\u8bba\u6587_\u76f8\u5173\u6027\u4e0e\u7814\u7a76\u5224\u65ad.md",
+        "docs/\u5c3a\u5ea6\u4e0e\u96be\u5ea6\u534f\u540c\u5b66\u4e60_\u5b9e\u73b0\u65b9\u6848.md",
+        "docs/experiments/innovation_prior_art_20261013.json"
+      ]
+    },
+    {
+      "id": "cvf-Tan_Learning_to_Rank_Proposals_for_Object_Detection_ICCV_2019_paper",
+      "pdf_url": "https://openaccess.thecvf.com/content_ICCV_2019/papers/Tan_Learning_to_Rank_Proposals_for_Object_Detection_ICCV_2019_paper.pdf",
+      "sources": [
+        "https://openaccess.thecvf.com/content_ICCV_2019/html/Tan_Learning_to_Rank_Proposals_for_Object_Detection_ICCV_2019_paper.html",
+        "https://openaccess.thecvf.com/content_ICCV_2019/papers/Tan_Learning_to_Rank_Proposals_for_Object_Detection_ICCV_2019_paper.pdf"
+      ],
+      "cited_by": [
+        "docs/960_ranking_nearest_prior_and_next_screen_20261013.md",
+        "docs/experiments/ranking_nearest_prior_20261013.json"
+      ]
+    },
+    {
+      "id": "cvf-Xu_Dynamic_Coarse-To-Fine_Learning_for_Oriented_Tiny_Object_Detection_CVPR_2023_paper",
+      "pdf_url": "https://openaccess.thecvf.com/content/CVPR2023/papers/Xu_Dynamic_Coarse-To-Fine_Learning_for_Oriented_Tiny_Object_Detection_CVPR_2023_paper.pdf",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2023/html/Xu_Dynamic_Coarse-To-Fine_Learning_for_Oriented_Tiny_Object_Detection_CVPR_2023_paper.html"
+      ],
+      "cited_by": [
+        "docs/\u53c2\u8003\u8bba\u6587_\u76f8\u5173\u6027\u4e0e\u7814\u7a76\u5224\u65ad.md"
+      ]
+    },
+    {
+      "id": "cvf-Yuan_Small_Object_Detection_via_Coarse-to-fine_Proposal_Generation_and_Imitation_Learning_ICCV_2023_paper",
+      "pdf_url": "https://openaccess.thecvf.com/content/ICCV2023/papers/Yuan_Small_Object_Detection_via_Coarse-to-fine_Proposal_Generation_and_Imitation_Learning_ICCV_2023_paper.pdf",
+      "sources": [
+        "https://openaccess.thecvf.com/content/ICCV2023/html/Yuan_Small_Object_Detection_via_Coarse-to-fine_Proposal_Generation_and_Imitation_Learning_ICCV_2023_paper.html"
+      ],
+      "cited_by": [
+        "docs/\u53c2\u8003\u8bba\u6587_\u76f8\u5173\u6027\u4e0e\u7814\u7a76\u5224\u65ad.md"
+      ]
+    },
+    {
+      "id": "doi-10.1049_cit2.70083",
+      "pdf_url": "https://ietresearch.onlinelibrary.wiley.com/doi/pdfdirect/10.1049/cit2.70083",
+      "sources": [
+        "https://doi.org/10.1049/cit2.70083",
+        "https://github.com/cszzshi/DALA"
+      ],
+      "cited_by": [
+        "docs/960\u8986\u76d6\u4fdd\u62a4\u6807\u7b7e\u5206\u914d\u4e00\u6b21\u7b5b\u9009.md"
+      ],
+      "verified_title": "Dynamic Adaptive Label Assignment for Tiny Object Detection in Remote Sensing Images",
+      "metadata_source": "Author repository citation, current archive"
+    },
+    {
+      "id": "doi-10.1109_TGRS.2024.3430071",
+      "pdf_url": null,
+      "sources": [
+        "https://doi.org/10.1109/TGRS.2024.3430071"
+      ],
+      "cited_by": [
+        "docs/\u53c2\u8003\u8bba\u6587_\u76f8\u5173\u6027\u4e0e\u7814\u7a76\u5224\u65ad.md"
+      ]
+    },
+    {
+      "id": "doi-10.1145_3447548.3467121",
+      "pdf_url": "https://dl.acm.org/doi/pdf/10.1145/3447548.3467121",
+      "sources": [
+        "https://doi.org/10.1145/3447548.3467121"
+      ],
+      "cited_by": [
+        "docs/960_class_conflict_prior_audit_20261014.md"
+      ],
+      "verified_title": "Robust Object Detection Fusion Against Deception",
+      "verified_authors": [
+        "Ka-Ho Chow",
+        "Ling Liu"
+      ],
+      "verified_year": 2021,
+      "metadata_source": "Paper Search Crossref search, exact DOI/title match, 2026-10-14"
+    },
+    {
+      "id": "iclr-3be6511c8f56d0dca4b5ed59fdf9b2f4-Paper-Conference",
+      "pdf_url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/3be6511c8f56d0dca4b5ed59fdf9b2f4-Paper-Conference.pdf",
+      "sources": [
+        "https://proceedings.iclr.cc/paper_files/paper/2026/hash/3be6511c8f56d0dca4b5ed59fdf9b2f4-Abstract-Conference.html"
+      ],
+      "cited_by": [
+        "docs/960\u5b9e\u4f8b\u76f8\u4f4d\u4e00\u81f4\u6027\u4e00\u6b21\u7b5b\u9009.md"
+      ]
+    }
+  ]
+}
