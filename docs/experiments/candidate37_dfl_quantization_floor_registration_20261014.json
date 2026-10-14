@@ -1,0 +1,30 @@
+{
+  "experiment": "candidate37_dfl_quantization_floor_reliability",
+  "date": "2026-10-14",
+  "stage": "Cached mechanism discrimination screen, not AP or training",
+  "question": "Does removing the unavoidable adjacent-bin variance of DFL interpolation improve cross-view localization reliability beyond raw variance and geometric agreement?",
+  "distinction": "Candidate24 scored fixed action likelihood under the native distribution and STOP remains. This tests a different property: cross-view ordering of actual native mean boxes using excess integer-support variance. It neither tunes that likelihood nor changes any stopped retrieval/fusion/training recipe.",
+  "hypothesis": "For integer-support DFL with mean mu, the least possible variance is f*(1-f), f=mu-floor(mu). Subtract this interpolation floor, then normalize standard deviations by predicted width/height in native bin units. The remainder may distinguish localization reliability across view scales. This algebra is not by itself an innovation.",
+  "sample": "Original candidate24 cached64 head-held-out train images, all five traces and original candidate18 owners. Same scene set has been examined repeatedly and was seen by the detector. No independent confirmation claim.",
+  "budget": "Zero image decoding, detector forwards, fitting, or official evaluation. Read existing native distributions. AUC screen only.",
+  "construction": "Normalize cached FP16 softmax to float64 sum1. Decode expected distances to boxes using cached anchors/strides and historical letterbox/windows, in float64. These reconstructed means are diagnostic coordinates, not asserted bit-exact FP16 raw boxes. Clip to original crop before adding offsets. Valid views require original available flag. No GT enters any reliability score.",
+  "scores": {
+    "excess_variance": "negative mean over4edges of sqrt(max(var-f*(1-f),0))/predicted_edge_dimension",
+    "raw_variance": "same formula and predicted dimensions, retaining all variance",
+    "entropy": "negative mean per-side categorical entropy",
+    "consensus": "mean IoU to other available native mean boxes",
+    "regret_agreement": "IoU with frozen regret output, geometry-only strong reference"
+  },
+  "labels": "Original GT owner only, candidate score>=.05, at least2 valid views. All unordered view pairs whose same-owner IoUs differ by>.01; symmetrize signed score differences and labels to remove arbitrary view ordering. Total pair weight per original row1. Tiny/small grouping from historical owner area.",
+  "policy": {
+    "tiny_informative_rows_min": 100,
+    "tiny_excess_auc_min": 0.55,
+    "tiny_auc_vs_raw_variance_min": 0.005,
+    "tiny_auc_vs_consensus_min": 0.005,
+    "tiny_auc_vs_regret_agreement_min": 0.005,
+    "small_all_auc_vs_raw_variance_min": 0.0
+  },
+  "pass_action": "Only allow a newly registered matched low-cost learnability or fixed deployment screen, with raw-variance/geometry controls and unchanged stopped historical recipes. Need independent evidence and closer prior review before any novelty claim.",
+  "fail_action": "STOP_THIS_DFL_QUANTIZATION_FLOOR_RELIABILITY_RECIPE. No threshold, normalization, coefficient, subset or variance-transform tuning on these results.",
+  "limits": "One-to-many owner/view associations, dependent pairs and repeated train scenes. AUC is conditional ordering, not deployed AP or uncertainty calibration. DFL probabilities need not be a posterior of boundary uncertainty."
+}

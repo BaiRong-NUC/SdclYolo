@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-14",
+  "scope": "Nearest-prior review for native regression exploration; not an exhaustive originality search",
+  "papers": [
+    {
+      "title": "Generalized Focal Loss: Learning Qualified and Distributed Bounding Boxes for Dense Object Detection",
+      "arxiv": "2006.04388",
+      "pdf": "output/literature/papers/arxiv-2006.04388.pdf",
+      "pdf_sha256": "04a56cf0bd1c144ff940ad12a4134b75090843994bbfc22b84a04c1e5ed68a54",
+      "text": "output/literature/text/arxiv-2006.04388.txt",
+      "text_sha256": "c7d7e0d5e6a9af77ae69080ebfa4259e077e0ed7da66345c2b728738bd5d882d",
+      "reviewed": "Sec3.2, equations4-6 and immediately following global minimum of DFL",
+      "observation": "The global minimum places linearly interpolated mass on the two adjacent target bins, recovers the continuous target exactly, and can have positive variance. Thus replacing the mean with integer mode/median is not inherently more accurate. Candidate37 subtracts the elementary integer-support variance floor as a testable hypothesis, not as a claimed new mathematical result."
+    },
+    {
+      "title": "Generalized Focal Loss V2: Learning Reliable Localization Quality Estimation for Dense Object Detection",
+      "arxiv": "2011.12885",
+      "audit": "docs/literature/dfl_action_prior_audit_20261014.json",
+      "observation": "DFL distribution shape/statistics for localization quality are established prior art. Simple variance/entropy quality estimation cannot be claimed as innovation."
+    },
+    {
+      "title": "D-FINE: Redefine Regression Task in DETRs as Fine-grained Distribution Refinement",
+      "authors": ["Yansong Peng", "Hebei Li", "Peixi Wu", "Yueyi Zhang", "Xiaoyan Sun", "Feng Wu"],
+      "arxiv": "2410.13842",
+      "year": 2024,
+      "primary_url": "https://arxiv.org/abs/2410.13842",
+      "conference_url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/6cf58a87e3097e7d1f9be3e8693a93de-Abstract-Conference.html",
+      "metadata_provenance": "Search Service primary arXiv record and ICLR2025 proceedings; Paper Search Crossref query returned0 and is not evidence of absence",
+      "download_provenance": "Paper Search download_arxiv(2410.13842)",
+      "pdf": "output/literature/papers/2410.13842.pdf",
+      "pdf_sha256": "284f73d46f92f9de3b4dcd06aa1c68bae7cb5dd2dd4b4a551d9d99177802e716",
+      "text": "output/literature/text/arxiv-2410.13842.txt",
+      "text_sha256": "3ab28c13270127a2e036720cfe65e24e939d628754f9b215942f109c238465ff",
+      "pages": 18,
+      "reviewed": "Sec4.1 equations2-4: residual refinement of edge distributions, weighted-sum decoding, nonuniform offset weighting and box-size scaling",
+      "observation": "Fine distribution refinement, nonuniform bins and size-scaled coordinate residuals already exist. A generic residual regression head or changing DFL decode is not itself an innovation.",
+      "zotero": {
+        "collection_key": "6HT9SNK7",
+        "item_key": "WVTMPDWU",
+        "attachment_key": "4JLD9T5N",
+        "attachment_readback": "application/pdf filename arxiv_2410.13842.pdf",
+        "incremental_update": {"total": 0, "processed": 0, "added": 0, "errors": 0},
+        "semantic_limit": "Zero-item update does not confirm this newly imported paper is semantically indexed."
+      }
+    }
+  ],
+  "search_limits": "Queries about DFL quantization/fractional variance had no exact close-method hit. This is not evidence of originality. Earlier arXiv API429 and empty results are not negative literature evidence.",
+  "current_claim": "Candidate37 is a failed mechanism screen, no innovation established. A future native-feature continuous residual pilot would be a prerequisite control and must not be labelled original merely for regressing offsets."
+}

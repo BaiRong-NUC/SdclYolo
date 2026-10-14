@@ -1016,3 +1016,40 @@ GT辅助任意原生框支持很乐观，未计一对一容量；低分背景框
 登记与数值记录：`docs/experiments/candidate36_native_deficit_registration_20261014.json`、
 `docs/experiments/candidate36_native_deficit_result_20261014.json`。
 完整结果：`output/analysis/native-deficit-fixed-20261014/`。
+
+## 实验 37：扣除DFL插值方差能否改善视图定位可靠性
+
+GFL原文公式6的理想目标把概率放在相邻两格，连续坐标可以精确恢复，
+但方差仍为f*(1-f)。本实验检验扣除这一整数支撑最小方差后，
+剩余方差是否比原始方差更能排序不同视图的原生均值框。
+这条数学性质不作为创新；D-FINE已有分布细化/非均匀偏移及尺度归一化，
+GFLv2已有分布统计质量估计，不能把普通分布重评分或残差头当原创。
+论文已通过Paper Search下载、Zotero入库并核验PDF附件；原文核对及哈希
+见`docs/literature/native_distribution_prior_audit_20261014.json`。
+
+直接复用实验24的64张头留出训练图原生分布，不增加检测器前向或训练。
+坐标由缓存概率/锚点/步长以FP64重建，用于同归属诊断，
+不声称逐元素复现历史FP16坐标。五视图所有有效对中，
+同归属IoU差>0.01才计入，每原框总权重1，正反对称消除视图顺序。
+预测分数不访问GT，标签沿用原框拥有的GT。
+
+| 可靠性分数 | tiny配对AUC | small_all配对AUC |
+|---|---:|---:|
+| 扣除插值方差 | 0.528016 | 0.534565 |
+| 原始方差 | 0.587637 | 0.581596 |
+| 熵 | 0.458030 | 0.473035 |
+| 跨视图几何一致 | 0.569531 | 0.575188 |
+| 与冻结regret框几何一致 | 0.648373 | 0.645899 |
+
+tiny含1840个有信息原框、3270个无序视图对。
+被分析原生四边的插值最小方差合计占总方差79.204650%，
+但扣除它反而降低区分力；编码方差存在不等于扣除后有用。
+六项门槛仅样本量通过，STOP_THIS_DFL_QUANTIZATION_FLOOR_RELIABILITY_RECIPE。
+不调归一化/变换/阈值挽救，不训练加权融合头，实验24原STOP保持。
+
+耗时约3.2秒，零图片解码/前向/训练；三项最小方差、非局部散布、
+letterbox与切片映射测试通过。这是反复查看训练场景的条件AUC，
+不是AP、独立泛化或可部署增益。
+登记与结果：`docs/experiments/candidate37_dfl_quantization_floor_registration_20261014.json`、
+`docs/experiments/candidate37_dfl_quantization_floor_result_20261014.json`。
+完整结果：`output/analysis/dfl-quantization-floor-fixed-20261014/`。

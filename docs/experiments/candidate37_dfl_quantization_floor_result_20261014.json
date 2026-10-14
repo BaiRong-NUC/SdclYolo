@@ -1,0 +1,82 @@
+{
+  "experiment": "candidate37_dfl_quantization_floor_reliability",
+  "date": "2026-10-14",
+  "output": "output/analysis/dfl-quantization-floor-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_DFL_QUANTIZATION_FLOOR_RELIABILITY_RECIPE",
+    "checks": {
+      "informative_tiny_rows": true,
+      "tiny_discrimination": false,
+      "tiny_vs_raw_variance": false,
+      "tiny_vs_consensus": false,
+      "tiny_vs_regret_agreement": false,
+      "small_vs_raw": false
+    },
+    "tiny_auc_gains": {
+      "raw_variance": -0.05962131057095521,
+      "consensus": -0.04151492971745918,
+      "regret_agreement": -0.12035673928641644
+    },
+    "small_auc_gain_vs_raw": -0.0470314708312185,
+    "scope": "Conditional cached same-owner view ordering; no AP, deployment, novelty or detector training authorization."
+  },
+  "metrics": {
+    "all": {
+      "informative_rows": 2266,
+      "unordered_informative_pairs": 3947,
+      "excess_variance_auc": 0.5354415368842312,
+      "raw_variance_auc": 0.5767287227120621,
+      "entropy_auc": 0.4778917015629178,
+      "consensus_auc": 0.5785871632462887,
+      "regret_agreement_auc": 0.6482349956244656
+    },
+    "tiny": {
+      "informative_rows": 1840,
+      "unordered_informative_pairs": 3270,
+      "excess_variance_auc": 0.528015830184722,
+      "raw_variance_auc": 0.5876371407556772,
+      "entropy_auc": 0.4580304098041818,
+      "consensus_auc": 0.5695307599021812,
+      "regret_agreement_auc": 0.6483725694711384
+    },
+    "small_all": {
+      "informative_rows": 2165,
+      "unordered_informative_pairs": 3807,
+      "excess_variance_auc": 0.5345647425464876,
+      "raw_variance_auc": 0.5815962133777061,
+      "entropy_auc": 0.4730349157286735,
+      "consensus_auc": 0.5751877793548432,
+      "regret_agreement_auc": 0.6458992420588644
+    }
+  },
+  "mechanism": {
+    "available_owned_views": 5972,
+    "variance_sum": 5083.202846875847,
+    "interpolation_floor_sum": 4026.133045848837,
+    "zero_excess_sides": 23,
+    "native_sides": 23888,
+    "floor_fraction_of_total_variance": 0.7920465043655126
+  },
+  "verification": {
+    "head_holdout_train_images": 64,
+    "detector_forwards": 0,
+    "image_decodes": 0,
+    "fitting_steps": 0,
+    "no_GT_in_reliability_scores": true,
+    "native_means_reconstructed_float64_not_claimed_FP16_replay": true,
+    "symmetric_pair_labels_and_unit_weight_per_informative_original": true,
+    "no_val_no_testdev_no_threshold_or_hyperparameter_search": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 3.2397259999997914
+  },
+  "artifacts_sha256": {
+    "decision.json": "e5fe285672a53e04dee59210829f2e001a3b310d7340447a01c230b370db99bc",
+    "frames.json": "e26fc1757e034551dd4eb0dc6851f10c510f45a6a34fb9649e1eec89bf054d64",
+    "mechanism.json": "76dafa3f0e5bc183737d5c21b42ddd83bdfc3b8e387f8d85590330a2ce9ba49c",
+    "metrics.json": "6f5831b6cef8d7a4e996391ccdfe581c848d2a80422a4a9641e3ce45b434be03",
+    "plan.json": "725bd5b7ca675bb8caebdecc9250b272555735ac30655c0daedf26802fc5fb15",
+    "source.zip": "ad0b1fb91586bc641d6531114ebb604bc38bc7e63c02e88f169fb74927ab615a",
+    "verification.json": "ef439f6357a90b77e38b492ab739a836869aabd8c117ee6d3aa1ed1aba82ee77"
+  },
+  "tests": "3 passed: ideal adjacent-bin floor, nonlocal spread and integer shifts, crop clipping and letterbox inversion"
+}
