@@ -1,0 +1,31 @@
+{
+  "experiment": "candidate48_classifier_nullspace_foreground_information",
+  "date": "2026-10-14",
+  "stage": "Bounded native-feature foreground information pilot, not a detector efficacy or novelty claim",
+  "question": "Does the penultimate classification feature component annihilated by the frozen final10class projection contain usable foreground information beyond complete native logits, geometry, view/level identity and a matched rowspace/shuffled-feature control?",
+  "difference": "Candidate38 used first64 class channels for coordinate regression, candidate45 used neighboring semantic/geometry covariance, candidate35 used geometry and historical owner targets for absolute quality. This uses all128 classification channels for fixed-reference TP/FP scoring with evaluation-style labels; neither coordinates nor any stopped recipe are modified.",
+  "association": "Exactly reuse candidate38 saved chosen_native [view,index] and active mask for ALL192 original128fit/64headholdout detector-training frames. No new native selection. Extract full128 penultimate classification channels and all10 native pre-sigmoid logits at these locations. Actual five-view kept outputs must equal candidate12 raw cache bit-for-bit. No GT enters association/feature extraction.",
+  "projection": "Each of three final class matrices W is10x128. Float64 SVD, rank threshold largest singular value*max(shape)*float64eps. Row projector R=Vrank.T*Vrank; N=I-R. Feature row f splits fR and fN. Preserve original frozen weights. Verify WN=0 within relative Frobenius1e-12, reconstruction within relative1e-12. This is a linear algebra identity, not a causal or robustness claim about the whole detector.",
+  "controls": "Common base: selected68 historical normalized regret geometry, all10 actual native logits normalized on active128fit rows, original chosen view onehot5 and native level onehot3. Extras128: null=fN, row=fR, shuffled_null=fN reassigned among rows within same image/predicted class/chosen view/native level with SHA256(stem:class:view:level:nullspace-v1), logits_only=zeros. Same214input linear residual models plus intercept, nominal215parameters each; zero extra columns are a baseline, not equal effective capacity. Rowspace and shuffled controls retain same nominal dimensions. No nonlinear norm score, PCA choice or dimensional tuning.",
+  "normalization": "Null and row extras centered per native level with mean fit only from active128fit rows and divided by one scalar RMS per level across all128channels; floor1e-6. This does not leave the null/row subspace. Shuffled uses EXACT same null statistics. Base10 logits per-channel fit mean/std on active128fit rows, floor1e-6. Selected historical geometry unchanged.",
+  "labels": "For each frame, greedy classaware IoU.5 matching over allGT and all frozen regret rows atconfidence.05, full descending originalscore order, determines binary TP labels, no original owner shortcut. All active rows enter each arm's fit, no TP/FP balancing or GT-derived sampling. Same original scores and labels in all arms.",
+  "fit": "CPU float64 convex logistic residual model logit(originalscore)+Xtheta+intercept. Ordinary unweighted mean BCE plus0.01/2*sum(theta^2), intercept unpenalized. All-zero initialization. scipyL-BFGS-B maxiter200, ftol1e-12, gtol1e-6, no checkpoints/epochs/regularization selection. Require solver success and infinitynorm gradient<=1e-5 or classify numerical failure, never retune. No detector/head nonlinear fitting;4 linear fits only.",
+  "primary_evaluation": "Fixedoriginalscore>=.25 active headholdout queries. Recompute TP/FP atconfidence.25 with allGT/allrows matching. For nonduplicate discrimination, exclude ONLY unmatched rows that have sameclassIoU>=.5 to anyGT, from all arms' diagnostic metric. These GT-based exclusions are never an inference route. Group by predicted regret area at640: all,tiny,small_all. Measure NLL and AUROC of each fitted sigmoid output with common labels/rows. Report full FP and duplicate-like counts. No predictions are rescored/deployed in this stage.",
+  "bootstrap": "400 paired draws of all64images with np.default_rng(0), pooled per-row NLL differences [logits_only minus null], not iidrow resampling. Report95%interval. Leaveout has been repeatedly inspected; this cannot certify independent information/generalization.",
+  "policy": {
+    "tiny_tp_min": 100,
+    "tiny_nonduplicate_fp_min": 100,
+    "tiny_images_min": 20,
+    "tiny_NLL_improvement_vs_logits_min": 0.003,
+    "tiny_NLL_improvement_vs_row_min": 0.003,
+    "tiny_NLL_improvement_vs_shuffle_min": 0.003,
+    "tiny_AUROC_improvement_vs_logits_min": 0.01,
+    "tiny_NLL_improvement_bootstrap_lower95_exclusive": 0.0,
+    "all_NLL_improvement_vs_logits_min": 0.0
+  },
+  "pass_action": "Only authorize a separately preregistered bounded score deployment/AP/fixedFP pilot and fresh-scene confirmation, not full detector training. Need repeatable AP beyond strong and matched controls, actual costs and a clearly different mechanism after NuSA/ViM and detector OOD/foreground prior comparisons before any innovation claim.",
+  "fail_action": "STOP_THIS_CLASSIFIER_NULLSPACE_LINEAR_FOREGROUND_RECIPE. No sign flip, norm/PCA variant, model width, L2, association, score cutoff, labels, projection rank, normalization or feature subset changes to rescue.",
+  "budget": "At most960 detector forwards plus existing warmup on192 old train images for full features,192image decodes,4 small convex CPU fits, no detector updates, no new crops, no val/testdev, no official/AP evaluator. Cache enables independent replay.",
+  "prior_boundary": "NuSA2007.01263v1 already detects outliers with layer nullspace projections; ViM2203.10807v1 explicitly discusses feature information lost in logits and combines principal-space residuals and logits. This specific foreground representation screen is not an original nullspace/OOD contribution.",
+  "limits": "Foreground/background FP is not synonymous with OOD. NonduplicateFP includes background, wrongclass and localization failures. Detector saw all train scenes; headholdout is reused. Queries inherit historical diagnostic ignore filtering. Linear information may or may not yield safe AP gains; NLL/AUROC are not AP or innovation."
+}

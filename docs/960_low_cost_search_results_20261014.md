@@ -1471,3 +1471,64 @@ tiny有1838个合格TP、388个合格FP，其中9个FP与已匹配同类GT仍有
 独立复核：`scripts/evaluation/verify_exclusive_peer_support.py`。
 论文核验：`docs/literature/exclusive_peer_support_prior_audit_20261014.json`。
 完整结果：`output/analysis/exclusive-peer-support-fixed-20261014/`。
+
+## 实验 48：分类头没有投影进类别分数的特征是否能区分非重复式误检
+
+实验47的高分重复框空间有限，改检验非重复式误检的特征信息。
+不重新训练检测器，不重试38的坐标残差或35的旧归属质量头。
+NuSA2007.01263v1已有零空间异常检测，ViM2203.10807v1明确论述
+类别分数遗漏的特征信息；不能将“零空间”或“分数之外有特征”当创新。
+
+固定原128fit/64headholdout训练图，复用38的原生[view,index]和活动掩码，
+提取该分类位置全部128通道以及全部10类别原生logit。
+每level的最终分类W为10x128、秩10，用float64 SVD分成行空间和零空间。
+验证WN近零和两部分重构；它只是冻结线性投影的代数性质，
+不是整个模型干预/鲁棒性的因果证明，也不把float64矩阵积当成FP16位精确logit。
+
+共同输入是原regret68几何、完整10logit、来源view及level onehot。
+额外128通道分别为零空间、行空间、同图/类/view/level分层打乱零空间、全零。
+四个名义215参数的线性残差模型，正则化0.01，固定L-BFGS-B上限200步，
+以logit(原校准分数)为offset。基线的全零额外输入不是相同有效容量；
+行空间和打乱是对应名义容量对照，归一化全部仅从128fit活动行拟合。
+训练标签用完整GT/完整原输出confidence.05/IoU.5贪心匹配，不用旧owner。
+
+主评价固定原score>=.25，按完整输出重新匹配；从各臂相同评价样本里
+剔除有同类IoU>=.5的未匹配重复式FP，仅作为诊断，不用于推理路径。
+尺寸用预测regret面积而不是GT面积。tiny样本1958TP、568非重复式FP，
+另11个重复式FP不进入主诊断。非重复式不等于全部是背景，也包括错类/定位错误。
+
+| 输入分支 | tiny NLL，越低越好 | tiny AUROC，越高越好 |
+|---|---:|---:|
+| 完整分数/几何 + 零空间 | 0.385243 | 0.847714 |
+| 完整分数/几何 + 行空间 | 0.385360 | 0.848501 |
+| 完整分数/几何 + 打乱零空间 | 0.384757 | 0.850518 |
+| 完整分数/几何，无新增特征 | 0.384291 | 0.849256 |
+
+零空间NLL相对无新增特征的改进-0.000952、相对行空间+0.000117、
+相对打乱-0.000485；400次按64图bootstrap的主改进95%区间
+[-0.007162,+0.004326]。全尺寸NLL微增益+0.000212不替代tiny主门槛。
+十项门槛五过五败，STOP_THIS_CLASSIFIER_NULLSPACE_LINEAR_FOREGROUND_RECIPE。
+四个模型都正常收敛，最大梯度均小于1e-6，不归因于求解失败。
+不改变模型宽度、L2、归属、零空间维度、norm分数或特征子集挽救，
+不进入AP/固定FP评估、不升级强对照。本次否定的是这版线性信息配方，
+不能证明所有非线性图像信息没有用。
+
+主实验33.96秒，192图解码、960冻结检测器前向加原工具warmup、
+4个CPU凸线性拟合，无检测器更新。全部原五视图FP16输出精确复现。
+独立核验用伪逆验证投影、复算全部192图标签/分层置换/训练归一化，
+验证4组保存系数的目标值和梯度驻点、64图预测分数和标签、NLL、
+用正负样本排序公式重算AUROC、重建按图bootstrap区间。
+原64分类通道还与38缓存逐项一致；另64通道只有本轮新提取，不能声称旧缓存独立复现。
+实际FP16logit与float64矩阵积最大绝对差0.011712，主输入采用实际logit。
+21676个活动行中16399行被分层打乱，保留类别/view/level分组。
+四项新投影/置换/梯度/凸拟合测试与45--47十二项测试共16项通过。
+
+新PDF、文本、出处、指定版本和哈希保存完毕，NuSA第3节与ViM第3--4节已核查。
+没有Zotero新导入成功声明。头留出仍是反复查看且被检测器见过的训练场景，
+继承历史诊断ignore过滤；此次无官方AP、部署收益或创新结论。
+
+登记与结果：`docs/experiments/candidate48_classifier_nullspace_registration_20261014.json`、
+`docs/experiments/candidate48_classifier_nullspace_result_20261014.json`。
+独立复核：`scripts/evaluation/verify_classifier_nullspace.py`。
+论文核验：`docs/literature/classifier_nullspace_prior_audit_20261014.json`。
+完整结果：`output/analysis/classifier-nullspace-fixed-20261014/`。

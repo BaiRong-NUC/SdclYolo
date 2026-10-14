@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-14",
+  "scope": "Primary-source nullspace/feature-logit overlap audit for candidate48, not exhaustive novelty verification",
+  "papers": [
+    {
+      "title": "Outlier Detection through Null Space Analysis of Neural Networks",
+      "authors": "Matthew Cook; Alina Zare; Paul Gader",
+      "arxiv_version": "2007.01263v1",
+      "version_date": "2020-07-02",
+      "metadata_provenance": "Paper Search matched exact title and version, download_arxiv exact version",
+      "source": "https://arxiv.org/abs/2007.01263v1",
+      "pdf_url": "https://arxiv.org/pdf/2007.01263v1",
+      "pdf": "output/literature/papers/2007.01263v1.pdf",
+      "pdf_sha256": "7b863745054d5f80a5bcdcc122e67a1053180946421c1cc4bfaad80b295e7903",
+      "pages": 6,
+      "text": "output/literature/text/2007.01263v1.txt",
+      "text_sha256": "6c12f527728fbb2f9b00592c719efe9d62111b54ab6ea04a01c3052a2e0aa027",
+      "reviewed": "Abstract and3 Outlier Detection with Null Space Analysis, equations7/8 and inference Algorithm1. Layer projection magnitudes enter training regularization and an outlier test statistic.",
+      "overlap": "Nullspace feature components, their magnitudes and abnormal-input detection are explicit prior art. Nullspace decomposition alone is not a contribution.",
+      "candidate_difference_and_limit": "Candidate48 holds detector weights fixed, uses the vector nullspace component as a supervised linear foreground feature, and compares against all logits/rowspace/shuffled controls. It neither reproduces NuSA training nor defines its FP rows as OOD; the task difference alone does not prove novelty."
+    },
+    {
+      "title": "ViM: Out-Of-Distribution with Virtual-logit Matching",
+      "authors": "Haoqi Wang; Zhizhong Li; Litong Feng; Wayne Zhang",
+      "arxiv_version": "2203.10807v1",
+      "version_date": "2022-03-21",
+      "metadata_provenance": "Paper Search exact-title search, download_arxiv exact version",
+      "source": "https://arxiv.org/abs/2203.10807v1",
+      "pdf_url": "https://arxiv.org/pdf/2203.10807v1",
+      "pdf": "output/literature/papers/2203.10807v1.pdf",
+      "pdf_sha256": "9bed6efe13123d85e3b6e01d510ef59d9846d46f54f6df7defeb598cb5077e5d",
+      "pages": 15,
+      "text": "output/literature/text/2203.10807v1.txt",
+      "text_sha256": "5acc14a0982e5afb2020a8f817b567a3dee7e77af34897c452b4731381e15be7",
+      "reviewed": "3 Motivation: The Missing Info in Logits, NuSA/principal-space comparison,4 Virtual-logit Matching and equations4--6. Principal-space residual, training-fitted scaling and original logits are combined into a virtual-class score.",
+      "overlap": "Information lost when projecting features to class logits and combining remaining feature evidence with logits are explicitly established. ViM's principal residual is not identical to the final W nullspace.",
+      "candidate_difference_and_limit": "Candidate48 tests conditional foreground discrimination with fixed128-dimensional W-null components and a convex linear residual, no principal-rank selection or virtual-class norm. This is a feasibility control, not a new OOD method or a full ViM reproduction."
+    }
+  ],
+  "result_boundary": "Candidate48 numerical fits converge, but tiny null-feature NLL.385243 is worse than logits-only.384291 and shuffled-null.384757; AUROC is also worse. No inference/AP/novelty promotion.",
+  "zotero_status": "Two exact-version PDFs and extracted texts saved locally with SHA256 using Paper Search. No new Zotero import or attachment success claimed."
+}

@@ -1,0 +1,184 @@
+{
+  "experiment": "candidate48_classifier_nullspace_foreground_information",
+  "date": "2026-10-14",
+  "output": "D:\\Python\\YOLO\\output\\analysis\\classifier-nullspace-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_CLASSIFIER_NULLSPACE_LINEAR_FOREGROUND_RECIPE",
+    "checks": {
+      "numerical_convergence": true,
+      "tp": true,
+      "nonduplicate_fp": true,
+      "images": true,
+      "NLL_vs_logits": false,
+      "NLL_vs_row": false,
+      "NLL_vs_shuffle": false,
+      "AUROC": false,
+      "interval": false,
+      "all_NLL": true
+    },
+    "tiny_NLL_gains": {
+      "logits_only": -0.000951967542565324,
+      "row": 0.00011689762478778176,
+      "shuffled_null": -0.00048537751788474415
+    },
+    "scope": "Representation discrimination only, not AP, OOD classification, independent evidence or innovation."
+  },
+  "metrics": {
+    "all": {
+      "rows": 3169,
+      "tp": 2494,
+      "nonduplicate_fp": 675,
+      "full_fp": 692,
+      "duplicate_fp": 17,
+      "images": 64,
+      "NLL": {
+        "null": 0.3542465075652977,
+        "row": 0.3550592158640247,
+        "shuffled_null": 0.3558792760752007,
+        "logits_only": 0.3544583801120459
+      },
+      "AUROC": {
+        "null": 0.8668359618640293,
+        "row": 0.8665745938400309,
+        "shuffled_null": 0.8669387270189194,
+        "logits_only": 0.8670123852802282
+      },
+      "null_NLL_improvement_over_logits_image_bootstrap95ci": [
+        -0.004980907621975937,
+        0.004140333039315698
+      ]
+    },
+    "tiny": {
+      "rows": 2526,
+      "tp": 1958,
+      "nonduplicate_fp": 568,
+      "full_fp": 579,
+      "duplicate_fp": 11,
+      "images": 64,
+      "NLL": {
+        "null": 0.3852427911464626,
+        "row": 0.3853596887712504,
+        "shuffled_null": 0.38475741362857785,
+        "logits_only": 0.38429082360389727
+      },
+      "AUROC": {
+        "null": 0.8477139650980449,
+        "row": 0.8485007337179358,
+        "shuffled_null": 0.8505175588772678,
+        "logits_only": 0.8492560315930311
+      },
+      "null_NLL_improvement_over_logits_image_bootstrap95ci": [
+        -0.007162064143948918,
+        0.004326486569305095
+      ]
+    },
+    "small_all": {
+      "rows": 3000,
+      "tp": 2349,
+      "nonduplicate_fp": 651,
+      "full_fp": 668,
+      "duplicate_fp": 17,
+      "images": 64,
+      "NLL": {
+        "null": 0.3638341475442049,
+        "row": 0.36445382147492816,
+        "shuffled_null": 0.3650770291964077,
+        "logits_only": 0.3635336703405533
+      },
+      "AUROC": {
+        "null": 0.8608964562493175,
+        "row": 0.8608572200217238,
+        "shuffled_null": 0.8614863075374755,
+        "logits_only": 0.8615144268339177
+      },
+      "null_NLL_improvement_over_logits_image_bootstrap95ci": [
+        -0.0057197206403392644,
+        0.0039987690263386345
+      ]
+    }
+  },
+  "training": {
+    "null": {
+      "success": true,
+      "solver_success": true,
+      "iterations": 71,
+      "objective": 0.3020923575129451,
+      "gradient_inf": 7.965063624126193e-07,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+    },
+    "row": {
+      "success": true,
+      "solver_success": true,
+      "iterations": 78,
+      "objective": 0.30797602610339564,
+      "gradient_inf": 9.788981655771802e-07,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+    },
+    "shuffled_null": {
+      "success": true,
+      "solver_success": true,
+      "iterations": 74,
+      "objective": 0.3039857984184668,
+      "gradient_inf": 7.181408600491317e-07,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+    },
+    "logits_only": {
+      "success": true,
+      "solver_success": true,
+      "iterations": 46,
+      "objective": 0.3089449146913205,
+      "gradient_inf": 8.169100145357321e-07,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+    }
+  },
+  "verification": {
+    "fit_images": 128,
+    "head_holdout_images": 64,
+    "detector_forwards_excluding_warmup": 960,
+    "image_decodes": 192,
+    "detector_updates": 0,
+    "linear_models_fit": 4,
+    "full128_classification_features_and_all10_logits": true,
+    "all_five_view_raw_replays_exact": true,
+    "prior_native_associations_and_masks_unchanged": true,
+    "GT_excluded_from_features_associations_and_inference_scores": true,
+    "training_targets_consume_only128fit_images": true,
+    "maximum_relative_row_null_reconstruction_error": 3.4401764064872593e-16,
+    "no_predictions_changed_or_AP_evaluator_run": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 33.95771530014463
+  },
+  "artifacts_sha256": {
+    "coefficients.npz": "1e363e710ef2d8280445df11d6fe6557d9b4f1098f9d0b52bbf2f983807a8885",
+    "decision.json": "a946aa01041f8fdb018b5b6b3e97d00df515e7c7cf289137f3d55d8993d044ff",
+    "features.json": "5579cf358ead85a7d0625e2fa7bfde8269838952f5803cbe305e8f342313f9ba",
+    "metrics.json": "ed610b4e462b8eb19b4c85fd39d67373b1241dc50156fc5a6d7683f2ce1eb082",
+    "normalization.json": "68ae0f8014a8ea1b466d7a240a984803263e6b3f8a3c56602397f6c2b23789a2",
+    "per_image.json": "89f9e2fdb9114cfb506952fe430a72d58723fdd46a1fcc0478ddae319e865741",
+    "plan.json": "40ba18291c32867185c23a86653e7cb209606818c0e8b9b96c70229a229bc88c",
+    "projection.npz": "0c86c0c4799f0e85cadea9e9175aa3e4d914c6251489fc325d7f5f907269cce0",
+    "source.zip": "dac4545e3c12be9e632bda4831f855645c3012c8f5e98abe73ef95c032687318",
+    "traces.json": "17e43464afc9ac387da374d8f425f8a5445b580b0c9fbcccc9dac7fb7f41f2a7",
+    "training.json": "e756b10fb546c54f3294cc1b053eeb6c11bd079574b41a6a2207792af37fca06",
+    "verification.json": "7df6259c90dd3cf5a73b1e099fc448eb427284240afd22b82e207e0d0dfe982d",
+    "independent_verification.json": "d1b1aa9568986f0b73c864a08a2499f1fecb83749c399d8da7d49fb9729c5fb2"
+  },
+  "independent_verification": {
+    "all192_feature_associations_masks_first64historical_channels_replayed": true,
+    "frozen_FP16_projection_weights_biases_verified_without_forward": true,
+    "all_row_null_decompositions_independently_checked_with_pseudoinverse": true,
+    "all_training_labels_recomputed_by_independent_greedy_matching": true,
+    "all_class_view_level_shuffle_permutations_recomputed": true,
+    "all_train_only_normalization_and_inputs_rebuilt": true,
+    "all4_saved_coefficients_have_verified_objective_and_gradient_stationarity": true,
+    "all64_prediction_labels_masks_linear_scores_NLL_AUROC_and_intervals_recomputed": true,
+    "shuffled_rows_changed": 16399,
+    "shuffled_active_rows": 21676,
+    "maximum_FP16_native_logit_vs_float64_projection_absolute_difference": 0.011711970026226481,
+    "verifier_sha256": "ca8068bb1ced3ef8f4db8ee0144ca2a7873be4d25e038b9fadc5ac57400f3b72",
+    "limits": "Only first64 feature channels have an earlier independent cache. Other channels are new extraction; all10 actual logits are used, not asserted bitexact to a float64 matmul. No fresh-scene/AP proof."
+  },
+  "prior_audit": "docs/literature/classifier_nullspace_prior_audit_20261014.json",
+  "prior_audit_sha256": "c1f0b51e41105e12d9fa7a0bab6db3ec7a31962b5e4ef04b89d9c735cd26b31a",
+  "tests": "16 passed: four projection/shuffle/gradient/convex-fit tests and twelve prior coupling/lattice/exclusive-support tests"
+}
