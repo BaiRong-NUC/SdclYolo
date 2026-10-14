@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-14",
+  "scope": "Primary-source overlap audit for candidate47; not exhaustive novelty verification",
+  "papers": [
+    {
+      "title": "Learning non-maximum suppression",
+      "authors": "Jan Hosang; Rodrigo Benenson; Bernt Schiele",
+      "arxiv_version": "1705.02950v2",
+      "version_date": "2017-05-09",
+      "metadata_provenance": "Paper Search exact-title search; local extracted PDF version header agrees",
+      "source": "https://arxiv.org/abs/1705.02950v2",
+      "pdf": "output/literature/papers/arxiv-1705.02950.pdf",
+      "pdf_sha256": "4b66a439f14cd2ef813ec33ac3f920bbd00f1826872c80d61865889811a62b07",
+      "text": "output/literature/text/arxiv-1705.02950.txt",
+      "text_sha256": "bb3a18b0713e6ddae52f261d9878671d3bdcf1600424ff0e49c917533a2c0692",
+      "reviewed": "Abstract and4.1 loss: competing detections, one detection per object, earlier Hungarian matching-loss work and score-ordered benchmark-matching binary targets.",
+      "overlap": "Competition-aware detection scoring and matching-derived positive/negative labels are established. Relational scoring or adding a matching algorithm is not novel by itself.",
+      "boundary": "Candidate47 allocates PREDICTED cross-view observations to final hypotheses without GT, rather than using prediction-to-GT matching as a training label. The distinction alone is not a novelty or efficacy claim."
+    },
+    {
+      "title": "FUSEye: Training-Light Fisheye Detection with Overlapping Views and Zero-Initialized Adapters",
+      "authors": "Wenya Su; Kai Luo; Di Wen; Ruiping Liu; Yufan Chen; Junwei Zheng; Kunyu Peng; Kailun Yang",
+      "arxiv_version": "2610.02799v1",
+      "version_date": "2026-10-02",
+      "metadata_provenance": "Paper Search exact-title search and existing local version header",
+      "source": "https://arxiv.org/abs/2610.02799v1",
+      "pdf": "output/literature/papers/arxiv-2610.02799v1.pdf",
+      "pdf_sha256": "a1127e41972bf0e0ff16a6383a1d72c2de6b3a71e53c635e6ff539e1c6a3d24c",
+      "text": "output/literature/text/arxiv-2610.02799v1.txt",
+      "text_sha256": "317745a645f267afe3b8c4325db67606043103c90c4598dddb3fe7c771083305",
+      "reviewed": "AgreeFusion paragraph before/after Figure3: descending-score fixed-seed clusters use still-unassigned detections, IoU>=.5, distinct-view support, cluster scoring and final NMS.",
+      "overlap": "Disjoint greedy clusters already prevent a detection from being reused across clusters. Distinct-view support counting is explicit prior art. Candidate47 must beat ordinary exclusive greedy allocation, not just unrestricted support.",
+      "boundary": "Candidate47 retains all existing Soft-NMS hypotheses and allocates peer observations jointly instead of replacing them by disjoint cluster outputs. Its tiny conditional comparison is too sparse and does not establish an advantage."
+    },
+    {
+      "title": "Learned Non-Maximum Suppression for 3D Object Detection",
+      "authors": "Timo Osterburg; Stefan Schuette; Torsten Bertram",
+      "arxiv_version": "2606.03568v1",
+      "version_date": "2026-06-02",
+      "metadata_provenance": "Paper Search exact search returned this related current paper; download_arxiv exact version",
+      "source": "https://arxiv.org/abs/2606.03568v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.03568v1",
+      "pdf": "output/literature/papers/2606.03568v1.pdf",
+      "pdf_sha256": "b209832bc947799c05701ad336c27254502fbc4c7389de1ae4007fc457d10d72",
+      "pages": 6,
+      "text": "output/literature/text/2606.03568v1.txt",
+      "text_sha256": "c0be7e48e4efd57de9b69d23ee3bd18402027ee9e12fbd4d112c7fd2351e4f82",
+      "reviewed": "Abstract, IV-E supervision, V-A setup and matching ablation discussion: transformer/message-passing score refinement, metric-aware class matching and benchmark-specific center-distance thresholds.",
+      "overlap": "Learned detection-set score refinement and one-to-one foreground labels remain active but established, including current2026 work. It is not evidence that generic relation reasoning is an unoccupied research contribution.",
+      "boundary": "3D nuScenes center-distance matching and class-agnostic second-stage supervision differ from the project's2D VisDrone IoU labels. No reported numerical gains from that paper are transferred to this project."
+    }
+  ],
+  "search_boundary": "Paper Search query combining detection/box fusion with bipartite/one-to-one returned no matches; this limited query is not proof that no closer fusion-association prior exists.",
+  "result_boundary": "Only7 tiny TP/FP pairs across6images; exclusive concordance.4286 below greedy.5714 and confidence.7143. Nine gates fail. No changes to stopped recipe and no training authorized.",
+  "zotero_status": "One new exact-version PDF and text saved locally via Paper Search. Existing references reused. No new Zotero import/attachment claimed."
+}

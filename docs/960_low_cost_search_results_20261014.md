@@ -1414,3 +1414,60 @@ uint8平均绝对差1.977、最大75。该取整仅作诊断，没有作为可�
 论文核验：`docs/literature/shared_prefix_lattice_prior_audit_20261014.json`、
 `docs/literature/shared_prefix_lattice_prior_supplement_20261014.json`。
 完整结果：`output/analysis/shared-prefix-lattice-fixed-20261014/`。
+
+## 实验 47：跨视图支持被多个最终框重复借用，是否需要一对一分配
+
+旧候选特征逐最终框查询最佳同类peer，允许一个预测同时支持多个最终框。
+旧官方审计曾统计坐标动作对不同GT的借用，本轮独立检验“前景判别是否因此受损”，
+不重试补框、坐标融合、原生邻域耦合或任何已停止训练配方。
+FUSEye已有不重复分配的贪心聚类和独立视图计票，LearnedNMS已有竞争框推理，
+因此一对一、匹配或关系评分本身不能当成新贡献。
+
+固定原64张训练头留出图，保持regret坐标、类别、分数、数量和顺序。
+全部score>=.25最终框按同图同类、IoU>=.5与非自身来源视图的
+native score>=.05预测建立图；边权为IoU乘peer分数。
+每视图分别做最大总边权一对一分配，与完全相同图上的贪心一对一分配比较。
+分数是所分得边权除以逐框独立最佳边权和；另有独立支持、原置信度、
+仅由最终框生成的负拥挤IoU和对照。peer池不作GT ignore过滤。
+
+先对全部GT和全部原输出作confidence.25/IoU.5贪心匹配，再确定诊断TP/FP。
+条件比较限于同图同预测类、共享同视图同一最佳peer的TP/FP，
+每TP最多取4个框IoU最近FP，总比较权重1，选择不读取分配分数。
+双方均按自身预测面积分tiny/small_all；不是GT尺寸AP。
+
+| 分数 | tiny条件配对排序正确率 |
+|---|---:|
+| 最大总权一对一分配保留比例 | 42.857143% |
+| 普通贪心一对一分配保留比例 | 57.142857% |
+| 独立最佳支持 | 71.428571% |
+| 原校准置信度 | 71.428571% |
+| 仅几何负拥挤度 | 50.000000% |
+
+tiny有1838个合格TP、388个合格FP，其中9个FP与已匹配同类GT仍有IoU>=.5，
+属于重复框式误检；其余不可统一称为背景，也可能是错类/定位不准。
+最终只有7个TP能找到共享最佳peer的FP，7对覆盖6张图，
+一对一分配排序的400次按图bootstrap95%区间[0,83.333333%]。
+另有4对不同真实实例的TP也共享最佳peer，说明独占约束确有拥挤风险，
+但这些计数不等于实际部署后的目标损失。
+
+九项门槛均未通过，STOP_THIS_EXCLUSIVE_PEER_SUPPORT_RECIPE。
+不降分数/IoU、不扩大到更松关联、不改边权或将普通贪心事后改报主分支。
+这里只否定当前高分查询、关联/分数定义；不能推广为所有竞争建模无价值。
+没有AP、最终预测修改、检测器前向、图片解码或头拟合；主实验约2.97秒。
+
+独立脚本重新构建64图全部peer边、来源、标签和贪心排序，
+核对320个分配问题的可行性和最优目标值，非空图用HiGHS线性规划、空图直接验证零值，
+并重建192个图/尺寸组的配对、权重、排序分子与bootstrap区间。
+来源和历史原数组哈希均通过。新增4项分配/空池/身份/配对测试通过，
+连同实验45/46共12项通过。查询仍继承历史诊断ignore过滤和反复查看训练图的限制。
+
+新增下载Learned Non-Maximum Suppression for3D Object Detection2606.03568v1，
+保存6页PDF、提取文本、版本/出处/哈希；重读LearnedNMS1705.02950v2的4.1
+以及FUSEye2610.02799v1的AgreeFusion分组规则。
+有限论文搜索没有命中更近论文，不能据此声称没有先例；没有新Zotero导入成功声明。
+
+登记与结果：`docs/experiments/candidate47_exclusive_peer_support_registration_20261014.json`、
+`docs/experiments/candidate47_exclusive_peer_support_result_20261014.json`。
+独立复核：`scripts/evaluation/verify_exclusive_peer_support.py`。
+论文核验：`docs/literature/exclusive_peer_support_prior_audit_20261014.json`。
+完整结果：`output/analysis/exclusive-peer-support-fixed-20261014/`。

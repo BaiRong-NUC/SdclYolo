@@ -1,0 +1,36 @@
+{
+  "experiment": "candidate47_exclusive_peer_support_information",
+  "date": "2026-10-14",
+  "stage": "Cache-only mechanism discrimination, no fitting or changed detections",
+  "question": "When final detections borrow the same cross-view proposal as their best support, does one-to-one optimal allocation of that evidence distinguish true from false detections beyond independent support, greedy allocation, confidence and geometric crowding?",
+  "difference": "Candidate22 used suppressor relations to add boxes; candidate31 fitted coordinate-error moments; candidate45 tested native semantic/geometric covariance. None tested conservation of peer observations across competing final rows. An existing official audit counted reused coordinate actions between distinct GT owners, but did not test allocation or foreground discrimination. Those STOP decisions remain unchanged.",
+  "sample": "Exactly candidate18 original64 head-held-out detector-training images, original regret predictions and candidate12 raw five-view post-NMS predictions. No new scene, val/testdev, image decode, detector forward or fitting. Pin historical artifacts and sources.",
+  "queries": "All original final regret rows with calibrated confidence>=.25, every class/size, compete together. Derive original source view from exact normalized slot0 one-hot templates using frozen action normalization. Predictions, masks and graphs never read GT. Exclude a query's original source view from peer support.",
+  "graph": "For each of five views separately, all raw post-NMS rows with native score>=.05 are possible observations. Connect same-class query/observation pairs at IoU>=.5, weight=IoU*observation native score. Zero weight for invalid/excluded edges. Keep full query order and original observation indices. No image-ignore filtering of peer inventory.",
+  "scores": {
+    "exclusive_retention": "Maximum-sum nonnegative bipartite partial matching independently per view, query and observation capacity1, dummy zero observations allow unmatched. Sum query's assigned weights across views divided by sum its unconstrained row-best weights;0 if denominator0.",
+    "greedy_retention": "Same graph/capacities/normalization, descending edge-weight greedy with query then observation index tie order.",
+    "independent_support": "Sum unconstrained row-best weights divided by number of views with positive best weight;0 if no support.",
+    "confidence": "Unchanged original final calibrated score.",
+    "inverse_crowding": "Negative sum IoU to all OTHER high-score same-class final queries with IoU>=.5. Uses final boxes only."
+  },
+  "labels": "Greedy class-aware full-image IoU.5/conf.25 matching over ALL originalGT and ALL final rows before graph eligibility determines TP/FP. FP with IoU>=.5 to any same-class GT is also marked duplicate-like. Historical owner labels not used. Matching labels only enter diagnosis/evaluation.",
+  "conditional_pairs": "All scores use identical pairs. For each eligible TP query, eligible FP competitors must share at least one SAME best observation id in the SAME view, require best weight>0 for both. Same predicted class required. Select up to4 FP by descending TP/FP query IoU, then original row index. Each TP total pair weight1. FP can be reused. Neither assignment scores nor GT owner identities enter pair selection except TP/FP label roles.",
+  "eligibility_and_groups": "Original score>=.25 and positive best support in at least1 non-origin view. Group BOTH pair members by their own predicted regret area at640 reference: all, tiny<16^2, small_all<32^2. No GT-size input. Shared-observation pairing is a selected conditional sample, not global detector performance.",
+  "evaluation": "Weighted matched-pair concordance (TP score>FP score, ties.5);400 all64-image bootstrap draws with np.default_rng(0). Also report TP/FP/duplicate-like counts, unique query/image counts and shared-support pairs of distinct true objects to expose crowding risk. No AP or deployed score modifications.",
+  "policy": {
+    "tiny_pairs_min": 50,
+    "tiny_paired_tp_queries_min": 25,
+    "tiny_images_min": 15,
+    "tiny_exclusive_concordance_min": 0.55,
+    "tiny_vs_greedy_min": 0.005,
+    "tiny_vs_independent_min": 0.01,
+    "tiny_vs_confidence_min": 0.01,
+    "tiny_vs_crowding_min": 0.01,
+    "tiny_bootstrap_lower95_exclusive": 0.5
+  },
+  "pass_action": "Only authorize separately preregistered bounded learnability/inference pilot with matched independent, greedy and geometry controls. Need actual AP/fixedFP budgets, costs, repeated/fresh-scene evidence and closer association/fusion prior audit before innovation or training-scale expansion.",
+  "fail_action": "STOP_THIS_EXCLUSIVE_PEER_SUPPORT_RECIPE. No score mixture, new edge weights, confidence/IoU cutoff, pair selection, origin policy, grouping, normalizer or assignment tie changes to rescue this experiment.",
+  "prior_boundary": "Learned NMS already reasons over competing detections and matching-derived labels. FUSEye already creates disjoint greedy IoU clusters and counts distinct views. Bipartite matching and exclusive evidence are not new alone. This isolates one specific instance-support conservation question on the project's retained Soft-NMS hypotheses.",
+  "limits": "Actual crowded objects can compete for a coarse view's single observation; exclusivity may penalize true objects. Fixed geometry overlaps and per-view thresholds are selection biases. Queries inherit historical diagnostic ignore filtering. Detector saw these train scenes and the head split was repeatedly examined. Conditional concordance does not establish AP, independent information, causality, deployability or novelty."
+}
