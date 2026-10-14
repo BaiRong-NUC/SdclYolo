@@ -1,0 +1,41 @@
+{
+  "experiment": "candidate66_actual_crossview_localization_quality_rank_projection_updates",
+  "date": "2026-10-15",
+  "status": "Registered before new image forwards, feature extraction, target construction, fits or candidate66 outcomes.",
+  "question": "Does ranking localization quality across views of the SAME annotated object improve actual deployable classification projections beyond ordinary IoU supervision, within-view ranking and identity-broken cross-view ranking?",
+  "boundary": "Not a new ranking or distillation problem. Rank Mimicking, Rank & Sort, GFL, MSAD, SED and CrossKD overlap broadly. A positive pilot would only motivate official evaluation, closer prior comparison and an independent dataset. Preserve all historical STOPs, particularly52 categorical crop consensus,62 DFL scoring and65 same-view target-histogram transport.",
+  "data": "Reuse exactly candidate62 fit64, screen32, confirmation17 images and disjoint sequence partitions. These are repeatedly inspected detector-training images, NOT fresh confirmation or external validation. Freeze exact stems, JPEG, metadata and cached raw tensor hashes. No val/test outcomes.",
+  "extraction": "565 frozen FP16 square960 forwards plus one existing warmup; capture full penultimate128-dim class features and replay every raw_class,decoded,original_local against62 exactly. Original detector inference settings, cuDNN TF32=true,matmulTF32=false as62; FP16 features/predictions unchanged. Zero projection convolution must replay raw_class and final strong outputs exactly. Freeze eval mode, zero detector/backbone/regression updates.",
+  "precision": "Projection TRAINING uses FP32 CUDA, TF32 disabled for both cuDNN and matmul, one CPU thread, deterministic seeds. Before training compare FP32 projection BCE autograd versus CPU FP64 closed form on a fixed first256rows: abs1e-6+rel1e-4 and relativeL2<=1e-4; stop on failure. Deployment uses original FP16 conv2d with updated weights castFP16, then sigmoidFP16 and unchanged NMS/calibrator. Do not widen tolerances after seeing outcomes.",
+  "targets": "One frozen assignment perview using TaskAlignedAssigner(topk10,alpha.5,beta6,strides8/16/32) on cached clipped original-coordinate native boxes, original FP16 decoded probabilities and original-coordinate anchors. GT clipped to view only if retains>=90%area, originalGT identity retained. Exclude predicted-box individual-ignoreIoF>.5 and anchors outside original view from all supervised rows; ownership and targets fixed thereafter. This is an explicitly frozen clipped-box assignment proxy, not an exact original unaugmented training loss. OriginalBCE uses its TAL quality mass; ordinaryIoUBCE replaces positive trueclass mass by ordinary IoU to assigned clippedGT. Other classes/background remain0.",
+  "sampling": "Keep every eligible productivepositive. For every level split eligible backgrounds at originalmaxprob.01; sample up to64 each stratum without replacement by SHA256(candidate66-sample-v1:stem:view:level:stratum), inverse inclusion weight N/k. Original mass denominator perview fixed across allarms, cls gain.5; each view equal weight. Same selected rows for allarms. All features/labels/rows saved; fit only64images. No normalization fitted from holdout.",
+  "pairs": "PerGT/perview keep up to4 productivepositive representatives: highestIoU,highesttrueclassscore,lowestIoU,lowesttrueclassscore, fixednativeindex tie ordering and dedup. SameGT within-view and cross-view unordered pairs require absoluteIoUgap>=.10 and are oriented higherIoU first. Fixed SHA256 ordering selects up to8 pairs perGT and exactly min(8,within_count,cross_count) from each family. For each selected crosspair find a lower endpoint from a DIFFERENT GT identity in the same split with sameclass,view,level and absIoU difference<=.025; select minimum quality difference then stable rowindex, require resulting IoUgap>=.10. Drop unavailable triplets from ALL three ranking arms. Each retained triplet supplies one withinpair,one sameGTcrosspair,one identity-broken crosspair. Identity-broken pairs may cross images; all training endpoints come from fit only. Pair counts equal but quality gaps and features not exactly matched; report distributions, do not claim a perfect causal identity intervention. GT is used in training targets and diagnostic mechanisms ONLY, never final prediction.",
+  "arms": {
+    "bce": "Original frozen-assignment TAL BCE.",
+    "iou": "Ordinary IoU-quality BCE.",
+    "within": "IoU BCE +.25*mean softplus(-(z_high-z_low)) on matched same-view pairs.",
+    "unlinked": "Same IoU BCE and rank loss on identity-broken cross-view pairs.",
+    "cross": "Same IoU BCE and rank loss on sameGT cross-view pairs; proposed arm."
+  },
+  "training": "Five identical initial3870parameter actual lastclass projections, no extra inference module. AdamW lr.0002,weight_decay.0001,8epochs,batch2048sampledrows,rankbatch256. BCE minibatch is unbiased weighted estimate of meanperview full sampled loss. Each epoch identical shuffled BCE row order and shuffled triplet order perarm. Fixed seeds0,1,2; run seed0first, only if allgates in both halves and engineering audit pass run1and2 without tuning. Atleast2of3fullpasses and allseedallAP/FPguards required. Evaluate only finalepoch8, no bestepochselection.",
+  "deployment": "Recompute all18900native tenclass scores with each projection; original decoded regression coordinates bitwise unchanged. Original FP16NMS, original five-view mapping, ordinary frozen calibration with ignores=[] and max500. Strong output separately replays62 reference exactly. Time cached projection+NMS+calibration, rotatedarmorder perimage after one unmeasured warmup; timing excludes detectorforward/JPEG and is not end-to-end latency.",
+  "metrics": "Same shared COCO-style diagnostic AP50:95 all/tiny/small_all reference640 and individual-ignoreIoF>.5 filtering; not officialVisDroneAP. Whole confidence-tie recall at FPPI10. Diagnostic mechanism all retained sameGT crosspairs logit softplus loss, persequence pair sums,400sequencebootstrap default_rng0; compare cross versus BOTHwithin/unlinked. These positive-pair losses are not AP or recoveredTP. Save actual outputs, full features, sampled rows, pairs, trained weights, history, precision check and source hashes.",
+  "policy_per_half": {
+    "tiny_GT_min": 100,
+    "tiny_AP_vs_strong_min_pp": 0.03,
+    "tiny_AP_vs_bce_min_pp": 0.01,
+    "tiny_AP_vs_iou_min_pp": 0.01,
+    "tiny_AP_vs_within_min_pp": 0.01,
+    "tiny_AP_vs_unlinked_min_pp": 0.01,
+    "small_all_AP_vs_strong_min_pp": 0.0,
+    "all_AP_vs_strong_min_pp": -0.05,
+    "small_all_recall_FPPI10_vs_strong_min_pp": -0.05,
+    "crosspair_NLL_gain_vs_each_rankcontrol_min": 0.0005,
+    "crosspair_NLL_gain_sequence95_lower_min_exclusive": 0.0,
+    "cached_added_processing_mean_ms_max": 10.0
+  },
+  "pass": "REPLICATED_CROSSVIEW_QUALITY_RANK_UPDATE_PILOT_SUPPORTS_OFFICIAL_AND_EXTERNAL_AUDIT. Not innovation or full-detector-training proof. Require numerical/replay/source/metric audit before replication and official work.",
+  "fail": "STOP_THIS_SAMEGT_CROSSVIEW_QUALITY_RANK_PROJECTION_RECIPE. Do not change data,pairs,labels,loss,weight,epochs,precision,gates or promote a secondary control after outcomes. Preserve failures.",
+  "budget": "113JPEG,565new frozenviewforwards+1warmup; maximum5smallprojectionfits*8epochs perseed, at most3seeds conditional. Full detector has zero training steps. Cache features about2.7GB uncompressed. Stop on engineering faults, preserve all artifacts. No official/external/full training until pilotpasses.",
+  "literature": "docs/literature/crossview_quality_rank_prior_audit_20261015.json"
+}

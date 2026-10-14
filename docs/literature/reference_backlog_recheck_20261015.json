@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-15",
+  "scope": "Targeted recheck of the three unresolved entries in the historical reference manifest; does not supersede prior download errors or claim every cited paper has been archived.",
+  "historical_manifest": "output/literature/manifest.json",
+  "historical_manifest_counts_observed": {
+    "downloaded_and_readable": 38,
+    "download_unavailable": 2,
+    "needs_open_access_location": 1
+  },
+  "attempts": [
+    {
+      "doi": "10.1145/3447548.3467121",
+      "title": "Robust Object Detection Fusion Against Deception",
+      "previous_publisher_PDF_status": "HTTP403",
+      "new_paper_search_arxiv": "Exact title query returned no results.",
+      "new_paper_search_semantic": "HTTP429 rate limit; no source or fulltext returned.",
+      "status": "Still unresolved; do not infer unavailable everywhere or bypass publisher access controls."
+    },
+    {
+      "doi": "10.1049/cit2.70083",
+      "title": "Dynamic Adaptive Label Assignment for Tiny Object Detection in Remote Sensing Images",
+      "previous_publisher_PDF_status": "HTTP403",
+      "new_paper_search_arxiv": "Exact title fragment query returned no results.",
+      "status": "Still unresolved; no new legal PDF location verified."
+    },
+    {
+      "doi": "10.1109/TGRS.2024.3430071",
+      "previous_status": "Needs open-access location.",
+      "new_paper_search_crossref": "DOI query returned an unrelated AIP paper DOI10.1063/1.1303180. Rejected; NOT a match or metadata evidence.",
+      "status": "Still unresolved; no correct title or legal fulltext verified by this recheck."
+    }
+  ],
+  "current_experiment_new_paper": {
+    "arxiv_version": "2112.04840v1",
+    "pdf": "output/literature/papers/2112.04840v1.pdf",
+    "audit": "docs/literature/crossview_quality_rank_prior_audit_20261015.json",
+    "status": "Downloaded through Paper Search, nine pages parsed, method pages reviewed; exact metadata and imported PDF child read back through Zotero."
+  },
+  "boundary": "Historical manifest counts omit later experiment-specific PDF archives. These counts are not a total current library count. Downloaded/readable does not mean the method was reviewed or novelty established."
+}

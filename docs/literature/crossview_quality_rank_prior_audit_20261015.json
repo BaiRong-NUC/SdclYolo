@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-15",
+  "candidate": "candidate66_actual_crossview_localization_quality_rank_projection_updates",
+  "scope": "Targeted primary-paper distinction check; not exhaustive novelty search or faithful prior-method reproduction.",
+  "papers": [
+    {
+      "title": "Knowledge Distillation for Object Detection via Rank Mimicking and Prediction-guided Feature Imitation",
+      "authors": [
+        "Gang Li",
+        "Xiang Li",
+        "Yujie Wang",
+        "Shanshan Zhang",
+        "Yichao Wu",
+        "Ding Liang"
+      ],
+      "arxiv_version": "2112.04840v1",
+      "version_date": "2021-12-09",
+      "source": "https://arxiv.org/abs/2112.04840v1",
+      "pdf": "output/literature/papers/2112.04840v1.pdf",
+      "pdf_sha256": "aa726de5ff5881129263fd3da6123d514adcc68fa1b35ac1c83547df9d3c70e3",
+      "pages": 9,
+      "text": "output/literature/text/2112.04840v1.txt",
+      "text_sha256": "679c6d826c0043d2d5fb1bb5966d69b30389ef216e7d107b491c4e021896068f",
+      "review": "Actual PDF header,Methods/Rank Mimicking equations5-6,Figure4andquality-IoUalternative read; rendered complete methodpage4 inspected. It already groups positiveanchors perGT and matches teacher/student anchor-rank distributions via KL,including a box-IoU rank variant. Generic instancewise localization-quality ranking transfer is priorart.",
+      "narrow_hypothesis": "Candidate66 compares candidates from different image crops of the SAME annotatedGT and a quality-matched differentGT control using actual classification projection updates. No learned separateteacher or faithfulRMimplementation. Cross-view identity correspondence might matter beyond ordinaryqualitysupervision,but difference is unvalidated and may overlap furtherpriorart.",
+      "zotero": {
+        "parent": "2PGCEV6W",
+        "attachment": "JW8HYIGJ",
+        "collection": "6HT9SNK7",
+        "readback": "Sixauthors,date,exactv1URLandcollectionreadback; childapplication/pdf,filename2112.04840v1.pdfreadback. No semantic indexing claim."
+      }
+    }
+  ],
+  "reused_priors": [
+    "docs/literature/crop_teacher_prior_audit_20261014.json",
+    "docs/literature/positive_rank_gradient_prior_audit_20261015.json"
+  ],
+  "boundary": "MSAD/SED crossscale transfer, CrossKD targetconflict, GFL quality labels, RankSort positivequalityorder and RankMimicking instancewiseanchorrelations are established. A small head/no extra inference cost/crossviewnames alone are not novelty. Need deployable superiority against all controls plus repeatability,official/external audits and closer contemporary literature before innovation claim."
+}
