@@ -1,0 +1,113 @@
+{
+  "experiment": "candidate38_native_regression_feature_continuous_residual",
+  "date": "2026-10-14",
+  "output": "output/analysis/native-regression-residual-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_NATIVE_REGRESSION_FEATURE_RESIDUAL_RECIPE",
+    "per_seed": {
+      "0": {
+        "passed": false,
+        "checks": {
+          "tiny_AP": true,
+          "small_all_AP": true,
+          "all_AP": true,
+          "vs_geometry": false,
+          "vs_native_cls": true,
+          "vs_shuffled_reg": false,
+          "fppi10": true
+        },
+        "values": {
+          "AP_vs_regret_pp": {
+            "tiny": 0.39944028104903495,
+            "small_all": 0.2572176432649176,
+            "all": 0.2726648436404078
+          },
+          "small_all_AP_vs_controls_pp": {
+            "geometry": -0.07256056064637861,
+            "native_cls": 0.1135617933080868,
+            "shuffled_reg": -0.14653089747464487
+          },
+          "small_all_recall_fppi10_gain_pp": 0.032278889606196515
+        }
+      }
+    },
+    "scope": "Ordinary residual representation feasibility on repeated train scenes, not innovation or official AP."
+  },
+  "AP50_95_percent": {
+    "regret": {
+      "tiny": 37.834862966,
+      "small_all": 43.571579548,
+      "all": 45.975873747
+    },
+    "geometry": {
+      "tiny": 38.211603851,
+      "small_all": 43.901357752,
+      "all": 46.260251287
+    },
+    "native_reg": {
+      "tiny": 38.234303247,
+      "small_all": 43.828797191,
+      "all": 46.24853859
+    },
+    "native_cls": {
+      "tiny": 38.002251309,
+      "small_all": 43.715235398,
+      "all": 46.063252312
+    },
+    "shuffled_reg": {
+      "tiny": 38.362001824,
+      "small_all": 43.975328089,
+      "all": 46.348252442
+    }
+  },
+  "training": {
+    "0": {
+      "checkpoint": "heads-seed0.pt",
+      "sha256": "a9ea4a5328f6c238bae79ffad7ea93eac8162dc92e403b91eaf9b16d6f0be2b5",
+      "active_training_rows": 15001,
+      "owned_training_rows": 6139,
+      "parameters_each": 4388
+    }
+  },
+  "verification": {
+    "fit_images": 128,
+    "head_holdout_images": 64,
+    "images": 192,
+    "forwards_excluding_warmup": 960,
+    "raw_five_view_replay_exact": true,
+    "feature_seconds": 26.33699809992686,
+    "raw_views_sha256": "9faa1bc87ca0adf873a485e5b485a22d78d60dfee2ad542a206820c28cffd7ef",
+    "detector_training_steps": 0,
+    "initial_exact_regret_replay": true,
+    "all_heads_parameters_equal": true,
+    "same_initialization_rows_batches_and_optimizer": true,
+    "GT_excluded_from_features_and_inference": true,
+    "normalization_fit_only_on_training_rows": true,
+    "same_original_owner_all_targets": true,
+    "scores_classes_counts_and_order_preserved": true,
+    "no_val_no_testdev_no_threshold_or_hyperparameter_search": true,
+    "source_unchanged": true,
+    "installed_sources_unchanged": true,
+    "elapsed_seconds": 77.96533440006897
+  },
+  "artifacts_sha256": {
+    "decision.json": "3b4c703735b95901dc785fd8d42566b7431ab56b7801c3d67abd6e1c3ea691ad",
+    "features.json": "951977b87f09f095e2130229844defcbed44ba025163393c5a47707cb774d1d2",
+    "fixed-fp-budgets-seed0.json": "272f9b189d7fbfa957d6a2f283a449c2e1d5942a067f2e5a7d725f5ae5e14ad1",
+    "frames-seed0.json": "3115c73cbc9e13961a7a80ad734514911ce6f7204c6bc670c2643c0f16cd34b9",
+    "heads-seed0.pt": "a9ea4a5328f6c238bae79ffad7ea93eac8162dc92e403b91eaf9b16d6f0be2b5",
+    "losses-seed0.json": "6211d23fd6ba7af1844bcf8b9b297b039153c36f776eb47b5cf0d10e57760821",
+    "metrics.json": "398ff35c1d208df9a67498c2eaf8867e1dcfda4c0b58cbb4818dfe5c76c2c5a7",
+    "normalization.json": "8119d034991300dca17c53d972fe09c63019e2d669c246ebf9f18da9f8559fcf",
+    "plan.json": "464e0983965002610d9cf2f1954ec9aa7dc0685bfaa07108c2db1e9b369f7de0",
+    "source.zip": "d2aba6a8d45be6c484672af48306100fba8a39bf1af9dbaacd5960fe240f7c66",
+    "training.json": "4c66e1ff7ba59ac1cf4149a662c89e93eb4a9ec7a3f3dbba6d1033bb6d29564a",
+    "verification.json": "7ac03b22738b5fc6a7cbdf46fe2a02dfae29ec65ee3e02071b565bfc9f4a6668"
+  },
+  "tests": "3 passed: exact zero residual and parameter count; invalid/inactive rows and score/class preservation; class/score-gated association with cross-level native feature indices",
+  "implementation_attempt": {
+    "archived_output": "output/analysis/native-regression-residual-fixed-20261014-aborted-serialization",
+    "error": "numpy.savez_compressed duplicate geometry keyword at first feature write",
+    "reason": "First attempt failed before fitting/AP; fixed archive field names only, then ran unchanged registered model recipe. Extra five detector forwards plus warmup from failed attempt excluded from successful-run960 count."
+  }
+}

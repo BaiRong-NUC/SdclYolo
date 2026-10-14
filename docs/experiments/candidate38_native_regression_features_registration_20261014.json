@@ -1,0 +1,34 @@
+{
+  "experiment": "candidate38_native_regression_feature_continuous_residual",
+  "date": "2026-10-14",
+  "stage": "Matched representation feasibility screen, not a novelty or official evaluation",
+  "question": "Can task-specific native regression features predict useful continuous coordinate corrections outside the frozen action menu, beyond geometry, classification features and shuffled regression features?",
+  "basis": "Candidate36 showed a descriptive high-IoU geometry deficit. Candidate9/10 selected existing coordinate actions using handmade or randomly projected P3 features; candidate24/37 distribution summaries failed. This screens penultimate native regression features and direct continuous residuals, not another parameter setting of those stopped recipes. Candidate36's primary routing result remains unchanged.",
+  "novelty_boundary": "A conventional continuous residual MLP is a prerequisite control, not innovation. D-FINE already refines distributions and scale-normalized residuals. Only after this test succeeds may a distinct target-specific mechanism be registered and compared with this ordinary regressor.",
+  "sample": "Exactly original candidate18 128fit/64headholdout train images and candidate12 five windows. No independent detector generalization: detector has seen these scenes, and holdout has been examined repeatedly.",
+  "budget": "192*5=960 frozen960FP16 forwards plus existing warmup. Four4388parameter heads, seed0,8epochs,batch512. Only if seed0 passes all gates, repeat seeds1/2 from frozen feature cache. No detector fitting or official evaluation.",
+  "feature_association": "For each frozen regret output, each native row requires correct argmax class, maxprob>=.05 and IoU>=.5 with regret coordinates. Select largest IoU*maxprob across all five views, ties keep earlier native/view. Labels never enter selection. Read pre-final-conv regression64channels and first64 of classification128channels at the same native index. No spatial projection or additional crop.",
+  "arms": {
+    "geometry": "selected68 historical normalized geometry plus duplicate first64 geometry channels; all input channels active, no additional information",
+    "native_reg": "selected68 geometry plus64 task-specific regression channels",
+    "native_cls": "selected68 geometry plus fixed first64 classification channels at the same native location",
+    "shuffled_reg": "same as native_reg but permute regression vectors among active rows within each image using SHA256(stem) seed, no GT"
+  },
+  "normalization": "Each arm extra64 mean/std fit only on active128fit rows, std floor1e-6; historical68 unchanged. Shuffle uses only active rows. Save train-only statistics.",
+  "training": "132->32 SiLU ->4, last layer zero for exact initial frozen regret replay. Correction=.1*tanh(output)*original calibrated width/height. Targets same original candidate18 GT owner minus regret coordinates, normalized and clipped[-.1,.1]. Unowned active rows target0; per-batch loss averages available owned and unowned group means equally, SmoothL1 beta.02. AdamW lr.002 wd.0001,8epochs, same row order and initial weights each arm. Ordinary information probe only.",
+  "deployment": "Only candidate score>=.05 and native association present. Add bounded residual to frozen regret coordinates, clip to original image, fall back on invalid extent. Keep score/class/count/order, no NMS or retrieval. No GT in features or inference.",
+  "policy": {
+    "tiny_ap_vs_regret_min_pp": 0.05,
+    "small_all_ap_vs_regret_min_pp": 0.05,
+    "all_ap_vs_regret_min_pp": -0.05,
+    "small_all_ap_vs_geometry_min_pp": 0.03,
+    "small_all_ap_vs_native_cls_min_pp": 0.02,
+    "small_all_ap_vs_shuffled_reg_min_pp": 0.02,
+    "small_all_recall_fppi10_vs_regret_min_pp": 0.0,
+    "repeat_min_positive_seeds": 2
+  },
+  "pass_action": "Only after firstseed passes run two matched repeats; require>=2/3 fully passing and mean tiny/smallAP gates and everyseed allAP/FP guard. A pass allows a new mechanism registration or bounded independent confirmation, not large detector training or innovation claim.",
+  "fail_action": "STOP_THIS_NATIVE_REGRESSION_FEATURE_RESIDUAL_RECIPE. No epochs/lr/bounds/feature subset/association threshold/seed tuning after failed seed0.",
+  "metrics": "COCO-style cached AP50:95,max500,tiny/small_all/all and fixedFPPI10 recall at640reference. Historical uniform diagnostic ignore filtering is inherited; not official VisDrone AP.",
+  "limits": "Native feature association can choose one row for several final boxes. Holdout is repeated detector-training imagery. Baseline geometry arm duplicates information and classification arm uses an arbitrary pre-fixed half of available channels. Successful ordinary residual regression would not prove a new method."
+}

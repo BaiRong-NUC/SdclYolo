@@ -1053,3 +1053,41 @@ letterbox与切片映射测试通过。这是反复查看训练场景的条件AU
 登记与结果：`docs/experiments/candidate37_dfl_quantization_floor_registration_20261014.json`、
 `docs/experiments/candidate37_dfl_quantization_floor_result_20261014.json`。
 完整结果：`output/analysis/dfl-quantization-floor-fixed-20261014/`。
+
+## 实验 38：原生回归特征能否支持菜单外连续修正
+
+与实验9/10的现有动作选择不同，本轮直接预测四边连续偏移，
+采用最后一层回归卷积之前的64维原生特征；同位置分类分支前64维、
+几何及打乱回归向量作匹配对照。原生位置只按类别、分数和几何关联，
+不访问标注。128/64原训练图，五视图960次冻结前向，四头各4388参数，
+同初始化/样本/批次/AdamW，固定8epoch；零输出逐元素复现regret。
+连续偏移限制在原框宽高的10%，标签为原框同归属GT的坐标差。
+未归属原框目标为0，训练按两组均值等权；分数/类别/数量/顺序保持。
+
+| 分支 | tiny诊断AP(%) | small_all诊断AP(%) | all诊断AP(%) |
+|---|---:|---:|---:|
+| regret | 37.834863 | 43.571580 | 45.975874 |
+| 纯几何连续残差 | 38.211604 | 43.901358 | 46.260251 |
+| 原生回归特征 | 38.234303 | 43.828797 | 46.248539 |
+| 原生分类特征 | 38.002251 | 43.715235 | 46.063252 |
+| 打乱回归特征 | 38.362002 | 43.975328 | 46.348252 |
+
+原生回归tiny/small_all/all对regret分别+0.399440/+0.257218/+0.272665pp，
+但small_all比几何低0.072561pp、比打乱对照低0.146531pp。
+FPPI10的small_all召回+0.032279pp；七项通过五项，
+STOP_THIS_NATIVE_REGRESSION_FEATURE_RESIDUAL_RECIPE，不补该分支种子。
+原生特征贡献没有成立，不能把相对regret的提升归给视觉机制。
+
+几何对照small_all+0.329778pp，是另一个常规方法信号；
+只允许按原配方新登记几何对照确认，不升级强对照或宣称创新。
+打乱向量更好也提示优化/噪声可能解释差异，不能择优换分支来包装机制。
+整个目标仍未完成，需要可重复收益、机制对照与论文差异三方面证据。
+
+有效执行77.97秒，特征准备26.34秒，无检测器训练；15001个活动训练原框，
+6139个拥有GT。三个零初始化、受限读出及跨金字塔原生索引测试通过。
+初次序列化有重名字段错误，在第一张图写缓存前、训练和AP前终止；
+仅修正存储字段名后完整执行，失败源归档保留，额外5次前向单独披露。
+本结果仍是反复查看训练场景和历史诊断ignore协议，不是官方AP。
+登记与结果：`docs/experiments/candidate38_native_regression_features_registration_20261014.json`、
+`docs/experiments/candidate38_native_regression_features_result_20261014.json`。
+完整结果：`output/analysis/native-regression-residual-fixed-20261014/`。
