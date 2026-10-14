@@ -1,0 +1,19 @@
+{
+  "experiment": "candidate15_detection_soft_evidence",
+  "date": "2026-10-14",
+  "question": "Do native full class scores add usable class alternatives beyond hard-label cross-view detections for frozen final boxes?",
+  "selection": "Exactly the 128 head-held-out train scenes/images from candidate12; no fitting or test-dev selection.",
+  "baseline": "Byte-verified saved candidate12 uniform boxes, scores, order and count; raw five-view predictions must exactly replay.",
+  "soft_evidence": "One class-agnostic raw box per final row per view, maximizing native top1 confidence times IoU among IoU>=0.7 and top1 confidence>=0.05. Read all 10 native sigmoid scores through native NMS kept anchor IDs. No ROI resampling or approximate feature projection.",
+  "action_menu": "Keep original; union existing candidate11 hard class actions with each selected view's top3 classes whose native score>=0.05. Ties use lower class ID. No annotation-dependent candidate generation.",
+  "controls": "Frozen uniform, ordinary hard-label vote, ordinary full-score weighted vote, hard-action owned oracle, expanded-action owned oracle. Oracles use fixed class-agnostic score-ordered IoU>=0.5 GT ownership; unowned rows keep class.",
+  "metrics": "Fixed confidence0.25 tiny/small_all/all recall and all FPPI. Count newly available geometrically-owned correct class interventions at0.25. Prediction-only aggregate top-two gap AUROC for geometrically-owned correct vs wrong original labels.",
+  "policy": {
+    "new_owned_correct_class_actions_at025_min": 20,
+    "soft_oracle_vs_hard_oracle_small_all_recall_min_pp": 0.10,
+    "aggregate_gap_correctness_auc_min": 0.65
+  },
+  "pass_action": "Register a tiny matched intervention-learning pilot only if all three pass. No detector training or official evaluation yet. Ordinary vote efficacy is reported, never replaced by oracle benefit.",
+  "budget": "128 images, 640 fixed detector view forwards excluding one warmup. No training, threshold search, seed/checkpoint selection.",
+  "limits": "Head-held-out train scenes have been viewed and were used for detector training. Annotation-assisted reference and AUROC are diagnostics, not AP/AR or deployable benefit. Classification fusion and uncertainty are established ideas; this audit does not establish innovation."
+}

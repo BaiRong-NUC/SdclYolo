@@ -249,3 +249,40 @@ GT 辅助参考：原框按无类别的一对一 IoU>=0.5 归属确定，
 `docs/experiments/candidate14_soft_class_information_registration_20261014.json`、
 `docs/experiments/candidate14_soft_class_information_result_20261014.json`。
 完整结果：`output/analysis/soft-class-information-fixed-20261014/`。
+
+## 实验 15：真实最终框的原生完整类别证据
+
+固定实验 12 的 128 张 head holdout 图片，读取原生 NMS 保留 anchor ID 的
+十类 sigmoid 分数。原生框/分数/类别与保存的五视图输出逐元素相等，
+基线直接读取已核验的 uniform 最终框，不重算或修改其坐标/置信度。
+每原框每视图只选一个 IoU>=0.7、最高分类别分数>=0.05、
+score*IoU 最大的原生框；前三名且分数>=0.05 的类别扩充原硬动作菜单。
+这些候选生成完全不使用标注。几何 GT 归属只用于诊断参考与评价。
+
+| 分支，confidence0.25 | small_all 召回 (%) | 全尺寸 FPPI |
+|---|---:|---:|
+| uniform | 73.827884 | 12.046875 |
+| hard_vote | 71.822949 | 13.101563 |
+| soft_vote | 71.900062 | 13.070313 |
+| hard_oracle | 74.845774 | 11.531250 |
+| soft_oracle | 76.511413 | 10.671875 |
+
+完整分数在 score>=0.25 的原框中新增 113 个已拥有几何 GT 的正确类别动作，
+soft 参考比 hard 参考增加 small_all 召回 +1.665638 pp。
+已拥有 GT 原框的原类正确 4,949 个、错误 412 个，
+普通汇总分数前两名差的正确性 AUROC 为 0.778146。
+登记门槛新增至少 20、参考多出至少 +0.10 pp、AUROC 至少 0.65，三项通过，
+判断 TINY_SOFT_INTERVENTION_PILOT_ALLOWED。
+普通 soft_vote 对 uniform 仍降 1.927822 pp，不能宣称完整分数融合已有效。
+正向证据只支持小预算学习“是否替换”，不支持官方涨点或大训练。
+
+首次执行在空检测视图遇到原生 NMS 空浮点索引异常，中断证据保存在
+`output/analysis/detection-soft-evidence-fixed-20261014-incomplete-empty-view/`。
+新增空视图兼容和针对性测试后，从头执行；未改变样本/配方/门槛。
+完整执行 640 次冻结视图前向（不含一次暖机），耗时 37.426374 秒，
+不训练检测器。三个原生分数对齐/空视图/候选限制测试通过。
+
+登记与数值记录：
+`docs/experiments/candidate15_detection_soft_evidence_registration_20261014.json`、
+`docs/experiments/candidate15_detection_soft_evidence_result_20261014.json`。
+完整结果：`output/analysis/detection-soft-evidence-fixed-20261014/`。
