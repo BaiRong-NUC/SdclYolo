@@ -1,0 +1,35 @@
+{
+  "experiment": "candidate29_cross_view_side_composition",
+  "date": "2026-10-14",
+  "question": "Does forcing all four sides to come from one coordinate action discard useful cross-view localization evidence?",
+  "motivation": "Whole-box image/DFL refinements failed; test a different action space. A crop can contain good evidence for one side and worse evidence for another. No new image representation or continuation of stopped pixel/DFL training.",
+  "sample": "Exactly candidate18 frozen128 fitting/64 head-held-out train images, original six-action menus and same-owned GT references.",
+  "budget": "Cached geometry only, zero image decoding, detector forward or detector training. Two32-hidden-unit residual heads, four outputs per action,8epochs/batch512/AdamW lr0.0002 weight_decay0.0001. Seed0 first;1/2 only after seed0 passes.",
+  "inputs": "Unchanged68 historical train-normalized geometry features per action. Frozen uniform scalar utility broadcasts to four sides. Residual heads share initial weights and zero output layer, so initial whole/side selectors exactly reproduce uniform.",
+  "labels": "For owned rows compute absolute left/top/right/bottom coordinate error against the SAME original owned GT, normalized by original calibrated anchor width/height. No new GT ownership per action/side. Unowned rows prefer the frozen uniform slot on every side. Active rows score>=0.05, >=2 valid slots.",
+  "objectives": {
+    "side_gain": "SmoothL1 beta0.1 to frozen_uniform_reference_utility + normalized_error(uniform)-normalized_error(action), averaged over valid owned actions/sides; common unowned keep loss",
+    "side_rank": "Per-side valid unordered action pairs whose normalized absolute-error difference exceeds0.01, softplus signed utility difference temperature0.05; common unowned keep loss"
+  },
+  "readouts": {
+    "gain_whole": "Mean four side utilities, original select_actions selects one whole box",
+    "gain_composed": "Independently apply unchanged select_actions rule to each side of SAME gain head, compose four coordinates",
+    "rank_whole": "Mean four side utilities, original selector chooses one whole box",
+    "rank_composed": "Independently select four coordinates from SAME rank head"
+  },
+  "validity": "If composed width/height<=0 or nonfinite, revert the entire row to frozen uniform. Scores, class, count and order always preserved. Report true new compositions not identical to any original valid whole action.",
+  "evaluation": "Full one-to-one matching at confidence0.25 over IoU0.50:0.05:0.95, tiny/small_all mean recall, plus FPPI0.5. Controls frozen uniform/regret, same-head whole readout, side_gain composed. This is not official AP/AR.",
+  "policy": {
+    "tiny_ten_threshold_vs_uniform_min_pp": 0.10,
+    "small_all_ten_threshold_vs_uniform_min_pp": 0.10,
+    "small_all_ten_threshold_vs_regret_min_exclusive_pp": 0.0,
+    "small_all_ten_threshold_vs_rank_whole_min_exclusive_pp": 0.0,
+    "small_all_ten_threshold_vs_gain_composed_min_exclusive_pp": 0.0,
+    "all_fppi50_vs_uniform_max_increase": 0.10,
+    "new_compositions_at_score025_min": 10,
+    "repeat_min_positive_seeds": 2
+  },
+  "pass_action": "Only allows separately registered official and fresh-scene feasibility audit. Side-wise localization is established by SABL/BorderDet; independent side selection and cross-view fusion also require nearest-prior comparison before any novelty claim.",
+  "fail_action": "Stop this fixed geometry-only side-composition recipe. Do not change error margin, objectives, normalization, epochs, side selector, validity fallback or seeds to rescue it.",
+  "limits": "Small repeatedly viewed training-scene split, uniform diagnostic ignore filtering inherited, side-wise nominal targets remain annotation-sensitive, independent side choices may form unsupported combinations. A success would be a candidate action-space result, not automatically a new method."
+}

@@ -1,0 +1,247 @@
+{
+  "experiment": "candidate29_cross_view_side_composition",
+  "date": "2026-10-14",
+  "output": "output/analysis/side-composition-pilot-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_GEOMETRY_SIDE_COMPOSITION_RECIPE",
+    "per_seed": {
+      "0": {
+        "passed": false,
+        "checks": {
+          "tiny_gain": false,
+          "small_gain": false,
+          "regret_gain": false,
+          "rank_whole_gain": true,
+          "gain_composed_gain": true,
+          "fp_budget": true,
+          "new_compositions": true
+        },
+        "values": {
+          "small_all_gains_pp": {
+            "uniform": -0.05164622336992153,
+            "regret": -0.4034861200774742,
+            "rank_whole": 0.0032278889606160988,
+            "gain_composed": 0.4099418979987064
+          },
+          "tiny_vs_uniform_pp": -0.03753753753754552,
+          "fppi50_increase": -0.015625,
+          "new_compositions_at_score025": 398
+        }
+      }
+    },
+    "seeds_executed": 1,
+    "positive_seeds": 0,
+    "scope": "Reused train-head-holdout detection proxy, not AP or novelty proof."
+  },
+  "metrics": {
+    "0": {
+      "uniform": {
+        "all_ten_threshold_recall_percent": 51.17955035417309,
+        "tiny_ten_threshold_recall_percent": 45.232732732732735,
+        "small_all_ten_threshold_recall_percent": 49.548095545513235,
+        "all_fppi50": 10.90625,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2488,
+              "tp_ten": 16618
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1940,
+              "tp_ten": 12050
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2345,
+              "tp_ten": 15350
+            }
+          },
+          "fp50": 698,
+          "moves": 0,
+          "invalid_fallback": 0,
+          "new_compositions_at_score025": 0
+        }
+      },
+      "regret": {
+        "all_ten_threshold_recall_percent": 51.51524484139205,
+        "tiny_ten_threshold_recall_percent": 45.67942942942943,
+        "small_all_ten_threshold_recall_percent": 49.89993544222079,
+        "all_fppi50": 10.8125,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2494,
+              "tp_ten": 16727
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1946,
+              "tp_ten": 12169
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2351,
+              "tp_ten": 15459
+            }
+          },
+          "fp50": 692,
+          "moves": 585,
+          "invalid_fallback": 0,
+          "new_compositions_at_score025": 0
+        }
+      },
+      "gain_whole": {
+        "all_ten_threshold_recall_percent": 50.70218663381583,
+        "tiny_ten_threshold_recall_percent": 44.8460960960961,
+        "small_all_ten_threshold_recall_percent": 49.08650742414461,
+        "all_fppi50": 10.921875,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2487,
+              "tp_ten": 16463
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1939,
+              "tp_ten": 11947
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2344,
+              "tp_ten": 15207
+            }
+          },
+          "fp50": 699,
+          "moves": 870,
+          "invalid_fallback": 0,
+          "new_compositions_at_score025": 0
+        }
+      },
+      "gain_composed": {
+        "all_ten_threshold_recall_percent": 50.70218663381583,
+        "tiny_ten_threshold_recall_percent": 44.8460960960961,
+        "small_all_ten_threshold_recall_percent": 49.08650742414461,
+        "all_fppi50": 10.921875,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2487,
+              "tp_ten": 16463
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1939,
+              "tp_ten": 11947
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2344,
+              "tp_ten": 15207
+            }
+          },
+          "fp50": 699,
+          "moves": 870,
+          "invalid_fallback": 0,
+          "new_compositions_at_score025": 1
+        }
+      },
+      "rank_whole": {
+        "all_ten_threshold_recall_percent": 51.127194333230676,
+        "tiny_ten_threshold_recall_percent": 45.18018018018018,
+        "small_all_ten_threshold_recall_percent": 49.4932214331827,
+        "all_fppi50": 10.90625,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2488,
+              "tp_ten": 16601
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1940,
+              "tp_ten": 12036
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2345,
+              "tp_ten": 15333
+            }
+          },
+          "fp50": 698,
+          "moves": 207,
+          "invalid_fallback": 0,
+          "new_compositions_at_score025": 0
+        }
+      },
+      "rank_composed": {
+        "all_ten_threshold_recall_percent": 51.13335386510626,
+        "tiny_ten_threshold_recall_percent": 45.19519519519519,
+        "small_all_ten_threshold_recall_percent": 49.49644932214331,
+        "all_fppi50": 10.890625,
+        "counts": {
+          "groups": {
+            "all": {
+              "gt": 3247,
+              "tp50": 2489,
+              "tp_ten": 16603
+            },
+            "tiny": {
+              "gt": 2664,
+              "tp50": 1941,
+              "tp_ten": 12040
+            },
+            "small_all": {
+              "gt": 3098,
+              "tp50": 2346,
+              "tp_ten": 15334
+            }
+          },
+          "fp50": 697,
+          "moves": 457,
+          "invalid_fallback": 0,
+          "new_compositions_at_score025": 398
+        }
+      }
+    }
+  },
+  "verification": {
+    "fit_images": 128,
+    "head_holdout_images": 64,
+    "detector_forwards": 0,
+    "image_decodes": 0,
+    "detector_training_steps": 0,
+    "uniform_utility_replay_exact": true,
+    "same_head_shared_between_whole_and_side_readout": true,
+    "no_GT_in_prediction_features_or_selection": true,
+    "no_val_no_testdev_no_threshold_or_hyperparameter_search": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 9.300814599962905
+  },
+  "training": {
+    "0": {
+      "parameters_each": 2340,
+      "active_training_rows": 11784,
+      "checkpoint": "heads-seed0.pt",
+      "sha256": "1710543d5a2741f6cd999999ba1d9603dceb90a7af71756a00c322244fef5821"
+    }
+  },
+  "artifacts_sha256": {
+    "decision.json": "26fedb96b35b82706bc71622523e4de52bac01ccdff2def5b7893583c0305458",
+    "frames-seed0.json": "b56e93a706d550d5605be154261a46b7c10312f3ad82b16a3f8eecdd3080eaa3",
+    "heads-seed0.pt": "1710543d5a2741f6cd999999ba1d9603dceb90a7af71756a00c322244fef5821",
+    "losses-seed0.json": "d7428acaee33b70a75aa9e89ca5066a46e361264f27c311ff83b19cb47a9b936",
+    "metrics.json": "65c7e51bcd0a2a5c3555a7ba7a52e819b767ccadf69b22f847db421183c3e97c",
+    "plan.json": "1c9d63db3a66493b15b3dbdd28f62ef411a4b7bf7542785f8644fac896af25a7",
+    "source.zip": "738c05a203ed99308eed6c7f42943c1597505a7cc2a0f93c54211f4ea3e08bd7",
+    "training.json": "5d7a3e456859c081cb588fcbcd27c9633416d624bc3b0985b391ed36d2e522f8",
+    "verification.json": "3f4a7285a77018291e4fab9a005c46a61960ff5b05daedadf297e5da26f993cd"
+  },
+  "tests": "2 passed: novel valid coordinate composition preserves scores/classes; invalid crossing falls back to frozen uniform"
+}

@@ -752,3 +752,38 @@ geometry_residual屏蔽图像输入；名义容量匹配但有效输入容量不
 登记与数值记录：`docs/experiments/candidate28_native_boundary_registration_20261014.json`、
 `docs/experiments/candidate28_native_boundary_result_20261014.json`。
 完整结果：`output/analysis/native-boundary-pilot-fixed-20261014/`。
+
+## 实验 29：跨视图四边组合与同一个头的整框选择
+
+换检验动作空间：允许四条边分别来自不同的原有坐标动作。
+严格复用128/64图、68维几何、六动作及同一原框拥有的GT，
+冻结uniform标量效用，新增零输出初始化的四边残差。
+两个2340参数头分别用归一化边误差收益回归、边误差成对排序监督，
+同初始化、批次、8epoch和lr0.0002。
+每个头同时读出整框选择与四边组合，不另训不同容量的整框头。
+所有初始读出逐元素复现uniform；交叉或非有限组合整行退回uniform。
+
+| 分支 | small_all十阈值平均召回(%) | 对uniform(pp) |
+|---|---:|---:|
+| uniform | 49.548096 | 0 |
+| regret | 49.899935 | +0.351840 |
+| 边误差回归整框 | 49.086507 | -0.461588 |
+| 边误差回归组合 | 49.086507 | -0.461588 |
+| 边排序整框 | 49.493221 | -0.054874 |
+| 边排序组合 | 49.496449 | -0.051646 |
+
+主分支边排序组合生成398个score>=0.25且不等于任何有效原动作的新框，
+相对同头整框仅+0.003228pp，相对regret为-0.403486pp，
+tiny对uniform为-0.037538pp，FPPI增量-0.015625。
+七项门槛通过四项，未通过tiny、small_all和历史regret收益。
+STOP_THIS_GEOMETRY_SIDE_COMPOSITION_RECIPE；
+不追加种子，不调边误差、归一化、训练长度或选择门槛。
+这说明产生新坐标组合本身没有兑现净收益，不能作为创新成立的证据。
+SABL等已有分边定位先例，本轮也没有证明相对这些工作的独立贡献。
+
+总耗时9.30秒，零图像解码、零检测器前向或训练，
+11784个训练原框；两个组合合法性与属性保持测试通过。
+仍是已反复查看的训练图头留出召回诊断，非官方AP或独立泛化。
+登记与数值记录：`docs/experiments/candidate29_side_composition_registration_20261014.json`、
+`docs/experiments/candidate29_side_composition_result_20261014.json`。
+完整结果：`output/analysis/side-composition-pilot-fixed-20261014/`。
