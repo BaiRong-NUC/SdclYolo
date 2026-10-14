@@ -1,0 +1,133 @@
+{
+  "date": "2026-10-14",
+  "collection_key": "6HT9SNK7",
+  "scope": "Nine exact-version arXiv metadata imports and existing local PDF attachments completed through Zotero MCP earlier in this thread; local hashes rechecked during candidate49 closeout.",
+  "items": [
+    {
+      "arxiv_version": "2007.01263v1",
+      "title": "Outlier Detection through Null Space Analysis of Neural Networks",
+      "item_key": "8G4DKSZ9",
+      "attachment_key": "G4DNHLUY",
+      "metadata_url": "https://arxiv.org/abs/2007.01263v1",
+      "pdf": "output/literature/papers/2007.01263v1.pdf",
+      "pdf_sha256": "7b863745054d5f80a5bcdcc122e67a1053180946421c1cc4bfaad80b295e7903",
+      "text": "output/literature/text/2007.01263v1.txt",
+      "text_sha256": "6c12f527728fbb2f9b00592c719efe9d62111b54ab6ea04a01c3052a2e0aa027",
+      "prior_audit": "docs/literature/classifier_nullspace_prior_audit_20261014.json",
+      "prior_successful_MCP_children_readback": "application/pdf; imported_file"
+    },
+    {
+      "arxiv_version": "2203.10807v1",
+      "title": "ViM: Out-Of-Distribution with Virtual-logit Matching",
+      "item_key": "8KJGM6JG",
+      "attachment_key": "ZAPC26RV",
+      "metadata_url": "https://arxiv.org/abs/2203.10807v1",
+      "pdf": "output/literature/papers/2203.10807v1.pdf",
+      "pdf_sha256": "9bed6efe13123d85e3b6e01d510ef59d9846d46f54f6df7defeb598cb5077e5d",
+      "text": "output/literature/text/2203.10807v1.txt",
+      "text_sha256": "5acc14a0982e5afb2020a8f817b567a3dee7e77af34897c452b4731381e15be7",
+      "prior_audit": "docs/literature/classifier_nullspace_prior_audit_20261014.json",
+      "prior_successful_MCP_children_readback": "application/pdf; imported_file"
+    },
+    {
+      "arxiv_version": "1312.6229v4",
+      "title": "OverFeat: Integrated Recognition, Localization and Detection using Convolutional Networks",
+      "item_key": "78RW3R2C",
+      "attachment_key": "2EEX3NP9",
+      "metadata_url": "https://arxiv.org/abs/1312.6229v4",
+      "pdf": "output/literature/papers/1312.6229v4.pdf",
+      "pdf_sha256": "8033a6a41884f5c3743fdee82dd9425e64b32cb8eb1d3e4c334384ee09bdfe80",
+      "text": "output/literature/text/1312.6229v4.txt",
+      "text_sha256": "d90b5aad3e882c938c2410bab69fb0be99aafa71b296170cfd5a7f93517b5cb9",
+      "prior_audit": "docs/literature/shared_prefix_lattice_prior_audit_20261014.json",
+      "prior_successful_MCP_children_readback": "application/pdf; imported_file"
+    },
+    {
+      "arxiv_version": "1911.04432v1",
+      "title": "Streaming convolutional neural networks for end-to-end learning with multi-megapixel images",
+      "item_key": "Z9NJSJHK",
+      "attachment_key": "XYMCR4C9",
+      "metadata_url": "https://arxiv.org/abs/1911.04432v1",
+      "pdf": "output/literature/papers/1911.04432v1.pdf",
+      "pdf_sha256": "12971fd6828c845eef5af128e55af3cd61d9fa51601ca9c6ef0a8d3884f287fe",
+      "text": "output/literature/text/1911.04432v1.txt",
+      "text_sha256": "1294a64404f6fbfaa4be6afe7fd3f321da51ec75877a579af0b5c19d3ddecf2b",
+      "prior_audit": "docs/literature/shared_prefix_lattice_prior_audit_20261014.json",
+      "prior_successful_MCP_children_readback": "application/pdf; imported_file"
+    },
+    {
+      "arxiv_version": "2307.12101v2",
+      "title": "Spatial Self-Distillation for Object Detection with Inaccurate Bounding Boxes",
+      "item_key": "NBBXMX56",
+      "attachment_key": "JDLCN7ZJ",
+      "metadata_url": "https://arxiv.org/abs/2307.12101v2",
+      "pdf": "output/literature/papers/2307.12101v2.pdf",
+      "pdf_sha256": "308c45a422cafd0188abb59a3be429fc110d5cbe237a3bd8a5305e3b28fc5aa8",
+      "text": "output/literature/text/2307.12101v2.txt",
+      "text_sha256": "a8e44fee6f480620ec93acc49b951de46e4bf2f2398bd8cc912f49874dc98d65",
+      "prior_audit": "docs/literature/native_semantic_coupling_prior_audit_20261014.json",
+      "prior_successful_MCP_children_readback": "application/pdf; imported_file"
+    },
+    {
+      "arxiv_version": "2007.08103v2",
+      "title": "Probabilistic Anchor Assignment with IoU Prediction for Object Detection",
+      "item_key": "TW49XAC4",
+      "attachment_key": "5UMHY9BZ",
+      "metadata_url": "https://arxiv.org/abs/2007.08103v2",
+      "pdf": "output/literature/papers/2007.08103v2.pdf",
+      "pdf_sha256": "21e27f3f05a03a97c9f71e04e5291202dad554485ab1fa9e625b6d69f26fa389",
+      "text": "output/literature/text/2007.08103v2.txt",
+      "text_sha256": "d74d273ca043cc1c8ba681e1a031fd7769023dd4391ac09fdad451b903267796",
+      "prior_audit": "docs/literature/unowned_supervision_prior_audit_20261014.json",
+      "prior_successful_MCP_children_readback": "application/pdf; imported_file"
+    },
+    {
+      "arxiv_version": "1912.02424v4",
+      "title": "Bridging the Gap Between Anchor-based and Anchor-free Detection via Adaptive Training Sample Selection",
+      "item_key": "5PLCZ3R5",
+      "attachment_key": "MBA4NM42",
+      "metadata_url": "https://arxiv.org/abs/1912.02424v4",
+      "pdf": "output/literature/papers/1912.02424v4.pdf",
+      "pdf_sha256": "9f7d69ca06c3a763aabddc820749962e14e58859d008f9b62fa5e4ff7b1ac9d0",
+      "text": "output/literature/text/1912.02424v4.txt",
+      "text_sha256": "9754ccc029031716a711bf37a1d2ee1be1f47d38bc3d3cc06282a6c8eeb5d115",
+      "prior_audit": "docs/literature/unowned_supervision_prior_audit_20261014.json",
+      "prior_successful_MCP_children_readback": "application/pdf; imported_file"
+    },
+    {
+      "arxiv_version": "2204.05957v2",
+      "title": "Localization Distillation for Object Detection",
+      "item_key": "8NQ9KSMZ",
+      "attachment_key": "EN6NNKUQ",
+      "metadata_url": "https://arxiv.org/abs/2204.05957v2",
+      "pdf": "output/literature/papers/2204.05957v2.pdf",
+      "pdf_sha256": "41ec89525a8f6daff4670e28da4d71629ff1c30e188e7119e5b743207524a0ca",
+      "text": "output/literature/text/2204.05957v2.txt",
+      "text_sha256": "d98972dbe37fa11f4bba7626c6e160e430f4c4d2b5417554049df1f7a2e728ff",
+      "prior_audit": "docs/literature/native_spatial_field_prior_audit_20261014.json",
+      "prior_successful_MCP_children_readback": "application/pdf; imported_file"
+    },
+    {
+      "arxiv_version": "2606.03568v1",
+      "title": "Learned Non-Maximum Suppression for 3D Object Detection",
+      "item_key": "GMRDMSL6",
+      "attachment_key": "PSY7CBGC",
+      "metadata_url": "https://arxiv.org/abs/2606.03568v1",
+      "pdf": "output/literature/papers/2606.03568v1.pdf",
+      "pdf_sha256": "b209832bc947799c05701ad336c27254502fbc4c7389de1ae4007fc457d10d72",
+      "text": "output/literature/text/2606.03568v1.txt",
+      "text_sha256": "c0be7e48e4efd57de9b69d23ee3bd18402027ee9e12fbd4d112c7fd2351e4f82",
+      "prior_audit": "docs/literature/exclusive_peer_support_prior_audit_20261014.json",
+      "prior_successful_MCP_children_readback": "application/pdf; imported_file"
+    }
+  ],
+  "semantic_update": {
+    "total_items": 9,
+    "processed_items": 9,
+    "added": 7,
+    "updated": 2,
+    "errors": 0
+  },
+  "closeout_readback": "ViM parent8KJGM6JG: title, creators, date, version URL and collection verified again; childPSY7CBGC exists as an attachment. Full nine PDF MIME/parent readbacks were completed before compaction.",
+  "limits": "Historical unavailable statements remain unchanged because they described earlier tool availability. These nine imports do not repair the original38 metadata records or prove the entire collection citation-ready. User-approved deletions are preserved."
+}

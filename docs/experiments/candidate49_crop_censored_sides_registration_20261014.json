@@ -1,0 +1,41 @@
+{
+  "experiment": "candidate49_crop_censored_sides",
+  "date": "2026-10-14",
+  "stage": "Cached crop-boundary mechanism prerequisite with conditional fixed fusion pilot",
+  "question": "Do source boxes exactly clipped at INTERNAL crop boundaries supply useful one-sided coordinate constraints, rather than noisy point estimates, in the existing multi-view candidate menu?",
+  "difference": "Candidate29 selected separate sides using geometry heads without treating a clipped coordinate as an inequality. Candidate31 estimated cross-view error moments. Candidate21/22 censoring concerns NMS selection, not spatial crop truncation. Preserve all those STOPs. No image, feature or label parameter is retuned.",
+  "sample": "Exactly original candidate18 first64 headheldout detector-training images, existing five native action slots0..4 and candidate12 windows. Original normalized source-view onehot recovered exactly with frozen templates. No fit split, image decoding, detector forwards or new labels for training. This is a repeated diagnostic sample.",
+  "censor_flags": "An available native action is left/top censored only if its x1/y1 equals its source window's x1/y1 EXACTLY and that window edge is strictly inside the image. Right/bottom analog at x2/y2 with boundary strictly below image width/height. Never flag an original-image boundary or global view. Do not use a distance tolerance, GT, score, owner or native logits to set flags.",
+  "active": "Original calibrated confidence>=.05, at least2 available native slots, at least1 spatial censor flag. No synthetic vote slot participates. All other original rows preserve frozen regret exactly in every arm.",
+  "mechanism_labels": "Compute frozen regret class-aware greedy GT matching atconfidence.05/IoU.5 over ALL originalrows/allGT BEFORE active filtering. Each matchedGT supplies one owner's four true coordinates. GT size groups at640 reference. For each flagged side compare the GT edge to the crop bound: left/top target<=bound, right/bottom target>=bound. Report weak inequality validity and strict actual extension, counts and independent affected GT/image coverage.",
+  "mechanism_policy": {
+    "tiny_affected_owned_rows_min": 20,
+    "tiny_affected_owned_images_min": 8,
+    "tiny_censored_side_observations_min": 20,
+    "tiny_inequality_valid_fraction_min": 0.75,
+    "tiny_strict_extension_fraction_min": 0.50
+  },
+  "fail_mechanism": "STOP_THIS_EXACT_CROP_CENSORING_RECIPE before AP evaluation if any mechanism gate fails. No expanding tolerance, lowering association cutoff, changing object-size group or increasing subset after results. Sparse signal does not disprove approximate crop effects.",
+  "fixed_arms_if_mechanism_passes": {
+    "regret": "Original unchanged frozen predictions.",
+    "point": "On exactly active rows, equal-weight whole-box mean of all available native slots.",
+    "drop_whole": "Same rows, equal-weight whole-box mean only native slots with NO censored side; none means keep regret.",
+    "drop_side": "Same rows, each side equal-weight mean over available uncensored coordinates; if none keep that regret side. Invalid extent reverts entire row to regret.",
+    "one_sided": "Same rows, each side minimizes sum uncensored(z-coordinate)^2 plus censored hinge^2. Left/top hinge=max(0,z-bound), right/bottom hinge=max(0,bound-z). If no uncensored values, choose regret side projected into the common feasible halfline. Otherwise enumerate active-set stationary candidates and crop bound breakpoints and take minimum objective, ties closest regret then smaller coordinate. Invalid extent reverts entire row."
+  },
+  "deployment_invariants": "Native boxes/valid/source/windows are sole inputs to all candidate arms. All scores/classes/count/order unchanged. No rescore, new NMS, added boxes, fitting, GT-driven routing or choice of reported best arm. Only nominal unweighted observations; no new confidence weighting.",
+  "evaluation_if_passes": "COCO-style AP50:95/max500 at640reference, all/tiny/small_all plus pooled fixedFPPI10 recall on all64 frames. Full rematching, original diagnostic ignore-filtered query pool. Not official VisDroneAP. No efficacy from own-GT mean edge errors or mechanism inequalities.",
+  "efficacy_policy": {
+    "tiny_AP_vs_regret_min_pp": 0.05,
+    "small_all_AP_vs_regret_min_pp": 0.05,
+    "all_AP_vs_regret_min_pp": -0.05,
+    "small_all_AP_vs_point_min_pp": 0.02,
+    "small_all_AP_vs_drop_whole_min_pp": 0.01,
+    "small_all_AP_vs_drop_side_min_pp": 0.01,
+    "small_all_fixedFPPI10_vs_regret_min_pp": -0.05
+  },
+  "pass_action": "Only authorize separately preregistered train-scene bootstrap/fresh-scene and annotation-free official replay feasibility plus measured runtime; a no-fit improvement has no training-seed replication. Need explicit nearest crop-truncation/partial-observation fusion comparisons before innovation.",
+  "fail_efficacy": "STOP_THIS_ONE_SIDED_EQUAL_WEIGHT_CROP_FUSION_RECIPE, without score, weight, tolerance, support policy, active mask or arm substitution to rescue.",
+  "prior_boundary": "SAHI already uses overlapping sliced inference and NMS. SAHI/other tile-processing code may merge partial boxes via IoS/union, which is different from a full-box point average but is prior boundary handling. Side-based localization is established in SABL/BorderDet. Censored regression and squared hinge constraints are established statistics/optimization, not innovation by themselves.",
+  "limits": "Exact clipping misses near-boundary biases and objects never associated by the originalIoU.5menu. A crop-touching prediction can instead be an unrelated or badly localized box. Inequalities from several views need not be jointly correct; dropping sides can lose evidence. Detector saw train scenes and diagnostic ignores are inherited."
+}

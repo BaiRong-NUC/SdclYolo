@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-14",
+  "scope": "Primary-document overlap audit for candidate49, not exhaustive novelty verification.",
+  "papers": [
+    {
+      "title": "Slicing Aided Hyper Inference and Fine-tuning for Small Object Detection",
+      "authors": [
+        "Fatih Cagatay Akyon",
+        "Sinan Onur Altinuc",
+        "Alptekin Temizel"
+      ],
+      "arxiv_version": "2202.06934v5",
+      "version_date": "2022-10-24",
+      "doi": "10.1109/ICIP46576.2022.9897990",
+      "metadata_provenance": "Exact-title Paper Search metadata and existing extracted PDF version header, inspected earlier in this experiment.",
+      "source": "https://arxiv.org/abs/2202.06934v5",
+      "pdf": "output/literature/papers/arxiv-2202.06934.pdf",
+      "text": "output/literature/text/arxiv-2202.06934.txt",
+      "reviewed": "Slicing aided hyper inference paragraph: overlapping aspect-preserving patches, optional full inference, mapping back and NMS.",
+      "overlap": "Overlapping tiled inference and combining local/global predictions are established. This paper excerpt does not establish a particular current IoS-union implementation.",
+      "pdf_sha256": "66c9c5df29fa4c3ea3b410283bcb7aabd82255f096e551508ed929edda41dc49",
+      "text_sha256": "185531c905f1a91c004e079844ea943c3b5db5b861ebe4255cd8981735a189af"
+    },
+    {
+      "title": "AutoFocus: Efficient Multi-Scale Inference",
+      "authors": [
+        "Mahyar Najibi",
+        "Bharat Singh",
+        "Larry S. Davis"
+      ],
+      "doi": "10.1109/ICCV.2019.00984",
+      "year": 2019,
+      "metadata_provenance": "Paper Search Crossref exact title/DOI and CVF PDF metadata",
+      "pdf_url": "https://openaccess.thecvf.com/content_ICCV_2019/papers/Najibi_AutoFocus_Efficient_Multi-Scale_Inference_ICCV_2019_paper.pdf",
+      "local_pdf": "output/literature/papers/cvf-Najibi_AutoFocus_Efficient_Multi-Scale_Inference_ICCV_2019_paper.pdf",
+      "pdf_sha256": "2e5622cd8776cb8e2531176205cd77d21b730da7072bd20022130902fb4a6f7a",
+      "pages": 11,
+      "text": "output/literature/text/cvf-Najibi_AutoFocus_Efficient_Multi-Scale_Inference_ICCV_2019_paper.txt",
+      "text_sha256": "1adb706aff29162bc8efa6079702af7c487a183fc6db8def3e151aa34086d479",
+      "read_sections": [
+        "4.3 Focus Stacking for Object Detection, including image-boundary exceptions"
+      ],
+      "overlap": "Internal chip-boundary detections from truncated larger objects can create false positives; dilated chips and boundary-discard rules with original-image-boundary exceptions are explicit prior art.",
+      "zotero": {
+        "collection_key": "6HT9SNK7",
+        "item_key": "STPY7857",
+        "attachment_key": "HYFVS9K2",
+        "children_readback": "application/pdf confirmed",
+        "pdf_route": "DOI import attached Unpaywall PDF; local CVF PDF separately hashed"
+      },
+      "candidate_difference_and_limit": "Candidate49 treats exact crop-clipped sides as one-sided observations. Its small_all AP advantage over whole-box/side removal is only about0.001pp; no demonstrated differentiated practical benefit."
+    }
+  ],
+  "conclusion": "Crop-boundary awareness/removal is established. One-sided equal-weight fusion passes mechanism gates but fails tiny AP and both removal comparisons. No innovation or training recommendation.",
+  "downloads": "Existing local primaries reused; no new PDF download required for candidate49.",
+  "zotero": "Existing AutoFocus record reused; nine earlier references separately caught up in zotero_catchup_20261014.json."
+}

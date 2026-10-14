@@ -1532,3 +1532,56 @@ NuSA2007.01263v1已有零空间异常检测，ViM2203.10807v1明确论述
 独立复核：`scripts/evaluation/verify_classifier_nullspace.py`。
 论文核验：`docs/literature/classifier_nullspace_prior_audit_20261014.json`。
 完整结果：`output/analysis/classifier-nullspace-fixed-20261014/`。
+
+## 实验 49：切片截断边是否应作为单侧坐标约束
+
+固定原64张headholdout训练图、原五个原生视图及其窗口，不解码图像、
+不前向检测器、不拟合。只把与切片内部边界精确重合的预测边标为截断；
+原图边界和全图视图不标记，不放宽距离容差。
+原分数>=.05、至少两个可用原生视图、至少一条截断边的239行进入处理。
+GT匹配在活动行筛选之前，对全部原regret行和GT重新执行。
+标签只用于机制分析和评价，融合保留原分数、类别、数量、顺序及非活动行。
+
+tiny的59个匹配目标分布于30图，共67个截断边观测，其中65个满足
+预期单侧不等式，64个GT边严格延伸出切片。五项机制门槛全部通过，
+说明截断现象存在；不能据此推出新融合有效或值得训练。
+
+按预登记比较regret、全框均值、丢弃截断框、逐边丢弃截断观测、
+单侧平方hinge融合。除活动行坐标外各臂完全一致。
+
+| 单侧融合对比 | AP50–95变化，百分点 |
+|---|---:|
+| 全尺寸，相对regret | +0.029051 |
+| tiny，相对regret | +0.001145 |
+| small_all，相对regret | +0.088394 |
+| small_all，相对普通全框均值 | +0.229728 |
+| small_all，相对丢弃截断框 | +0.001159 |
+| small_all，相对逐边丢弃截断观测 | +0.000877 |
+
+固定FPPI10的small_all召回相对regret提高0.064558个百分点，净增2个GT；
+两种简单丢弃对照得到完全相同的固定FP收益。
+七项效益门槛四过三败：tiny未达到+0.05pp，且两项简单丢弃对照优势
+均未达到+0.01pp。结论STOP_THIS_ONE_SIDED_EQUAL_WEIGHT_CROP_FUSION_RECIPE。
+不换报最优对照、不调截断容差或权重挽救，不授权正式训练。
+
+主实验33.87秒，包括五臂AP评价，无图像解码、检测器前向或拟合。
+新增独立核验器重建全部64图来源身份、截断标记、活动掩码、GT归属、
+尺寸和机制统计，验证128份帧/预测文件哈希及原源码存档；
+用单调导数二分核验956个边坐标最优解，重建五臂预测与无效框回退。
+五臂保存预测在同一COCO评价器上复算AP；另用独立贪心匹配和整组同分
+阈值选择重算固定FPPI10结果及全部七项门槛。四项相关测试通过。
+这仍是反复查看的检测器训练场景、继承历史ignore过滤的诊断结果，
+没有独立测试集或官方VisDrone AP结论。
+
+重读SAHI切片推理段及AutoFocus第4.3节。AutoFocus已有内部切片边界
+截断检测的丢弃策略与原图边界例外，边界意识本身不构成创新。
+本次单侧约束相对丢弃的额外收益不足，不包装为新方法。
+另完成此前九篇指定arXiv版本论文的Zotero元数据/PDF补录与本地哈希记录；
+旧时不可用记录及用户批准的两项删除保留。
+
+登记与结果：`docs/experiments/candidate49_crop_censored_sides_registration_20261014.json`、
+`docs/experiments/candidate49_crop_censored_sides_result_20261014.json`。
+独立复核：`scripts/evaluation/verify_crop_censored_sides.py`。
+论文核验：`docs/literature/crop_censored_sides_prior_audit_20261014.json`。
+Zotero补录：`docs/literature/zotero_catchup_20261014.json`。
+完整结果：`output/analysis/crop-censored-sides-fixed-20261014/`。
