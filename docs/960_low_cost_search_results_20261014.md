@@ -1365,3 +1365,52 @@ tiny原有1958个合格TP、579个FP，最终仅28个TP有条件可比的FP，
 `docs/experiments/candidate45_native_semantic_coupling_result_20261014.json`。
 论文核验：`docs/literature/native_semantic_coupling_prior_audit_20261014.json`。
 完整结果：`output/analysis/native-semantic-coupling-fixed-20261014/`。
+
+## 实验 46：原四局部视图能否直接共享同一张浅层特征图
+
+先检验无需训练的几何必要条件，不把共享特征本身当创新。
+实际tile_windows是每轴ceil(size/1.8)、裁剪相对重叠20%，
+并非此前讨论示例的60%裁剪。每张裁剪分别缩放并补边到960方形。
+同一张规则特征图直接整数切片要求裁剪原点在缩放后的位移，
+同时是浅层累计步长的整数倍；模型实际首卷积步长为2。
+登记前没有查看本轮覆盖率或像素比较结果。
+
+| 累计步长 | 四个视图同时满足同网格条件的训练图 |
+|---|---:|
+| 1 | 0 / 6471 |
+| 2 | 0 / 6471 |
+| 4 | 0 / 6471 |
+| 8 | 0 / 6471 |
+
+预登记要求至少80%图像满足首层步长2的几何条件，实际0%，
+STOP_THIS_SINGLE_ATLAS_INTEGER_SLICE_RECIPE。
+这不是AP提升门槛过大，而是当前直接复用方案没有满足其保持原采样的必要条件。
+不改裁剪尺寸、插值、步长或容差来挽救；不启动检测器前向、头训练或全量评估。
+失败仅针对单张同相位特征图直接切片，不能推广为所有特征共享都不可行。
+
+按SHA256(stem:shared-prefix-lattice-v1)提前选择16张训练图。
+64个裁剪的实际LetterBox内容均与独立OpenCV resize精确一致。
+把各视图位移取最近整数后，比较六对重叠区域，去掉内容边缘2像素，
+共96对、8125338个像素；没有一对精确一致，63.69%的通道值不同，
+uint8平均绝对差1.977、最大75。该取整仅作诊断，没有作为可部署近似分支；
+这些像素差异不能当成检测特征误差、AP损失或耗时证据。
+
+主实验CPU约3.31秒，解码16图，零检测器前向/更新。
+另一实现以有理数核验全部6471组形状、裁剪、缩放和网格条件，
+重新解码16图，以全局坐标集合重建全部96组重叠像素和统计，
+并核验当前来源、源归档、安装包预处理、图像/元数据哈希和固定选图。
+复核没有检测器前向。四项新测试及四项旧耦合测试共8项通过。
+
+通过Paper Search下载OverFeat1312.6229v4及StreamingCNN1911.04432v1，
+保存PDF、提取文本、版本和SHA256。前者已有共享滑窗卷积和多相位池化，
+后者已有分块边界/重叠处理，均不能作为本项目的新贡献。
+进一步重读已有ESOD2407.16424v2的stem共享及特征切片描述，
+这是更直接的小目标计算复用先例；新增补充审计，不改已冻结实验来源。
+没有声称Zotero新增导入成功。
+
+登记与结果：`docs/experiments/candidate46_shared_prefix_lattice_registration_20261014.json`、
+`docs/experiments/candidate46_shared_prefix_lattice_result_20261014.json`。
+独立复核：`scripts/evaluation/verify_shared_prefix_lattice.py`。
+论文核验：`docs/literature/shared_prefix_lattice_prior_audit_20261014.json`、
+`docs/literature/shared_prefix_lattice_prior_supplement_20261014.json`。
+完整结果：`output/analysis/shared-prefix-lattice-fixed-20261014/`。

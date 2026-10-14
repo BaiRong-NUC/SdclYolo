@@ -1,0 +1,19 @@
+{
+  "experiment": "candidate46_single_atlas_shared_prefix_lattice",
+  "date": "2026-10-14",
+  "stage": "Necessary-condition geometry screen before constructing a shared detector prefix",
+  "question": "Can the four existing independently resized local views reuse one same-scale, same-phase shallow feature atlas by integer feature slicing, while preserving the original sampling grid?",
+  "recipe": "Keep the original tile_windows overlap=.20, square960 LetterBox(auto=False, center=True), four local views and unchanged global view. All four crops have equal source dimensions and equal rounded resized content dimensions. A single regular atlas anchored to top-left has horizontal shift=(W-tw)*rw/tw and vertical shift=(H-th)*rh/th. Exact slicing after total stride s requires BOTH shifts to be integer multiples of s. Test strides1,2,4,8 with integer divisibility, not floating tolerances. Stride2 is the actual detector first-convolution requirement.",
+  "sample": "All6471 train image metadata shapes, no validation/testdev labels or outcomes. Pin shape metadata hashes. Pixel diagnostic:16 train images selected before pixel outcomes by smallest SHA256(stem:shared-prefix-lattice-v1). No change to selection after results.",
+  "pixel_diagnostic": "Reproduce each selected crop's actual installed LetterBox, check its content against explicit OpenCV INTER_LINEAR resize, and compare all six pairwise overlapping content rectangles after rounding their atlas shifts to nearest integer. Exclude2 resized pixels from each content border to separate interpolation-edge effects from interior grid mismatch. Save nonzero channel/pixel counts, absolute error sums/maxima and pixel hashes. This rounding is a DIAGNOSTIC, not an accepted approximate deployed arm or an AP claim.",
+  "weights": "Verify frozen960 detector SHA and inspect instantiated layer graph without detector forward. Record first Conv stride, model save links and installed preprocessing source hashes. No model weight modification, GPU work, fitting, predictions or AP evaluation in this stage.",
+  "policy": {
+    "minimum_train_fraction_all_four_views_same_stride2_lattice": 0.8,
+    "all16_letterbox_content_replays_exact": true,
+    "all_shape_checks_independently_verified": true
+  },
+  "gate_rationale": "A single-atlas drop-in optimization must cover most original inputs; at least80% geometry eligibility is a screening requirement, not a promised speedup. First-layer stride2 alignment is only necessary, never sufficient: per-view padding/context/halo, skip connections, floating arithmetic and end-to-end cost remain unproven even when this screen passes.",
+  "pass_action": "Only authorize a newly preregistered prefix prototype and matched latency/output comparison; do not authorize training or claim innovation. Keep all original views, include preparation/transfers/crops/boundary work in eventual timing. Sharing convolution and halo handling already have prior art.",
+  "fail_action": "STOP_THIS_SINGLE_ATLAS_INTEGER_SLICE_RECIPE before detector forwards or latency/AP trials. Do not change crop windows, resolution, interpolation, model stride, alignment tolerance or percentage after results. No approximate resampling/alignment head or training to rescue this experiment.",
+  "limits": "Failure rejects this direct one-atlas same-phase exact-reuse recipe. It does not rule out phase-aware multiple atlases, boundary recomputation, approximate methods or an independently registered architecture. Pixel disagreement alone does not prove AP harm or quantify feature error. This stage cannot establish training efficacy, speedup or novelty."
+}

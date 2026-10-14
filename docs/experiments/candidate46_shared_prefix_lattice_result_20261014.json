@@ -1,0 +1,74 @@
+{
+  "experiment": "candidate46_single_atlas_shared_prefix_lattice",
+  "date": "2026-10-14",
+  "output": "D:\\Python\\YOLO\\output\\analysis\\shared-prefix-lattice-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_SINGLE_ATLAS_INTEGER_SLICE_RECIPE",
+    "checks": {
+      "stride2_coverage": false,
+      "letterbox_replay": true,
+      "independent_geometry": true
+    },
+    "stride2_fraction": 0.0,
+    "scope": "Necessary-condition screen only; no AP, feature error, speedup, efficacy or novelty result."
+  },
+  "metrics": {
+    "train_images": 6471,
+    "eligible_images": {
+      "1": 0,
+      "2": 0,
+      "4": 0,
+      "8": 0
+    },
+    "eligible_fraction": {
+      "1": 0.0,
+      "2": 0.0,
+      "4": 0.0,
+      "8": 0.0
+    },
+    "selected_images": 16,
+    "pair_comparisons": 96,
+    "overlap_pixels": 8125338,
+    "overlap_channels": 24376014,
+    "nonzero_channel_fraction": 0.6369357188587108,
+    "mean_absolute_uint8_error": 1.9769668248467531,
+    "max_absolute_uint8_error": 75,
+    "exact_pair_comparisons": 0
+  },
+  "verification": {
+    "all6471_geometry_independently_recomputed": true,
+    "all64_content_replays_exact": true,
+    "detector_forwards": 0,
+    "training_steps": 0,
+    "image_decodes": 16,
+    "elapsed_seconds": 3.313416900113225,
+    "source_unchanged": true,
+    "scope": "CPU geometry/pixel screen. Nearest-phase disagreement is not detector feature error or AP harm."
+  },
+  "artifacts_sha256": {
+    "decision.json": "f429cef7f18d595a5c228458690388e375a634877802fb0ddcc163a0b112eba4",
+    "geometry.json": "b5120a5302f22a1f1fd61d9f7b9b52dc7e02ce23a7a22fcc38ddb6f9f6894872",
+    "metrics.json": "eb35786076b4810e2ea0e51bf51ba9bbc933715d3f8413d20d5773e1599e7de7",
+    "pixels.json": "756bd0456afcbd6d877fea5eac3ce984726a039394f8ffe76992a873eb0db799",
+    "plan.json": "c08ca54d1e3ebcae763ab8a4900aa6c8c34e4968b2724892070daab4ae6cd31f",
+    "source.zip": "136720d1052c787748814dfee1ed80466eea42e8d2502570a877cf46412d6be0",
+    "verification.json": "282db779815472677f1ef635d2a68a1fe728b3b0685668b162c057317027b04d",
+    "independent_verification.json": "c2f3fc17fca36b2e2d5b06eab02aee4bc47e15f8cabc1effe5d241e448b42487"
+  },
+  "independent_verification": {
+    "all6471_metadata_shapes_hashes_windows_resize_phases_independently_recomputed": true,
+    "all16_deterministic_image_selection_and_image_hashes_verified": true,
+    "all96_overlap_coordinate_sets_pixel_hashes_and_error_statistics_independently_recomputed": true,
+    "aggregate_and_geometry_gate_recomputed": true,
+    "all_sources_archive_and_installed_preprocessing_hashes_verified": true,
+    "frozen_detector_weight_hash_verified": true,
+    "additional_image_decodes": 16,
+    "detector_forwards": 0,
+    "verifier_sha256": "374cf05a26333e0c30283663492d6a61621a96657c067222a242af1924bb2382",
+    "limits": "Preprocessing/pixel necessary condition only. No inference, timing or accuracy verification."
+  },
+  "prior_audit": "docs/literature/shared_prefix_lattice_prior_audit_20261014.json",
+  "prior_supplement": "docs/literature/shared_prefix_lattice_prior_supplement_20261014.json",
+  "prior_supplement_sha256": "081995c60c74e915de9a02b7a485763a035472128b5a53ea6ab0ed8403521c2c",
+  "tests": "8 passed: four lattice/overlap/decision tests and four prior semantic-coupling tests"
+}

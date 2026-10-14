@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-14",
+  "scope": "Post-screen closer-prior supplement, no changes to candidate46 registration, code or decision",
+  "title": "ESOD: Efficient Small Object Detection on High-Resolution Images",
+  "arxiv_version": "2407.16424v2",
+  "version_evidence": "Local extracted PDF header: arXiv:2407.16424v2 [cs.CV] 17 Dec2024",
+  "doi": "10.1109/TIP.2024.3501853",
+  "existing_metadata_provenance": "docs/literature/view_budget_prior_audit_20261014.json",
+  "pdf": "output/literature/papers/arxiv-2407.16424.pdf",
+  "pdf_sha256": "9deae95958cefdde0552351c294d1cba8f2d435f6dbfdf300b552c89fff6c29c",
+  "text": "output/literature/text/arxiv-2407.16424.txt",
+  "text_sha256": "9def0bf7c3162346e068fb76468e322419ab8ada0b6df8f0b4281d44119eed68",
+  "reread": "Abstract, Figure2 and III-A decomposition into stem/neck/head and shared preliminary features. Earlier AdaSlicer/ObjSeeker reading is recorded in the existing prior audit.",
+  "overlap": "ESOD explicitly reuses the detector's stem, slices feature patches, then performs later detection. Shared shallow extraction plus independent later patches is already a close small-object/high-resolution precedent.",
+  "difference_and_limit": "Candidate46 asks whether the original independently resized five-view strong control can be retained exactly by direct atlas slicing. ESOD defines a different feature-slicing architecture; it does not guarantee equality to this project's independent crops. No positive novelty inference follows from this implementation distinction.",
+  "decision_boundary": "Geometric failure already stops candidate46. This supplemental prior reinforces that generic feature reuse is not an unoccupied research contribution. No new accuracy or latency measurement.",
+  "zotero_status": "Reused already downloaded PDF and its prior library provenance; no new import claimed."
+}

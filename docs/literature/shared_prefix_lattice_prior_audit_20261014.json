@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-14",
+  "scope": "Primary-source feasibility/overlap audit for candidate46, not an exhaustive novelty search",
+  "papers": [
+    {
+      "title": "OverFeat: Integrated Recognition, Localization and Detection using Convolutional Networks",
+      "authors": "Pierre Sermanet; David Eigen; Xiang Zhang; Michael Mathieu; Rob Fergus; Yann LeCun",
+      "arxiv_version": "1312.6229v4",
+      "version_date": "2014-02-24",
+      "metadata_and_download_provider": "Paper Search search_arxiv exact title and download_arxiv exact version",
+      "source": "https://arxiv.org/abs/1312.6229v4",
+      "pdf_url": "https://arxiv.org/pdf/1312.6229v4",
+      "pdf": "output/literature/papers/1312.6229v4.pdf",
+      "pdf_sha256": "8033a6a41884f5c3743fdee82dd9425e64b32cb8eb1d3e4c334384ee09bdfe80",
+      "pages": 16,
+      "text": "output/literature/text/1312.6229v4.txt",
+      "text_sha256": "d90b5aad3e882c938c2410bab69fb0be99aafa71b296170cfd5a7f93517b5cb9",
+      "reviewed": "Multiscale/sliding-window classification discussion and Figure3: overlapping crops duplicate work; image-wide convolutions share extraction; multiple pooling offsets recover finer alignment.",
+      "overlap": "Sharing convolutions across overlapping image windows and handling subsampling phase already have explicit prior art. Neither feature reuse nor enumerating phases can be presented as a new contribution.",
+      "boundary": "OverFeat does not establish exact equivalence between the project's independently resized/padded crops and a single larger feature atlas."
+    },
+    {
+      "title": "Streaming convolutional neural networks for end-to-end learning with multi-megapixel images",
+      "authors": "Hans Pinckaers; Bram van Ginneken; Geert Litjens",
+      "arxiv_version": "1911.04432v1",
+      "version_date": "2019-11-11",
+      "doi": "10.1109/TPAMI.2020.3019563",
+      "metadata_and_download_provider": "Paper Search search_arxiv matched title and download_arxiv exact version",
+      "source": "https://arxiv.org/abs/1911.04432v1",
+      "pdf_url": "https://arxiv.org/pdf/1911.04432v1",
+      "pdf": "output/literature/papers/1911.04432v1.pdf",
+      "pdf_sha256": "12971fd6828c845eef5af128e55af3cd61d9fa51601ca9c6ef0a8d3884f287fe",
+      "pages": 10,
+      "text": "output/literature/text/1911.04432v1.txt",
+      "text_sha256": "1294a64404f6fbfaa4be6afe7fd3f321da51ec75877a579af0b5c19d3ddecf2b",
+      "reviewed": "III methods introduction, III-A forward streaming, strided-convolution extension, and III-D limitations: overlap/edge handling, checkpointing cost and nonlocal operations.",
+      "overlap": "Exact tiled convolution, required overlap and boundary treatment are established. Memory savings do not imply a speedup.",
+      "boundary": "The paper concerns streaming the SAME input lattice; it does not remove independent crop resize phases. Its training-time BatchNorm limitation should not be misreported as a limitation of eval-mode frozen BatchNorm."
+    }
+  ],
+  "candidate_difference": "Candidate46 only tests a necessary geometric condition for direct single-atlas integer slicing of this project's unchanged four views. No new algorithm, achieved speedup or novelty is asserted.",
+  "zotero_status": "Both exact-version PDFs and extracted texts saved locally via Paper Search. No new Zotero imports claimed; callable Zotero tools unavailable in the current exposed tool inventory."
+}
