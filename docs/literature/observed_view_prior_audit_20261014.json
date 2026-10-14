@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-14",
+  "scope": "Targeted primary-source check, not an exhaustive adaptive-inference literature review",
+  "papers": [
+    {
+      "title": "Dynamic Zoom-in Network for Fast Object Detection in Large Images",
+      "authors": ["Mingfei Gao", "Ruichi Yu", "Ang Li", "Vlad I. Morariu", "Larry S. Davis"],
+      "arxiv": "1711.05187v2",
+      "metadata_source": "Paper Search arXiv exact title/version and downloaded PDF first page",
+      "source_url": "https://arxiv.org/pdf/1711.05187v2",
+      "pdf": "output/literature/papers/arxiv-1711.05187v2.pdf",
+      "pdf_sha256": "9c6dc01a79a4e1803f4c34afcebea041fd28951b29e12638483afbe4139a626a",
+      "text": "output/literature/text/arxiv-1711.05187v2.txt",
+      "text_sha256": "49daa3a221066b28f59696c964068e8133d1fd2db4c9ae125daa1eeac7cb93a4",
+      "pages": 10,
+      "read_sections": ["3.1 problem formulation, state and cost-aware reward", "3.2 accuracy-gain regression", "3.3 Q-net and action-history updates"],
+      "overlap": "Predicting fine-detection gain from coarse outputs, sequential selection, prior-view history and compute-aware rewards are established.",
+      "possible_difference_not_validated": "Candidate30 proposed using realized coarse/fine detection disagreements, rather than only coarse accuracy-gain maps and region history. Its fixed diagonal schedule failed the headroom gate before training, so no contribution is established.",
+      "zotero": {"collection_key": "6HT9SNK7", "item_key": "WRZIXQEN", "attachment_key": "9EXSUFQF", "attachment_readback": true}
+    }
+  ],
+  "semantic_update_result": {"total": 1, "processed": 1, "added": 1, "errors": 0},
+  "unverified_search_lead": "A web snippet for Small-Object Detection via Zoom-In: Coarse-to-Fine Region Selection and Marginal-Benefit Analysis was not corroborated by the exact-title Crossref search or readable primary fulltext. It is not treated as an established citation or imported.",
+  "current_claim": "No novel or effective conditional-view policy was demonstrated."
+}

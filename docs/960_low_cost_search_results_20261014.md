@@ -787,3 +787,34 @@ SABL等已有分边定位先例，本轮也没有证明相对这些工作的独�
 登记与数值记录：`docs/experiments/candidate29_side_composition_registration_20261014.json`、
 `docs/experiments/candidate29_side_composition_result_20261014.json`。
 完整结果：`output/analysis/side-composition-pilot-fixed-20261014/`。
+
+## 实验 30：已计算局部视图的误差能否帮助省掉剩余视图
+
+新输入假设是利用真实的粗细检测分歧，而非全图统计。
+预先固定global0及对角local1、4，再从local2、3中选一块计算，
+所有臂每图均4次前向，对完整五视图计数节省20%。
+预登记先检查该调度的候选支持空间，通过才训练四个相同的小头，
+对照为仅全图、按图乱序局部分歧和普通覆盖监督。
+局部输入仅来自已计算的1、4视图，不看未计算2、3或GT。
+两个输入隔离和逐图保留候选配对的乱序测试通过。
+
+| 固定调度参考 | tiny丢支持@0.5 | tiny丢支持@0.75 | @0.75占tiny GT |
+|---|---:|---:|---:|
+| 登记标注辅助参考 | 7 | 19 | 0.713213pp |
+| 受限全图最低密度 | 15 | 25 | 0.938438pp |
+
+标注辅助参考按两个IoU的tiny损失之和最小选省略视图，
+不是单独IoU0.75的理论最优，也不是可部署策略。
+它比密度少丢6个高IoU支持，但超出事先固定0.20pp预算。
+两项预检通过一项，STOP_THIS_DIAGONAL_SCHEDULE_HEADROOM。
+不更换初始对角、不降低预算、不启动四头训练。
+这不证明所有顺序策略无效，只停止该固定调度的后续投入。
+
+耗时7.79秒，192张缓存、零图像解码、
+零检测器前向或训练，小头种子执行数0。
+Dynamic Zoom-in原文已下载并导入Zotero，论文第3.1--3.3节
+已经包含收益预测、序列区域选择和历史区域更新。
+本轮未兑现利用已观测检测误差的收益，不能据此主张创新。
+登记与数值记录：`docs/experiments/candidate30_observed_view_policy_registration_20261014.json`、
+`docs/experiments/candidate30_observed_view_policy_result_20261014.json`。
+完整结果：`output/analysis/observed-view-policy-fixed-20261014/`。

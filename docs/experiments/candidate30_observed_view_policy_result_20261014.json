@@ -1,0 +1,120 @@
+{
+  "experiment": "candidate30_observed_error_conditioned_view_policy",
+  "date": "2026-10-14",
+  "output": "output/analysis/observed-view-policy-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_DIAGONAL_SCHEDULE_HEADROOM",
+    "preflight_passed": false,
+    "per_seed": {},
+    "seeds_executed": 0,
+    "positive_seeds": 0,
+    "scope": "Reused train-head-holdout native coverage proxy, not AP, speed or novelty."
+  },
+  "preflight": {
+    "passed": false,
+    "checks": {
+      "absolute_budget": false,
+      "density_headroom": true
+    },
+    "metrics": {
+      "oracle": {
+        "counts": {
+          "0.5": {
+            "lost_supported_gt": {
+              "all": 8,
+              "tiny": 7,
+              "small_all": 8
+            },
+            "capacity_loss": 8
+          },
+          "0.75": {
+            "lost_supported_gt": {
+              "all": 23,
+              "tiny": 19,
+              "small_all": 23
+            },
+            "capacity_loss": 23
+          }
+        },
+        "lost_support_pp": {
+          "0.5": {
+            "all": 0.24638127502309826,
+            "tiny": 0.2627627627627628,
+            "small_all": 0.25823111684958033
+          },
+          "0.75": {
+            "all": 0.7083461656914074,
+            "tiny": 0.7132132132132132,
+            "small_all": 0.7424144609425436
+          }
+        },
+        "forward_count_saving_percent": 20.0
+      },
+      "restricted_density": {
+        "counts": {
+          "0.5": {
+            "lost_supported_gt": {
+              "all": 16,
+              "tiny": 15,
+              "small_all": 16
+            },
+            "capacity_loss": 18
+          },
+          "0.75": {
+            "lost_supported_gt": {
+              "all": 28,
+              "tiny": 25,
+              "small_all": 27
+            },
+            "capacity_loss": 30
+          }
+        },
+        "lost_support_pp": {
+          "0.5": {
+            "all": 0.4927625500461965,
+            "tiny": 0.5630630630630631,
+            "small_all": 0.5164622336991607
+          },
+          "0.75": {
+            "all": 0.8623344625808438,
+            "tiny": 0.9384384384384384,
+            "small_all": 0.8715300193673339
+          }
+        },
+        "forward_count_saving_percent": 20.0
+      }
+    },
+    "oracle_tiny075_reduction_vs_density": 6
+  },
+  "metrics": {},
+  "training": {},
+  "verification": {
+    "fit_images": 128,
+    "head_holdout_images": 64,
+    "detector_forwards": 0,
+    "image_decodes": 0,
+    "detector_training_steps": 0,
+    "observed_views": [
+      0,
+      1,
+      4
+    ],
+    "no_uncomputed_view_predictions_or_GT_in_features": true,
+    "no_val_no_testdev_no_threshold_or_hyperparameter_search": true,
+    "historical_native_heldout_pools_exact_replay": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 7.794208399951458
+  },
+  "artifacts_sha256": {
+    "decision.json": "db46c34752bdadd243249878df3b5a78f68c80bcdf88df78034d5ff89257a5f3",
+    "frames.json": "d3075c7f2d86fd292d1ad6b19a3a5ea5cc39aa0a7f0562646921c2d2f49e9a39",
+    "metrics.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "plan.json": "b4d28aa511b03089c0d77dcf84fd163d79c840788ae2079b48172ea2018cba7f",
+    "preflight-choices.json": "8a2d2ff5fba18072dd2b96a6709e8a252f705223cb81ca64a3643caa3a778635",
+    "preflight.json": "b80edd7a773e05ecd23ab9ff7c4ba7529df652a172a8049cbbf94436b7973fef",
+    "source.zip": "80bfbb25756420bdd19c78f780b06b31af0bcabab277dcca258fa84bd5479644",
+    "training.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "verification.json": "5827c2e426de36e74a675c5e579b894a242075e690611a264e905ab886d413ae"
+  },
+  "tests": "2 passed: fixed observed-view inputs and realized disagreement; input shuffle preserves candidate pairs/global inputs and has no self-pairs"
+}

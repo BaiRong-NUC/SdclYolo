@@ -1,0 +1,38 @@
+{
+  "experiment": "candidate30_observed_error_conditioned_view_policy",
+  "date": "2026-10-14",
+  "question": "Can realized coarse/fine disagreement in already-computed views predict which remaining view has redundant evidence?",
+  "difference_from_stopped": "Experiments26/27 only observed the global output or its dense summaries. This policy is permitted to observe two already-computed native local outputs. No change to stopped objectives, thresholds or input summaries.",
+  "sample": "Exact original candidate26 train128/head-held-out64, fixed order. Previously seen detector-training scenes; only head split is scene-disjoint.",
+  "schedule": "Always compute global0 and diagonal locals1,4, then compute exactly one of locals2,3. Omitted indices in historical four-row labels are1,2. Four detector forwards instead of five for EVERY arm. All outputs are replayed from caches; no actual speedup claim.",
+  "preflight": {
+    "oracle_rule": "GT-assisted choose omission2/3 with minimum sum of tiny support losses atIoU.50/.75; ties lower omitted view. For capacity only, not a deployed arm.",
+    "tiny075_oracle_loss_max_pp": 0.20,
+    "oracle_tiny075_reduction_vs_restricted_density_min_count": 1,
+    "fail_action": "Stop before fitting if the restricted schedule lacks headroom."
+  },
+  "prediction_inputs": "Native unfiltered predictions from global0 and locals1,4 ONLY, windows and image size. No withheld local2/3 predictions or annotations. Historical61 global features plus72 realized disagreement log-counts: each observed local, its full window and intersection with the candidate omitted window, scores.05/.25, all/tiny/small_all, local count/local unmatched by global/global unmatched by local. Same-class IoU.5 correspondence, size groups640 reference.",
+  "arms": {
+    "conditioned_marginal": "True observed disagreement features, ordinary marginal-loss target from candidate26.",
+    "global_marginal": "Same nominal MLP, observed channels zeroed after train-only normalization.",
+    "shuffled_marginal": "Observed72 features reassigned by deterministic derangement between images WITHIN each split; two candidate rows remain paired. No labels enter permutation.",
+    "conditioned_coverage": "Same true features, ordinary standalone-coverage target from candidate26.",
+    "restricted_density": "Omit fewer global-native detections atscore.25 among2,3, ties2."
+  },
+  "fit": "Four identical initial133->32->1 SiLU MLPs,80epochs Adam0.003 batch128, shared image-row batches. Fit log1p targets with train-only normalization and MSE. Seeds0 first,1/2 only if every seed0 gate passes. No detector fitting or forward.",
+  "policy": {
+    "tiny075_reduction_vs_global_min_count": 1,
+    "tiny075_reduction_vs_shuffled_min_count": 1,
+    "tiny075_reduction_vs_coverage_min_count": 1,
+    "tiny075_reduction_vs_density_min_count": 1,
+    "tiny050_extra_vs_density_max_count": 1,
+    "tiny075_loss_max_pp": 0.20,
+    "repeat_min_positive_seeds": 2
+  },
+  "evaluation": "Tiny supported-GT loss after omission atIoU.50/.75 relative to full native pool; also report small_all/all and one-to-one capacity losses. Diagnostic ignore filtering is inherited only in labels/evaluation. Candidate input features are unfiltered.",
+  "pass_action": "Only allow separately registered annotation-free fusion replay and official feasibility audit; need measured end-to-end costs, appropriate fixed-view controls, fresh-scene checks and closer novelty audit before expansion.",
+  "fail_action": "Stop this observed-disagreement representation/schedule/regressor without tuning features, initial diagonal, learning rate, epochs or sample selection.",
+  "prior_art": "Dynamic Zoom-in Network1711.05187v2 already predicts accuracy gains and sequentially selects zoom regions using coarse detections plus action history. AutoFocus and ESOD also precede dynamic compute. Generic conditional/adaptive cropping or marginal gain is not claimed novel. This screen asks whether realized local prediction failures transfer to unseen windows, with an input-shuffle control.",
+  "budget": "Cached192 images, zero image decoding, detector forwards/training, at most12 small heads if seed0 passes. Do not inspect val/test-dev.",
+  "limits": "Coverage is not final AP; missing native support does not equal final false negatives. The fixed diagonal restricts choice and can itself be suboptimal. Positive results on repeatedly used train scenes cannot certify deployment risk or novelty."
+}
