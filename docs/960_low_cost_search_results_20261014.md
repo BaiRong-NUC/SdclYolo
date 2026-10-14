@@ -195,3 +195,31 @@ GT 辅助参考：原框按无类别的一对一 IoU>=0.5 归属确定，
 登记与数值记录：`docs/experiments/candidate12_class_choice_registration_20261014.json`、
 `docs/experiments/candidate12_class_choice_result_20261014.json`。
 完整结果：`output/analysis/class-choice-pilot-fixed-20261014/`。
+
+## 实验 13：已保存类别小头的无门槛排序诊断
+
+实验 12 几乎不替换类别，因此用其保存的小头和缓存检查排序信号。
+不重新训练、不推理检测器、不执行新策略，不搜索或降低替换门槛。
+固定查看原分数>=0.25 的分歧框；正例是保存的几何归属目标类别与原类不同。
+排序分数是最佳受支持替代类概率减原类概率。这是干预需求代理，
+不是类别替换净收益或官方 AP。
+
+| 场景划分 / 头 | 正例 / 负例 | 置信度加权 AUROC | 未加权 AUROC |
+|---|---:|---:|---:|
+| fitting / evidence_only | 290 / 2,143 | 0.742790 | 0.727727 |
+| fitting / observation_context | 290 / 2,143 | 0.755489 | 0.743664 |
+| head holdout / evidence_only | 211 / 1,258 | 0.654890 | 0.662369 |
+| head holdout / observation_context | 211 / 1,258 | 0.642719 | 0.657121 |
+
+登记要求 holdout 正例至少 20、context 加权 AUROC 至少 0.65、
+相对匹配 evidence_only 至少 +0.02。实测 context 比普通头低 0.012172，
+三项仅正例数量通过，判断 NO_EXTRA_CONTEXT_DISCRIMINATION_SIGNAL。
+普通证据有一定代理区分能力，但未证明部署纠错有效，也不是观察条件贡献。
+两头在正例的替代类排序正确率均为 95.260664%，主要难点在决定是否替换。
+实验 12 的 STOP 不变；不能用本次 AUROC 挽救其部署结论。
+
+诊断耗时 0.889635 秒。两个 AUROC 权重/平票测试通过，实验 11--13
+合计八项测试通过。登记与数值记录：
+`docs/experiments/candidate13_class_signal_registration_20261014.json`、
+`docs/experiments/candidate13_class_signal_result_20261014.json`。
+完整结果：`output/analysis/class-choice-signal-fixed-20261014/`。

@@ -1,0 +1,72 @@
+{
+  "experiment": "candidate13_saved_class_head_signal_audit",
+  "date": "2026-10-14",
+  "decision": {
+    "decision": "NO_EXTRA_CONTEXT_DISCRIMINATION_SIGNAL",
+    "checks": {
+      "positive_count": true,
+      "context_discrimination": false,
+      "extra_context_signal": false
+    },
+    "context_minus_evidence_weighted_auc": -0.012171548409595223,
+    "candidate12_decision": "STOP_THIS_CONTEXT_CLASS_CHOICE_PILOT; unchanged.",
+    "scope": "Diagnostic proxy ranking, not a deployment or official AP result."
+  },
+  "metrics": {
+    "train": {
+      "evidence_only": {
+        "positive_count": 290,
+        "negative_count": 2143,
+        "weighted_auc": 0.7427902371789257,
+        "unweighted_auc": 0.7277270021079054,
+        "alternative_target_rank_accuracy_on_positive": 0.9482758620689655,
+        "positive_mean_probability_gap": -0.7023648023605347,
+        "negative_mean_probability_gap": -0.8108567595481873
+      },
+      "observation_context": {
+        "positive_count": 290,
+        "negative_count": 2143,
+        "weighted_auc": 0.7554885537280177,
+        "unweighted_auc": 0.7436642154890823,
+        "alternative_target_rank_accuracy_on_positive": 0.9517241379310345,
+        "positive_mean_probability_gap": -0.658607006072998,
+        "negative_mean_probability_gap": -0.7978737950325012
+      }
+    },
+    "holdout": {
+      "evidence_only": {
+        "positive_count": 211,
+        "negative_count": 1258,
+        "weighted_auc": 0.6548901748957863,
+        "unweighted_auc": 0.6623693668577973,
+        "alternative_target_rank_accuracy_on_positive": 0.95260663507109,
+        "positive_mean_probability_gap": -0.7330414056777954,
+        "negative_mean_probability_gap": -0.7990188002586365
+      },
+      "observation_context": {
+        "positive_count": 211,
+        "negative_count": 1258,
+        "weighted_auc": 0.642718626486191,
+        "unweighted_auc": 0.6571214370210746,
+        "alternative_target_rank_accuracy_on_positive": 0.95260663507109,
+        "positive_mean_probability_gap": -0.7087842226028442,
+        "negative_mean_probability_gap": -0.7823487520217896
+      }
+    }
+  },
+  "verification": {
+    "no_training": true,
+    "no_detector_inference": true,
+    "no_image_decoding": true,
+    "no_new_action_execution_or_threshold_search": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 0.889634900027886
+  },
+  "artifacts_sha256": {
+    "decision.json": "1c4ef9e88e8da18e868fad32f0ecec6665b62d37ebdca8b9e4529378b20d36d2",
+    "plan.json": "7206bff8db7734d332554e93456fcd9766c34979a68b28bf9ef01265f9072d24",
+    "source.zip": "440b2f020a81e7a6748ef99d92777f68aa6f0e9d1870a0362833539df8d9bec5",
+    "summary.json": "03a3c325df6385ce61fa9e35c5c50fae5dc70e55c643964d3386da42cd89d7e3",
+    "verification.json": "82eefa4428d1fc199913e005535374502aeeca6c772e77a763fbc705d37f83a0"
+  }
+}

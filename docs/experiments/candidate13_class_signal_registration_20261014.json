@@ -1,0 +1,18 @@
+{
+  "experiment": "candidate13_saved_class_head_signal_audit",
+  "date": "2026-10-14",
+  "stage": "Diagnostic of saved failed pilot, never a replacement efficacy verdict.",
+  "question": "Does the context head rank supported required class interventions above keep cases even though its fixed deployment probability margin made almost no changes?",
+  "data": "Exactly candidate12 fitting/head-held-out cached frames, diagnostic-ignore filtered; conflict rows with original score>=0.25 only.",
+  "positive": "Saved geometric-owned target differs from original class; this is an intervention proxy, not proof of detection-level net gain.",
+  "score": "Best supported alternative class softmax probability minus original class probability. No action execution, new thresholds, fitting or probability calibration.",
+  "metrics": "Confidence-weighted AUROC and unweighted AUROC, positive/negative counts, target-class rank among alternatives. Report fitting and holdout separately.",
+  "policy": {
+    "holdout_positive_count_min": 20,
+    "context_holdout_weighted_auc_min": 0.65,
+    "context_holdout_weighted_auc_vs_evidence_only_min": 0.02
+  },
+  "interpretation": "A pass only justifies investigation of a new explicitly registered objective/calibration hypothesis. Candidate12 STOP remains. If only ordinary evidence has a signal, do not credit observation context or treat it as new.",
+  "budget": "Read saved feature files and run two tiny CPU heads; no detector forward, image decoding, training, calibration, policy execution or official evaluation.",
+  "limits": "AUROC on geometric supervision is not AP/AR or reliable correction precision; all scenes and models already viewed. No independent confirmation or novelty claim."
+}
