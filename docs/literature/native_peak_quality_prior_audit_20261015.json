@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-15",
+  "candidate": "candidate60 native peak-quality gap",
+  "scope": "Two targeted primary papers and a CVF publisher landing page; not exhaustive novelty verification. Diagnostic evidence does not establish a new method.",
+  "papers": [
+    {
+      "title": "TOOD: Task-aligned One-stage Object Detection",
+      "arxiv_version": "2108.07755v3",
+      "version_date": "2021-08-28",
+      "pages": 12,
+      "authors": [
+        "Chengjian Feng",
+        "Yujie Zhong",
+        "Yu Gao",
+        "Matthew R. Scott",
+        "Weilin Huang"
+      ],
+      "pdf": "output/literature/papers/arxiv-2108.07755.pdf",
+      "text": "output/literature/text/arxiv-2108.07755.txt",
+      "preview": "output/literature/previews/2108.07755v3-p4.png",
+      "review": "Reused existing exact-version PDF, reread abstract/introduction and sections3/3.1 plus rendered page4. Spatial classification/localization misalignment, task alignment, score alignment and learned boundary offsets already exist. Candidate60 measures remaining score-peak quality gaps in the frozen model; neither the gap nor an IoU head is a new method.",
+      "zotero": {
+        "parent": "7D3IXLK2",
+        "attachment": "6VJYR7IG",
+        "collection": "6HT9SNK7",
+        "work": "Existing incomplete document record repaired with all5authors, exact-version URL/date and provenance extra; retained document type/collection/PDF. Metadata and imported_file PDF child read back successfully."
+      },
+      "pdf_sha256": "ede5d01fe07bba7e662ade68c9e88ad49868a1406bdff13c52f0dc4914eaf758",
+      "text_sha256": "695926c2b42b2b0ef71875c43ad06e3378fe17c773980c649e3061265451286d",
+      "preview_sha256": "c9e8a5bd3f5feca66b60d5ba88501066ac61beb28c7138b0268cf31a6121d0d4"
+    },
+    {
+      "title": "Generalized Focal Loss V2: Learning Reliable Localization Quality Estimation for Dense Object Detection",
+      "arxiv_version": "2011.12885v1",
+      "version_date": "2020-11-25",
+      "pages": 10,
+      "authors": [
+        "Xiang Li",
+        "Wenhai Wang",
+        "Xiaolin Hu",
+        "Jun Li",
+        "Jinhui Tang",
+        "Jian Yang"
+      ],
+      "pdf": "output/literature/papers/2011.12885v1.pdf",
+      "text": "output/literature/text/2011.12885v1.txt",
+      "preview": "output/literature/previews/2011.12885v1-p3.png",
+      "review": "Paper Search exact-version download; PDF title/authors/version checked, abstract/introduction/sections2/3.1/3.2 read andpage3 rendered/read. DGQP uses top-k plus mean of each box distribution, with a lightweight two-layer quality predictor. Distribution-based localization-quality ranking and classification-times-IoU decomposition are established, not candidate60 innovation.",
+      "publisher_confirmation": "CVF CVPR2021 landing page links arXiv2011.12885 and confirms title/authors. Saved output/literature/gflv2-cvf-official-20261015.html.",
+      "zotero": {
+        "parent": "VD2XAY4Z",
+        "attachment": "ESIQV6JW",
+        "collection": "6HT9SNK7",
+        "work": "Reused existing candidate24 conference-paper record and all6authors. Attaching newly downloaded exact-version PDF returned identical-MD5 already-attached result, so no duplicate uploaded. Child is named10.1109_CVPR46437.2021.01146.pdf; metadata and child read back. Parent conference date2021-6 retained, not confused with preprint versiondate."
+      },
+      "pdf_sha256": "425129b9ecb9bb3d246d7145d3872ea6e684ad0795a3a84cd2a03068f6d41931",
+      "text_sha256": "5ce9f0273e9926d990c6e9a4064d82659630a99b2259d212d270fc077e39a636",
+      "preview_sha256": "17c841c5f1de5edade4c1bdefe6e9702559f56b32d863a35b82c4aa4a855b113"
+    }
+  ],
+  "registration_reference_erratum": {
+    "frozen_registration_identifier": "2011.12871v1",
+    "correct_GFLV2_identifier": "2011.12885v1",
+    "error": "The author mistakenly supplied the former identifier from memory. Its downloaded PDF title is Examining axion-like particles with superconducting radio-frequency cavity, not GFLV2.",
+    "rejected_pdf": "output/literature/papers/2011.12871v1.pdf",
+    "handling": "Preserve original registration/source archive and rejected local download for audit. Do not import unrelated PDF to Zotero or use it as detection evidence. Correct identifier independently confirmed by CVF and correct PDF. No sample,feature,metric,gate or result changed.",
+    "rejected_pdf_sha256": "33c4dd0803f68f5dc51260d77f6fd2d11da3cec045e52ad0aa5ce0a3f08157b2"
+  },
+  "collection_index": "Incremental Zotero semantic update reported0items/0errors; this does not verify that repaired metadata was re-embedded.",
+  "boundary": "All12diagnostic gates passed, but pools and best-view/tie choices useGT, omitNMS/FPbudgetconstraints and reuse positions. Need downstream-survival/strong-control headroom and distinct deployable evidence before any larger pilot. Generic quality alignment is established; novelty remains unproven.",
+  "publisher_confirmation_file": "output/literature/gflv2-cvf-official-20261015.html",
+  "publisher_confirmation_sha256": "aa536d98810147674c01a31856a9874e9ccbef94688e6ae958d548a9208d4a65"
+}

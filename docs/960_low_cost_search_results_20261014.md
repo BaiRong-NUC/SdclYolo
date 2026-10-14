@@ -2142,3 +2142,58 @@ Zotero，回读全部作者、版本、集合和PDF，语义增量索引2条无�
 工具：`sdcl/evaluation/screen_scaling.py`。
 核验：`scripts/evaluation/diagnose_screen_conditioning.py`。
 完整结果：`output/analysis/screen-conditioning-fixed-20261015/`。
+
+## 实验 60（2026-10-15）：高分原生位置是否错过已有高精度坐标
+
+保留全部STOP，不重跑45的邻域协方差真假分类或任何坐标小头。
+固定56的64筛选/64确认图、全部GT和每图五视图18900原生位置。
+沿用57的局部FP32裁剪后偏移及保存FP16logit；原生类取logitargmax，
+float64sigmoid分数至少0.05。该口径不是历史FP16概率/NMS的逐位回放。
+
+每GT每视图以同类且IoU至少0.5的原生框形成GT辅助候选池。
+比较池内最高IoU与最高原生logit框的IoU；logit并列时取IoU最高者，
+任意一个视图的最高分框达到IoU0.75都算选中。因此给了视图选择和
+并列处理最有利条件，仍未选中才计为分数峰值损失。
+
+| tiny的GT辅助原生统计 | 筛选64图 | 确认64图 |
+|---|---:|---:|
+| 全部GT | 3593 | 3090 |
+| 有IoU≥0.75候选的GT | 2425 | 1899 |
+| 某视图最高分框能达到IoU≥0.75的GT | 2004 | 1592 |
+| 有高精度候选但所有视图最高分框都错过的GT | 421 | 307 |
+| 受影响图数 | 56 | 52 |
+| 占全部tinyGT | 11.7172% | 9.9353% |
+| 400次图bootstrap的95%区间 | [10.1753%,13.3669%] | [8.4985%,11.6645%] |
+
+固定每半至少500GT、300高精度支持、20损失GT、5图、占比1%及区间
+下界正，12项全部通过。结论
+REPLICATED_ORACLE_NATIVE_PEAK_QUALITY_GAP_SUPPORTS_DISTINCT_LOW_COST_FEASIBILITY。
+这次是重复的问题空间线索，不是可部署AP增益、创新或完整训练授权。
+medium_plus损失占比分别7.7419%/7.5836%，未检验尺寸交互效应，
+不能称此问题仅发生于tiny或已证实tiny特有机制。
+
+候选池、最佳视图和并列处理均依赖GT；同一位置能被多个GT复用，
+没有NMS、ignore、数量和FP预算约束。最高分框选不好，并不代表较好框
+已被NMS删除，也不代表普通校准强对照真的漏掉该GT。
+必须先检查下游存活与强对照的实际缺口，再投入新的质量学习试验；
+421/307不是可恢复目标数、官方召回增量或AP上界。
+
+主检查36.99秒，128缓存读取，零JPEG解码、模型前向、拟合、求导、
+更新或AP。7项相关测试通过。独立复核原始缓存与来源/存档/元数据
+哈希，独立映射12096000个原生位置，以逐GT向量交并比而非主分块函数
+重建46340个GT/视图池，核对全部8项统计、分组、逐图计数、bootstrap
+和12门槛；退出0。复核同样不新增模型证据，仍为已反复诊断的训练图。
+
+重读已有TOOD2108.07755v3并渲染第4页，补齐Zotero5作者/版本日期，
+回读元数据和PDF。Paper Search下载GFLV2正确版本2011.12885v1，
+阅读摘要/引言及方法，渲染第3页；与既有PDF附件MD5相同，不重复上传。
+TOOD的任务空间对齐和GFLV2的分布统计质量预测均已有先例。
+登记误写2011.12871v1，下载后核出它是无关物理论文；原登记/源存档
+保持不变，正确编号经CVF官方链接与PDF核对，勘误另存。
+Zotero增量索引本次0条0错误，不声称元数据已重新嵌入。
+
+登记与结果：`docs/experiments/candidate60_native_peak_quality_registration_20261015.json`、
+`docs/experiments/candidate60_native_peak_quality_result_20261015.json`。
+复核：`scripts/evaluation/verify_native_peak_quality.py`。
+论文及勘误：`docs/literature/native_peak_quality_prior_audit_20261015.json`。
+完整结果：`output/analysis/native-peak-quality-fixed-20261015/`。

@@ -1,0 +1,146 @@
+{
+  "experiment": "candidate60_native_peak_quality_gap",
+  "date": "2026-10-15",
+  "output": "D:\\Python\\YOLO\\output\\analysis\\native-peak-quality-fixed-20261015",
+  "metrics": {
+    "screen": {
+      "all": {
+        "gt": 4833,
+        "high_quality_supported": 3587,
+        "peak_high_quality_selected": 3070,
+        "peak_loss": 517,
+        "peak_loss_images": 56,
+        "peak_loss_fraction_all_GT": 0.10697289468239189
+      },
+      "tiny": {
+        "gt": 3593,
+        "high_quality_supported": 2425,
+        "peak_high_quality_selected": 2004,
+        "peak_loss": 421,
+        "peak_loss_images": 56,
+        "peak_loss_fraction_all_GT": 0.11717227943222934
+      },
+      "small_all": {
+        "gt": 4602,
+        "high_quality_supported": 3358,
+        "peak_high_quality_selected": 2842,
+        "peak_loss": 516,
+        "peak_loss_images": 56,
+        "peak_loss_fraction_all_GT": 0.1121251629726206
+      },
+      "medium_plus": {
+        "gt": 1240,
+        "high_quality_supported": 1162,
+        "peak_high_quality_selected": 1066,
+        "peak_loss": 96,
+        "peak_loss_images": 29,
+        "peak_loss_fraction_all_GT": 0.07741935483870968
+      },
+      "tiny_peak_loss_fraction_bootstrap95ci": [
+        0.10175272915254069,
+        0.1336686000200601
+      ]
+    },
+    "confirmation": {
+      "all": {
+        "gt": 4435,
+        "high_quality_supported": 3121,
+        "peak_high_quality_selected": 2712,
+        "peak_loss": 409,
+        "peak_loss_images": 57,
+        "peak_loss_fraction_all_GT": 0.09222096956031567
+      },
+      "tiny": {
+        "gt": 3090,
+        "high_quality_supported": 1899,
+        "peak_high_quality_selected": 1592,
+        "peak_loss": 307,
+        "peak_loss_images": 52,
+        "peak_loss_fraction_all_GT": 0.09935275080906149
+      },
+      "small_all": {
+        "gt": 4132,
+        "high_quality_supported": 2832,
+        "peak_high_quality_selected": 2428,
+        "peak_loss": 404,
+        "peak_loss_images": 57,
+        "peak_loss_fraction_all_GT": 0.09777347531461762
+      },
+      "medium_plus": {
+        "gt": 1345,
+        "high_quality_supported": 1222,
+        "peak_high_quality_selected": 1120,
+        "peak_loss": 102,
+        "peak_loss_images": 30,
+        "peak_loss_fraction_all_GT": 0.0758364312267658
+      },
+      "tiny_peak_loss_fraction_bootstrap95ci": [
+        0.08498503413237221,
+        0.11664479575703539
+      ]
+    }
+  },
+  "decision": {
+    "checks": {
+      "screen": {
+        "gt": true,
+        "supported": true,
+        "loss": true,
+        "images": true,
+        "fraction": true,
+        "interval": true
+      },
+      "confirmation": {
+        "gt": true,
+        "supported": true,
+        "loss": true,
+        "images": true,
+        "fraction": true,
+        "interval": true
+      }
+    },
+    "decision": "REPLICATED_ORACLE_NATIVE_PEAK_QUALITY_GAP_SUPPORTS_DISTINCT_LOW_COST_FEASIBILITY",
+    "scope": "GT-conditioned optimistic native ranking gap only; no deployable/AP/innovation or detector-training claim."
+  },
+  "costs": {
+    "cached_frames": 128,
+    "JPEG_decodes": 0,
+    "detector_forwards": 0,
+    "fits": 0,
+    "gradients": 0,
+    "updates": 0,
+    "AP_evaluations": 0,
+    "elapsed_seconds": 36.99406350008212
+  },
+  "artifacts_sha256": {
+    "decision.json": "370e7953a8db89f6250e40c2cae2ae187e6728ed0b544d0f719adaab89c43b35",
+    "frames.json": "30c544adec5a689402b88b96d7900d348396ed22b42b8f769c1aca9dd446f58d",
+    "metrics.json": "daed97df4189e6f89c7da9f4e2c64e293aa69f87be08b0cfac7c7c848afd255c",
+    "per_image.json": "e2ebb75f418ba4044028a8fda8281d7b08484487b8166fbe89a6e4e64cc44634",
+    "plan.json": "5f222f6cb53ef46ec424db2a85e2f9e133e5cc542a4b84f62138f8d0a6bb3bf3",
+    "source.zip": "e806f01b64a2c497d2e2280abddb5d5ec796316b7c1995e478e744561bdc81a9",
+    "independent_verification.json": "b9c29fd00a2e77d101e05ebfa696a0df79aa24fc9b3115459c13f9408cbffe17",
+    "result.json": "56c1a9b4cb16abf6e0ecfbce269f1d03c230e6c5418c45ca7f3261d7e500820a"
+  },
+  "independent_verification": {
+    "all_source_archive_prior_frame_metadata_hashes_verified": true,
+    "fixed128images_and_disjoint_sequence_prefixes_verified": true,
+    "native_positions_remapped_independently": 12096000,
+    "per_GT_view_pools_independently_recomputed": 46340,
+    "all_eight_statistics_and_GT_area_groups_reconstructed": true,
+    "all_image_traces_aggregates_bootstrap_and_twelve_gates_rebuilt": true,
+    "added_JPEG_decodes": 0,
+    "added_detector_forwards": 0,
+    "added_fits": 0,
+    "added_updates": 0,
+    "verifier_sha256": "fe9b12a7c18f3ca80c86b069d4a72593d8ea2f7dc8033e334ced48bb940d4906",
+    "limits": "Reuses same saved FP16logits/FP32boxes, not an independent detector run. GT-conditioned pools,oracleviewselection,optimistic ties,reusedpositions,noNMS/FPbudget/ignoreconstraints. NoAP,deployability,novelty ortraining authorization. Original registration's GFLV2identifier is corrected only in separate literature audit."
+  },
+  "independent_verifier_exit_code_observed": 0,
+  "tests": "7passed exit0: python -m pytest tests/test_native_peak_quality.py tests/test_native_capacity.py -q",
+  "prior_audit": "docs/literature/native_peak_quality_prior_audit_20261015.json",
+  "prior_audit_sha256": "6271a8a8bb4135600518ef9b7e964c736e64aea2043842675d0e21161a1417ed",
+  "registration_reference_erratum": "Frozen registration misidentifies GFLV2 as2011.12871v1. Correct2011.12885v1 confirmed fromCVF andPDF; unrelated downloaded physics paper excluded. No changes to samples,features,gates orsource archive.",
+  "next_scope": "First audit whether these GT-conditioned peak gaps also lose high-quality support after original per-view NMS and frozen ordinary calibration. Only then consider a preregistered learnability pilot with ordinary quality controls and new evidence. No direct detector-training authorization.",
+  "innovation_status": "Problem-space prerequisite only; not a new model,deployable gain or novelty proof. Goal remains active."
+}

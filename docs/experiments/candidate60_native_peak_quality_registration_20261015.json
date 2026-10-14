@@ -1,0 +1,24 @@
+{
+  "experiment": "candidate60_native_peak_quality_gap",
+  "date": "2026-10-15",
+  "question": "After giving every existing view and every equal-logit tie an oracle advantage, do native score maxima still fail to select existing high-IoU tiny boxes often enough to motivate a distinct localization-quality feasibility design?",
+  "difference": "Candidate36 checked whether native support exists;57 checked shared position capacity atIoU0.5. Candidate45 tested eight-neighbor semantic/box-agreement covariance for TP/FP discrimination of final regret rows. This audits within-view score maxima versus GT localization quality over full native pools. No stopped covariance,coordinate head,DFL statistic orforeground classifier is refit or retuned.",
+  "sample": "Exactly candidate56fixed64screen/64confirmationtrainimages,allvalidGT,all5views/all18900positions. Hash exact prior frames/metadata/sources. Images and previous outcomes have been repeatedly observed; detector/calibrator trained on these images. Peak-quality outcomes not computed before registration. No independent generalization claim.",
+  "inventory": "Same mapped savedFP32localboxes andFP16native10-classlogits as57. Per-view clip to original local content then addFP32offset. Valid=allfinitecoords/logits andpositiveboxextent. Class=argmax ofrawsavedlogits,tiesfirstclass;scoreeligibility=float64sigmoid(maxlogit)>=0.05. Not a replay of original roundedFP16probabilities or deployedNMS.",
+  "object_pool": "For eachGT andeachview,pool valid positions with predictedargmax==GTclass,score>=0.05 andIoUwithGT>=0.5. GT-conditioned optimistic diagnostic only. Empty pool reports count0 andallqualitystatistics0. Nativepositions can be reused byGT,andNMS/ignore/count/FPbudgetconstraints omitted;notAP orimplementablegains.",
+  "selection": "Perpool geometricbest=maxIoU;scorepeak=maxrawGTclasslogit. All exactlyequalmaxlogitpositions count as scorewinners. Optimisticpeakquality=maxIoUamongthese ties. Also record minimumtieIoU,count,maxlogit,uniformpoolmeanIoU andfractionIoU>=0.75. Use rawlogitmonotonicorder,noquantizedsigmoidtieemulation,noalternativetemperaturesorpointselection.",
+  "primary": "GT with at leastoneview geometricbest>=0.75 butNOview optimisticpeakquality>=0.75 is genuine score-peak high-IoU loss. Both support andpeak selections may choose bestview independently usingGT;this removesviewchoice andtieordering as explanations. Denominator=ALLtinyGT,area*(640/maxoriginaldimension)^2<256. Report all,tiny,small_all,medium+descriptively;do notswitchprimary.",
+  "metrics": "PerGT/perview poolcounts/qualitystats,primaryflags;perimage/all64aggregate counts andaffectedimages.400pairedmultinomial64-imagebootstrapdraws,default_rng0,forprimarylossfraction. EmptyGTimages stay in resampling;undefineddenominatorfails. No coefficients,labels-as-inputfeatures,learnability,AUC,NLL,AP oractualNMSclaims.",
+  "policy_per_half": {
+    "tiny_gt_min": 500,
+    "tiny_high_quality_supported_min": 300,
+    "tiny_peak_loss_min": 20,
+    "tiny_peak_loss_images_min": 5,
+    "tiny_peak_loss_fraction_all_GT_min": 0.01,
+    "tiny_peak_loss_fraction_bootstrap_lower_min_exclusive": 0.0
+  },
+  "pass": "REPLICATED_ORACLE_NATIVE_PEAK_QUALITY_GAP_SUPPORTS_DISTINCT_LOW_COST_FEASIBILITY. Requires newdeployablequalityevidence andmatchedordinaryquality/rankingcontrols,independentdataandcloserpriorcheck. Notdetectortraining,AP,innovationauthorizationorproofthatmissingGTareinoriginalNMSoutput.",
+  "fail": "STOP_THIS_NATIVE_SCORE_PEAK_HIGH_IOU_ROUTE_ON_FIXED_INVENTORY. No changingpoolIoU,qualitythreshold,scorecut,samples,tiepolicy,group orswitchingtosingleview torescue. Doesnotruleoutothertrainedmodels orallqualitylearning.",
+  "prior_boundary": "TOOD2108.07755alreadyaddressesspatialclassification/localizationmisalignmentandTAL. GFLV2,2011.12871v1,alreadyestimateslocalizationqualityfromboxdistributions. A score-qualitygap,IoUhead orrankingloss aloneisnotinnovation. Papersmustbereadandarchivedbeforeanynewmethodclaim.",
+  "budget": "128cachedframes/metadatereads,zeroJPEGdecodes,modelforwards,gradients,refits,updatesorAP. PairwiseIoUchunked32GT;saveperGT/viewstatisticarraysandallsource/inputhashes. IndependentverificationmustrecomputeIoUandpool/tiesfromoriginalcache,notjustcallthemainpoolfunctionagain."
+}
