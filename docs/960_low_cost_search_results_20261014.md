@@ -389,3 +389,40 @@ TOLF已研究小目标标注噪声；角点采样也不是连续不确定性的�
 登记与数值记录：`docs/experiments/candidate18_action_order_sensitivity_registration_20261014.json`、
 `docs/experiments/candidate18_action_order_sensitivity_result_20261014.json`。
 完整结果：`output/analysis/action-order-sensitivity-fixed-20261014/`。
+
+## 实验 19：稳定部分排序与逐原框等量随机删比较对照
+
+严格复用实验18的128张拟合、64张留出，三个8,641参数头均从相同冻结uniform
+权重开始，8epoch、lr0.0002、batch512。普通分支使用名义IoU差>0.01的所有比较；
+稳定分支只用17个GT变体上方向与差值均稳定的比较；
+随机对照对每个原框从名义比较中随机取与稳定分支完全相同的数量。
+因此后两者的原框入选与每框比较数均相同，不能用“删监督即有益”解释。
+三个分支同样学习无归属FP原框保留原动作。
+拟合11,784个有效原框，其中6,095无归属；
+名义18,336个比较、5,190个有比较原框；
+稳定与随机各8,085个比较、2,994个有比较原框。
+
+主指标是confidence0.25下重新一对一匹配的十IoU阈值small_all平均召回，
+不是官方AP/AR。完整留出uniform为49.548096%。
+
+| seed | 稳定对uniform (pp) | 对普通 (pp) | 对等量随机 (pp) | 全尺寸FPPI增量 |
+|---|---:|---:|---:|---:|
+| 0 | +0.222724 | +0.119432 | +0.500323 | -0.031250 |
+| 1 | +0.196901 | +0.103292 | +0.493867 | -0.031250 |
+| 2 | +0.213041 | +0.135571 | +0.458360 | -0.031250 |
+
+seed0四项通过后按登记补seed1/2；均值对uniform+0.210889pp，
+3/3同时胜过两个匹配对照，固定重复门槛通过。
+判断BOUNDED_OFFICIAL_AUDIT_ALLOWED，允许另行登记无训练官方审计，
+不允许直接称为有效创新或开展大训练。
+三个种子改变批次顺序与随机删比较，冻结初始化不变；
+不是三个检测器训练种子。
+seed0稳定分支同归属small_all的损伤率4.894515%，
+普通分支2.405063%，随机分支10.801688%。
+稳定监督未保证逐原框推理安全，须保留此限制。
+
+总计9.94秒，零检测器前向，9个小头，每个8epoch。
+两个逐原框等量控制/梯度方向与FP保留测试通过。
+登记与数值记录：`docs/experiments/candidate19_stable_order_pilot_registration_20261014.json`、
+`docs/experiments/candidate19_stable_order_pilot_result_20261014.json`。
+完整结果：`output/analysis/stable-order-pilot-fixed-20261014/`。

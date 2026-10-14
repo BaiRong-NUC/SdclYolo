@@ -1,0 +1,39 @@
+{
+  "experiment": "candidate19_matched_stable_partial_order",
+  "date": "2026-10-14",
+  "hypothesis": "Discarding annotation-corner-sensitive pair orders improves coordinate action selection more than ordinary ranking or dropping the same number of comparisons at random.",
+  "permission": "Candidate18 passed its fixed nuisance/headroom gate. This permits only tiny heads, not detector training.",
+  "data": "Exactly candidate18 cached128 fitting and64 head-held-out train images, same normalized68-dimensional prediction-only geometry and6 actions. Same detector and previously viewed scenes; no independent generalization claim.",
+  "arms": ["nominal_order", "random_thinned_order", "stable_order"],
+  "labels": {
+    "nominal": "All15 unordered valid action pairs with nominal same-owner IoU abs gap>0.01.",
+    "stable": "Subset whose oriented IoU advantage exceeds0.01 at every one of17 candidate18 GT variants.",
+    "thinned": "For EACH OWNED ANCHOR, uniformly sample without replacement exactly the stable subset's pair count from its nominal pairs, using fixed stem/seed hash. Thus anchor inclusion and comparison counts match stable exactly, including zero-pair rows.",
+    "rows": "Calibrated score>=0.05 with>=2valid actions. Owned rows with eligible candidate18 perturbations get pair loss; unowned rows get identical keep-action logistic loss. Other rows have zero weight. No class, size or outcome balancing.",
+    "loss": "Per-row mean softplus(-nominal_pair_sign*(score_a-score_b)/0.05); common unowned loss softplus((alternative-keep)/0.05) averaged over valid alternatives. All active rows share unit weight; zero-pair owned rows contribute zero to fixed row denominator."
+  },
+  "recipe": {
+    "seeds": [0, 1, 2],
+    "epochs": 8,
+    "batch": 512,
+    "learning_rate": 0.0002,
+    "weight_decay": 0.0001,
+    "initialization": "All arms start from the exact frozen uniform coordinate head (8641 parameters). Seeds change minibatch order and matched random thinning, not pretrained weights.",
+    "selection": "Final epoch only; seed1/2 only if seed0 passes every primary gate."
+  },
+  "inference": "Frozen existing select_actions absolute rule, alternative-minus-keep>0.01; same score,class,count,order. No new NMS, confidence fit, abstention tuning, retraining detector or additional ignore filtering.",
+  "primary": "Full64-image class-aware score-ordered one-to-one matching atconfidence0.25 and ten IoU thresholds0.50:0.05:0.95. Sum small_all TP over thresholds divided by10*small_all GT. This diagnostic threshold-averaged recall is not AP or official AR.",
+  "policy": {
+    "small_all_ten_threshold_recall_vs_uniform_min_pp": 0.10,
+    "small_all_ten_threshold_recall_vs_nominal_min_exclusive_pp": 0.0,
+    "small_all_ten_threshold_recall_vs_thinned_min_exclusive_pp": 0.0,
+    "all_fppi_at50_vs_uniform_max_increase": 0.10,
+    "repeat_mean_small_all_ten_threshold_recall_vs_uniform_min_pp": 0.10,
+    "repeat_positive_vs_both_matched_seeds_min": 2
+  },
+  "secondary": "Same-owned meanIoU, threshold fraction and harm compared to uniform, full rematched recalls atIoU0.50 by size, allFPPI, moves, and pair-retention counts.",
+  "pass_action": "Repeat seeds1/2; only after repeat gates pass register a bounded official no-training audit and closer robust-ranking literature comparison.",
+  "fail_action": "Stop this stable-order recipe, no radius/learning-rate/epochs/head-size/threshold adjustment and no detector training.",
+  "budget": "Zero detector forwards. Three8641-parameter heads x8epochs; at most9heads if seed0 passes. Cached geometry only.",
+  "limits": "Finite synthetic corners need not describe annotation noise. Removing comparisons is established robust/partial-label learning; efficacy and prior-art distinction remain unproved. Fixed uniform ignore mask, head-held-out train scenes and diagnostic matching are not official independent evaluation."
+}
