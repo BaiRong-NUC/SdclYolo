@@ -1,0 +1,25 @@
+{
+  "experiment": "candidate41_cross_class_shared_residual_bias",
+  "date": "2026-10-14",
+  "stage": "GT-assisted conditional information screen, not model training or AP",
+  "question": "After ordinary geometry correction, do different object classes within one image share a predictable signed residual, beyond train-only per-class means and wrong-image donor controls?",
+  "basis": "Candidate38 shuffled within-image native vectors outperformed local native features. This preserves image-level feature statistics and is only a hypothesis lead. Candidate39 continuous geometry AP gains repeated but failed the fixed-FP guard. Neither STOP is changed.",
+  "distinct_from_prior": "Candidate32/33 used same-class neighbor size context for a fixed coordinate menu or score residual. This tests different-class signed four-edge errors after an ordinary continuous regressor; it does not retry those stopped scale or scoring recipes.",
+  "sample": "Original128fit/64headholdout detector-training images. Fixed candidate38 geometry seed0 checkpoint and original owners/associations/normalization. All64 geometry predictions must replay exactly on CUDA. No detector/image forward or decoder.",
+  "labels": "GT minus geometry-corrected coordinates divided by original calibrated width/height, clipped[-.1,.1]. One original same-owner GT per owned active row. Train-class means fit only on128fit owned active rows. No headholdout GT used in class means.",
+  "reference": "Predict residual from the fixed train-only mean for the query class.",
+  "same_image_oracle": "Reference plus mean donor error minus donor class train-mean, using only active owned rows with class DIFFERENT from query. Require>=5 such donors. Query class and therefore query GT cannot be a donor. Final reference clipped[-.1,.1]. GT-assisted and not deployable.",
+  "wrong_image_oracle": "Same formula and different-class eligibility, but donors come from the next image in original64 order (wrap once). Require>=5 donors there too. No image choice or random seed search.",
+  "metric": "SmoothL1 beta.02 per-coordinate, mean4 then mean query rows. Report all/tiny/small_all, equalquery primary; paired image-bootstrap400 draws seed0 for relative loss reductions. Sample means conditional on eligibility.",
+  "policy": {
+    "tiny_queries_min": 500,
+    "tiny_represented_images_min": 20,
+    "tiny_relative_loss_reduction_vs_class_min": 0.02,
+    "tiny_relative_loss_reduction_vs_wrong_image_min": 0.01,
+    "tiny_paired_image_bootstrap_vs_class_lower95_min_exclusive": 0.0
+  },
+  "budget": "Zero detector forwards, image decode, head fitting or official evaluator. Existing4388parameter head replay only. Cached labels and400 bootstrap draws.",
+  "pass_action": "Only allow a newly registered matched small learnability probe of image-level bias features, with geometry/class-mean/wrong-image controls. Ordinary context/feature pooling itself is not innovation; require closer prior and independent evidence.",
+  "fail_action": "STOP_THIS_CROSS_CLASS_SHARED_RESIDUAL_BIAS_RECIPE. No donor count, class grouping, clipping, residual normalization, image pairing or score threshold tuning on these labels.",
+  "limits": "Both contextual arms use oracle donor labels unavailable at deployment; this is an optimistic information test, not an AP bound or feasible calibration result. Repeated train scenes and within-image correlation limit generality. It does not establish why within-image shuffled features improved."
+}

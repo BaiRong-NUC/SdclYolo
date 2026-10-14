@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-14",
+  "scope": "Nearest-primary-paper context-information audit for candidate41; not an exhaustive novelty claim",
+  "primary_paper": {
+    "title": "Exploring the Bounds of the Utility of Context for Object Detection",
+    "authors": ["Ehud Barnea", "Ohad Ben-Shahar"],
+    "doi": "10.1109/CVPR.2019.00759",
+    "year": 2019,
+    "metadata_provenance": "Paper Search Crossref exact title record",
+    "primary_pdf_url": "https://openaccess.thecvf.com/content_CVPR_2019/papers/Barnea_Exploring_the_Bounds_of_the_Utility_of_Context_for_Object_CVPR_2019_paper.pdf",
+    "pdf": "output/literature/papers/cvf-Barnea_Exploring_the_Bounds_of_the_Utility_of_Context_for_Object_CVPR_2019_paper.pdf",
+    "pdf_sha256": "22782bf31886414c059514fb2ea6aaeb43ae1f5ebce2284dddad6f6ed26cdc5b",
+    "text": "output/literature/text/cvf-Barnea_Exploring_the_Bounds_of_the_Utility_of_Context_for_Object_CVPR_2019_paper.txt",
+    "text_sha256": "6eab25a7dd17363624928131619fd1934870ab84e3bedc5f34ee9fd36cafdeda",
+    "pages": 9,
+    "reviewed": "Abstract and Introduction: oracle/optimization analysis of contextual detection score information, localization-error limitations and information redundancy after appearance",
+    "overlap": "Measuring contextual-information headroom and the limits of context before fitting is established methodology. Candidate41 does not claim this principle or mean pooling as innovation.",
+    "difference_and_limit": "The paper analyzes context-conditioned score ranking; candidate41 checks cross-class signed coordinate residuals after a conventional continuous corrector. Candidate41's mean donor reference is not the paper's maximal-AP bound, and its failed fixed oracle recipe does not prove all context uninformative.",
+    "zotero": {
+      "collection_key": "6HT9SNK7",
+      "item_key": "WAP8EY9M",
+      "attachment_key": "LW4KHP97",
+      "attachment_readback": "application/pdf,10.1109_CVPR.2019.00759.pdf",
+      "incremental_update": {"total": 1, "processed": 1, "added": 1, "errors": 0}
+    }
+  },
+  "related_existing_audits": [
+    "docs/literature/neighbor_scale_prior_audit_20261014.json",
+    "docs/literature/native_distribution_prior_audit_20261014.json"
+  ],
+  "current_claim": "No trained image-shared residual model authorized; candidate41 oracle loses to a train-only class-mean reference. No innovation established.",
+  "search_limits": "Search also surfaced localization calibration, distribution-aware box refinement and task-specific context work. Those metadata/abstract leads have not all been downloaded or fulltext-audited and cannot be used to declare novelty."
+}

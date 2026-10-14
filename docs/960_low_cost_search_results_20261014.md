@@ -1148,3 +1148,41 @@ NO_DOMINANT_FIXED_FP_LOSS_ROUTE；不凭1例启动新的损伤分类/安全头�
 登记与结果：`docs/experiments/candidate40_residual_fp_frontier_registration_20261014.json`、
 `docs/experiments/candidate40_residual_fp_frontier_result_20261014.json`。
 完整结果：`output/analysis/residual-fp-frontier-fixed-20261014/`。
+
+## 实验 41：跨类别目标是否共享图像级坐标残差
+
+实验38的同图打乱特征仍保留图像级统计；只把这一点作为线索，
+不据其优于局部特征就认定存在图像级定位机制。
+固定原几何种子0及128/64图，先逐元素复现64图修正坐标，
+再检验几何修正之后的四边剩余误差能否由其他类别的目标预测。
+误差按原框宽高归一化并截断到[-0.1,0.1]，类别均值只在128fit图计算。
+同图GT辅助参考使用至少5个不同类别目标的去类别均值残差，
+整类排除查询目标，防止自己或同一GT重复成为供体。
+错图参考使用固定原顺序下一张图的不同类别供体，禁止挑图。
+两种上下文参考都使用部署时不可得的供体GT，只是乐观信息筛选。
+
+tiny共有1856个合格查询、58张图：
+
+| 参考 | tiny平均SmoothL1残差损失 |
+|---|---:|
+| 训练图类别均值 | 0.042353989 |
+| 同图不同类别GT辅助 | 0.043253102 |
+| 错图不同类别GT辅助 | 0.045035643 |
+
+同图参考比错图损失低3.958067%，但比更简单的类别均值高2.122852%。
+相对类别均值的配对图像bootstrap400次相对改善95%区间
+为[-6.916992%,+1.728594%]，没有稳定正向信息。
+五项门槛通过三项，STOP_THIS_CROSS_CLASS_SHARED_RESIDUAL_BIAS_RECIPE。
+不调供体数量/类别/误差归一化挽救，不投入图像级校准头。
+该失败仅停止此固定均值共享残差假设，不否定其他上下文信息。
+
+2.81秒，无图片解码/检测器前向/小头拟合；两个整类排除供体、
+类别均值去中心化测试通过，64份逐查询跟踪及来源哈希已核验。
+CVPR2019《Exploring the Bounds of the Utility of Context for Object Detection》
+已通过Paper Search核对DOI，从CVF下载并阅读相关章节，Zotero含PDF附件。
+该文已有上下文信息空间分析，不能把先做信息诊断的流程称为创新；
+它的分数排序上界也不能借用为本实验残差或AP上界。
+登记与结果：`docs/experiments/candidate41_shared_residual_bias_registration_20261014.json`、
+`docs/experiments/candidate41_shared_residual_bias_result_20261014.json`。
+论文核验：`docs/literature/shared_residual_context_prior_audit_20261014.json`。
+完整结果：`output/analysis/shared-residual-bias-fixed-20261014/`。

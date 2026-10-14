@@ -1,0 +1,89 @@
+{
+  "experiment": "candidate41_cross_class_shared_residual_bias",
+  "date": "2026-10-14",
+  "output": "output/analysis/shared-residual-bias-fixed-20261014",
+  "decision": {
+    "decision": "STOP_THIS_CROSS_CLASS_SHARED_RESIDUAL_BIAS_RECIPE",
+    "checks": {
+      "tiny_query_count": true,
+      "represented_images": true,
+      "vs_class_mean": false,
+      "vs_wrong_image": true,
+      "paired_image_interval": false
+    },
+    "scope": "Optimistic GT-assisted residual information only; not deployment, AP or innovation."
+  },
+  "metrics": {
+    "all": {
+      "queries": 2396,
+      "represented_images": 61,
+      "mean_smooth_l1": {
+        "class_mean": 0.03730898726043314,
+        "same_image_oracle": 0.038459432101823836,
+        "wrong_image_oracle": 0.040438440322935955
+      },
+      "relative_loss_reduction_vs_class": -0.030835595545922558,
+      "relative_loss_reduction_vs_wrong_image": 0.04893878708743525,
+      "paired_image_bootstrap_relative_reduction_vs_class_95ci": [
+        -0.0744561702122434,
+        0.0013061772427620274
+      ]
+    },
+    "tiny": {
+      "queries": 1856,
+      "represented_images": 58,
+      "mean_smooth_l1": {
+        "class_mean": 0.04235398915023457,
+        "same_image_oracle": 0.04325310172536398,
+        "wrong_image_oracle": 0.04503564256870963
+      },
+      "relative_loss_reduction_vs_class": -0.02122852163795368,
+      "relative_loss_reduction_vs_wrong_image": 0.03958066859212848,
+      "paired_image_bootstrap_relative_reduction_vs_class_95ci": [
+        -0.0691699215487277,
+        0.017285937647532224
+      ]
+    },
+    "small_all": {
+      "queries": 2253,
+      "represented_images": 60,
+      "mean_smooth_l1": {
+        "class_mean": 0.03874078952922445,
+        "same_image_oracle": 0.03975260104722948,
+        "wrong_image_oracle": 0.04178806402040375
+      },
+      "relative_loss_reduction_vs_class": -0.026117472831620206,
+      "relative_loss_reduction_vs_wrong_image": 0.04870919533818114,
+      "paired_image_bootstrap_relative_reduction_vs_class_95ci": [
+        -0.06890509229511539,
+        0.008159437231824218
+      ]
+    }
+  },
+  "verification": {
+    "fit_images_for_class_means": 128,
+    "head_holdout_images": 64,
+    "detector_forwards": 0,
+    "image_decodes": 0,
+    "fitting_steps": 0,
+    "all64_geometry_predictions_exact_replay": true,
+    "class_means_training_only": true,
+    "same_image_donors_exclude_entire_query_class": true,
+    "query_owner_not_a_donor": true,
+    "wrong_image_pairing_fixed_not_searched": true,
+    "GT_USED_IN_BOTH_CONTEXT_ORACLES_NOT_DEPLOYABLE": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 2.8060580999590456
+  },
+  "artifacts_sha256": {
+    "class_means.json": "a4cb2d22e2476b6df1f0144965d3f5c6da00a4bc528aed1ebb969c30cd184ce2",
+    "decision.json": "6588ae77ef81b12e490bec01b131f448a63f6f59528a900c9483f2e32fa8ee7e",
+    "frames.json": "0c1bcd4506a90c9ac482b4d7d53aed72b66273379d45bcbc0e9c417a29eee381",
+    "metrics.json": "96bcf0de639ec606e8e11247df7b3e25baf953ba0cb4439f1cac61694aba609b",
+    "per_image.json": "1843b426345de5806820af7af3695394f802c9faece2cf0584558f3a56aadcf5",
+    "plan.json": "8e5642de712b0fd1dedb79af6a0a41192fedfaaa2e699f4e0dd15a2440961a30",
+    "source.zip": "fbade209281440eaf5a8a688fff02eaafe7a1a837163ab61c38ab4ab8bafc5a2",
+    "verification.json": "e06fe18e2d7b13894010dc9062c45438fd5cc0d879363df9ae8bd1998497d9cd"
+  },
+  "tests": "2 passed: query class fully excluded from donors including duplicate-class rows; train class means and centered donor residuals"
+}
