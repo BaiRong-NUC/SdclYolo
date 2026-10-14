@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-14",
+  "scope": "Preliminary primary-source overlap audit for neighbor-scale information; not exhaustive novelty review",
+  "primary_paper": {
+    "title": "Relation Networks for Object Detection",
+    "source_url": "https://openaccess.thecvf.com/content_cvpr_2018/papers/Hu_Relation_Networks_for_CVPR_2018_paper.pdf",
+    "pdf": "output/literature/papers/cvf-Hu_Relation_Networks_for_CVPR_2018_paper.pdf",
+    "pdf_sha256": "fc3598cecb2e909c371490ecbed10ad137df9f19e8ab21591d3665a3a0e591da",
+    "text": "output/literature/text/cvf-Hu_Relation_Networks_for_CVPR_2018_paper.txt",
+    "text_sha256": "5667ecdab45d7acd1b1e77413f024fac65d694ad6ecca7cfb447e07022bf020d",
+    "read_sections": ["2 related work on object relations in postprocessing", "3 object relation module and geometric weights"],
+    "overlap": "Relative position/size geometry and other-instance context for detection and duplicate removal are established. Candidate32 local median scale statistics alone are not novel.",
+    "zotero_existing_item": "L27TGVBM",
+    "zotero_metadata_limit": "Historical file-import snapshot lacks complete citation metadata; no duplicate import made."
+  },
+  "paper_search_leads": [
+    {"title": "Context in object detection: a systematic literature review", "arxiv": "2503.23249v1", "doi": "10.1007/s10462-025-11186-x", "status": "Metadata and abstract only, not fulltext reviewed or a primary-method novelty proof"}
+  ],
+  "current_claim": "Candidate32 demonstrates a modest univariate information signal only. No deployable context refinement or innovation established."
+}

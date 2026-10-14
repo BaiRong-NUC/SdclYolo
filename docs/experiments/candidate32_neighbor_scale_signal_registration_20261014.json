@@ -1,0 +1,27 @@
+{
+  "experiment": "candidate32_neighbor_scale_action_information",
+  "date": "2026-10-14",
+  "question": "Do nearby separate same-class detections supply scale information for distinguishing coordinate actions that the anchor itself cannot provide?",
+  "stage": "Untrained prediction-context information screen only",
+  "difference": "Uses other distinct instances in the SAME image, rather than other views of the same anchor, image pixels, DFL bins or pooled view-error moments. No continuation of those stopped recipes.",
+  "sample": "Original candidate18 first128 fitting/64 head-held-out train images. Evaluate both splits descriptively; only the64 head-held-out gate decides.",
+  "context": "Frozen regret output boxes and unchanged calibrated scores/classes. For each original anchor, same-class peers atscore>=.25, exclude ALL peers with IoU>=.1 to the original anchor, then take up to8 nearest by center distance within.20 original-image diagonal. Require4 local peers and4 global peers. Target anchor, its duplicate aliases and GT never enter context.",
+  "scores": {
+    "local_scale": "Negative mean absolute difference between action log(width,height) and the coordinate-wise median log(width,height) of eligible nearby peers.",
+    "global_scale": "Same statistic using all eligible same-class peers across the image, excluding overlap aliases.",
+    "reference_distance": "Negative mean absolute coordinate displacement from frozen regret action, normalized by ORIGINAL calibrated anchor width/height."
+  },
+  "pair_protocol": "Owned anchors atscore>=.05, >=2 valid actions, local context available. Compare every valid action to frozen regret choice against the SAME original owned nominal GT. Exclude regret action and nominal abs IoU gain<=.01. Score each alternative relative to that same reference. Each eligible anchor gets total comparison weight1, avoiding overweighting large action menus.",
+  "policy": {
+    "tiny_positive_actions_min": 100,
+    "tiny_total_comparisons_min": 500,
+    "tiny_local_scale_auc_min": 0.55,
+    "tiny_local_auc_vs_global_min_exclusive": 0.0,
+    "tiny_local_auc_vs_distance_min_exclusive": 0.0
+  },
+  "pass_action": "Allows separately registered matched small residual-head pilot with local context, global context and shuffled-context controls, all initialized from frozen regret. No detector training or official evaluation from this screen alone.",
+  "fail_action": "Stop this local-scale-median representation without changing neighbor radius, class filter, peer score, count, scale statistic or action subset.",
+  "budget": "192 cached frames, zero images decoded, zero detector forwards/training, no fitting, CPU geometry only.",
+  "priors": "Object relations, perspective-aware scale priors and contextual localization already exist. Neither local neighbors nor median scale consistency alone is claimed novel. Literature review must identify an implementable distinction if information passes.",
+  "limits": "Peers can be wrong detections or different physical object sizes; view and pose affect apparent shape. This is univariate action AUC conditional on existing ownership/context, not final detection AP or proof of incremental conditional information. Frozen cache already inherits diagnostic ignore filtering. Detector saw these training scenes; repeated head holdout is not independent validation."
+}

@@ -1,0 +1,107 @@
+{
+  "experiment": "candidate32_neighbor_scale_action_information",
+  "date": "2026-10-14",
+  "output": "output/analysis/neighbor-scale-signal-fixed-20261014",
+  "decision": {
+    "decision": "MATCHED_NEIGHBOR_SCALE_RESIDUAL_PILOT_ALLOWED",
+    "checks": {
+      "positive_actions": true,
+      "comparisons": true,
+      "discrimination": true,
+      "spatial_context": true,
+      "geometric_control": true
+    },
+    "values": {
+      "tiny_local_scale_auc": 0.5569060170112919,
+      "tiny_auc_gains": {
+        "global_scale": 0.015375745885090053,
+        "reference_distance": 0.021504770740550905
+      },
+      "tiny_positive_actions": 1144
+    },
+    "scope": "Reused train-head-holdout owned-action information proxy, not AP or novelty."
+  },
+  "metrics": {
+    "train": {
+      "all": {
+        "context_supported_comparable_anchors": 3786,
+        "anchors_with_better_actions": 2118,
+        "positive_actions": 2873,
+        "negative_actions": 4897,
+        "local_scale_weighted_auc": 0.5313800127568459,
+        "global_scale_weighted_auc": 0.5209459971150666,
+        "reference_distance_weighted_auc": 0.5316639550953444
+      },
+      "tiny": {
+        "context_supported_comparable_anchors": 2628,
+        "anchors_with_better_actions": 1467,
+        "positive_actions": 2096,
+        "negative_actions": 3396,
+        "local_scale_weighted_auc": 0.5399392946389208,
+        "global_scale_weighted_auc": 0.5318272532427434,
+        "reference_distance_weighted_auc": 0.5554931061216598
+      },
+      "small_all": {
+        "context_supported_comparable_anchors": 3589,
+        "anchors_with_better_actions": 2018,
+        "positive_actions": 2762,
+        "negative_actions": 4623,
+        "local_scale_weighted_auc": 0.5339867659066002,
+        "global_scale_weighted_auc": 0.5255454786584007,
+        "reference_distance_weighted_auc": 0.5341737699158632
+      }
+    },
+    "holdout": {
+      "all": {
+        "context_supported_comparable_anchors": 1782,
+        "anchors_with_better_actions": 980,
+        "positive_actions": 1315,
+        "negative_actions": 2406,
+        "local_scale_weighted_auc": 0.5497267188595196,
+        "global_scale_weighted_auc": 0.5303469879577412,
+        "reference_distance_weighted_auc": 0.5342356674237845
+      },
+      "tiny": {
+        "context_supported_comparable_anchors": 1524,
+        "anchors_with_better_actions": 835,
+        "positive_actions": 1144,
+        "negative_actions": 2075,
+        "local_scale_weighted_auc": 0.5569060170112919,
+        "global_scale_weighted_auc": 0.5415302711262019,
+        "reference_distance_weighted_auc": 0.535401246270741
+      },
+      "small_all": {
+        "context_supported_comparable_anchors": 1734,
+        "anchors_with_better_actions": 955,
+        "positive_actions": 1284,
+        "negative_actions": 2344,
+        "local_scale_weighted_auc": 0.551857478693681,
+        "global_scale_weighted_auc": 0.5344089450287062,
+        "reference_distance_weighted_auc": 0.53753447780926
+      }
+    }
+  },
+  "verification": {
+    "fit_pool_images_descriptive_only": 128,
+    "head_holdout_images": 64,
+    "detector_forwards": 0,
+    "image_decodes": 0,
+    "training_steps": 0,
+    "GT_excluded_from_context_features": true,
+    "same_original_GT_owner_all_actions": true,
+    "each_comparable_anchor_total_weight1": true,
+    "cache_inherits_historical_diagnostic_ignore_filter": true,
+    "no_val_no_testdev_no_threshold_or_hyperparameter_search": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 7.631906300084665
+  },
+  "artifacts_sha256": {
+    "decision.json": "0464e4ed1ad54467565fed02c6f538d6502daefe0f6ffe609f07da5c36485757",
+    "frames.json": "cc938e6f2588c610a0fa3650c87a0980c29c4da8fe4a685e4bd1d18c68d63f27",
+    "metrics.json": "53f7f47e82babe0225c6125bb318eb3ab3eb28b4f20902be67f58cb9da2c9190",
+    "plan.json": "3197b746624afc2dcf4329a43092fd11893e59d32f61ca00df1ca5237ec144d2",
+    "source.zip": "614e07e6e50ad533062c1bd6545bc58c87a023cc9ac2ece2ebda4b76b41367da",
+    "verification.json": "f2078991f9234058c3b527a49f23ebbf7cf763d176398041178f69f2e86230b6"
+  },
+  "tests": "2 passed: excludes aliases/other classes and scores consistent shape; no-peer case produces unavailable context"
+}

@@ -855,3 +855,32 @@ BayesOD原文第III.C节已核对并导入Zotero，它的观测条件独立假�
 登记与数值记录：`docs/experiments/candidate31_correlated_error_fusion_registration_20261014.json`、
 `docs/experiments/candidate31_correlated_error_fusion_result_20261014.json`。
 完整结果：`output/analysis/correlated-error-fusion-fixed-20261014/`。
+
+## 实验 32：邻近独立同类目标的尺度能否区分坐标动作
+
+改变信息来源：不再只看同一目标的跨视图证据，而看其他同类实例。
+所有上下文来自冻结regret预测，score>=0.25，与原框IoU>=0.1的别名全部排除。
+在原图对角线0.20范围内取最近最多8个同类框，至少4个才有局部上下文。
+用动作log宽高与同类邻居log宽高中位数的绝对差评分，
+对照是全图同类中位尺度和相对regret动作的归一化坐标距离。
+所有动作仍比较同一原框拥有的名义GT，每个原框总比较权重1。
+
+| tiny动作信息 | 加权AUC |
+|---|---:|
+| 局部同类尺度 | 0.556906 |
+| 全图同类尺度 | 0.541530 |
+| 相对参考框距离 | 0.535401 |
+
+64张留出图tiny共1524个可比较原框、1144个有益/2075个有害动作。
+局部尺度比全图+0.015376、比距离+0.021505，五项预登记门槛全部通过，
+MATCHED_NEIGHBOR_SCALE_RESIDUAL_PILOT_ALLOWED。
+这只是弱的单变量信息信号，不是最终召回/AP或条件增量信息的充分证据。
+只允许另行登记从regret初始化、具有全图与乱序上下文对照的小残差头。
+
+耗时7.63秒，192张缓存，无图像解码、检测器前向或训练。
+两个上下文排除别名/异类与无邻居不伪造信号测试通过。
+Relation Networks原文第2--3节已核对，其他实例的几何与上下文并非新概念；
+当前未认定创新，后续若有收益还需核验差异和独立泛化。
+登记与数值记录：`docs/experiments/candidate32_neighbor_scale_signal_registration_20261014.json`、
+`docs/experiments/candidate32_neighbor_scale_signal_result_20261014.json`。
+完整结果：`output/analysis/neighbor-scale-signal-fixed-20261014/`。
