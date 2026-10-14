@@ -1,0 +1,23 @@
+{
+  "experiment": "candidate25_fixed_view_budget_headroom",
+  "date": "2026-10-14",
+  "question": "Is there enough redundant view computation to study preserving detection evidence while selectively omitting local crops?",
+  "motivation": "Change the research objective from another postprocessing AP tweak to the accuracy/computation tradeoff. This does not restart any stopped phase, supervision, fusion, coordinate or DFL recipe.",
+  "sample": "Same candidate21 fixed64 head-held-out train scenes, unchanged cached kept predictions with native confidence>=0.05.",
+  "budget": "Enumerate16 subsets of four local views with global view mandatory. Zero detector forwards, training and official evaluation. This enumeration is a registered complete finite action inventory, not a tuned deployable choice.",
+  "evaluation": "For every subset at same-class IoU0.5 and0.75, compute GT support and exact one-to-one maximum matching capacity. A subset is safe only if it preserves EVERY full-pool-supported GT at BOTH thresholds and the full all-GT matching capacity at BOTH thresholds.",
+  "oracle": "Choose each image's safe subset with fewest views, tie lowest bitmask. Uses GT and is not deployable. Reference includes all five views, so a safe subset always exists. Report candidate coverage headroom and count-based forward savings only, not latency or official AP.",
+  "prediction_only_controls": {
+    "global_empty": "Omit every local view with zero native global predictions at confidence>=0.05 whose centers lie inside its window",
+    "global_density_one": "Omit exactly the local view with fewest native global predictions at confidence>=0.25 inside its window, tie earliest local index",
+    "fixed_one": "Always omit local view4"
+  },
+  "policy": {
+    "oracle_forward_count_saving_percent_min": 10.0,
+    "oracle_images_with_omission_min": 32
+  },
+  "pass_action": "Allows separately registered annotation-free replay/scene-split policy learnability screening only; no full detector training. Need matched empty/density/ordinary learned crop-value controls and an accuracy/cost frontier, not a generic claim of adaptive tiling novelty.",
+  "fail_action": "Stop this strict evidence-preserving omission recipe. Do not lower coverage requirements, change IoU/confidence, crops or budget gate to rescue this result.",
+  "prior_art": "AutoFocus ICCV2019 already performs selective coarse-to-fine regions; ESOD uses shared backbone object-seeking/feature slicing and sparse heads. Choosing useful crops or saving computation alone is not new.",
+  "limits": "Candidate caches have shared diagnostic ignore filtering; GT support and maximum matching do not establish actual AP preservation or score-order behavior. Shared detector has already seen these train scenes. A negative strict-retention result does not rule out an explicitly different future lossy accuracy/cost objective."
+}

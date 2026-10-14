@@ -613,3 +613,32 @@ DFL并非校准过的边界不确定性，单个bin值还混合了离散监督�
 登记与数值记录：`docs/experiments/candidate24_dfl_action_signal_registration_20261014.json`、
 `docs/experiments/candidate24_dfl_action_signal_result_20261014.json`。
 完整结果：`output/analysis/dfl-action-signal-fixed-20261014/`。
+
+## 实验 25：减少视图计算的候选覆盖空间
+
+转为“保持候选证据时减少推理”的独立问题，所有AP改进配方的STOP不变。
+固定64图、confidence>=0.05的原NMS保留池，全图必留，枚举四个局部视图的16种子集。
+仅当IoU0.5和0.75上每个原来有支持的GT仍有支持，
+且两个阈值的全GT最大一对一匹配容量都相等，才算安全子集。
+这比只看支持框数量严格，仍然不能保证官方AP不变。
+
+| 分支 | 视图前向计数 | 可省比例 | 有省略的图 | 严格安全图 | tiny丢支持GT@0.5/@0.75 |
+|---|---:|---:|---:|---:|---:|
+| 全五视图 | 320 | 0 | 0 | 64 | 0 / 0 |
+| 带GT最少视图参考 | 201 | 37.1875% | 60 | 64 | 0 / 0 |
+| 全图空区跳过 | 314 | 1.8750% | 6 | 64 | 0 / 0 |
+| 全图最低密度省一块 | 256 | 20.0000% | 64 | 47 | 11 / 13 |
+| 固定省第4块 | 256 | 20.0000% | 64 | 38 | 17 / 37 |
+
+两个容量门槛均通过，判断BOUNDED_VIEW_POLICY_SCREEN_ALLOWED。
+带GT参考的37.1875%不是可部署节省，不是实测延迟，更不是创新成立。
+空区规则很保守、仅省1.875%；密度规则有更大收益但漏掉额外tiny证据。
+这说明本数据上存在“保留哪些额外视图证据”的学习空间，
+下一轮只允许小型预测驱动策略与密度/普通学习对照，不训练检测器。
+AutoFocus和ESOD已经研究选择性区域、特征复用及稀疏检测，不能把动态切片本身当创新。
+
+耗时2.32秒，零前向、零训练。一个图匹配测试确认支持不变仍可能损失唯一匹配容量。
+仍是旧训练图、缓存diagnostic ignore口径，正式部署需无标注重放及官方精度/成本核验。
+登记与数值记录：`docs/experiments/candidate25_view_budget_registration_20261014.json`、
+`docs/experiments/candidate25_view_budget_result_20261014.json`。
+完整结果：`output/analysis/view-budget-headroom-fixed-20261014/`。

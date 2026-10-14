@@ -1,0 +1,176 @@
+{
+  "experiment": "candidate25_fixed_view_budget_headroom",
+  "date": "2026-10-14",
+  "output": "output/analysis/view-budget-headroom-fixed-20261014",
+  "decision": {
+    "decision": "BOUNDED_VIEW_POLICY_SCREEN_ALLOWED",
+    "checks": {
+      "forward_saving_headroom": true,
+      "omission_not_isolated": true
+    },
+    "scope": "GT-assisted coverage inventory, not deployment, latency or AP."
+  },
+  "metrics": {
+    "gt": {
+      "all": 3247,
+      "tiny": 2664,
+      "small_all": 3098
+    },
+    "arms": {
+      "oracle": {
+        "forwards": 201,
+        "images_with_omission": 60,
+        "safe_images": 64,
+        "lost_supported_gt": {
+          "0.5": {
+            "all": 0,
+            "tiny": 0,
+            "small_all": 0
+          },
+          "0.75": {
+            "all": 0,
+            "tiny": 0,
+            "small_all": 0
+          }
+        },
+        "capacity_loss": {
+          "0.5": 0,
+          "0.75": 0
+        },
+        "forward_count_saving_percent": 37.18749999999999,
+        "lost_supported_gt_pp": {
+          "0.5": {
+            "all": 0.0,
+            "tiny": 0.0,
+            "small_all": 0.0
+          },
+          "0.75": {
+            "all": 0.0,
+            "tiny": 0.0,
+            "small_all": 0.0
+          }
+        }
+      },
+      "global_empty": {
+        "forwards": 314,
+        "images_with_omission": 6,
+        "safe_images": 64,
+        "lost_supported_gt": {
+          "0.5": {
+            "all": 0,
+            "tiny": 0,
+            "small_all": 0
+          },
+          "0.75": {
+            "all": 0,
+            "tiny": 0,
+            "small_all": 0
+          }
+        },
+        "capacity_loss": {
+          "0.5": 0,
+          "0.75": 0
+        },
+        "forward_count_saving_percent": 1.8750000000000044,
+        "lost_supported_gt_pp": {
+          "0.5": {
+            "all": 0.0,
+            "tiny": 0.0,
+            "small_all": 0.0
+          },
+          "0.75": {
+            "all": 0.0,
+            "tiny": 0.0,
+            "small_all": 0.0
+          }
+        }
+      },
+      "global_density_one": {
+        "forwards": 256,
+        "images_with_omission": 64,
+        "safe_images": 47,
+        "lost_supported_gt": {
+          "0.5": {
+            "all": 11,
+            "tiny": 11,
+            "small_all": 11
+          },
+          "0.75": {
+            "all": 13,
+            "tiny": 13,
+            "small_all": 13
+          }
+        },
+        "capacity_loss": {
+          "0.5": 11,
+          "0.75": 13
+        },
+        "forward_count_saving_percent": 19.999999999999996,
+        "lost_supported_gt_pp": {
+          "0.5": {
+            "all": 0.3387742531567601,
+            "tiny": 0.4129129129129129,
+            "small_all": 0.35506778566817304
+          },
+          "0.75": {
+            "all": 0.4003695719125347,
+            "tiny": 0.487987987987988,
+            "small_all": 0.4196255648805681
+          }
+        }
+      },
+      "fixed_one": {
+        "forwards": 256,
+        "images_with_omission": 64,
+        "safe_images": 38,
+        "lost_supported_gt": {
+          "0.5": {
+            "all": 18,
+            "tiny": 17,
+            "small_all": 18
+          },
+          "0.75": {
+            "all": 40,
+            "tiny": 37,
+            "small_all": 40
+          }
+        },
+        "capacity_loss": {
+          "0.5": 19,
+          "0.75": 40
+        },
+        "forward_count_saving_percent": 19.999999999999996,
+        "lost_supported_gt_pp": {
+          "0.5": {
+            "all": 0.554357868801971,
+            "tiny": 0.6381381381381381,
+            "small_all": 0.5810200129115558
+          },
+          "0.75": {
+            "all": 1.2319063751154913,
+            "tiny": 1.3888888888888888,
+            "small_all": 1.2911555842479019
+          }
+        }
+      }
+    }
+  },
+  "verification": {
+    "images": 64,
+    "enumerated_subsets_per_image": 16,
+    "zero_detector_forwards_zero_training": true,
+    "no_val_no_testdev_no_threshold_search": true,
+    "cache_has_diagnostic_ignore_filter": true,
+    "source_unchanged": true,
+    "elapsed_seconds": 2.319104300113395
+  },
+  "artifacts_sha256": {
+    "plan.json": "6cfa574ad437e1e329b77b092989efb45d755b95d4ecadb2beab0a9648d69d00",
+    "source.zip": "b9de725fb18c0914aa6031de9e9f8376b910e8d3d5a0787808b2584abfd4a328",
+    "frames.json": "53c08b0062a4110544859f0876cbe5c9dcdb37c1ef68535a2782cdd1f12efbe5",
+    "metrics.json": "d65166e604c6a8955e8275b9bbe1fa5481b7bb7855b1d611f6e4e63348e89c0b",
+    "decision.json": "d3d9942b2e1f73a61fc4431b5c7fced786caa79b958f7e37d39ced43576c37eb",
+    "verification.json": "4f67dbc9d811c3aac72ffe3066f251d176526bbb43cd3084f267edf36890bae9"
+  },
+  "tests": "1 passed: preserved support cannot hide lost one-to-one capacity"
+}
