@@ -1,0 +1,128 @@
+{
+  "date": "2026-10-15",
+  "candidate": "candidate68 real-second-observation supervision feasibility",
+  "scope": "Targeted primary video-object-detection methods and official dataset provenance;not exhaustive train-only temporal distillation novelty search.",
+  "papers": [
+    {
+      "key": "lstfe",
+      "source": "https://openaccess.thecvf.com/content/CVPR2023/html/Xiao_LSTFE-NetLong_Short-Term_Feature_Enhancement_Network_for_Video_Small_Object_Detection_CVPR_2023_paper.html",
+      "metadata": {
+        "viewport": [
+          "width=device-width, initial-scale=1"
+        ],
+        "citation_title": [
+          "LSTFE-Net:Long Short-Term Feature Enhancement Network for Video Small Object Detection"
+        ],
+        "citation_author": [
+          "Xiao, Jinsheng",
+          "Wu, Yuanxu",
+          "Chen, Yunhua",
+          "Wang, Shurui",
+          "Wang, Zhongyuan",
+          "Ma, Jiayi"
+        ],
+        "citation_publication_date": [
+          "2023"
+        ],
+        "citation_conference_title": [
+          "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition"
+        ],
+        "citation_firstpage": [
+          "14613"
+        ],
+        "citation_lastpage": [
+          "14622"
+        ],
+        "citation_pdf_url": [
+          "https://openaccess.thecvf.com/content/CVPR2023/papers/Xiao_LSTFE-NetLong_Short-Term_Feature_Enhancement_Network_for_Video_Small_Object_Detection_CVPR_2023_paper.pdf"
+        ]
+      },
+      "pdf": "output/literature/papers/cvf-Xiao_LSTFE-NetLong_Short-Term_Feature_Enhancement_Network_for_Video_Small_Object_Detection_CVPR_2023_paper.pdf",
+      "pdf_source": "https://openaccess.thecvf.com/content/CVPR2023/papers/Xiao_LSTFE-NetLong_Short-Term_Feature_Enhancement_Network_for_Video_Small_Object_Detection_CVPR_2023_paper.pdf",
+      "pdf_sha256": "db3eefdff70a4738c543924c50d0556dc079bcbd535abb37f445a7520c017052",
+      "text": "output/literature/text/cvf-Xiao_LSTFE-NetLong_Short-Term_Feature_Enhancement_Network_for_Video_Small_Object_Detection_CVPR_2023_paper.txt",
+      "pages": 10,
+      "extraction": "UTF8 with backslashreplace for unpaired PDF font surrogates; use rendered pages to resolve notation.",
+      "text_sha256": "a2b1a206e9bba047b2d07005b69c71cdc0e988c8d889d547f5363775e2341551",
+      "source_html_sha256": "7c26a09eefe017ee08dec53259fe90e482b72a24757b89126825a7ab6b212d1f",
+      "read_scope": "ReadPDFpage3related-work/framework andpage4section3.2spatio-temporal feature alignment/aggregation,section3.3opening;complete renderedpage4inspected. Pages3/4rendered. Not a full-paper review or reproduction.",
+      "overlap": "Short-term aligned features,long-term selection/context and video small-object enhancement are established. Different train-only use is not by itself novelty and needs closer distillation review.",
+      "zotero": {
+        "collection": "6HT9SNK7",
+        "parent": "VCQLUZI2",
+        "attachment": "GKJ35NCV",
+        "storage_pdf": "C:\\Users\\BaiRong-NUC\\Zotero\\storage\\GKJ35NCV\\cvf-Xiao_LSTFE-NetLong_Short-Term_Feature_Enhancement_Network_for_Video_Small_Object_Detection_CVPR_2023_paper.pdf",
+        "storage_pdf_sha256": "db3eefdff70a4738c543924c50d0556dc079bcbd535abb37f445a7520c017052",
+        "readback": "MCP fullparent title/authors/year/venue/pages/URL/collection and importedPDF child confirmed."
+      }
+    },
+    {
+      "key": "fgfa",
+      "source": "https://openaccess.thecvf.com/content_iccv_2017/html/Zhu_Flow-Guided_Feature_Aggregation_ICCV_2017_paper.html",
+      "metadata": {
+        "viewport": [
+          "width=device-width, initial-scale=1"
+        ],
+        "citation_title": [
+          "Flow-Guided Feature Aggregation for Video Object Detection"
+        ],
+        "citation_author": [
+          "Zhu, Xizhou",
+          "Wang, Yujie",
+          "Dai, Jifeng",
+          "Yuan, Lu",
+          "Wei, Yichen"
+        ],
+        "citation_publication_date": [
+          "2017"
+        ],
+        "citation_conference_title": [
+          "Proceedings of the IEEE International Conference on Computer Vision"
+        ],
+        "citation_firstpage": [
+          "408"
+        ],
+        "citation_lastpage": [
+          "417"
+        ],
+        "citation_pdf_url": [
+          "http://openaccess.thecvf.com/content_ICCV_2017/papers/Zhu_Flow-Guided_Feature_Aggregation_ICCV_2017_paper.pdf"
+        ]
+      },
+      "pdf": "output/literature/papers/cvf-Zhu_Flow-Guided_Feature_Aggregation_ICCV_2017_paper.pdf",
+      "pdf_source": "https://openaccess.thecvf.com/content_ICCV_2017/papers/Zhu_Flow-Guided_Feature_Aggregation_ICCV_2017_paper.pdf",
+      "pdf_sha256": "d7a589ea0a9120a7f8e3e9eb6d4884abd707b8818e5d3e60afb32e0cedc0193d",
+      "text": "output/literature/text/cvf-Zhu_Flow-Guided_Feature_Aggregation_ICCV_2017_paper.txt",
+      "pages": 10,
+      "extraction": "UTF8 with backslashreplace for unpaired PDF font surrogates; use rendered pages to resolve notation.",
+      "text_sha256": "841325dfc714067e9eda7a3f19a0bda3e9753d820b6846f5416146fca34d2c32",
+      "source_html_sha256": "08e4c3a32b81c84b6102530127bfaf4a28759e8de39e297c6e3e0512d2043e58",
+      "read_scope": "ReadPDFpage4section3feature aggregation equations2-4,adaptive weights and3.3training/inference/temporal dropout;complete renderedpage4inspected. Pages3/4rendered. Not a full-paper review or reproduction.",
+      "overlap": "Cross-frame warping,confidence/reliability weighting and feature aggregation are established. This screen uses SIFT homography and cached query boxes/logits,not FlowNet or FGFA reproduction.",
+      "zotero": {
+        "collection": "6HT9SNK7",
+        "parent": "IH9FGMB8",
+        "attachment": "SVBYFGAD",
+        "storage_pdf": "C:\\Users\\BaiRong-NUC\\Zotero\\storage\\SVBYFGAD\\cvf-Zhu_Flow-Guided_Feature_Aggregation_ICCV_2017_paper.pdf",
+        "storage_pdf_sha256": "d7a589ea0a9120a7f8e3e9eb6d4884abd707b8818e5d3e60afb32e0cedc0193d",
+        "readback": "MCP fullparent title/authors/year/venue/pages/URL/collection and importedPDF child confirmed."
+      }
+    }
+  ],
+  "official_dataset": {
+    "source": "https://raw.githubusercontent.com/VisDrone/VisDrone-Dataset/master/README.md",
+    "capture": "output/literature/provenance/temporal-distillation-20261015/visdrone.md",
+    "sha256": "e13bb2b97a677e9afb98d9b9bf97bc83a1f23c902bb6f28c39caebc23dbd0701",
+    "read_scope": "Task1DETstatic images versus Task2VIDvideos and distinct downloads;does not establish filename-to-timestamp/track semantics."
+  },
+  "paper_search": {
+    "queries": [
+      "temporal knowledge distillation single frame object detection",
+      "video image object detection knowledge distillation"
+    ],
+    "boundary": "CrossRef returned mostly3D or unrelated metadata. No fulltext or exhaustiveness claim for those results;not used as 2D efficacy/prior-difference evidence."
+  },
+  "novelty_boundary": "No innovation found. Need real identity/provenance,transferability to a single-image model,matched generic KD/augmentation controls,repeatable deployable AP gains and closer train-only temporal prior differentiation.",
+  "result": "Frozen STOP:64candidate image pairs,16accepted geometric alignments,55proxy targets total;directionalQpositive but insufficient support and screenNLLnegative. Do not elevate partial means into training authorization.",
+  "zotero": "TwoPDFs attached and readback;project/storagePDFhashesmatch. Incremental semantic database2added0errors,not full-library count or semantic-query coverage proof."
+}

@@ -1,0 +1,124 @@
+{
+  "experiment": "candidate68_real_second_observation_supervision_feasibility",
+  "decision": {
+    "passed": false,
+    "checks": {
+      "screen": {
+        "targets": false,
+        "groups": false,
+        "source_changes": true,
+        "Q_vs_student": true,
+        "interval_vs_student": false,
+        "Q_vs_flip": true,
+        "interval_vs_flip": false,
+        "NLL": false,
+        "success": true
+      },
+      "confirmation": {
+        "targets": false,
+        "groups": false,
+        "source_changes": false,
+        "Q_vs_student": true,
+        "interval_vs_student": false,
+        "Q_vs_flip": true,
+        "interval_vs_flip": false,
+        "NLL": true,
+        "success": true
+      }
+    },
+    "decision": "STOP_THIS_DET_SECOND_OBSERVATION_PROXY_RECIPE"
+  },
+  "metrics": {
+    "screen": {
+      "targets": 39,
+      "groups_with_targets": 5,
+      "source_changed": 26,
+      "source_Q_gain_vs_student": 0.04439416478056669,
+      "source_Q_gain_vs_student_bootstrap95ci": null,
+      "source_Q_gain_vs_flip": 0.017330206588159713,
+      "source_Q_gain_vs_flip_bootstrap95ci": null,
+      "source_NLL_gain_vs_student": -0.04689606860625988,
+      "source_success_count_change": 2,
+      "Q_means": {
+        "student": 0.3583952323523552,
+        "flip_confidence": 0.3854591905447622,
+        "source_confidence": 0.40278939713292183
+      },
+      "NLL_means": {
+        "student": 0.13566663895083494,
+        "flip_confidence": 0.0900136451505208,
+        "source_confidence": 0.18256270755709486
+      }
+    },
+    "confirmation": {
+      "targets": 16,
+      "groups_with_targets": 4,
+      "source_changed": 7,
+      "source_Q_gain_vs_student": 0.029059547532795108,
+      "source_Q_gain_vs_student_bootstrap95ci": null,
+      "source_Q_gain_vs_flip": 0.027707893440072236,
+      "source_Q_gain_vs_flip_bootstrap95ci": null,
+      "source_NLL_gain_vs_student": 0.09791135028699521,
+      "source_success_count_change": 1,
+      "Q_means": {
+        "student": 0.37181856762403886,
+        "flip_confidence": 0.37317022171676173,
+        "source_confidence": 0.40087811515683397
+      },
+      "NLL_means": {
+        "student": 0.21252327933388312,
+        "flip_confidence": 0.24387740830816637,
+        "source_confidence": 0.11461192904688791
+      }
+    }
+  },
+  "output": "D:\\Python\\YOLO\\output\\analysis\\second-observation-fixed-20261015",
+  "costs": {
+    "JPEG_decodes": 128,
+    "SIFT_extractions": 128,
+    "accepted_alignments": 16,
+    "detector_forwards": 64,
+    "explicit_initialization_prediction_calls": 1,
+    "warmup_scope": "Internal backend warmup not separately instrumented.",
+    "optimizer_steps": 0,
+    "fits": 0,
+    "AP_evaluations": 0,
+    "elapsed_seconds": 23.918311799876392
+  },
+  "limits": "Previously inspected detector-training images;heuristic prefixes not verified sequence identities;GT-assisted correspondence/query proxy;no learned transfer,AP,deployed gains or novelty.",
+  "artifacts_sha256": {
+    "decision.json": "ad0705b2120e129e8adfa2beb5293819baddabc3fbc83da33aa23bb5d157aed3",
+    "detector.json": "19e4da51949071cd4327ad37f828b1e3af5768833bb77ee78d26405df8069ce8",
+    "frames.json": "edd15620cd7bbc12e41c091e706dae4965f936956bd4abee0126dda3426f1ac7",
+    "metrics.json": "456769246014f7f9fe1ea0d77ef166439f2b5f9547ea12501bf39da6924965f4",
+    "plan.json": "d3bc3cf61d4febcbd8cd428e228c022fb9d67d71adb1c185bf44e5940349be5c",
+    "source.zip": "02d12ef3699cece4c58803252467a21188a75d84f51627415fbc7efd29de0c77"
+  },
+  "verification": {
+    "passed": true,
+    "pairs": 64,
+    "accepted_alignments": 16,
+    "targets": 55,
+    "decision": "STOP_THIS_DET_SECOND_OBSERVATION_PROXY_RECIPE",
+    "detector_forwards": 0,
+    "verified": "Input/source/archive/cache hashes;independent homogeneous reprojection;shared correspondence/query reconstruction;cached metrics/bootstrap/gates;unchanged detector state.",
+    "limits": "No independent SIFT/RANSAC or detector rerun;associations are GT/spatial proxies,not verified object tracks.",
+    "verifier_revision": {
+      "archived_sha256": "20ad4e120816a0c1e70b7b517d06d5e95a57bf19636c3caa5a0890e5727747f0",
+      "current_sha256": "7e85c6a5151ed05a507478496c427fbc6881bb8c950fa4bfcc63812ff3959b4c",
+      "reason": "Initial verifier unmirrored native float32 before casting;main used float64 before unmirroring. Correct verifier arithmetic to match main exactly;no tolerance relaxation or metric/data/gate changes. Original verifier remains in source.zip and initial-failure log."
+    }
+  },
+  "additional_audit_artifacts_sha256": {
+    "verification.json": "0b80e821eab87dcb887d32036b186321ef9e8d41c91e21882771c06a288dc01b",
+    "initial_verification_failure_log": "19a62f19ff0cc1949d687623e5874e60502f7a9b529dcddd11f14b4922c3009c"
+  },
+  "tests": "4 targeted tests passed before formal run:projective/mirror geometry,ambiguity/wrong-class rejection,GT-independent confidence selection,and empty-population behavior.",
+  "interpretation": "Positive average fixed-query Q differences in two tiny proxy populations are retained as descriptive evidence. Only39/16targets from5/4prefixgroups;both insufficient. Screen conditionalNLL worsens. Frozen STOP for this DET filename-pair/confidence recipe;no more images,threshold rescue,student training or true-temporal/innovation claim.",
+  "uncertainty_boundary": "Bootstrap CI unavailable because registered zero-mass condition occurred with sparse supported groups. This is an insufficient-support outcome,not statistical proof of no benefit. Independent target/group gates already fail.",
+  "cost_notes": {
+    "homography_estimation_attempts": 32,
+    "learned_model_fits": 0,
+    "original_fits_field_scope": "fits=0 refers only to learned-model fits;SIFT/RANSAC geometric estimation is counted separately here."
+  }
+}

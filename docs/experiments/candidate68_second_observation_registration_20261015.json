@@ -1,0 +1,33 @@
+{
+  "experiment": "candidate68_real_second_observation_supervision_feasibility",
+  "date": "2026-10-15",
+  "question": "At comparable object pixel scales, can a geometrically matched second real image provide safer tiny-object supervision than the same-image horizontal-flip confidence control?",
+  "difference": "Candidate52 used crops of identical pixels; this route tests independent image content and correspondence feasibility. No fusion, calibration, learned ranking, neighbor suppression, detector updates or deployed improvement claims.",
+  "provenance_boundary": "Official VisDrone README distinguishes DET static images from VID videos. Filename prefixes and numeric fields are sampling heuristics, NOT verified video IDs, timestamps or object tracks. This is a repeated-scene candidate-pair screen, not an adjacent-frame or temporal-causality experiment.",
+  "selection": "Use train images only, including previously inspected images. Exclude prefixes starting999 because their zero/repeated numeric fields do not support this bounded source-pair heuristic. Group by first7characters, keep groups with>=2 distinct second-field integers. Sort groups by SHA256('candidate68-group-v1:'+prefix), use first64. Current image is minimum SHA256('candidate68-current-v1:'+stem). Source is minimum absolute second-field difference among nonidentical second fields; tie SHA256('candidate68-source-v1:'+stem). First32groups screen,next32confirmation. No image/pair replacement after geometric or detector outcome.",
+  "alignment": "Decode both images; grayscale resize preserving aspect, maxside960 (up/down). SIFT nfeatures2048; mutual BF L2 k2 ratio<0.75 in BOTH directions. At least40mutual matches. cv2 RNG68 before findHomography(source_to_current,RANSAC,3px at resized current960,maxIters2000,confidence.995). Require>=40inliers,inlier fraction>=0.4,median inlier reprojection error<=1.5resizedpixels,finiteH,convex transformed sourcecorners,intersection_area/min(source_warp_area,current_area)>=0.5. Geometry uses image features, not labels/predictions.",
+  "correspondence": "Project source GT box corners byH and use enclosing xyxy. Same-class mutual nearest GT by IoU; IoU>=0.6; best-minus-second same-class IoU>=0.15 in both directions. Current/source both tiny at640reference. Ratio sqrt(source_GT_area)*960/max(source_size) divided by sqrt(current_GT_area)*960/max(current_size) in[0.8,1.25]. These are proxy correspondences, not verified identity. Among qualifying current GTs take first12 by SHA256('candidate68-object-v1:'+current_stem+':'+GT_index). No effect-based target filtering.",
+  "predictor": "Existing verified frozen960 FP16 full-image detector. For accepted geometric pairs run current,source,horizontal-flipped-current,and repeated pristine-current. Full native current boxes/logits must replay exactly; detector parameter/buffer hashes unchanged. No post-NMS output used. Flipped GT/decoded boxes are mirrored exactly. Save full native boxes/logits for all3images,allGT metadata association,alignment match points/inliers,H,and exact input hashes.",
+  "query": "Each image/GT uses its own predetermined P3 3x3 pool around nearest GT-center anchor. Select original row maximizing sigmoid(GT_class_logit)*IoU(native_box,GT),first-index ties. This supervised query-selection proxy is identical across views and NOT a deployable association or best-global-AP upper bound. Source native box is mapped into current coordinates byH.",
+  "arms": {
+    "student": "Current fixed-query raw box/logits.",
+    "flip_confidence": "Use flip teacher box/logits only if its maximum10class sigmoid confidence exceeds current query maximum;otherwise retain current. Unmirror teacher coordinates.",
+    "source_confidence": "Use second-observation teacher mapped box/logits only if its maximum10class sigmoid confidence exceeds current query maximum;otherwise retain current."
+  },
+  "metrics": "Q=IoU(predicted_current_coordinates,current_GT)*sigmoid(GT_class_logit)*I(argmax10class==GT_class). NLL=logsumexp10class(logits)-GT_class_logit is conditional classification only,not background calibration. Primary:source_confidence minus student/flip_confidence Q;secondary conditionalNLL,correct-class/conf>=.25/IoU>=.5 fixed-query success and changed rows. No one-to-one detection recall,AP,FPPI or officialVisDrone claim.",
+  "uncertainty": "Separate32group halves;paired cluster bootstrap2000draws default_rng68 across all32selected prefixgroups,including alignment/correspondence failures as zero mass. Pool per-target numerators/denominators. If any zero bootstrap mass,interval unavailable and gate fails. Prefix separation is not proof of distinct original video/source provenance.",
+  "policy_per_half": {
+    "matched_tiny_targets_min": 64,
+    "groups_with_targets_min": 8,
+    "source_confidence_changed_targets_min": 16,
+    "source_Q_gain_vs_student_min": 0.002,
+    "source_Q_gain_vs_flip_min": 0.001,
+    "both_Q_gain_bootstrap_lower_exclusive": 0.0,
+    "source_conditional_NLL_gain_vs_student_min": 0.002,
+    "source_fixed_query_success_count_change_min": 0
+  },
+  "pass": "SECOND_OBSERVATION_PROXY_SUPPORTS_SEPARATELY_REGISTERED_SMALL_TRANSFER_PILOT_WITH_IDENTITY_AUDIT. Not innovation,full-training permission,actual learned transfer or deployable strong-control superiority.",
+  "fail": "STOP_THIS_DET_SECOND_OBSERVATION_PROXY_RECIPE. Do not enlarge pair pool,relax alignment,change correspondence/pixel-scale gates,retune confidence selection or pick a positive subgroup to rescue.",
+  "budget": "128JPEG decodes;128SIFT extractions;64homography fits maximum;<=256frozen detector forwards plus1explicit initialization prediction;zero detector training,optimizer steps,learned fits orAP. No VID/raw-video download.",
+  "prior_boundary": "FGFA(ICCV2017) already aligns and aggregates cross-frame features with adaptive weights. LSTFE-Net(CVPR2023) already aligns short-term features and selects/aggregates long-term information for video small objects. Training-only transfer and provenance-aware instance supervision need closer distillation prior review and actual matched training controls before claiming a method difference."
+}
