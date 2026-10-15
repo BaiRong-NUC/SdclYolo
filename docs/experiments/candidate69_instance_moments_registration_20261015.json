@@ -1,0 +1,32 @@
+{
+  "experiment": "candidate69_tiny_instance_equal_moment_intervention",
+  "date": "2026-10-15",
+  "status": "Registered before any candidate69 activation extraction, moment fitting, folded weights or outcome measurement.",
+  "question": "Does equal mass per annotated tiny instance provide more useful fixed normalization statistics than ordinary spatial or tiny-area-weighted moments?",
+  "novelty_boundary": "AdaBN already recalibrates BN statistics; CateNorm already uses category masks for spatial modulation; DARC already addresses foreground/background ratio sensitivity. This is a necessary-condition screen for instance-equal statistics, NOT a novel normalization method or a claim that these papers were reproduced.",
+  "prior_stops": "Preserve67 neighbor texture and68 static DET second-observation STOPs and all previous STOPs. No fusion, ranking loss, coordinate correction or relabeling.",
+  "data": "Exactly candidate62/66 train-only fit64, screen32, confirmation17 images, five original windows each. Freeze their existing JPEG/metadata/native-output/strong-reference hashes. Repeatedly inspected detector-training images. First7 filename prefixes do not prove independent video identities. No val/test outcomes or data replacement.",
+  "location": "Only model.model[-1].cv3[0][1][1] (P3 classification final Conv-BN-SiLU) is modified. Read original unfused BN gamma,beta,running_var,eps from the frozen960 checkpoint; collect its fused conv output BEFORE in-place SiLU. All other model weights/buffers and decoded coordinates must remain bitwise unchanged.",
+  "masks": "120x120 stride8 cells cover [8x,8(x+1)]x[8y,8(y+1)]. Global weights are fractional cell overlap with real resized image rectangle, zero on any cell intersecting any ignore rectangle. Tiny means original GT area*(640/max(original_size))^2<256. Retain only GTs with at least90percent visible area in the window. Each tiny mask is fractional cell overlap with the clipped/transformed box times the global mask; skip zero mass, do not replace. Tiny pixel arm sums individual masks (overlaps counted repeatedly). Tiny instance arm divides each individual mask by its own mass then sums. Shuffle arm permutes the TOTAL instance weight vector over positive-global-weight cells by SHA256(candidate69-shuffle-v1:stem:view), preserving all weights and mass; it may move weights between partially covered boundary cells.",
+  "moments": "For each fit view save full128x120x120 FP16 preactivation and four weight maps, per-arm float64 weighted sums/squared sums/mass. Aggregate across all320 fit views, not holdout. Population variance=max(Ez2-Ez^2,0). Global pools spatial mass; tiny_pixel pools object-area mass; instance pools equal object mass; shuffle preserves instance mass. Masks use GT only in fit; deploy predictions use no GT.",
+  "update": "One fixed rho=.03 moment update, no search or optimizer. In preBN coordinates this is m_new=(1-rho)m_old+rho*m_fit, v_new=(1-rho)v_old+rho*v_fit (no between-mean mixture term, matching a BN running-stat update). From fused preactivation z and original gamma,beta,var, compute a=[(1-rho)+rho*(var_z/gamma^2+eps/(var_old+eps))]^(-1/2), b=(1-a)*beta-a*rho*(mean_z-beta). Channels abs(gamma)<1e-6 retain a=1,b=0. Fold conv W'=aW,bias'=a*bias+b in FP64 then castFP16. Evaluate these actual folded weights with new detector forwards, not just reweighted cached scores. Finite coefficients required; no clipping/tuning. FP16 folding has rounding; no claim of exact real-arithmetic equivalence.",
+  "arms": ["strong", "global", "tiny_pixel", "shuffle", "instance"],
+  "replay": "Every pristine full native decoded/raw class/raw boxes/local NMS must replay62 exactly for all565 views (320fit+245holdout). Every folded arm must preserve decoded regression coordinates bitwise. Before and after each set restore original conv weight/bias; restored model full state hash must equal initial. Save all actual folded tensors and holdout decoded/raw tensors/local and final predictions. Engineering failure is not scientific failure; stop and preserve it without relaxed tolerances.",
+  "postprocess": "Unchanged FP16 conf.001 IoU.7 max500 perview, five-view mapping and ordinary frozen calibration with ignores=[] max500. Pristine final strong output must replay existing62 reference exactly. Evaluate shared individual-ignoreIoF>.5 diagnostic filter.",
+  "metrics": "Shared COCO-style reference640 AP50:95 all/tiny/small_all and whole-confidence-tie recall at FPPI10. These are NOT official VisDrone AP. Primary arm instance, compare all controls. Two fixed prefix-separated halves must pass. No seed/epoch/threshold/subgroup selection. This pilot has no AP confidence interval and is insufficient for a publication or full training decision.",
+  "policy_per_half": {
+    "tiny_GT_min": 100,
+    "tiny_AP_vs_strong_min_pp": 0.03,
+    "tiny_AP_vs_global_min_pp": 0.01,
+    "tiny_AP_vs_tiny_pixel_min_pp": 0.01,
+    "tiny_AP_vs_shuffle_min_pp": 0.01,
+    "small_all_AP_vs_strong_min_pp": 0.0,
+    "all_AP_vs_strong_min_pp": -0.05,
+    "small_all_recall_FPPI10_vs_strong_min_pp": -0.05
+  },
+  "pass": "INSTANCE_MOMENT_PILOT_REQUIRES_AUDIT_AND_NEW_DATA_REPLICATION_BEFORE_TRAINING. Not innovation or full-training permission.",
+  "fail": "STOP_THIS_SINGLE_P3_INSTANCE_MOMENT_UPDATE_RECIPE. Do not change rho, layer, masks, data or gates to rescue outcomes. Does not reject all normalization research.",
+  "budget": "113 JPEG decodes;320fit+1225holdout=1545 detector forwards plus1explicit initialization prediction. Four closed-form moment fits, zero optimizer/training steps. Fit preactivation cache about1.2GB plus masks and holdout raw outputs. No new weights download or full training.",
+  "literature": "docs/literature/instance_moments_prior_audit_20261015.json",
+  "engineering_addendum_before_outcomes": "First attempt stopped after1pristine fit forward and exact native replay, before moment accumulation or any heldout evaluation. A prehook on shared SiLU captured P5 instead of P3. Preserve original plan/source.zip/log in instance-moments-fixed-20261015-engineering1; move capture to the unique target conv forward output and clone before in-place SiLU. Add shape assertion and shared-activation regression test. Correct costs closed_form_moment_fits to actual completed fits (initial failure said4but actual0). No scientific protocol, masks, rho, layer, data or gates changed."
+}

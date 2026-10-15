@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-15",
+  "scope": "Targeted primary-prior audit, not exhaustive novelty clearance",
+  "papers": [
+    {
+      "title": "Revisiting Batch Normalization For Practical Domain Adaptation",
+      "authors": [
+        "Yanghao Li",
+        "Naiyan Wang",
+        "Jianping Shi",
+        "Jiaying Liu",
+        "Xiaodi Hou"
+      ],
+      "arxiv": "1603.04779v4",
+      "source": "https://arxiv.org/abs/1603.04779v4",
+      "pdf": "output/literature/papers/1603.04779v4.pdf",
+      "sha256": "0ead9f18cc46583d38c297d4f9a2fa6ebeb415763d02188dd31660df1f08b339",
+      "provider": "Paper Search MCP exact-version download",
+      "reviewed": "Section3.2,page4 Algorithm1; gamma and beta retained while target activation mean/variance recalibrate BN. Rendered page4.",
+      "overlap": "Ordinary BN recalibration is prior art and a required control.",
+      "zotero_parent": "F9EX2ZF5",
+      "zotero_attachment": "4PSLYBA6"
+    },
+    {
+      "title": "CateNorm: Categorical Normalization for Robust Medical Image Segmentation",
+      "authors": [
+        "Junfei Xiao",
+        "Lequan Yu",
+        "Zongwei Zhou",
+        "Yutong Bai",
+        "Lei Xing",
+        "Alan Yuille",
+        "Yuyin Zhou"
+      ],
+      "arxiv": "2103.15858v2",
+      "source": "https://arxiv.org/abs/2103.15858v2",
+      "pdf": "output/literature/papers/2103.15858v2.pdf",
+      "sha256": "cad12b39a9d05776eb3170446355e4a4029c000653a1ac704a8ef872a2c2615b",
+      "provider": "Paper Search MCP exact-version download",
+      "reviewed": "Section3,pages3-5,Equations1-4; learned spatially varying affine maps conditioned on predicted category masks. Rendered page3 and page4.",
+      "overlap": "Foreground-informed normalization and class masks are established; category control here is NOT a reproduction.",
+      "zotero_parent": "9V5KWPQA",
+      "zotero_attachment": "5CYA9JUZ"
+    },
+    {
+      "title": "DARC: Distribution-Aware Re-Coloring Model for Generalizable Nucleus Segmentation",
+      "authors": [
+        "Shengcong Chen",
+        "Changxing Ding",
+        "Dacheng Tao",
+        "Hao Chen"
+      ],
+      "arxiv": "2309.00188v1",
+      "source": "https://arxiv.org/abs/2309.00188v1",
+      "pdf": "output/literature/papers/2309.00188v1.pdf",
+      "sha256": "4ae8117529b186467f672353cb4b82b23b989b9828d700ff799ddac9053b1ee0",
+      "provider": "Paper Search MCP exact-version download",
+      "reviewed": "Section2.3 pages4-5; foreground/background ratio alters IN statistics, predicts ratio for normalization. Rendered page3 and page4.",
+      "overlap": "Foreground/background ratio sensitivity is established, not an original motivation. No claim this SOD pilot reproduces DARC.",
+      "zotero_parent": "W8U38B76",
+      "zotero_attachment": "Z5SPJPD3"
+    }
+  ],
+  "candidate_difference": "Pool fractional tiny boxes with one unit of statistical mass per GT instance, rather than per spatial pixel or class; apply one fixed training-only pooled moment update to a single P3 class Conv-BN layer. This modest statistical difference is unproven and not sufficient novelty by itself.",
+  "prohibited_claim": "Do not present foreground BN, AdaBN, a 0.03 momentum update or folding as innovation. A positive screen requires new-data replication, actual training comparison and a closer object-balanced normalization literature audit."
+}

@@ -1,0 +1,122 @@
+{
+  "experiment": "candidate69_tiny_instance_equal_moment_intervention",
+  "decision": "STOP_THIS_SINGLE_P3_INSTANCE_MOMENT_UPDATE_RECIPE. Do not change rho, layer, masks, data or gates to rescue outcomes. Does not reject all normalization research.",
+  "checks": {
+    "passed": false,
+    "checks": {
+      "screen": {
+        "tiny_GT": true,
+        "tiny_AP_vs_strong": false,
+        "tiny_AP_vs_global": false,
+        "tiny_AP_vs_tiny_pixel": false,
+        "tiny_AP_vs_shuffle": false,
+        "small_all_AP_vs_strong": false,
+        "all_AP_vs_strong": false,
+        "fixed_FP": false
+      },
+      "confirmation": {
+        "tiny_GT": true,
+        "tiny_AP_vs_strong": false,
+        "tiny_AP_vs_global": false,
+        "tiny_AP_vs_tiny_pixel": false,
+        "tiny_AP_vs_shuffle": true,
+        "small_all_AP_vs_strong": true,
+        "all_AP_vs_strong": true,
+        "fixed_FP": true
+      }
+    },
+    "differences": {
+      "screen": {
+        "tiny_AP_vs_strong": -0.31519420774795415,
+        "tiny_AP_vs_global": -0.3065909636513653,
+        "tiny_AP_vs_tiny_pixel": -0.025532027959324077,
+        "tiny_AP_vs_shuffle": -0.2758397512341193,
+        "small_all_AP_vs_strong": -0.3170507111849241,
+        "all_AP_vs_strong": -0.2128307698778975,
+        "recall": -0.5489021956087803
+      },
+      "confirmation": {
+        "tiny_AP_vs_strong": -0.0990088323133187,
+        "tiny_AP_vs_global": -0.07048719065588238,
+        "tiny_AP_vs_tiny_pixel": -0.059428905024500045,
+        "tiny_AP_vs_shuffle": 0.031611723555585725,
+        "small_all_AP_vs_strong": 0.04630269472630233,
+        "all_AP_vs_strong": 0.02079388217282041,
+        "recall": 0.0704721634954164
+      }
+    }
+  },
+  "costs": {
+    "JPEG_decodes": 113,
+    "detector_forwards": 1545,
+    "explicit_initialization_predictions": 1,
+    "closed_form_moment_fits": 4,
+    "optimizer_steps": 0,
+    "full_training_steps": 0,
+    "main_elapsed_seconds": 95.29074610001408
+  },
+  "output": "D:\\Python\\YOLO\\output\\analysis\\instance-moments-fixed-20261015",
+  "limits": "Shared COCO-style reference640 AP50:95 all/tiny/small_all and whole-confidence-tie recall at FPPI10. These are NOT official VisDrone AP. Primary arm instance, compare all controls. Two fixed prefix-separated halves must pass. No seed/epoch/threshold/subgroup selection. This pilot has no AP confidence interval and is insufficient for a publication or full training decision.",
+  "verification": {
+    "passed": true,
+    "independently_reconstructed_fit_views": 320,
+    "cached_evaluation_views": 245,
+    "cached_arms_each": 5,
+    "actual_audit_forwards": 5,
+    "explicit_audit_initialization_predictions": 1,
+    "additional_fits": 0,
+    "boundary": "Independent masks, float64 moments and direct-BN folding; shared NMS/calibrator/COCO evaluator replay. Actual detector replay on ONE held-out image, not every modified forward. No official AP or training efficacy claim."
+  },
+  "artifacts_sha256": {
+    "bn.npz": "865114c2a0c186b08b52f736e6dfd947e8a6d7475b6f45aa12b92be6adabfe24",
+    "decision.json": "a6e63608511e8ea5ae4d93a3a5164ebeb774c73d81d23460709fa7db45ad3215",
+    "eval_manifest.json": "5ed8e4bfda6ca1254d67a2bb458572bc709f67f033e65677b75d5b2113adc5a9",
+    "fit_manifest.json": "8b68f394aba18553225d944c036cc913faebf7870dcb5d27f98d21ccd59fff39",
+    "folded-global.npz": "4d2f5fe394be8eb5826a6687245400aa91deef01f72ee4130efeee20a243bf24",
+    "folded-instance.npz": "1a3e580309a3eb28c66e8e038de865a6f33b6ce98a5ee8061113bd9a109f13e9",
+    "folded-shuffle.npz": "9ffb9c94d13dc1b8ef278e7bfc1127df95c50924650fcc2dbbbd7346cd0bb573",
+    "folded-strong.npz": "84103253135c1e388294d0806de9a0f78317ea325222ba3bb03edc31d664d311",
+    "folded-tiny_pixel.npz": "b2d9c73bae62b1fe0d112b2024462cdb650a33d7e3c700f44d979c484476c671",
+    "metrics.json": "46545a3707d52217a02fa8bb45e89c60811483e99b0c60f215829f09c4d44e18",
+    "moments.npz": "f843f2b8a2f825d3cebb62e197f8bc08b04ca3c61893dad1675e6fe9ab6509d7",
+    "plan.json": "0e3859c2706fb547f7610ab0dfdd70718b215639d760d001a6e1fc9cf7c83b36",
+    "predictions.json": "c49b671c1160de7d33264c9217286d976355d4ae6b46e68c17029031d2eac437",
+    "result.json": "256f0dca84cac8c524c2e9c125dd0fb20e8e0fe4cb542c6cc01fa155bdc4238f",
+    "source.zip": "169a98a71db82a9fec75d0de92558557140abebc30101234c9c80f72a79efbda",
+    "state.json": "b32523680deadd274a1d94302e1550424ffecbd0179b92d639204c2b020548af",
+    "verification.json": "e55c029c20fa27edd2825f2190d5445eefa162e18fab78ca22ef5f70d71c7c48"
+  },
+  "engineering_history": {
+    "failure_directory": "output\\analysis\\instance-moments-fixed-20261015-engineering1",
+    "failure_log": "output/analysis/candidate69-main-engineering1-20261015.log",
+    "artifacts_sha256": {
+      "bn.npz": "865114c2a0c186b08b52f736e6dfd947e8a6d7475b6f45aa12b92be6adabfe24",
+      "engineering_failure.json": "0fbc9ea7a09347f1356feb1ba26a500079a8e36b0bc8d410333fbf79b768ae64",
+      "plan.json": "260540c5b274c0ec3bd37b29835fc1b045d8206028a43c90faa591bd19045d48",
+      "source.zip": "d9923b6ac7ddc91c9298e6ab9f0069f5465a40504e122e1c0786246cd294a494"
+    },
+    "actual_first_attempt_costs": {
+      "JPEG_decodes": 1,
+      "detector_forwards": 1,
+      "explicit_initialization_predictions": 1,
+      "closed_form_moment_fits": 0,
+      "optimizer_steps": 0
+    },
+    "correction": "Original first-attempt failure costs said4closed_form_moment_fits although failure preceded fitting. Retained original; actual0. Shared activation capture fixed before any fit/heldout outcomes; no scientific recipe/gate changes."
+  },
+  "cost_notes": "Main95.29s excludes independent verification, tests, first failed attempt, paper work and backend internal warmups. Audit added5actual detector forwards and1explicit initialization prediction, zero optimizer steps. Audit reconstructs4moment solutions rather than fitting new experimental arms. No end-to-end latency claim.",
+  "literature_readback": {
+    "file": "output/literature/provenance/instance-moments-20261015/zotero-readback.json",
+    "sha256": "9ea976c36f55dbb4d915e9553498477184c512cd59c0ee38964c0204be1fabfc",
+    "three_parent_child_links_and_attachment_hashes_verified": true,
+    "semantic_update_processed": 0,
+    "semantic_index_coverage_unverified": true
+  },
+  "test_validation": {
+    "command": "python -m unittest discover -s tests -p test_instance_moments.py",
+    "tests": 5,
+    "passed": true,
+    "before_formal_run": true
+  },
+  "research_decision": "Stop this single P3 fixed-rho instance-moment recipe; no full training. Negative tiny AP in both halves and below global and tiny-pixel controls. Does not reject all normalization/training methods or small-object detection. Innovation-search goal remains active and unachieved."
+}
