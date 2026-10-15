@@ -1,0 +1,132 @@
+{
+  "date": "2026-10-15",
+  "candidate": "candidate67 nonoverlapping neighbor feature interference",
+  "scope": "Targeted two-paper primary-method review plus existing D-RISE evidence; not exhaustive novelty search, efficacy replication, or a paper-ready innovation claim.",
+  "papers": [
+    {
+      "key": "repulsion",
+      "source": "https://openaccess.thecvf.com/content_cvpr_2018/html/Wang_Repulsion_Loss_Detecting_CVPR_2018_paper.html",
+      "pdf_source": "https://openaccess.thecvf.com/content_cvpr_2018/papers/Wang_Repulsion_Loss_Detecting_CVPR_2018_paper.pdf",
+      "metadata": {
+        "viewport": [
+          "width=device-width, initial-scale=1"
+        ],
+        "citation_title": [
+          "Repulsion Loss: Detecting Pedestrians in a Crowd"
+        ],
+        "citation_author": [
+          "Wang, Xinlong",
+          "Xiao, Tete",
+          "Jiang, Yuning",
+          "Shao, Shuai",
+          "Sun, Jian",
+          "Shen, Chunhua"
+        ],
+        "citation_publication_date": [
+          "2018"
+        ],
+        "citation_conference_title": [
+          "Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition"
+        ],
+        "citation_firstpage": [
+          "7774"
+        ],
+        "citation_lastpage": [
+          "7783"
+        ],
+        "citation_pdf_url": [
+          "http://openaccess.thecvf.com/content_cvpr_2018/papers/Wang_Repulsion_Loss_Detecting_CVPR_2018_paper.pdf"
+        ]
+      },
+      "pages": 10,
+      "pdf": "output/literature/papers/cvf-Wang_Repulsion_Loss_Detecting_CVPR_2018_paper.pdf",
+      "pdf_sha256": "b2433ec751021c462be4e85a6cfa0df1ad1e9e054a1ed868dc3c146b49a75d82",
+      "text": "output/literature/text/cvf-Wang_Repulsion_Loss_Detecting_CVPR_2018_paper.txt",
+      "review": "Read abstract/introduction,sections3.1-3.2and section4 opening/equation1; rendered and inspected completePDFpages3and4. Loss combines target attraction with RepGT and RepBox repulsion. Paper studies crowd occlusion, shifted/union boxes and NMS sensitivity, not this bounded nonoverlapping YOLO intervention.",
+      "overlap": "Neighbor-induced localization confusion and surrounding-instance repulsion are established; cannot call crowd interference itself novel.",
+      "zotero": {
+        "parent": "9R8X9APZ",
+        "attachment": "L5A7698U",
+        "collection": "6HT9SNK7",
+        "readback": "Full parent metadata/authors/date/URL/collection and child application/pdf imported_file confirmed via MCP.",
+        "storage_pdf": "C:\\Users\\BaiRong-NUC\\Zotero\\storage\\L5A7698U\\cvf-Wang_Repulsion_Loss_Detecting_CVPR_2018_paper.pdf",
+        "storage_pdf_sha256": "b2433ec751021c462be4e85a6cfa0df1ad1e9e054a1ed868dc3c146b49a75d82"
+      },
+      "text_sha256": "d35316193bad842fd1d43572a8c66230b22bb0eb2e679f081bfa61885890f713",
+      "source_html": "output/literature/provenance/neighbor-interference-20261015/repulsion.html",
+      "source_html_sha256": "c7a254a7eabaa4ae36cf74ef71add6836b9aeb9a0ec3a6604432d9e353b7fb98"
+    },
+    {
+      "key": "orcnn",
+      "source": "https://openaccess.thecvf.com/content_ECCV_2018/html/Shifeng_Zhang_Occlusion-aware_R-CNN_Detecting_ECCV_2018_paper.html",
+      "pdf_source": "https://openaccess.thecvf.com/content_ECCV_2018/papers/Shifeng_Zhang_Occlusion-aware_R-CNN_Detecting_ECCV_2018_paper.pdf",
+      "metadata": {
+        "viewport": [
+          "width=device-width, initial-scale=1"
+        ],
+        "citation_title": [
+          "Occlusion-aware R-CNN: Detecting Pedestrians in a Crowd"
+        ],
+        "citation_author": [
+          "Zhang, Shifeng",
+          "Wen, Longyin",
+          "Bian, Xiao",
+          "Lei, Zhen",
+          "Li, Stan Z."
+        ],
+        "citation_publication_date": [
+          "2018"
+        ],
+        "citation_conference_title": [
+          "Proceedings of the European Conference on Computer Vision (ECCV)"
+        ],
+        "citation_firstpage": [
+          "637"
+        ],
+        "citation_lastpage": [
+          "653"
+        ],
+        "citation_pdf_url": [
+          "http://openaccess.thecvf.com/content_ECCV_2018/papers/Shifeng_Zhang_Occlusion-aware_R-CNN_Detecting_ECCV_2018_paper.pdf"
+        ]
+      },
+      "pages": 17,
+      "pdf": "output/literature/papers/cvf-Shifeng_Zhang_Occlusion-aware_R-CNN_Detecting_ECCV_2018_paper.pdf",
+      "pdf_sha256": "3ce362a432949b6c3dc2c6c030892493ad71458980cf88fd8d19eae549cde172",
+      "text": "output/literature/text/cvf-Shifeng_Zhang_Occlusion-aware_R-CNN_Detecting_ECCV_2018_paper.txt",
+      "review": "Read abstract/introduction,section3.1aggregation loss equations3-5andsection3.2PORoI/visibilityequation6; rendered and inspected completePDFpages5and6. Fivepart body features weighted by predictedvisibility; AggLoss compacts same-target proposals.",
+      "overlap": "Visibility-aware feature pooling and compact crowd localization are prior art; this diagnostic is not a faithful OR-CNN reproduction or a new pooling module.",
+      "zotero": {
+        "parent": "VJNVA45E",
+        "attachment": "J8PPNJNL",
+        "collection": "6HT9SNK7",
+        "readback": "Full parent metadata/authors/date/URL/collection and child application/pdf imported_file confirmed via MCP.",
+        "storage_pdf": "C:\\Users\\BaiRong-NUC\\Zotero\\storage\\J8PPNJNL\\cvf-Shifeng_Zhang_Occlusion-aware_R-CNN_Detecting_ECCV_2018_paper.pdf",
+        "storage_pdf_sha256": "3ce362a432949b6c3dc2c6c030892493ad71458980cf88fd8d19eae549cde172"
+      },
+      "text_sha256": "dc7d6e7b9bb8242188147ceddeea853ac2d8272d7ddf9dc99eda4951c6ccbf6c",
+      "source_html": "output/literature/provenance/neighbor-interference-20261015/orcnn.html",
+      "source_html_sha256": "5473c54ab475a5d9d7da0a586582c2f29ffdc0a1876bbdd907be6e43ee42a969"
+    }
+  ],
+  "reused_attribution_prior": {
+    "audit": "docs/literature/texture_deletion_prior_audit_20261015.json",
+    "sha256": "032790e6924bbea713a43080e13d66b599090cce2f3aefa00d6bad5d1569f078",
+    "paper": "Black-box Explanation of Object Detectors via Saliency Maps,2006.03204v2",
+    "boundary": "Masking and context-based detection explanation already established; no new full-paper read claimed this turn."
+  },
+  "hypothesis": "Protect all target pixels,disrupt a nonoverlapping nearby tiny neighbor,compare an equal-size/equal-distance object-free background disruption and two fills; fix original pre-NMS query and measure quality plus feature changes.",
+  "result": "Negative average quality effects under both fills on both halves. Feature sensitivity and isolated positive cases do not establish harmful interference or a useful training objective. Fixed STOP; no training expansion.",
+  "search_limits": [
+    "Paper Search Semantic Scholar query returned HTTP429;no zero-hit or exhaustive-coverage interpretation.",
+    "Primary PDFs and author metadata obtained directly from CVF conference pages.",
+    "Initially guessed CrowdDet URL returned404 and was not used as paper evidence.",
+    "This review does not establish priority for any future counterfactual/neighbor-aware training recipe."
+  ],
+  "zotero_operations": {
+    "initial_write": "Failed connection refused before desktop local API was running; no success claimed.",
+    "recovery": "Started existing configured Zotero binary headlessly with existing profile,MOZ_HEADLESS=1,hidden window;local API returned200.",
+    "archive": "Two CSL metadata imports and two exact legal CVF PDFs;parent/child readback and project/storage SHA256 equality verified.",
+    "semantic_index": "Incremental update2added,0errors;not a full-library count or semantic-query coverage proof."
+  }
+}

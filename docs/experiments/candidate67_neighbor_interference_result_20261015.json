@@ -1,0 +1,234 @@
+{
+  "experiment": "candidate67_nonoverlapping_neighbor_feature_interference",
+  "decision": {
+    "passed": false,
+    "checks": {
+      "screen": {
+        "pairs": true,
+        "sequences": true,
+        "self_sensitivity": true,
+        "mean_vs_base": false,
+        "mean_vs_sham": false,
+        "mean_logit": false,
+        "mean_base_interval": false,
+        "mean_sham_interval": false,
+        "blur_vs_base": false,
+        "blur_vs_sham": false,
+        "blur_logit": false,
+        "blur_base_interval": false,
+        "blur_sham_interval": false,
+        "repeat_pairs": true,
+        "repeat_sequences": true
+      },
+      "confirmation": {
+        "pairs": true,
+        "sequences": true,
+        "self_sensitivity": true,
+        "mean_vs_base": false,
+        "mean_vs_sham": false,
+        "mean_logit": false,
+        "mean_base_interval": false,
+        "mean_sham_interval": false,
+        "blur_vs_base": false,
+        "blur_vs_sham": false,
+        "blur_logit": false,
+        "blur_base_interval": false,
+        "blur_sham_interval": false,
+        "repeat_pairs": true,
+        "repeat_sequences": true
+      }
+    },
+    "decision": "STOP_THIS_NONOVERLAPPING_NEIGHBOR_TEXTURE_INTERFERENCE_HYPOTHESIS_ON_FIXED_SCREEN"
+  },
+  "metrics": {
+    "screen": {
+      "pairs": 177,
+      "sequences": 48,
+      "fills": {
+        "mean": {
+          "Q_gain_vs_base": -0.007559125999507664,
+          "Q_gain_vs_sham": -0.006557258634714511,
+          "logit_gain_vs_sham": -0.051509533898305086,
+          "iou_gain_vs_sham": -0.0018608451508362643,
+          "fixed_query_success_count_change": -3,
+          "neighbor_neck_relative_L2": 0.08003222974086295,
+          "sham_neck_relative_L2": 0.04358025215905903,
+          "neighbor_class_feature_relative_L2": 0.07785294601751257,
+          "sham_class_feature_relative_L2": 0.037243658026113874,
+          "Q_gain_vs_base_bootstrap95ci": [
+            -0.011900126540893735,
+            -0.0033520425485090684
+          ],
+          "Q_gain_vs_sham_bootstrap95ci": [
+            -0.010660499604081455,
+            -0.0023626478105568693
+          ],
+          "improved_pairs": 27,
+          "harmed_pairs": 45,
+          "neighbor_class_subgroups": {
+            "same": {
+              "pairs": 100,
+              "Q_gain_vs_sham": -0.00913504051720839
+            },
+            "different": {
+              "pairs": 77,
+              "Q_gain_vs_sham": -0.003209489956151033
+            }
+          }
+        },
+        "blur": {
+          "Q_gain_vs_base": -0.0074750901509009525,
+          "Q_gain_vs_sham": -0.006729901304882867,
+          "logit_gain_vs_sham": -0.046610169491525424,
+          "iou_gain_vs_sham": -0.003034351083362168,
+          "fixed_query_success_count_change": -5,
+          "neighbor_neck_relative_L2": 0.07383125993178913,
+          "sham_neck_relative_L2": 0.03723988009209215,
+          "neighbor_class_feature_relative_L2": 0.07281493939493149,
+          "sham_class_feature_relative_L2": 0.030779892632704833,
+          "Q_gain_vs_base_bootstrap95ci": [
+            -0.01165940103674421,
+            -0.0035428227406207363
+          ],
+          "Q_gain_vs_sham_bootstrap95ci": [
+            -0.010525830992990837,
+            -0.002830579841345814
+          ],
+          "improved_pairs": 21,
+          "harmed_pairs": 40,
+          "neighbor_class_subgroups": {
+            "same": {
+              "pairs": 100,
+              "Q_gain_vs_sham": -0.009376339727700933
+            },
+            "different": {
+              "pairs": 77,
+              "Q_gain_vs_sham": -0.003292968288236024
+            }
+          }
+        }
+      },
+      "self_mean_Q_drop": 0.34124645175052903,
+      "both_fills_improved_pairs": 19,
+      "both_fills_improved_sequences": 16
+    },
+    "confirmation": {
+      "pairs": 189,
+      "sequences": 48,
+      "fills": {
+        "mean": {
+          "Q_gain_vs_base": -0.006035773901600504,
+          "Q_gain_vs_sham": -5.51617448556916e-05,
+          "logit_gain_vs_sham": -0.025442294973544975,
+          "iou_gain_vs_sham": 0.003768811145927587,
+          "fixed_query_success_count_change": -2,
+          "neighbor_neck_relative_L2": 0.07636542622983614,
+          "sham_neck_relative_L2": 0.03855679889960586,
+          "neighbor_class_feature_relative_L2": 0.07426022336541414,
+          "sham_class_feature_relative_L2": 0.03248074805303376,
+          "Q_gain_vs_base_bootstrap95ci": [
+            -0.011425543240307336,
+            -0.0011656636762427403
+          ],
+          "Q_gain_vs_sham_bootstrap95ci": [
+            -0.0047898826220027614,
+            0.004583394022478112
+          ],
+          "improved_pairs": 28,
+          "harmed_pairs": 47,
+          "neighbor_class_subgroups": {
+            "same": {
+              "pairs": 99,
+              "Q_gain_vs_sham": -0.0017744374381759268
+            },
+            "different": {
+              "pairs": 90,
+              "Q_gain_vs_sham": 0.0018360415177965663
+            }
+          }
+        },
+        "blur": {
+          "Q_gain_vs_base": -0.005915033394007618,
+          "Q_gain_vs_sham": -0.001345251602815866,
+          "logit_gain_vs_sham": -0.03962053571428571,
+          "iou_gain_vs_sham": 0.002837853484343959,
+          "fixed_query_success_count_change": -3,
+          "neighbor_neck_relative_L2": 0.07325621475960606,
+          "sham_neck_relative_L2": 0.03335275444102833,
+          "neighbor_class_feature_relative_L2": 0.07182024231710132,
+          "sham_class_feature_relative_L2": 0.02875281128012775,
+          "Q_gain_vs_base_bootstrap95ci": [
+            -0.010401351001975288,
+            -0.0016969996457964597
+          ],
+          "Q_gain_vs_sham_bootstrap95ci": [
+            -0.005902683408784508,
+            0.0030550751617247416
+          ],
+          "improved_pairs": 21,
+          "harmed_pairs": 51,
+          "neighbor_class_subgroups": {
+            "same": {
+              "pairs": 99,
+              "Q_gain_vs_sham": -0.003535756585480588
+            },
+            "different": {
+              "pairs": 90,
+              "Q_gain_vs_sham": 0.0010643038781153274
+            }
+          }
+        }
+      },
+      "self_mean_Q_drop": 0.32888662839116295,
+      "both_fills_improved_pairs": 19,
+      "both_fills_improved_sequences": 18
+    }
+  },
+  "output": "D:\\Python\\YOLO\\output\\analysis\\neighbor-interference-fixed-20261015",
+  "costs": {
+    "JPEG_decodes": 96,
+    "detector_forwards": 2022,
+    "explicit_initialization_prediction_calls": 1,
+    "initialization_scope": "Backend internal warmup not separately instrumented.",
+    "optimizer_steps": 0,
+    "fits": 0,
+    "AP_evaluations": 0,
+    "elapsed_seconds": 50.16178739978932
+  },
+  "limits": "GT-based intervention/query construction;box labels not segmentation;blur/fill artifacts;sham matches size and distance but not all scene content;no guarantee neighbor is visually removed;no claim of real-image causal identification;detector has trained on these images;sequence halves are not external validation;negative result excludes this bounded recipe only.",
+  "artifacts_sha256": {
+    "decision.json": "ff8e10d3aaf4b9f508313fe69bc4a92de7c79a933e4d995ea8da738be8385793",
+    "detector.json": "19e4da51949071cd4327ad37f828b1e3af5768833bb77ee78d26405df8069ce8",
+    "frames.json": "9ff96dff2030a3caa0227cfdccca50397898feebcdffde46b130623c494a9f94",
+    "metrics.json": "44d311e40e5882fdcaf848024778498c4dc22494082070eb8a2153686c809748",
+    "per_image.json": "912c28e121e3a92e68cb48a9e5fe4abc62b4eb2da441755a02f97eabb50d8386",
+    "plan.json": "cfe8ba2c46b5943a15557240f8c68f6b34059db9897a4edf74f0014eb201f892",
+    "source.zip": "09f87487a0c3a99f3327a29c866a90526269d66cc2ed06651a21668a95df3bbe"
+  },
+  "verification": {
+    "passed": true,
+    "images": 96,
+    "pairs": 366,
+    "decision": "STOP_THIS_NONOVERLAPPING_NEIGHBOR_TEXTURE_INTERFERENCE_HYPOTHESIS_ON_FIXED_SCREEN",
+    "verified": "Saved input/metadata/source hashes, archived sources, protected geometry and tensor hashes; scalar independent IoU/Q; shared metrics/bootstrap/gates; detector state unchanged.",
+    "limits": "No independent re-inference or pixel/tensor recapture. Saved target-tensor hashes are execution attestations. Feature extraction and bootstrap engine shared."
+  },
+  "pixel_verification": {
+    "passed": true,
+    "images": 96,
+    "pairs": 366,
+    "reconstructed_perturbations": 1830,
+    "detector_forwards": 0,
+    "optimizer_steps": 0,
+    "elapsed_seconds": 9.214913999894634,
+    "verifier_sha256": "c43f4b3be7bd2f0eaae7427cfb693c7eed7544efc5a38821f8988984fdb356b8",
+    "verified": "Independent baseline 3x3 query argmax; all1830 perturbed image hashes; all protected original and manually preprocessed960 FP16 target pixels match actual execution hashes.",
+    "limits": "OpenCV image decode/resize/Gaussian primitives are shared. No independent detector feature/logit re-inference."
+  },
+  "additional_audit_artifacts_sha256": {
+    "verification.json": "d272e909b2a72ff99bfa1a600faf304c3ee1293cea4f52848e1d77c41a3e761e",
+    "pixel_verification.json": "534f2544bb70b5a7c365c8d00cc7378d80b57a6b0dc52f7a7f18521b51e2ee18"
+  },
+  "tests": "5 geometry, fill, protected preprocessing and query-pool tests passed before formal inference.",
+  "interpretation": "Both halves and both fills reduce mean fixed-query Q versus pristine input. Neither fill has replicated superiority over matched background perturbation. Each half has19pair improvements under both fills, but no posthoc subset can override frozen STOP. No feature-suppression training is supported by this screen."
+}
