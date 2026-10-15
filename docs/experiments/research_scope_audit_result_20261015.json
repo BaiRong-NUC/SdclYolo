@@ -1,0 +1,1269 @@
+{
+  "audit": "research_scope_and_positive_lead_audit",
+  "decision": "RECOMMEND_STOP_CURRENT_FIXED_CHECKPOINT_VISDRONE_LOCAL_PATCH_SEARCH",
+  "investment_scope": "Continue modifying the existing YOLO11s-960 checkpoint, its existing predictions/features, small heads or bounded local interventions on the already-used VisDrone DET splits, under the requirement of cheap positive evidence before expanded training.",
+  "rejection_exclusions": [
+    "Small-object detection as an entire research field",
+    "Untrained alternative backbones, high-resolution teachers or full feature-distillation methods",
+    "True video, event sensors, new modalities or independently acquired datasets",
+    "Methods requiring a different data/training resource commitment"
+  ],
+  "candidates": {
+    "1": {
+      "file": "docs/experiments/candidate1_relative_gain_20261013.json",
+      "sha256": "81bbc0c2b346dd60ca658534ab3c0d38861aff9f19ad8242ec6400a8bb24af56",
+      "decisions": [
+        "SMALL_POSITIVE_SIGNAL"
+      ],
+      "recorded_scope": null
+    },
+    "2": {
+      "file": "docs/experiments/candidate2_retention_20261013.json",
+      "sha256": "8baaffe6ef368cedae623eac05f3847c4e2fa154d40f5c25cc9eb81410f8352c",
+      "decisions": [
+        "PROMISING_POINT_ESTIMATE"
+      ],
+      "recorded_scope": null
+    },
+    "3": {
+      "file": "docs/experiments/candidate3_ranking_20261013.json",
+      "sha256": "1797889fb922151f8bd48b770ddf59a6fdb68882b75ec90562428b2699cdc995",
+      "decisions": [
+        "PROMISING_POINT_ESTIMATE"
+      ],
+      "recorded_scope": null
+    },
+    "4": {
+      "file": "docs/experiments/candidate4_threshold_gain_20261013.json",
+      "sha256": "c1cd75ff9ad159b075c97466bd033d46808817a4209d5286323e9ae96c1ca1d4",
+      "decisions": [
+        "SMALL_POSITIVE_SIGNAL"
+      ],
+      "recorded_scope": "Small positive signal (+0.098756864pp AP vs calibration), numerically below the fixed +0.10pp budget cutoff by0.001243136pp. Do not treat this negligible cutoff gap as evidence of no effect; current AP is0.134956102pp below regret. No detector retraining or margin/epoch changes."
+    },
+    "5": {
+      "file": "docs/experiments/candidate5_ranking_seeds_20261013.json",
+      "sha256": "9d9b9247aa68da1abfc736bc78bf8152b36c8441fd82dea24e411b011998bbf0",
+      "decisions": [
+        "PROMISING_HEAD_SEED_REPEAT",
+        "POSITIVE_EXTRA_HEAD_SEED_SIGNAL"
+      ],
+      "recorded_scope": "Only the small head initialization and batch order vary. Same frozen detector/calibrator, fixed public test-dev already viewed; this is not independent-data confirmation, detector seed robustness, AP CI or publication proof."
+    },
+    "6": {
+      "file": "docs/experiments/candidate6_prior_gap_20261013.json",
+      "sha256": "0b98663c24fd8d6d2ba0d7b79fa2d695688e46ec621e9de1a8a8995d815233e6",
+      "decisions": [
+        "NO_REPEATABLE_ADVANTAGE_OVER_UNIFORM"
+      ],
+      "recorded_scope": "Positive but small calibration AP gain(+0.067070pp), AR500 nearly unchanged(-0.008174pp). All3seeds below uniform; not a new strong control under the registered policy. Retain these results and end this fixed exponential recipe without changing alpha/margin/epochs. Coordinate movement is only0.07-0.12percent; different output/gradient scales and current FP-keep penalty may explain inactivity. Cannot claim superiority to full RankDetNet or novelty from a weak adapted control."
+    },
+    "7": {
+      "file": "docs/experiments/candidate7_coordinate_consensus_20261013.json",
+      "sha256": "7821fc206b2e5e8bbe83acbc84d243b1bb7ff68c437008213c95cde32f97133d",
+      "decisions": [
+        "PROMISING_CONSENSUS_TRADEOFF"
+      ],
+      "recorded_scope": null
+    },
+    "8": {
+      "file": "docs/experiments/candidate8_identity_preflight_result_20261014.json",
+      "sha256": "f0e110abbb7562a1ad38d3c5c2e28d4d733eee1c4a61f904f829b37d75bbd7d2",
+      "decisions": [
+        "STOP_IDENTITY_REPAIR_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "9": {
+      "file": "docs/experiments/candidate9_visual_preflight_result_20261014.json",
+      "sha256": "9f4cff246d5473d56e521a3fb34beb844cc77e3157b76434653368180bff028f",
+      "decisions": [
+        "STOP_THIS_VISUAL_FEATURE_PILOT"
+      ],
+      "recorded_scope": null
+    },
+    "10": {
+      "file": "docs/experiments/candidate10_frozen_roi_preflight_result_20261014.json",
+      "sha256": "9e308d34d9e95552b03305b683011313c9f1f2590bd829c455baf55e3eb58052",
+      "decisions": [
+        "STOP_THIS_VISUAL_FEATURE_PILOT"
+      ],
+      "recorded_scope": null
+    },
+    "11": {
+      "file": "docs/experiments/candidate11_class_conflict_result_20261014.json",
+      "sha256": "7aec22887e535495944c6631f7846ae46264b1b3ae8293746468e8cc5804c634",
+      "decisions": [
+        "SMALL_CLASS_CHOICE_PILOT_WORTH_TESTING"
+      ],
+      "recorded_scope": null
+    },
+    "12": {
+      "file": "docs/experiments/candidate12_class_choice_result_20261014.json",
+      "sha256": "fe3ec6af6b9c7d0688348ab6065dd0de9eae0b8c65ea48d302d1a1f871a49708",
+      "decisions": [
+        "STOP_THIS_CONTEXT_CLASS_CHOICE_PILOT"
+      ],
+      "recorded_scope": null
+    },
+    "13": {
+      "file": "docs/experiments/candidate13_class_signal_result_20261014.json",
+      "sha256": "c37106d262f2c9bdd855cb5422e02d38a4c5cf04961b9ae15b0021ea285aa6a3",
+      "decisions": [
+        "NO_EXTRA_CONTEXT_DISCRIMINATION_SIGNAL"
+      ],
+      "recorded_scope": null
+    },
+    "14": {
+      "file": "docs/experiments/candidate14_soft_class_information_result_20261014.json",
+      "sha256": "fbc5028288483e9bff15a7e05f1e6cab89b0ceeaf925a20f4829c33b94809c7d",
+      "decisions": [
+        "RAW_POSTERIOR_AUDIT_ONLY"
+      ],
+      "recorded_scope": null
+    },
+    "15": {
+      "file": "docs/experiments/candidate15_detection_soft_evidence_result_20261014.json",
+      "sha256": "53c1586b5cba90b2472ac73d18ce3c8add802efcf26fa24324994cb96294e2ca",
+      "decisions": [
+        "TINY_SOFT_INTERVENTION_PILOT_ALLOWED"
+      ],
+      "recorded_scope": null
+    },
+    "16": {
+      "file": "docs/experiments/candidate16_marginal_class_intervention_result_20261014.json",
+      "sha256": "fbe0ee0b38cd0b7bde9cf9c6fb9371706555381c39f3604c812d957a8be4f01b",
+      "decisions": [
+        "STOP_THIS_MARGINAL_INTERVENTION_PILOT"
+      ],
+      "recorded_scope": null
+    },
+    "17": {
+      "file": "docs/experiments/candidate17_context_intervention_result_20261014.json",
+      "sha256": "72175ec6b165a406a91d3c5305a0c7ffec0c8885ac68a2c0c42dcefd406359b4",
+      "decisions": [
+        "STOP_THIS_CONTEXT_INTERVENTION"
+      ],
+      "recorded_scope": null
+    },
+    "18": {
+      "file": "docs/experiments/candidate18_action_order_sensitivity_result_20261014.json",
+      "sha256": "f8d95ba130a107359072d25341a8faa59e17ce993756231e72513bf2818dda2e",
+      "decisions": [
+        "MATCHED_STABLE_ORDER_HEAD_PILOT_ALLOWED"
+      ],
+      "recorded_scope": null
+    },
+    "19": {
+      "file": "docs/experiments/candidate19_stable_order_pilot_result_20261014.json",
+      "sha256": "4eb1ec705323857e73cf6591440877d244c59081834f2ba28e3ad45a65034540",
+      "decisions": [
+        "BOUNDED_OFFICIAL_AUDIT_ALLOWED"
+      ],
+      "recorded_scope": null
+    },
+    "20": {
+      "file": "docs/experiments/candidate20_stable_order_official_result_20261014.json",
+      "sha256": "f3e2a86bd51db49aeda9fcf7a812878f7836ad39f1c62b1a98cb916e4a9e78c3",
+      "decisions": [
+        "STOP_THIS_STABLE_ORDER_OFFICIAL_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "21": {
+      "file": "docs/experiments/candidate21_native_censoring_result_20261014.json",
+      "sha256": "d749057ac7bdb43e05aceddf354781ca63e0c7d4a8082d9ace452d7725291f00",
+      "decisions": [
+        "CENSORING_RETRIEVAL_PILOT_ALLOWED"
+      ],
+      "recorded_scope": null
+    },
+    "22": {
+      "file": "docs/experiments/candidate22_censored_retrieval_result_20261014.json",
+      "sha256": "61d10341a6888c107341488289411743effd0655b614c95c834e853cdd6ff3e2",
+      "decisions": [
+        "STOP_THIS_SUPPRESSOR_CONTRAST_RETRIEVAL_RULE"
+      ],
+      "recorded_scope": null
+    },
+    "23": {
+      "file": "docs/experiments/candidate23_censored_coordinates_result_20261014.json",
+      "sha256": "950025f7c4af85bd91fb8a9467852530792ae226a56f405acee66be286bf0ad6",
+      "decisions": [
+        "STOP_THIS_CENSORED_COORDINATE_EXCHANGE"
+      ],
+      "recorded_scope": null
+    },
+    "24": {
+      "file": "docs/experiments/candidate24_dfl_action_signal_result_20261014.json",
+      "sha256": "64c7ffe2002bcbf753d276a4c6298aa99cf2bcbc5aad99fb5e6dea5ae97d40c5",
+      "decisions": [
+        "STOP_THIS_INTERPOLATED_DFL_EVIDENCE_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "25": {
+      "file": "docs/experiments/candidate25_view_budget_result_20261014.json",
+      "sha256": "793449898e240416783990f105df31e1374cb15258f0acf468f6e66d9a3f509f",
+      "decisions": [
+        "BOUNDED_VIEW_POLICY_SCREEN_ALLOWED"
+      ],
+      "recorded_scope": null
+    },
+    "26": {
+      "file": "docs/experiments/candidate26_marginal_view_policy_result_20261014.json",
+      "sha256": "af08a3c1909fb90cd523670583c703025a93da573648642a1ffb98a552aeb2f7",
+      "decisions": [
+        "STOP_THIS_GLOBAL_FEATURE_MARGINAL_VIEW_REGRESSOR"
+      ],
+      "recorded_scope": null
+    },
+    "27": {
+      "file": "docs/experiments/candidate27_dense_view_policy_result_20261014.json",
+      "sha256": "05faeacc36fc2782e9eaf6219f5e46776a1aa77626d2096fa7eaa55422c4d1bf",
+      "decisions": [
+        "STOP_THIS_DENSE_SUMMARY_VIEW_POLICY"
+      ],
+      "recorded_scope": null
+    },
+    "28": {
+      "file": "docs/experiments/candidate28_native_boundary_result_20261014.json",
+      "sha256": "3af435991af7ef3dca1249f0405c894d09257a58d02c2d60b1f489a2b85653d9",
+      "decisions": [
+        "STOP_THIS_NATIVE_PIXEL_DIFFERENCE_PILOT"
+      ],
+      "recorded_scope": null
+    },
+    "29": {
+      "file": "docs/experiments/candidate29_side_composition_result_20261014.json",
+      "sha256": "91ee5dd9367da81d8ce7c406c112631d96e59d27443e65dce0208fc8c7dbb84f",
+      "decisions": [
+        "STOP_THIS_GEOMETRY_SIDE_COMPOSITION_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "30": {
+      "file": "docs/experiments/candidate30_observed_view_policy_result_20261014.json",
+      "sha256": "178e042d08ebc86e69bf91c94b3cc0d941d0438fe0e29661975e4ba3b63080b9",
+      "decisions": [
+        "STOP_THIS_DIAGONAL_SCHEDULE_HEADROOM"
+      ],
+      "recorded_scope": null
+    },
+    "31": {
+      "file": "docs/experiments/candidate31_correlated_error_fusion_result_20261014.json",
+      "sha256": "6372e89e1df0e0a3fbd2250c89b7bcfe9c1b8703415baa5ff2d84355c6bc8b59",
+      "decisions": [
+        "STOP_THIS_POOLED_SECOND_MOMENT_FUSION"
+      ],
+      "recorded_scope": null
+    },
+    "32": {
+      "file": "docs/experiments/candidate32_neighbor_scale_signal_result_20261014.json",
+      "sha256": "15177c5325166d2da690e4b652ce8d3c65b1f41d59eeecc21efb98aa4508166d",
+      "decisions": [
+        "MATCHED_NEIGHBOR_SCALE_RESIDUAL_PILOT_ALLOWED"
+      ],
+      "recorded_scope": null
+    },
+    "33": {
+      "file": "docs/experiments/candidate33_neighbor_scale_residual_result_20261014.json",
+      "sha256": "fdbaf194568578b1d0cbc77c3967d59bae158fda406430a88fe4b362bfdd3b71",
+      "decisions": [
+        "STOP_THIS_LOCAL_SCALE_MEDIAN_RESIDUAL"
+      ],
+      "recorded_scope": null
+    },
+    "34": {
+      "file": "docs/experiments/candidate34_coordinate_score_debt_result_20261014.json",
+      "sha256": "415c745ac852ca65fd5219610f1a3057916dc1631ad2c6bfac0d1de8b0e1010c",
+      "decisions": [
+        "STOP_THIS_ACTION_QUALITY_DELTA_SCORE_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "35": {
+      "file": "docs/experiments/candidate35_absolute_quality_control_result_20261014.json",
+      "sha256": "5ab38f08de34a5893432a381c3e9a1ee911325e9cf48cd538ae26c5dac070842",
+      "decisions": [
+        "STOP_THIS_ORDINARY_ABSOLUTE_QUALITY_CONTROL_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "36": {
+      "file": "docs/experiments/candidate36_native_deficit_result_20261014.json",
+      "sha256": "41b41a738b2153b3d32a241e445c351e26bcf0f440a6fcba6c99498418154506",
+      "decisions": [
+        "NO_DOMINANT_NATIVE_REPRESENTATION_ROUTE"
+      ],
+      "recorded_scope": null
+    },
+    "37": {
+      "file": "docs/experiments/candidate37_dfl_quantization_floor_result_20261014.json",
+      "sha256": "5799f87010fbba08c1d97d58690a7d05ca97d6e4d657b6d13cfe9c31e385b7fa",
+      "decisions": [
+        "STOP_THIS_DFL_QUANTIZATION_FLOOR_RELIABILITY_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "38": {
+      "file": "docs/experiments/candidate38_native_regression_features_result_20261014.json",
+      "sha256": "befc1200b0c57f6aa170868d51f086976511888044098aa219566a0f06e08e38",
+      "decisions": [
+        "STOP_THIS_NATIVE_REGRESSION_FEATURE_RESIDUAL_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "39": {
+      "file": "docs/experiments/candidate39_geometry_residual_confirmation_result_20261014.json",
+      "sha256": "e1119e2563642095bffaf561d8a9a672fdcc53d29de6a9820e0425f60992984a",
+      "decisions": [
+        "STOP_THIS_ORDINARY_GEOMETRY_RESIDUAL_CONFIRMATION"
+      ],
+      "recorded_scope": null
+    },
+    "40": {
+      "file": "docs/experiments/candidate40_residual_fp_frontier_result_20261014.json",
+      "sha256": "6795ff81e5de68cb831c568f48543cb404ccde00b8ea478cf71ad21c6cf39046",
+      "decisions": [
+        "NO_DOMINANT_FIXED_FP_LOSS_ROUTE"
+      ],
+      "recorded_scope": null
+    },
+    "41": {
+      "file": "docs/experiments/candidate41_shared_residual_bias_result_20261014.json",
+      "sha256": "c9eda1c1e3ff968e7085dc0da11e7d86717ad2f02361365c72d919a77ad06417",
+      "decisions": [
+        "STOP_THIS_CROSS_CLASS_SHARED_RESIDUAL_BIAS_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "42": {
+      "file": "docs/experiments/candidate42_native_spatial_field_result_20261014.json",
+      "sha256": "f7a2e802757da34c04ef939ef2603fe392679317480cef09d2acde7aa40d573a",
+      "decisions": [
+        "STOP_THIS_ORDERED_NATIVE_SPATIAL_FIELD_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "43": {
+      "file": "docs/experiments/candidate43_unowned_reachability_result_20261014.json",
+      "sha256": "2565e0f888934ca16c0aea25d1cae55a19ce1bbf48a01eeee31eb78b4c52b756",
+      "decisions": [
+        "BOUNDED_UNOWNED_SUPERVISION_CONTROL_ALLOWED"
+      ],
+      "recorded_scope": null
+    },
+    "44": {
+      "file": "docs/experiments/candidate44_unowned_supervision_result_20261014.json",
+      "sha256": "60ad77b7404ab07d58425e80ae8af31ffd52b198be45143877eede32c8bc180c",
+      "decisions": [
+        "STOP_THIS_UNOWNED_SUPERVISION_CONTROL_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "45": {
+      "file": "docs/experiments/candidate45_native_semantic_coupling_result_20261014.json",
+      "sha256": "4bd23c69bf2cb291a34f479501eec9cd77a1272cc15409257f82c043145173ba",
+      "decisions": [
+        "STOP_THIS_NATIVE_SEMANTIC_GEOMETRY_COUPLING_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "46": {
+      "file": "docs/experiments/candidate46_shared_prefix_lattice_result_20261014.json",
+      "sha256": "a45f570c748def09568e5b05eb8f33b8b1548dc8db30fc703319f0fc2edc0241",
+      "decisions": [
+        "STOP_THIS_SINGLE_ATLAS_INTEGER_SLICE_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "47": {
+      "file": "docs/experiments/candidate47_exclusive_peer_support_result_20261014.json",
+      "sha256": "c278f135f2e690cd67806bc6360e0d1d633d331f5574f7977bc552ed5a39cb5a",
+      "decisions": [
+        "STOP_THIS_EXCLUSIVE_PEER_SUPPORT_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "48": {
+      "file": "docs/experiments/candidate48_classifier_nullspace_result_20261014.json",
+      "sha256": "0be55d01495cc38394feb7388f6f6ae47c9a0e6342083948654dda91c7331fa5",
+      "decisions": [
+        "STOP_THIS_CLASSIFIER_NULLSPACE_LINEAR_FOREGROUND_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "49": {
+      "file": "docs/experiments/candidate49_crop_censored_sides_result_20261014.json",
+      "sha256": "e8ad855f1d74aa8531c6468278c7c8bdfce130d82e440c1929b9b06f8a2b4046",
+      "decisions": [
+        "STOP_THIS_ONE_SIDED_EQUAL_WEIGHT_CROP_FUSION_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "50": {
+      "file": "docs/experiments/candidate50_assignment_reachability_result_20261014.json",
+      "sha256": "1ba14adc02db34cdf1cfcb698cf0bc22f5d48d10715ffa5da7ed75bafdca268a",
+      "decisions": [
+        "STOP_THIS_NONNEGATIVE_SUPPORT_ROUTE_ON_FIXED_PROXY"
+      ],
+      "recorded_scope": null
+    },
+    "51": {
+      "file": "docs/experiments/candidate51_scale_gradient_conflict_result_20261014.json",
+      "sha256": "0f4deac07850510f3fe89f67b913f0946c3349697541d7fb5d7ec1376714b60e",
+      "decisions": [
+        "STOP_THIS_SCALE_SPECIFIC_P3_GRADIENT_ROUTE"
+      ],
+      "recorded_scope": null
+    },
+    "52": {
+      "file": "docs/experiments/candidate52_crop_teacher_result_20261014.json",
+      "sha256": "67b96d4b84bffddb7d034259bed6e23d4711239241597bee0fecec996b769c50",
+      "decisions": [
+        "STOP_THIS_TWO_FULL_CROP_CONSENSUS_TEACHER_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "53": {
+      "file": "docs/experiments/candidate53_label_gradient_result_20261014.json",
+      "sha256": "4bee3206aac89fbe04134f112e773106d909edd9c3544234e6356d2834a998ff",
+      "decisions": [
+        "STOP_THIS_HALF_PIXEL_SPECIFIC_CIOU_ROUTE"
+      ],
+      "recorded_scope": null
+    },
+    "54": {
+      "file": "docs/experiments/candidate54_augmentation_censoring_result_20261015.json",
+      "sha256": "a464f73f32e8246e58eeccc288b05f39167e40d4dd8869d7c0e35bb92ead8859",
+      "decisions": [
+        "STOP_THIS_FULLY_VISIBLE_AUGMENTATION_CENSORING_ROUTE"
+      ],
+      "recorded_scope": null
+    },
+    "55": {
+      "file": "docs/experiments/candidate55_scene_background_result_20261015.json",
+      "sha256": "cfe0459ff744a6213aa1366b709574648d70302c1d064e97e91c2a24fa4608a4",
+      "decisions": [
+        "STOP_THIS_SCENE_BACKGROUND_QUANTILE_LINEAR_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "56": {
+      "file": "docs/experiments/candidate56_texture_deletion_result_20261015.json",
+      "sha256": "2c5aed8e2149dbcdcb89c81108b0bea02e75b94796cf5947fb1d8303b5e1e96f",
+      "decisions": [
+        "STOP_THIS_PAIRED_MEAN_FILL_TEXTURE_DELETION_RECIPE"
+      ],
+      "recorded_scope": null
+    },
+    "57": {
+      "file": "docs/experiments/candidate57_native_capacity_result_20261015.json",
+      "sha256": "07ee9a8fcc7cfefb814cb92b82e1842c49b6a37ba5a56146e94dd8d0cf214614",
+      "decisions": [
+        "STOP_THIS_NATIVE_SHARED_CAPACITY_ROUTE_ON_FIXED_INVENTORY"
+      ],
+      "recorded_scope": null
+    },
+    "58": {
+      "file": "docs/experiments/candidate58_external_content_result_20261015.json",
+      "sha256": "9b61b9ab23f8dc17b3399675a966c903a203184839deeb245da9d66c2f9f1c2b",
+      "decisions": [
+        "STOP_THIS_FROZEN_DINO_OWN_BOX_LINEAR_RECIPE"
+      ],
+      "recorded_scope": "Both own-versus-base comparisons fail even at zero improvement threshold. Extreme confirmation loss mainly reflects common-base association-IoU normalization extrapolation; not proof of absent DINO information. No normalization rescue, image exclusion, refit, AP or detector training authorized."
+    },
+    "59": {
+      "file": "docs/experiments/candidate59_screen_conditioning_result_20261015.json",
+      "sha256": "f9e7b4b8afdbda7c0444aa33850958bc667682be9760c5e608bd3aabde390830",
+      "decisions": [
+        "NUMERICAL_ENVELOPE_VERIFIED_FOR_FUTURE_OPT_IN_SCREENS"
+      ],
+      "recorded_scope": "Engineering transform only. No old coefficients applied to new inputs, no NLL or deployment gain estimated. Fit-range clipping and zeroing inactive columns can remove useful information; no innovation or detector-training authorization."
+    },
+    "60": {
+      "file": "docs/experiments/candidate60_native_peak_quality_result_20261015.json",
+      "sha256": "888f24fc55eca7086f78fb1a3a0639c697705b7a20e06f94787bf5bb5221c741",
+      "decisions": [
+        "REPLICATED_ORACLE_NATIVE_PEAK_QUALITY_GAP_SUPPORTS_DISTINCT_LOW_COST_FEASIBILITY"
+      ],
+      "recorded_scope": null
+    },
+    "61": {
+      "file": "docs/experiments/candidate61_peak_gap_survival_result_20261015.json",
+      "sha256": "6e8322d62dcaaa8c978d58e4e84187cc3df5bacfb19cb28dfe4041ad070c1301",
+      "decisions": [
+        "REPLICATED_POSTCONTROL_PEAK_GAP_SUPPORTS_SEPARATE_SMALL_LEARNABILITY_PILOT"
+      ],
+      "recorded_scope": "Replicated high-IoU support gaps survive the unchanged strong control. This supports a separate small learnability pilot, not recoverable TP, AP gain, a trainable mechanism or novelty."
+    },
+    "62": {
+      "file": "docs/experiments/candidate62_transport_quality_result_20261015.json",
+      "sha256": "9ec8382556538366330216d74e22954ea4ab1e4ed17ce64105b122a7222de086",
+      "decisions": [
+        "STOP_THIS_COMMON_COORDINATE_W1_PRENMS_QUALITY_RECIPE"
+      ],
+      "recorded_scope": "COCO-style individual-ignore diagnostics, not officialVisDroneAP. Detector saw train data; five plan-unlisted confirmation sequences only. No innovation claim,external replication or full training recommendation."
+    },
+    "63": {
+      "file": "docs/experiments/candidate63_assignment_quality_conflict_result_20261015.json",
+      "sha256": "d2db6d84b3d5e523754f63296c1f17da5b6d0cede3abe50baa0fa44973786bc2",
+      "decisions": [
+        "STOP_THIS_ACTIVE_BACKGROUND_BETTER_BOX_ASSIGNMENT_FEEDBACK_ROUTE_ON_FIXED_PROXY"
+      ],
+      "recorded_scope": "Both halves have zero eligible best candidates treated as background, and zero prespecified opposing-label pairs. Stop this precise active-background/confidence-feedback hypothesis. Do not retune pair,coverage,IoU,probability,alpha or gates to rescue it. Cached score-peak gaps persist but are not evidence for this proposed cause. This does not rule out all assignment methods or all small-object research."
+    },
+    "64": {
+      "file": "docs/experiments/candidate64_shared_site_class_competition_result_20261015.json",
+      "sha256": "8b2c31ef4a1cc98588c364b9d0c021b285dc1b761daae6e3d74d22149874ee7d",
+      "decisions": [
+        "STOP_THIS_SHARED_SITE_CROSS_CLASS_CONTRADICTION_RECIPE"
+      ],
+      "recorded_scope": "Shared-site arm yields small_all recall improvements atFPPI5/10 inboth halves, but confirmation tinyAPdecreases and shared loses tomarginal tinyAPinboth halves. Confirmation sequence interval spanszero. Stop fixedrecipe; do not promote control arms,retune or recommend fulltraining. Positive FPbudget point estimates are limited lead only,not replicated efficacy/novelty."
+    },
+    "65": {
+      "file": "docs/experiments/candidate65_positive_rank_gradient_result_20261015.json",
+      "sha256": "a45e3a13a0db9e0be31ba617c45e2bcd4f2fbc90b11e2ef59ebacfb308b8317e",
+      "decisions": [
+        "STOP_THIS_WITHINGT_QUALITY_HISTOGRAM_TRANSPORT_CLASS_PROJECTION_ROUTE"
+      ],
+      "recorded_scope": "ActualCUDAautograd has14/40eligibletinyGTworseningdirections. Histogramtransport repairs1/2 versusordinaryIoU4/18; both fixedrecipegatesSTOP. CPUFP64auditfailsfixedgradienttolerances; no broad verifiedgradientclaim. CPUvsCUDAeligiblethresholdclassificationdifferences0acrossallarms/pairs,so fixedSTOPcounts areunchanged despite numericalauditfailure. Firstorderparameterdirectionis not optimizerupdate/AP/novelty."
+    },
+    "66": {
+      "file": "docs/experiments/candidate66_crossview_quality_rank_result_20261015.json",
+      "sha256": "c67ec5348eeab86c428abef466e4ebd00b1646bd76e654d08e98b6692f0c3b90",
+      "decisions": [
+        "STOP_THIS_SAMEGT_CROSSVIEW_QUALITY_RANK_PROJECTION_RECIPE"
+      ],
+      "recorded_scope": "Reused detector-training proxy; COCO-style diagnostics, not official VisDrone AP. Only final classification projections updated; not full detector training or innovation proof."
+    },
+    "67": {
+      "file": "docs/experiments/candidate67_neighbor_interference_result_20261015.json",
+      "sha256": "78cba3b00c83ec34b78093a614c755c4460b72ad28c5bb9e3aec916b10a29f36",
+      "decisions": [
+        "STOP_THIS_NONOVERLAPPING_NEIGHBOR_TEXTURE_INTERFERENCE_HYPOTHESIS_ON_FIXED_SCREEN"
+      ],
+      "recorded_scope": "GT-based intervention/query construction;box labels not segmentation;blur/fill artifacts;sham matches size and distance but not all scene content;no guarantee neighbor is visually removed;no claim of real-image causal identification;detector has trained on these images;sequence halves are not external validation;negative result excludes this bounded recipe only."
+    },
+    "68": {
+      "file": "docs/experiments/candidate68_second_observation_result_20261015.json",
+      "sha256": "4ed691eb64e4e1665fb95e49566aa0916d4924ad4d0d9fe98913cd3e1f91fe9e",
+      "decisions": [
+        "STOP_THIS_DET_SECOND_OBSERVATION_PROXY_RECIPE"
+      ],
+      "recorded_scope": "Previously inspected detector-training images;heuristic prefixes not verified sequence identities;GT-assisted correspondence/query proxy;no learned transfer,AP,deployed gains or novelty."
+    },
+    "69": {
+      "file": "docs/experiments/candidate69_instance_moments_result_20261015.json",
+      "sha256": "62a54cb9783ffe06b12432a1daeaf79c274e7d8915fe7ef7f3ab4e7a7d0bd05e",
+      "decisions": [
+        "STOP_THIS_SINGLE_P3_INSTANCE_MOMENT_UPDATE_RECIPE. Do not change rho, layer, masks, data or gates to rescue outcomes. Does not reject all normalization research."
+      ],
+      "recorded_scope": "Shared COCO-style reference640 AP50:95 all/tiny/small_all and whole-confidence-tie recall at FPPI10. These are NOT official VisDrone AP. Primary arm instance, compare all controls. Two fixed prefix-separated halves must pass. No seed/epoch/threshold/subgroup selection. This pilot has no AP confidence interval and is insufficient for a publication or full training decision."
+    }
+  },
+  "positive_lead_dispositions": {
+    "1": {
+      "kind": "retained_engineering",
+      "evidence": [
+        1,
+        5,
+        6
+      ],
+      "reason": "Official relative-gain point estimate retained; generic quality/relative weighting is not established novelty.",
+      "source": {
+        "file": "docs/experiments/candidate1_relative_gain_20261013.json",
+        "sha256": "81bbc0c2b346dd60ca658534ab3c0d38861aff9f19ad8242ec6400a8bb24af56",
+        "decisions": [
+          "SMALL_POSITIVE_SIGNAL"
+        ],
+        "recorded_scope": null
+      },
+      "followup_decisions": {
+        "1": [
+          "SMALL_POSITIVE_SIGNAL"
+        ],
+        "5": [
+          "PROMISING_HEAD_SEED_REPEAT",
+          "POSITIVE_EXTRA_HEAD_SEED_SIGNAL"
+        ],
+        "6": [
+          "NO_REPEATABLE_ADVANTAGE_OVER_UNIFORM"
+        ]
+      }
+    },
+    "2": {
+      "kind": "retained_engineering",
+      "evidence": [
+        2,
+        7
+      ],
+      "reason": "Conditional retention AP/AR benefit retained; standard selection/retention tradeoff, not a proven new mechanism.",
+      "source": {
+        "file": "docs/experiments/candidate2_retention_20261013.json",
+        "sha256": "8baaffe6ef368cedae623eac05f3847c4e2fa154d40f5c25cc9eb81410f8352c",
+        "decisions": [
+          "PROMISING_POINT_ESTIMATE"
+        ],
+        "recorded_scope": null
+      },
+      "followup_decisions": {
+        "2": [
+          "PROMISING_POINT_ESTIMATE"
+        ],
+        "7": [
+          "PROMISING_CONSENSUS_TRADEOFF"
+        ]
+      }
+    },
+    "3": {
+      "kind": "retained_engineering",
+      "evidence": [
+        3,
+        5,
+        6
+      ],
+      "reason": "Official ranking point estimate and head-seed results retained; same exposed data and close ranking priors.",
+      "source": {
+        "file": "docs/experiments/candidate3_ranking_20261013.json",
+        "sha256": "1797889fb922151f8bd48b770ddf59a6fdb68882b75ec90562428b2699cdc995",
+        "decisions": [
+          "PROMISING_POINT_ESTIMATE"
+        ],
+        "recorded_scope": null
+      },
+      "followup_decisions": {
+        "3": [
+          "PROMISING_POINT_ESTIMATE"
+        ],
+        "5": [
+          "PROMISING_HEAD_SEED_REPEAT",
+          "POSITIVE_EXTRA_HEAD_SEED_SIGNAL"
+        ],
+        "6": [
+          "NO_REPEATABLE_ADVANTAGE_OVER_UNIFORM"
+        ]
+      }
+    },
+    "4": {
+      "kind": "retained_engineering",
+      "evidence": [
+        4
+      ],
+      "reason": "Threshold-objective point estimate retained; original cutoff unchanged, no independent novelty/confirmation claim.",
+      "source": {
+        "file": "docs/experiments/candidate4_threshold_gain_20261013.json",
+        "sha256": "c1cd75ff9ad159b075c97466bd033d46808817a4209d5286323e9ae96c1ca1d4",
+        "decisions": [
+          "SMALL_POSITIVE_SIGNAL"
+        ],
+        "recorded_scope": "Small positive signal (+0.098756864pp AP vs calibration), numerically below the fixed +0.10pp budget cutoff by0.001243136pp. Do not treat this negligible cutoff gap as evidence of no effect; current AP is0.134956102pp below regret. No detector retraining or margin/epoch changes."
+      },
+      "followup_decisions": {
+        "4": [
+          "SMALL_POSITIVE_SIGNAL"
+        ]
+      }
+    },
+    "5": {
+      "kind": "retained_engineering",
+      "evidence": [
+        5,
+        6
+      ],
+      "reason": "Three small-head seeds are positive on already-viewed test-dev; not independent data or detector-seed replication.",
+      "source": {
+        "file": "docs/experiments/candidate5_ranking_seeds_20261013.json",
+        "sha256": "9d9b9247aa68da1abfc736bc78bf8152b36c8441fd82dea24e411b011998bbf0",
+        "decisions": [
+          "PROMISING_HEAD_SEED_REPEAT",
+          "POSITIVE_EXTRA_HEAD_SEED_SIGNAL"
+        ],
+        "recorded_scope": "Only the small head initialization and batch order vary. Same frozen detector/calibrator, fixed public test-dev already viewed; this is not independent-data confirmation, detector seed robustness, AP CI or publication proof."
+      },
+      "followup_decisions": {
+        "5": [
+          "PROMISING_HEAD_SEED_REPEAT",
+          "POSITIVE_EXTRA_HEAD_SEED_SIGNAL"
+        ],
+        "6": [
+          "NO_REPEATABLE_ADVANTAGE_OVER_UNIFORM"
+        ]
+      }
+    },
+    "7": {
+      "kind": "retained_engineering",
+      "evidence": [
+        7
+      ],
+      "reason": "Ordinary consensus tradeoff retained; no new learning or novelty claim.",
+      "source": {
+        "file": "docs/experiments/candidate7_coordinate_consensus_20261013.json",
+        "sha256": "7821fc206b2e5e8bbe83acbc84d243b1bb7ff68c437008213c95cde32f97133d",
+        "decisions": [
+          "PROMISING_CONSENSUS_TRADEOFF"
+        ],
+        "recorded_scope": null
+      },
+      "followup_decisions": {
+        "7": [
+          "PROMISING_CONSENSUS_TRADEOFF"
+        ]
+      }
+    },
+    "11": {
+      "kind": "followup_completed",
+      "evidence": [
+        12
+      ],
+      "reason": "GT-assisted class-choice headroom followed by matched learned class-choice pilot.",
+      "source": {
+        "file": "docs/experiments/candidate11_class_conflict_result_20261014.json",
+        "sha256": "7aec22887e535495944c6631f7846ae46264b1b3ae8293746468e8cc5804c634",
+        "decisions": [
+          "SMALL_CLASS_CHOICE_PILOT_WORTH_TESTING"
+        ],
+        "recorded_scope": null
+      },
+      "followup_decisions": {
+        "12": [
+          "STOP_THIS_CONTEXT_CLASS_CHOICE_PILOT"
+        ]
+      }
+    },
+    "15": {
+      "kind": "followup_completed",
+      "evidence": [
+        16
+      ],
+      "reason": "Soft-class intervention lead followed by actual marginal intervention pilot.",
+      "source": {
+        "file": "docs/experiments/candidate15_detection_soft_evidence_result_20261014.json",
+        "sha256": "53c1586b5cba90b2472ac73d18ce3c8add802efcf26fa24324994cb96294e2ca",
+        "decisions": [
+          "TINY_SOFT_INTERVENTION_PILOT_ALLOWED"
+        ],
+        "recorded_scope": null
+      },
+      "followup_decisions": {
+        "16": [
+          "STOP_THIS_MARGINAL_INTERVENTION_PILOT"
+        ]
+      }
+    },
+    "18": {
+      "kind": "followup_completed",
+      "evidence": [
+        19,
+        20
+      ],
+      "reason": "Stable-action headroom followed by three-head-seed pilot and official audit.",
+      "source": {
+        "file": "docs/experiments/candidate18_action_order_sensitivity_result_20261014.json",
+        "sha256": "f8d95ba130a107359072d25341a8faa59e17ce993756231e72513bf2818dda2e",
+        "decisions": [
+          "MATCHED_STABLE_ORDER_HEAD_PILOT_ALLOWED"
+        ],
+        "recorded_scope": null
+      },
+      "followup_decisions": {
+        "19": [
+          "BOUNDED_OFFICIAL_AUDIT_ALLOWED"
+        ],
+        "20": [
+          "STOP_THIS_STABLE_ORDER_OFFICIAL_RECIPE"
+        ]
+      }
+    },
+    "19": {
+      "kind": "followup_completed",
+      "evidence": [
+        20
+      ],
+      "reason": "Positive diagnostic pilot received official evaluation; official frozen gates stopped the recipe.",
+      "source": {
+        "file": "docs/experiments/candidate19_stable_order_pilot_result_20261014.json",
+        "sha256": "4eb1ec705323857e73cf6591440877d244c59081834f2ba28e3ad45a65034540",
+        "decisions": [
+          "BOUNDED_OFFICIAL_AUDIT_ALLOWED"
+        ],
+        "recorded_scope": null
+      },
+      "followup_decisions": {
+        "20": [
+          "STOP_THIS_STABLE_ORDER_OFFICIAL_RECIPE"
+        ]
+      }
+    },
+    "21": {
+      "kind": "followup_completed",
+      "evidence": [
+        22,
+        23
+      ],
+      "reason": "Native candidate support followed by retrieval and coordinate-exchange controls.",
+      "source": {
+        "file": "docs/experiments/candidate21_native_censoring_result_20261014.json",
+        "sha256": "d749057ac7bdb43e05aceddf354781ca63e0c7d4a8082d9ace452d7725291f00",
+        "decisions": [
+          "CENSORING_RETRIEVAL_PILOT_ALLOWED"
+        ],
+        "recorded_scope": null
+      },
+      "followup_decisions": {
+        "22": [
+          "STOP_THIS_SUPPRESSOR_CONTRAST_RETRIEVAL_RULE"
+        ],
+        "23": [
+          "STOP_THIS_CENSORED_COORDINATE_EXCHANGE"
+        ]
+      }
+    },
+    "25": {
+      "kind": "followup_completed",
+      "evidence": [
+        26,
+        27,
+        30
+      ],
+      "reason": "GT-assisted view-saving headroom followed by three fixed learnability/information screens.",
+      "source": {
+        "file": "docs/experiments/candidate25_view_budget_result_20261014.json",
+        "sha256": "793449898e240416783990f105df31e1374cb15258f0acf468f6e66d9a3f509f",
+        "decisions": [
+          "BOUNDED_VIEW_POLICY_SCREEN_ALLOWED"
+        ],
+        "recorded_scope": null
+      },
+      "followup_decisions": {
+        "26": [
+          "STOP_THIS_GLOBAL_FEATURE_MARGINAL_VIEW_REGRESSOR"
+        ],
+        "27": [
+          "STOP_THIS_DENSE_SUMMARY_VIEW_POLICY"
+        ],
+        "30": [
+          "STOP_THIS_DIAGONAL_SCHEDULE_HEADROOM"
+        ]
+      }
+    },
+    "32": {
+      "kind": "followup_completed",
+      "evidence": [
+        33
+      ],
+      "reason": "Weak neighbor-scale signal followed by matched residual pilot.",
+      "source": {
+        "file": "docs/experiments/candidate32_neighbor_scale_signal_result_20261014.json",
+        "sha256": "15177c5325166d2da690e4b652ce8d3c65b1f41d59eeecc21efb98aa4508166d",
+        "decisions": [
+          "MATCHED_NEIGHBOR_SCALE_RESIDUAL_PILOT_ALLOWED"
+        ],
+        "recorded_scope": null
+      },
+      "followup_decisions": {
+        "33": [
+          "STOP_THIS_LOCAL_SCALE_MEDIAN_RESIDUAL"
+        ]
+      }
+    },
+    "43": {
+      "kind": "followup_completed",
+      "evidence": [
+        44
+      ],
+      "reason": "GT-assisted reachability followed by matched supervision pilot.",
+      "source": {
+        "file": "docs/experiments/candidate43_unowned_reachability_result_20261014.json",
+        "sha256": "2565e0f888934ca16c0aea25d1cae55a19ce1bbf48a01eeee31eb78b4c52b756",
+        "decisions": [
+          "BOUNDED_UNOWNED_SUPERVISION_CONTROL_ALLOWED"
+        ],
+        "recorded_scope": null
+      },
+      "followup_decisions": {
+        "44": [
+          "STOP_THIS_UNOWNED_SUPERVISION_CONTROL_RECIPE"
+        ]
+      }
+    },
+    "60": {
+      "kind": "followup_completed",
+      "evidence": [
+        61,
+        62,
+        66
+      ],
+      "reason": "Oracle native quality gap followed by strong-control inventory and actual learned quality/rank updates.",
+      "source": {
+        "file": "docs/experiments/candidate60_native_peak_quality_result_20261015.json",
+        "sha256": "888f24fc55eca7086f78fb1a3a0639c697705b7a20e06f94787bf5bb5221c741",
+        "decisions": [
+          "REPLICATED_ORACLE_NATIVE_PEAK_QUALITY_GAP_SUPPORTS_DISTINCT_LOW_COST_FEASIBILITY"
+        ],
+        "recorded_scope": null
+      },
+      "followup_decisions": {
+        "61": [
+          "REPLICATED_POSTCONTROL_PEAK_GAP_SUPPORTS_SEPARATE_SMALL_LEARNABILITY_PILOT"
+        ],
+        "62": [
+          "STOP_THIS_COMMON_COORDINATE_W1_PRENMS_QUALITY_RECIPE"
+        ],
+        "66": [
+          "STOP_THIS_SAMEGT_CROSSVIEW_QUALITY_RANK_PROJECTION_RECIPE"
+        ]
+      }
+    },
+    "61": {
+      "kind": "followup_completed",
+      "evidence": [
+        62,
+        66
+      ],
+      "reason": "Postcontrol oracle gap followed by deployable learning pilots; oracle gap itself is preserved.",
+      "source": {
+        "file": "docs/experiments/candidate61_peak_gap_survival_result_20261015.json",
+        "sha256": "6e8322d62dcaaa8c978d58e4e84187cc3df5bacfb19cb28dfe4041ad070c1301",
+        "decisions": [
+          "REPLICATED_POSTCONTROL_PEAK_GAP_SUPPORTS_SEPARATE_SMALL_LEARNABILITY_PILOT"
+        ],
+        "recorded_scope": "Replicated high-IoU support gaps survive the unchanged strong control. This supports a separate small learnability pilot, not recoverable TP, AP gain, a trainable mechanism or novelty."
+      },
+      "followup_decisions": {
+        "62": [
+          "STOP_THIS_COMMON_COORDINATE_W1_PRENMS_QUALITY_RECIPE"
+        ],
+        "66": [
+          "STOP_THIS_SAMEGT_CROSSVIEW_QUALITY_RANK_PROJECTION_RECIPE"
+        ]
+      }
+    }
+  },
+  "selected_artifacts": {
+    "66": {
+      "output": "D:\\Python\\YOLO\\output\\analysis\\crossview-quality-rank-fixed-20261015",
+      "hash_checks": {
+        "decision-seed0.json": true,
+        "detector_state.json": true,
+        "fit-pairs.npz": true,
+        "fit-sampled-rows.npz": true,
+        "frames.json": true,
+        "history-seed0.json": true,
+        "independent-pairs-confirmation.npz": true,
+        "independent-pairs-fit.npz": true,
+        "independent-pairs-screen.npz": true,
+        "independent_verification.json": true,
+        "initial.npz": true,
+        "mechanism-seed0-confirmation.npz": true,
+        "mechanism-seed0-screen.npz": true,
+        "mechanism_projection_replay.json": true,
+        "metrics-seed0.json": true,
+        "plan.json": true,
+        "precision_audit.json": true,
+        "predictions-seed0.json": true,
+        "projections-seed0.pt": true,
+        "result.json": true,
+        "source.zip": true,
+        "training-audit-seed0.json": true
+      },
+      "boundary": "Current bytes match recorded hashes; not a rerun or independent revalidation of all historical scientific assumptions."
+    },
+    "67": {
+      "output": "D:\\Python\\YOLO\\output\\analysis\\neighbor-interference-fixed-20261015",
+      "hash_checks": {
+        "decision.json": true,
+        "detector.json": true,
+        "frames.json": true,
+        "metrics.json": true,
+        "per_image.json": true,
+        "plan.json": true,
+        "source.zip": true,
+        "verification.json": true,
+        "pixel_verification.json": true
+      },
+      "boundary": "Current bytes match recorded hashes; not a rerun or independent revalidation of all historical scientific assumptions."
+    },
+    "68": {
+      "output": "D:\\Python\\YOLO\\output\\analysis\\second-observation-fixed-20261015",
+      "hash_checks": {
+        "decision.json": true,
+        "detector.json": true,
+        "frames.json": true,
+        "metrics.json": true,
+        "plan.json": true,
+        "source.zip": true,
+        "verification.json": true,
+        "initial_verification_failure_log": true
+      },
+      "boundary": "Current bytes match recorded hashes; not a rerun or independent revalidation of all historical scientific assumptions."
+    },
+    "69": {
+      "output": "D:\\Python\\YOLO\\output\\analysis\\instance-moments-fixed-20261015",
+      "hash_checks": {
+        "bn.npz": true,
+        "decision.json": true,
+        "eval_manifest.json": true,
+        "fit_manifest.json": true,
+        "folded-global.npz": true,
+        "folded-instance.npz": true,
+        "folded-shuffle.npz": true,
+        "folded-strong.npz": true,
+        "folded-tiny_pixel.npz": true,
+        "metrics.json": true,
+        "moments.npz": true,
+        "plan.json": true,
+        "predictions.json": true,
+        "result.json": true,
+        "source.zip": true,
+        "state.json": true,
+        "verification.json": true
+      },
+      "boundary": "Current bytes match recorded hashes; not a rerun or independent revalidation of all historical scientific assumptions."
+    }
+  },
+  "dataset": {
+    "train": {
+      "images": 6471,
+      "records_sha256": "c1d29edd4f6e0e3eb4052dc4278673b6f1dea877dbd6255d1c13fec8daa79468"
+    },
+    "val": {
+      "images": 548,
+      "records_sha256": "551e5afc2d589fc0b8086b391e69e137913a13781794257e3e5089ada80acf09"
+    },
+    "test": {
+      "images": 1610,
+      "records_sha256": "eed9255c175075143c52a4f4a75632b9df09275882e6f6408ca02a1b40e20a5d"
+    },
+    "pilot_counts": {
+      "fit": 64,
+      "screen": 32,
+      "confirmation": 17
+    },
+    "pilot_inputs_all_detector_training_images": true,
+    "exposure": {
+      "train": "Recorded100epoch fraction1training; pilot heads reuse train images.",
+      "val": "Already-used official-control and candidate20official outcomes exist.",
+      "test": "All1610test-dev outcomes and further early-head comparisons were already consumed."
+    },
+    "detector_training_args_sha256": "7c33d762aeb82fae92a9b19b4ba152597fec4ac024cea89c0adead7f924b2a36",
+    "identical_image_bytes": {
+      "train:val": 0,
+      "train:test": 0,
+      "val:test": 0
+    },
+    "identical_stems": {
+      "train:val": 0,
+      "train:test": 0,
+      "val:test": 0
+    },
+    "boundary": "Current byte/name separation does not prove geographic/video identity independence. Historical outcome exposure is not a measured overfitting effect; unused training images could still be held out from NEW heads, not from this backbone."
+  },
+  "official_control": {
+    "detector": {
+      "path": "D:\\Python\\YOLO\\output\\runs\\baseline_yolo11s_960_100ep_seed0\\weights\\best.pt",
+      "sha256": "eac88f7e348134d3bdaf8b8d3c93845002b634b66a4fa28bd6246abbbeba1a25"
+    },
+    "scorer": {
+      "path": "D:\\Python\\YOLO\\output\\runs\\rescue_softnms_960_seed0\\last.pt",
+      "sha256": "f128af02e49b68101324360429c05942557aa2c2849c7ef04b966d15912f0ed3",
+      "model_branch": "calibration",
+      "epoch": 20,
+      "recipe": {
+        "version": "2026-10-13-vcr-v1",
+        "seed": 0,
+        "epochs": 20,
+        "batch": 2048,
+        "hidden": 64,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "samples_per_state_per_image": 32,
+        "support_confidence": 0.25,
+        "opportunity_coverage": 0.9,
+        "opportunity_side": 8.0,
+        "score_logit_gain": 1.0,
+        "holdout_scene_modulus": 10,
+        "reference_size": 640,
+        "classes": 10
+      },
+      "mean_std": "Use checkpoint mean/std estimated on the fitting subset only.",
+      "features": "All 54 features, including opportunity features.",
+      "score_rule": "sigmoid(logit(soft_score) + p(correct)-p(false_positive)); fixed gain=1",
+      "classes": 10,
+      "parameters": 7940
+    },
+    "report_sha256": "527dafb00ec62a61a9e8123b64abb882d45cf698a6508c3299634bdbb72412ea",
+    "recorded_headline_metrics": {
+      "AP": 34.12335262742041,
+      "AP50": 58.220575613103726,
+      "AP75": 33.9125497198918,
+      "AR1": 0.9568828385565316,
+      "AR10": 7.95879515695509,
+      "AR100": 39.64010477237733,
+      "AR500": 49.59930790613332,
+      "preprocess_seconds": 160.53351593017578,
+      "evaluate_seconds": 14.766350030899048,
+      "mat_sha256": "067a425d104cb2c503f13a085c9224288b03ad35cd49698ee1c39fcbae15f9e3"
+    }
+  },
+  "official_testdev": {
+    "metrics": {
+      "baseline": {
+        "AP": 26.626773509468872,
+        "AP50": 45.209657697233716,
+        "AP75": 27.23711452125875,
+        "AR1": 2.235568585830043,
+        "AR10": 12.841508234108115,
+        "AR100": 34.37934561863829,
+        "AR500": 37.67490984530051
+      },
+      "soft_nms": {
+        "AP": 30.35957875065685,
+        "AP50": 51.1918370536646,
+        "AP75": 31.08439652271459,
+        "AR1": 2.206661877217953,
+        "AR10": 13.498690056709833,
+        "AR100": 39.739340836430024,
+        "AR500": 46.25054283893533
+      },
+      "calibration": {
+        "AP": 30.89426876390022,
+        "AP50": 52.2954133316577,
+        "AP75": 31.54034849263872,
+        "AR1": 2.125917182367915,
+        "AR10": 13.20206629604485,
+        "AR100": 39.7854161210027,
+        "AR500": 46.01818047552792
+      }
+    },
+    "gate_replay": {
+      "decision": "TRANSFER_STOP",
+      "checks": [
+        {
+          "metric": "official_ap_vs_soft_nms_pp",
+          "value": 0.5346900132433703,
+          "threshold": 0.3,
+          "comparison": ">=",
+          "passed": true
+        },
+        {
+          "metric": "official_ap_vs_baseline_pp",
+          "value": 4.267495254431349,
+          "threshold": 1.0,
+          "comparison": ">=",
+          "passed": true
+        },
+        {
+          "metric": "official_ar500_vs_soft_nms_pp",
+          "value": -0.232362363407411,
+          "threshold": -0.1,
+          "comparison": ">=",
+          "passed": false
+        }
+      ],
+      "full_testdev": true,
+      "scope": "Frozen engineering-control transfer only; no novelty or permission to resume stopped recipes."
+    }
+  },
+  "papers": [
+    {
+      "title": "CSCWD: Cross-Scale Channel-wise Knowledge Distillation for Lightweight Tiny Object Detection on Edge Devices",
+      "pdf": "output/literature/papers/2609.30395v1.pdf",
+      "sha256": "e05a7ac8bc9a0c01c92f02b920e63a3e6cd0af2e7dbe566c72911fe0327737d2",
+      "overlap_or_limit": "Trainable intermediate-feature distillation is an existing and UNREPRODUCED mechanism here. Candidate52 categorical GT-center crop logits do not test this formulation. It cannot be renamed our new contribution or rejected from52STOP."
+    },
+    {
+      "title": "Small Object Detection in Drone Aerial Imagery with LAF-YOLOv10",
+      "pdf": "output/literature/papers/2609.14560v1.pdf",
+      "sha256": "a41723aacc94fc0e5c3a65a5708d18470f4a6b682d5a0563e0e3c608108eefde",
+      "overlap_or_limit": "This preprint reports one negative multi-module composition and incomplete pretrained transfer. It explicitly does not isolate the transfer hypothesis. Its results are NOT evidence that our YOLO11s/VisDrone methods or all P2 heads must fail. No paper-reported AP copied into our efficacy audit."
+    }
+  ],
+  "qualified_records": {
+    "51": "Independent complement-gradient replay did not satisfy the frozen tolerance; not clean evidence against all gradient mechanisms.",
+    "65": "CPU FP64 gradient audit failed; retained numerical diagnosis is not a validated method gain or clean scientific rejection.",
+    "68": "Positive local Q means with55targets are preserved; insufficient support/inconsistent classification prevent expansion.",
+    "39": "Positive AP in all3seeds retained; original FP guard failed by one GT in seed1. No retrospective threshold relaxation or universal ineffectiveness claim."
+  },
+  "audit_limits": [
+    "No pooled p-value, independent-trial count or field-wide impossibility claim.",
+    "No new AP/inference/learning. Selected artifact hashes and gate arithmetic are rechecked; old scientific conclusions retain their original limitations.",
+    "Positive means and oracle gaps remain recorded. No established independent, differentiated deployment gain is inferred from them.",
+    "Recommendation is a discretionary allocation decision within the stated low-cost scope; new data/representation mechanisms remain untested."
+  ],
+  "reopening_conditions": [
+    "A specific observed failure that differs materially from the stopped recipes",
+    "An independent development/confirmation plan accounting for the already-trained backbone and exposed val/test-dev",
+    "A close prior-work comparison with matched ordinary controls; known distillation/P2/attention is not a new contribution by renaming",
+    "A bounded actual-learning pilot with a known positive control demonstrating that its budget can detect the hypothesized effect",
+    "A fixed effect-size and uncertainty policy before new outcomes; no after-the-fact rescue thresholds"
+  ],
+  "verification": {
+    "passed": true,
+    "candidate_records": 69,
+    "positive_leads_traced": 16,
+    "current_image_byte_hashes": 8629,
+    "detector_forwards": 0,
+    "optimizer_steps": 0,
+    "boundary": "Deterministic replay of the SAME audit code, not an independent scientific review."
+  },
+  "costs": {
+    "elapsed_seconds": 14.98293019994162,
+    "detector_forwards": 0,
+    "image_decodes": 0,
+    "optimizer_steps": 0,
+    "training_steps": 0,
+    "boundary": "File hashing/JSON analysis only; no statistical test of a new method."
+  },
+  "audit_artifacts_sha256": {
+    "audit.json": "c6703fb1c2c66721d1d7da9ef12345af3a5d19aab46e0b269643eedd725aff41",
+    "costs.json": "15ce5d7b8364dd642558a8a16749135b5ac2e3c4704ff9485ee7118c4f358532",
+    "plan.json": "ad19ed42f2067b18424a01056943215fac42dfe9e2d67fc22d988c905d239490",
+    "source.zip": "980bb67cce27edb1840a6af5e20f0066949f4b70f75d26ff0a67610fea97c8bd",
+    "verification.json": "9825f1c5af3870342390acb241388da665fb28c6ebb593896422852bdafdd010"
+  },
+  "implementation_failure_preserved": {
+    "directory": "output/analysis/research-scope-audit-fixed-20261015-engineering1",
+    "log": "output/analysis/research-scope-audit-engineering1-20261015.log",
+    "log_sha256": "b92c2fb8ae62936a9ece363a7a5dded9d1a2acec3eaaf95db32ecd91f165100a",
+    "scope": "Historical68log alias resolution only; no scientific outcome or old evidence edited."
+  },
+  "completion_audit": [
+    {
+      "requirement": "Preserve67and all priorSTOPs",
+      "evidence": "69original result files byte hashes frozen before audit and unchanged at verification; only new audit/docs added.",
+      "status": "verified"
+    },
+    {
+      "requirement": "Use original papers and preserve prior distinctions",
+      "evidence": "Versioned PDFs, method-page reading/rendering and Zotero parent/child hashes in literature audit; known cross-scale distillation is explicitly untested here, not claimed new.",
+      "status": "verified"
+    },
+    {
+      "requirement": "Freeze controls/gates before new performance experiments",
+      "evidence": "No new performance experiment in this turn; retrospective audit explicitly labeled. Original test-dev gates recalculated without changing them;69registration/metrics/verification hashes match.",
+      "status": "verified"
+    },
+    {
+      "requirement": "Expand training only after repeatable deployable positive evidence",
+      "evidence": "Zero new training or detector forwards; positive16record dispositions retained, no new full training authorized.",
+      "status": "verified"
+    },
+    {
+      "requirement": "Do not call oracle/proxy/renaming innovation",
+      "evidence": "Report separates deployed point estimates, GT-assisted headroom, numerical validity, prior overlap and untested representation learning; no innovation claim.",
+      "status": "verified"
+    },
+    {
+      "requirement": "Find supported candidate OR advise stopping with explicit evidence coverage",
+      "evidence": "Chosen endpoint is scoped investment recommendation in docs/research_scope_decision_20261015.md;69records,56selectedartifactchecks,8629currentimages and savedofficialgates audited. Does not reject the field.",
+      "status": "verified"
+    },
+    {
+      "requirement": "Commit completed work separately with Chinese result message",
+      "evidence": "69committed separately at a0ffeff. Audit commit identity, tracked-file hashes and clean-worktree proof are recorded AFTER commit in output/analysis/research-scope-audit-fixed-20261015/post_commit.json; this tracked report cannot contain its own commit hash.",
+      "status": "check_in_post_commit_receipt"
+    }
+  ]
+}

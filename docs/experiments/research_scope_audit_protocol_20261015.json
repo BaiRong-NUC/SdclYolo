@@ -1,0 +1,65 @@
+{
+  "audit": "research_scope_and_positive_lead_audit",
+  "date": "2026-10-15",
+  "type": "Retrospective investment/evidence audit. Historical outcomes have already been inspected; NOT a new detection experiment or a blinded preregistration.",
+  "scope": "Continue modifying the existing YOLO11s-960 checkpoint, its existing predictions/features, small heads or bounded local interventions on the already-used VisDrone DET splits, under the requirement of cheap positive evidence before expanded training.",
+  "not_in_scope_of_rejection": [
+    "Small-object detection as an entire research field",
+    "Untrained alternative backbones, high-resolution teachers or full feature-distillation methods",
+    "True video, event sensors, new modalities or independently acquired datasets",
+    "Methods requiring a different data/training resource commitment"
+  ],
+  "requirements": [
+    "Inventory exactly candidate1 through candidate69 without relabeling their recorded decisions.",
+    "Explicitly retain positive point estimates and trace every positive/pilot-allowed record; do not say all69experiments failed.",
+    "Distinguish annotation-assisted headroom, engineering validity, deployable gains, independent confirmation and established novelty.",
+    "Hash-verify selected66-69 artifacts and existing official controls. Do not claim a complete rerun of every old experiment.",
+    "Verify current train/val/test identities and existing outcome exposure. Prefix nonoverlap does not prove video independence.",
+    "Recompute original test-dev transfer gates without new predictions, threshold changes or model selection.",
+    "Record closest-paper overlap and untested mechanisms; no exhaustive novelty-exclusion claim.",
+    "If any positive lead lacks an explicit follow-up/retained-engineering disposition, do not issue a complete audit decision."
+  ],
+  "positive_lead_dispositions": {
+    "1": {"kind": "retained_engineering", "evidence": [1, 5, 6], "reason": "Official relative-gain point estimate retained; generic quality/relative weighting is not established novelty."},
+    "2": {"kind": "retained_engineering", "evidence": [2, 7], "reason": "Conditional retention AP/AR benefit retained; standard selection/retention tradeoff, not a proven new mechanism."},
+    "3": {"kind": "retained_engineering", "evidence": [3, 5, 6], "reason": "Official ranking point estimate and head-seed results retained; same exposed data and close ranking priors."},
+    "4": {"kind": "retained_engineering", "evidence": [4], "reason": "Threshold-objective point estimate retained; original cutoff unchanged, no independent novelty/confirmation claim."},
+    "5": {"kind": "retained_engineering", "evidence": [5, 6], "reason": "Three small-head seeds are positive on already-viewed test-dev; not independent data or detector-seed replication."},
+    "7": {"kind": "retained_engineering", "evidence": [7], "reason": "Ordinary consensus tradeoff retained; no new learning or novelty claim."},
+    "11": {"kind": "followup_completed", "evidence": [12], "reason": "GT-assisted class-choice headroom followed by matched learned class-choice pilot."},
+    "15": {"kind": "followup_completed", "evidence": [16], "reason": "Soft-class intervention lead followed by actual marginal intervention pilot."},
+    "18": {"kind": "followup_completed", "evidence": [19, 20], "reason": "Stable-action headroom followed by three-head-seed pilot and official audit."},
+    "19": {"kind": "followup_completed", "evidence": [20], "reason": "Positive diagnostic pilot received official evaluation; official frozen gates stopped the recipe."},
+    "21": {"kind": "followup_completed", "evidence": [22, 23], "reason": "Native candidate support followed by retrieval and coordinate-exchange controls."},
+    "25": {"kind": "followup_completed", "evidence": [26, 27, 30], "reason": "GT-assisted view-saving headroom followed by three fixed learnability/information screens."},
+    "32": {"kind": "followup_completed", "evidence": [33], "reason": "Weak neighbor-scale signal followed by matched residual pilot."},
+    "43": {"kind": "followup_completed", "evidence": [44], "reason": "GT-assisted reachability followed by matched supervision pilot."},
+    "60": {"kind": "followup_completed", "evidence": [61, 62, 66], "reason": "Oracle native quality gap followed by strong-control inventory and actual learned quality/rank updates."},
+    "61": {"kind": "followup_completed", "evidence": [62, 66], "reason": "Postcontrol oracle gap followed by deployable learning pilots; oracle gap itself is preserved."}
+  },
+  "positive_keyword_detection": ["POSITIVE", "PROMISING", "ALLOWED", "WORTH", "SUPPORTS"],
+  "engineering_exclusions": {"59": "Numerical envelope validity is not a positive detector result."},
+  "artifact_aliases": {
+    "68": {
+      "initial_verification_failure_log": "output/analysis/candidate68-verification-initial-failure-20261015.log"
+    }
+  },
+  "audit_implementation_history": "First audit attempt treated68's initial_verification_failure_log alias as a literal root filename and stopped before controls/data audit. Preserve its source archive and log in engineering1. Resolve that alias to the existing retained log and still require the original recorded SHA256. This is retrospective schema handling; no old result, decision or hash is changed.",
+  "engineering_qualified_records": {
+    "51": "Independent complement-gradient replay did not satisfy the frozen tolerance; not clean evidence against all gradient mechanisms.",
+    "65": "CPU FP64 gradient audit failed; retained numerical diagnosis is not a validated method gain or clean scientific rejection.",
+    "68": "Positive local Q means with55targets are preserved; insufficient support/inconsistent classification prevent expansion.",
+    "39": "Positive AP in all3seeds retained; original FP guard failed by one GT in seed1. No retrospective threshold relaxation or universal ineffectiveness claim."
+  },
+  "decision_rule": "Issue a scoped resource-allocation STOP recommendation only if inventory, positive-lead tracing, selected evidence hashes, existing data exposure and official-gate arithmetic are verified. This is a recommendation based on current evidence/constraints, NOT a statistical proof of exhaustion or impossibility.",
+  "on_incomplete_evidence": "INCOMPLETE_AUDIT_NO_PROGRAM_DECISION",
+  "on_verified_evidence": "RECOMMEND_STOP_CURRENT_FIXED_CHECKPOINT_VISDRONE_LOCAL_PATCH_SEARCH",
+  "budget": "Read/hash existing files, rebuild split identities and recompute saved-gate arithmetic only. Zero image decoding, detector forwards, optimizer steps, new detection evaluations or training. No dataset downloads.",
+  "future_reopening_conditions": [
+    "A specific observed failure that differs materially from the stopped recipes",
+    "An independent development/confirmation plan accounting for the already-trained backbone and exposed val/test-dev",
+    "A close prior-work comparison with matched ordinary controls; known distillation/P2/attention is not a new contribution by renaming",
+    "A bounded actual-learning pilot with a known positive control demonstrating that its budget can detect the hypothesized effect",
+    "A fixed effect-size and uncertainty policy before new outcomes; no after-the-fact rescue thresholds"
+  ]
+}

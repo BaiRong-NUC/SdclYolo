@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-15",
+  "scope": "Primary-source boundaries for a retrospective investment audit, not an exhaustive novelty search",
+  "papers": [
+    {
+      "title": "CSCWD: Cross-Scale Channel-wise Knowledge Distillation for Lightweight Tiny Object Detection on Edge Devices",
+      "authors": [
+        "Amir Zamani",
+        "Zeinab Ghasemi-Naraghi"
+      ],
+      "arxiv": "2609.30395v1",
+      "source": "https://arxiv.org/abs/2609.30395v1",
+      "pdf": "output/literature/papers/2609.30395v1.pdf",
+      "pdf_sha256": "e05a7ac8bc9a0c01c92f02b920e63a3e6cd0af2e7dbe566c72911fe0327737d2",
+      "provider": "Paper Search MCP exact-version PDF and metadata",
+      "reviewed": "Re-read method pages4-5, Equation1 P2->P3 feature pairing, bilinear student alignment and channel-spatial KL; ablation page8 distinguishes MGD and same-scale control. Rendered page4 inspected. Existing52archive, not newly discovered prior.",
+      "overlap_or_limit": "Trainable intermediate-feature distillation is an existing and UNREPRODUCED mechanism here. Candidate52 categorical GT-center crop logits do not test this formulation. It cannot be renamed our new contribution or rejected from52STOP.",
+      "status": "Preprint; no peer-review or independent reproduction claim"
+    },
+    {
+      "title": "Small Object Detection in Drone Aerial Imagery with LAF-YOLOv10",
+      "authors": [
+        "Quratulain Nayeem",
+        "Fahmina Taranum",
+        "Mohammed Mudassir Uddin"
+      ],
+      "arxiv": "2609.14560v1",
+      "source": "https://arxiv.org/abs/2609.14560v1",
+      "pdf": "output/literature/papers/2609.14560v1.pdf",
+      "pdf_sha256": "a41723aacc94fc0e5c3a65a5708d18470f4a6b682d5a0563e0e3c608108eefde",
+      "provider": "Paper Search MCP exact-version PDF and metadata",
+      "reviewed": "Read architecture/ablation discussion and page10 limitations/transfer. Rendered page10 inspected. Fulltext title and authors agree with PaperSearch metadata.",
+      "overlap_or_limit": "This preprint reports one negative multi-module composition and incomplete pretrained transfer. It explicitly does not isolate the transfer hypothesis. Its results are NOT evidence that our YOLO11s/VisDrone methods or all P2 heads must fail. No paper-reported AP copied into our efficacy audit.",
+      "status": "Preprint; no peer-review or independent reproduction claim"
+    }
+  ],
+  "zotero_readback": {
+    "file": "output/literature/provenance/scope-audit-20261015/zotero-readback.json",
+    "sha256": "131d24d322da29016c7d4cf2e0f08e7eee95ddd2c136f2b784e868b8e927e50f"
+  },
+  "historical_nearest_priors": [
+    "docs/experiments/ranking_nearest_prior_20261013.json",
+    "docs/literature/crop_teacher_prior_audit_20261014.json",
+    "docs/literature/instance_moments_prior_audit_20261015.json"
+  ],
+  "historical_unresolved_fulltext": "docs/literature/reference_backlog_recheck_20261015.json",
+  "limits": "Some historical fulltexts remain unavailable. Archive/title counts and citations are not originality clearance. Architectural training studies lie outside the evidential scope of frozen local diagnostics."
+}
